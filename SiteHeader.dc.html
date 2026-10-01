@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/tokens/colors.css">
+  <script src="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/_ds_bundle.js"></script>
+  <style>
+    body{margin:0}
+    a{color:#0968F6}a:hover{color:#0049B8}
+  </style>
+</helmet>
+<header style="position:sticky;top:0;z-index:50;height:64px;background:#fff;border-bottom:1px solid #E5E5E5;font-family:'Market Sans',Inter,system-ui,sans-serif;color:#191919">
+  <a href="#main" style="position:absolute;left:-9999px;top:8px;background:#191919;color:#fff;padding:8px 12px;border-radius:8px;font-size:14px" style-focus="left:16px;z-index:60">Skip to content</a>
+  <div style="max-width:1200px;margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between;gap:24px">
+    <a href="Home.dc.html" style="font-size:17px;font-weight:700;color:#191919;text-decoration:none;letter-spacing:-.01em;white-space:nowrap">Lia DiValentin</a>
+    <nav aria-label="Primary" style="display:flex;align-items:center;gap:4px;flex-wrap:wrap;justify-content:flex-end">
+      <a href="Home.dc.html" aria-current="{{ homeCur }}" style="display:inline-flex;align-items:center;height:44px;padding:0 12px;font-size:15px;color:{{ homeColor }};text-decoration:none;border-bottom:2px solid {{ homeLine }};border-top:2px solid transparent" style-hover="color:#0968F6">Home</a>
+      <a href="Process.dc.html" aria-current="{{ processCur }}" style="display:inline-flex;align-items:center;height:44px;padding:0 12px;font-size:15px;color:{{ processColor }};text-decoration:none;border-bottom:2px solid {{ processLine }};border-top:2px solid transparent" style-hover="color:#0968F6">Process</a>
+      <div style="position:relative" onMouseEnter="{{ openWork }}" onMouseLeave="{{ closeWork }}">
+        <button type="button" onClick="{{ toggleWork }}" onKeyDown="{{ onWorkKey }}" aria-haspopup="menu" aria-expanded="{{ workOpen }}" style="display:inline-flex;align-items:center;gap:6px;height:44px;padding:0 12px;font-size:15px;font-family:inherit;color:{{ workColor }};background:none;border:0;border-bottom:2px solid {{ workLine }};border-top:2px solid transparent;cursor:pointer" style-hover="color:#0968F6">Work <span aria-hidden="true" style="font-size:11px">▾</span></button>
+        <sc-if value="{{ workOpen }}" hint-placeholder-val="{{ false }}">
+          <div role="menu" onKeyDown="{{ onMenuKey }}" style="position:absolute;top:52px;right:0;min-width:280px;background:#fff;border:1px solid #E5E5E5;border-radius:12px;padding:8px;box-shadow:0 8px 24px rgba(0,0,0,.08);display:flex;flex-direction:column;gap:2px">
+            <a role="menuitem" href="Work-SizePersonalization.dc.html" style="display:flex;flex-direction:column;gap:2px;padding:10px 12px;border-radius:8px;color:#191919;text-decoration:none" style-hover="background:#F5F9FF;color:#191919" style-focus="background:#F5F9FF;outline:2px solid #0968F6"><span style="font-size:15px;font-weight:700">Size Personalization</span><span style="font-size:13px;color:#707070">AI Size Intelligence · eBay</span></a>
+            <a role="menuitem" href="Work-LocalPickup.dc.html" style="display:flex;flex-direction:column;gap:2px;padding:10px 12px;border-radius:8px;color:#191919;text-decoration:none" style-hover="background:#F5F9FF;color:#191919" style-focus="background:#F5F9FF;outline:2px solid #0968F6"><span style="font-size:15px;font-weight:700">Local Pickup</span><span style="font-size:13px;color:#707070">Agentic Local Pickup · eBay</span></a>
+            <a role="menuitem" href="Work-Current.dc.html" style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 12px;border-radius:8px;color:#191919;text-decoration:none" style-hover="background:#F5F9FF;color:#191919" style-focus="background:#F5F9FF;outline:2px solid #0968F6"><span style="display:flex;flex-direction:column;gap:2px"><span style="font-size:15px;font-weight:700">Current Work</span><span style="font-size:13px;color:#707070">Sneak peek · by request</span></span><span style="display:inline-flex;color:#707070"><x-import component-from-global-scope="EBayEvoDesignSystem_61746e.Icon" name="Lock16" size="16" hint-size="16px,16px"></x-import></span></a>
+          </div>
+        </sc-if>
+      </div>
+      <a href="Resume.dc.html" aria-current="{{ resumeCur }}" style="display:inline-flex;align-items:center;height:44px;padding:0 12px;font-size:15px;color:{{ resumeColor }};text-decoration:none;border-bottom:2px solid {{ resumeLine }};border-top:2px solid transparent" style-hover="color:#0968F6">Résumé</a>
+      <a href="Contact.dc.html" aria-current="{{ contactCur }}" style="display:inline-flex;align-items:center;height:44px;padding:0 12px;font-size:15px;color:{{ contactColor }};text-decoration:none;border-bottom:2px solid {{ contactLine }};border-top:2px solid transparent" style-hover="color:#0968F6">Contact</a>
+    </nav>
+  </div>
+</header>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1200,&quot;height&quot;:64},&quot;active&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;home&quot;,&quot;options&quot;:[&quot;home&quot;,&quot;process&quot;,&quot;work&quot;,&quot;resume&quot;,&quot;contact&quot;],&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  state = { workOpen: false };
+  renderVals() {
+    const a = this.props.active ?? "home";
+    const v = {};
+    for (const r of ["home", "process", "work", "resume", "contact"]) {
+      const on = a === r;
+      v[r + "Color"] = on ? "#191919" : "#545454";
+      v[r + "Line"] = on ? "#191919" : "transparent";
+      v[r + "Cur"] = on ? "page" : undefined;
+    }
+    return {
+      ...v,
+      workOpen: this.state.workOpen,
+      openWork: () => this.setState({ workOpen: true }),
+      closeWork: () => this.setState({ workOpen: false }),
+      toggleWork: () => this.setState(s => ({ workOpen: !s.workOpen })),
+      onWorkKey: (e) => {
+        if (e.key === "ArrowDown" || e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          this.setState({ workOpen: true }, () => {
+            const first = e.currentTarget.parentElement.querySelector('[role="menuitem"]');
+            first && first.focus();
+          });
+        }
+        if (e.key === "Escape") this.setState({ workOpen: false });
+      },
+      onMenuKey: (e) => {
+        const items = [...e.currentTarget.querySelectorAll('[role="menuitem"]')];
+        const i = items.indexOf(document.activeElement);
+        if (e.key === "ArrowDown") { e.preventDefault(); items[(i + 1) % items.length].focus(); }
+        if (e.key === "ArrowUp") { e.preventDefault(); items[(i - 1 + items.length) % items.length].focus(); }
+        if (e.key === "Escape") { this.setState({ workOpen: false }); e.currentTarget.parentElement.querySelector("button").focus(); }
+      },
+    };
+  }
+}
+</script>
+</body>
+</html>

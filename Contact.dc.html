@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/tokens/fig-tokens.css">
+  <link rel="stylesheet" href="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/tokens/evo-aliases.css">
+  <link rel="stylesheet" href="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/tokens/typography.css">
+  <link rel="stylesheet" href="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/tokens/spacing.css">
+  <link rel="stylesheet" href="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/styles.css">
+  <script src="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/_ds_bundle.js"></script>
+  <style>
+    html,body{margin:0;background:#fff;color:#191919;font-family:'Market Sans',Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+    a{color:#0968F6}a:hover{color:#0049B8}
+    :focus-visible{outline:2px solid #0968F6;outline-offset:2px}
+    @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+  </style>
+</helmet>
+<dc-import name="SiteHeader" active="contact" hint-size="100%,64px"></dc-import>
+<main id="main" style="font-family:'Market Sans',Inter,system-ui,sans-serif;color:#191919;background:#fff;min-height:calc(100vh - 64px)">
+  <section data-screen-label="Contact" style="padding:clamp(48px,8vw,96px) 24px">
+    <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,400px),1fr));gap:64px;align-items:start">
+      <div style="display:flex;flex-direction:column;gap:28px">
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <div style="font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#0968F6">Contact</div>
+          <h1 style="margin:0;font-size:clamp(36px,5vw,56px);line-height:1.05;font-weight:700;letter-spacing:-.02em">Let's talk.</h1>
+          <p style="margin:0;font-size:17px;line-height:1.6;color:#363636;max-width:560px;text-wrap:pretty">Hiring for a design leader, want a talk or a mentoring session, or just want to compare notes on agentic commerce — send a note.</p>
+        </div>
+        <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
+          <div role="status" style="border:1px solid #E5E5E5;border-radius:16px;padding:32px;background:#F1FDF1;display:flex;flex-direction:column;gap:8px">
+            <div style="font-size:22px;font-weight:700;color:#1B561A">Sent — I reply within two business days.</div>
+            <div style="font-size:15px;color:#363636">Thanks, {{ name }}. If it's urgent, email me directly at <a href="mailto:ladivalent@gmail.com">ladivalent@gmail.com</a>.</div>
+          </div>
+        </sc-if>
+        <sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
+          <form onSubmit="{{ submit }}" style="display:flex;flex-direction:column;gap:20px;max-width:560px">
+            <fieldset style="border:0;margin:0;padding:0;display:flex;flex-direction:column;gap:10px">
+              <legend style="font-size:14px;font-weight:700;padding:0;margin-bottom:10px">What's this about?</legend>
+              <div style="display:flex;gap:8px;flex-wrap:wrap">
+                <sc-for list="{{ intents }}" as="i" hint-placeholder-count="3">
+                  <button type="button" role="radio" aria-checked="{{ i.on }}" onClick="{{ i.pick }}" style="display:inline-flex;align-items:center;height:40px;padding:0 18px;border-radius:999px;border:1px solid {{ i.border }};background:{{ i.bg }};color:{{ i.color }};font-size:14px;font-weight:700;font-family:inherit;cursor:pointer">{{ i.label }}</button>
+                </sc-for>
+              </div>
+            </fieldset>
+            <label style="display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:700">Name<input required="{{ true }}" value="{{ name }}" onChange="{{ onName }}" style="height:44px;border:1.5px solid #8F8F8F;border-radius:8px;padding:0 14px;font-size:15px;font-family:inherit;outline:none" style-focus="border-color:#191919"></label>
+            <label style="display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:700">Email<input type="email" required="{{ true }}" value="{{ email }}" onChange="{{ onEmail }}" style="height:44px;border:1.5px solid #8F8F8F;border-radius:8px;padding:0 14px;font-size:15px;font-family:inherit;outline:none" style-focus="border-color:#191919"></label>
+            <label style="display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:700">Message<textarea required="{{ true }}" rows="{{ 5 }}" value="{{ message }}" onChange="{{ onMessage }}" style="border:1.5px solid #8F8F8F;border-radius:8px;padding:12px 14px;font-size:15px;font-family:inherit;line-height:1.5;outline:none;resize:vertical" style-focus="border-color:#191919"></textarea></label>
+            <div><button type="submit" style="display:inline-flex;align-items:center;height:48px;padding:0 28px;border-radius:999px;background:#0968F6;color:#fff;font-size:16px;font-weight:700;border:0;font-family:inherit;cursor:pointer" style-hover="background:#0049B8">Send</button></div>
+          </form>
+        </sc-if>
+      </div>
+      <aside style="display:flex;flex-direction:column;gap:8px;border:1px solid #E5E5E5;border-radius:16px;padding:32px;background:#F7F7F7">
+        <div style="font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#707070;margin-bottom:8px">Direct</div>
+        <a href="mailto:ladivalent@gmail.com" style="display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:48px;padding:0 4px;border-bottom:1px solid #E5E5E5;text-decoration:none;color:#191919;font-size:16px;font-weight:700" style-hover="color:#0968F6"><span>ladivalent@gmail.com</span><span style="color:#0968F6">→</span></a>
+        <a href="https://www.linkedin.com/in/liadivalentin" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:48px;padding:0 4px;border-bottom:1px solid #E5E5E5;text-decoration:none;color:#191919;font-size:16px;font-weight:700" style-hover="color:#0968F6"><span>linkedin.com/in/liadivalentin</span><span style="color:#0968F6">↗</span></a>
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:48px;padding:0 4px;border-bottom:1px solid #E5E5E5;font-size:16px"><span style="color:#545454">Location</span><span style="font-weight:700">New York, NY</span></div>
+        <a href="https://calendar.app.google/ejaDEKSUvpbvaHWw7" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:48px;padding:0 4px;text-decoration:none;color:#191919;font-size:16px" style-hover="color:#0968F6"><span style="color:#545454">Book time</span><span style="display:inline-flex;align-items:center;gap:8px;font-weight:700">Schedule a call<span style="color:#0968F6">↗</span></span></a>
+      </aside>
+    </div>
+  </section>
+  <footer data-screen-label="Footer" style="border-top:1px solid #E5E5E5;padding:48px 24px;background:#fff">
+    <div style="max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;font-size:14px;color:#545454">
+      <div style="display:flex;flex-direction:column;gap:4px"><b style="color:#191919;font-size:16px">Lia DiValentin</b><span>Product Design Leader · AI Commerce, Search &amp; Discovery</span></div>
+      <div style="display:flex;gap:20px;flex-wrap:wrap;align-items:center"><a href="mailto:ladivalent@gmail.com" style="text-decoration:none">ladivalent@gmail.com</a><a href="https://www.linkedin.com/in/liadivalentin" target="_blank" rel="noopener" style="text-decoration:none">LinkedIn</a><span style="color:#8F8F8F">Built with my own playbook · Updated 2026-09-16</span></div>
+    </div>
+  </footer>
+</main>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  constructor(p) {
+    super(p);
+    const topic = new URLSearchParams(location.search).get("topic") || "";
+    const intent = topic === "access" ? "Hiring" : topic === "prompt-library" ? "Just saying hi" : "Hiring";
+    const message = topic === "access" ? "I'd like access to the Current Work sneak peek." : topic === "prompt-library" ? "Let me know when the prompt library is live." : "";
+    this.state = { intent, name: "", email: "", message, sent: false };
+  }
+  renderVals() {
+    const labels = ["Hiring", "Speaking / mentoring", "Just saying hi"];
+    return {
+      intents: labels.map(l => { const on = this.state.intent === l; return { label: l, on, border: on ? "#191919" : "#C7C7C7", bg: on ? "#191919" : "#fff", color: on ? "#fff" : "#191919", pick: () => this.setState({ intent: l }) }; }),
+      name: this.state.name, email: this.state.email, message: this.state.message,
+      onName: (e) => this.setState({ name: e.target.value }),
+      onEmail: (e) => this.setState({ email: e.target.value }),
+      onMessage: (e) => this.setState({ message: e.target.value }),
+      sent: this.state.sent, notSent: !this.state.sent,
+      submit: (e) => { e.preventDefault(); this.setState({ sent: true }); },
+    };
+  }
+}
+</script>
+</body>
+</html>

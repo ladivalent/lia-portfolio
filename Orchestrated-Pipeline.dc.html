@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/tokens/fig-tokens.css">
+  <link rel="stylesheet" href="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/tokens/evo-aliases.css">
+  <link rel="stylesheet" href="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/tokens/typography.css">
+  <link rel="stylesheet" href="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/tokens/spacing.css">
+  <script src="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/_ds_bundle.js"></script>
+  <script src="embeds/logos.js"></script>
+  <style>
+    html, body { margin: 0; padding: 0; background: #F7F7F7; color: #191919; font-family: "Market Sans", Arial, sans-serif; font-size: 14px; line-height: 1.45; -webkit-font-smoothing: antialiased; }
+    *, *::before, *::after { box-sizing: border-box; }
+    a { color: rgb(9, 104, 246); text-decoration: none; }
+    a:hover { color: rgb(0, 73, 184); text-decoration: underline; }
+  </style>
+</helmet>
+<div style="max-width:1440px;margin:0 auto;padding:clamp(20px,4vw,52px) clamp(16px,3vw,40px) 48px">
+
+  <header data-screen-label="Header" style="display:flex;flex-wrap:wrap;gap:18px;align-items:flex-end;justify-content:space-between;margin-bottom:24px">
+    <div style="max-width:780px">
+      <div style="font-size:12px;font-weight:700;letter-spacing:.1em;color:#0968F6;margin-bottom:8px">CORPORATE UX PLAYBOOK · MODEL B</div>
+      <h1 style="margin:0 0 10px;font-size:clamp(26px,4.2vw,40px);font-weight:700;letter-spacing:-.6px;line-height:1.08">One pipeline, an orchestrated agent team</h1>
+      <p style="margin:0;font-size:15px;color:#545454;max-width:660px;text-wrap:pretty">Six stages from alignment to launch. Humans lead the work, practitioner tools carry it, and a UX orchestrator routes always‑on agents across every stage.</p>
+    </div>
+    <sc-if value="{{ showNav }}" hint-placeholder-val="{{ true }}"><nav style="display:flex;flex-wrap:wrap;gap:8px">
+      <a href="Phase-Matrix.dc.html" style="display:inline-flex;align-items:center;height:34px;padding:0 15px;border-radius:999px;border:1.5px solid #0968F6;color:#0968F6;font-size:13px;font-weight:700;background:#fff" style-hover="background:#F5F9FF;text-decoration:none">A · Phase matrix</a>
+      <a href="Orchestrated-Pipeline.dc.html" style="display:inline-flex;align-items:center;height:34px;padding:0 15px;border-radius:999px;background:#191919;color:#fff;font-size:13px;font-weight:700">B · Orchestrated pipeline</a>
+      <a href="Stage-Gate-Blend.dc.html" style="display:inline-flex;align-items:center;height:34px;padding:0 15px;border-radius:999px;border:1.5px solid #0968F6;color:#0968F6;font-size:13px;font-weight:700;background:#fff" style-hover="background:#F5F9FF;text-decoration:none">C · Stage-gate blend</a>
+      <a href="Evolution-2022-2026.dc.html" style="display:inline-flex;align-items:center;height:34px;padding:0 15px;border-radius:999px;border:1.5px solid #0968F6;color:#0968F6;font-size:13px;font-weight:700;background:#fff" style-hover="background:#F5F9FF;text-decoration:none">Evolution 2022→26</a>
+      <a href="Resilience-Plan.dc.html" style="display:inline-flex;align-items:center;height:34px;padding:0 15px;border-radius:999px;border:1.5px solid #0968F6;color:#0968F6;font-size:13px;font-weight:700;background:#fff" style-hover="background:#F5F9FF;text-decoration:none">Resilience plan</a>
+    </nav></sc-if>
+  </header>
+
+  <sc-if value="{{ showStakeholders }}" hint-placeholder-val="{{ true }}">
+    <section data-screen-label="Stakeholders" style="background:#fff;border:1px solid #E5E5E5;border-radius:999px;padding:10px 18px;display:flex;flex-wrap:wrap;gap:6px 20px;align-items:center;justify-content:center;margin-bottom:18px">
+      <span style="display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:700"><ds-icon name="Flag16" size="14" style="color:#0968F6"></ds-icon>Leadership</span>
+      <span style="display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:700"><ds-icon name="Package16" size="14" style="color:#0968F6"></ds-icon>Product</span>
+      <span style="display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:700"><ds-icon name="Pencil16" size="14" style="color:#0968F6"></ds-icon>Design</span>
+      <span style="display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:700"><ds-icon name="Wrench16" size="14" style="color:#0968F6"></ds-icon>Engineering</span>
+      <span style="display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:700"><ds-icon name="Graph16" size="14" style="color:#0968F6"></ds-icon>Data</span>
+      <span style="display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:700"><ds-icon name="AuthenticityGuarantee16" size="14" style="color:#0968F6"></ds-icon>Legal &amp; Compliance</span>
+      <span style="display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:700"><ds-icon name="People16" size="14" style="color:#0968F6"></ds-icon>Customers</span>
+    </section>
+  </sc-if>
+
+  <section data-screen-label="Pipeline stages" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,225px),1fr));gap:12px">
+
+    <article data-screen-label="Stage 1 — Align" style="background:#fff;border:1px solid #E5E5E5;border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:10px">
+      <div style="display:flex;align-items:center;gap:9px"><span style="width:26px;height:26px;border-radius:50%;background:#0968F6;color:#fff;font-size:13px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;flex:none">1</span><span style="font-weight:700;font-size:16.5px;letter-spacing:-.2px">Align</span></div>
+      <div style="background:#F7F7F7;border-radius:10px;padding:10px 12px">
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px"><ds-icon name="Profile16" size="13" style="color:#545454"></ds-icon><span style="font-size:10.5px;font-weight:700;letter-spacing:.08em;color:#545454">WORK</span></div>
+        <div style="font-size:12.5px">Goals · outcomes · constraints</div>
+      </div>
+      <div style="background:#F7F7F7;border-radius:10px;padding:10px 12px">
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:7px"><ds-icon name="Wrench16" size="13" style="color:#545454"></ds-icon><span style="font-size:10.5px;font-weight:700;letter-spacing:.08em;color:#545454">TOOLS</span></div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:6px"><tool-logo name="confluence" size="26"></tool-logo><tool-logo name="miro" size="26"></tool-logo><tool-logo name="jira" size="26"></tool-logo><tool-logo name="slack" size="26"></tool-logo><tool-logo name="gdocs" size="26"></tool-logo></div>
+        <div style="font-size:11.5px;color:#545454">Confluence · Miro · Jira · Slack · Google Docs</div>
+      </div>
+      <div style="background:#F5F9FF;border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;gap:9px;flex:1">
+        <div style="display:flex;align-items:center;gap:6px"><ds-icon name="AI16" size="13" style="color:#0049B8"></ds-icon><span style="font-size:10.5px;font-weight:700;letter-spacing:.08em;color:#0049B8">AI AGENTS</span></div>
+        <div><div style="font-size:12.5px;font-weight:700">Brief Synthesizer</div><div style="font-size:11.5px;color:#545454;line-height:1.35"><span style="color:#0049B8;font-weight:700">@GoalExtractor</span> — turns kickoff notes into the brief</div></div>
+        <div><div style="font-size:12.5px;font-weight:700">Stakeholder Mapper</div><div style="font-size:11.5px;color:#545454;line-height:1.35"><span style="color:#0049B8;font-weight:700">@RACIBuilder</span> — drafts RACI &amp; comms plan</div></div>
+        <div><div style="font-size:12.5px;font-weight:700">Risk Scout</div><div style="font-size:11.5px;color:#545454;line-height:1.35"><span style="color:#0049B8;font-weight:700">@AssumptionLogger</span> — logs risks &amp; assumptions</div></div>
+      </div>
+    </article>
+
+    <article data-screen-label="Stage 2 — Discover" style="background:#fff;border:1px solid #E5E5E5;border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:10px">
+      <div style="display:flex;align-items:center;gap:9px"><span style="width:26px;height:26px;border-radius:50%;background:#0968F6;color:#fff;font-size:13px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;flex:none">2</span><span style="font-weight:700;font-size:16.5px;letter-spacing:-.2px">Discover</span></div>
+      <div style="background:#F7F7F7;border-radius:10px;padding:10px 12px">
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px"><ds-icon name="Profile16" size="13" style="color:#545454"></ds-icon><span style="font-size:10.5px;font-weight:700;letter-spacing:.08em;color:#545454">WORK</span></div>
+        <div style="font-size:12.5px">Research · data · customer needs</div>
+      </div>
+      <div style="background:#F7F7F7;border-radius:10px;padding:10px 12px">
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:7px"><ds-icon name="Wrench16" size="13" style="color:#545454"></ds-icon><span style="font-size:10.5px;font-weight:700;letter-spacing:.08em;color:#545454">TOOLS</span></div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:6px"><tool-logo name="dovetail" size="26"></tool-logo><tool-logo name="usertesting" size="26"></tool-logo><tool-logo name="zoom" size="26"></tool-logo><tool-logo name="notebooklm" size="26"></tool-logo><tool-logo name="glean" size="26"></tool-logo><tool-logo name="airtable" size="26"></tool-logo><tool-logo name="ga" size="26"></tool-logo></div>
+        <div style="font-size:11.5px;color:#545454">Dovetail · UserTesting · Zoom · NotebookLM · Glean · Airtable · Analytics</div>
+      </div>
+      <div style="background:#F5F9FF;border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;gap:9px;flex:1">
+        <div style="display:flex;align-items:center;gap:6px"><ds-icon name="AI16" size="13" style="color:#0049B8"></ds-icon><span style="font-size:10.5px;font-weight:700;letter-spacing:.08em;color:#0049B8">AI AGENTS</span></div>
+        <div><div style="font-size:12.5px;font-weight:700">Research Planner</div><div style="font-size:11.5px;color:#545454;line-height:1.35"><span style="color:#0049B8;font-weight:700">@ScreenerWriter</span> — plans studies, writes screeners</div></div>
+        <div><div style="font-size:12.5px;font-weight:700">Interview Copilot</div><div style="font-size:11.5px;color:#545454;line-height:1.35"><span style="color:#0049B8;font-weight:700">@LiveNoter</span> — live notes &amp; follow‑up prompts</div></div>
+        <div><div style="font-size:12.5px;font-weight:700">Insight Miner</div><div style="font-size:11.5px;color:#545454;line-height:1.35"><span style="color:#0049B8;font-weight:700">@ThemeClusterer</span> — clusters transcripts into themes</div></div>
+      </div>
+    </article>
+
+    <article data-screen-label="Stage 3 — Define" style="background:#fff;border:1px solid #E5E5E5;border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:10px">
+      <div style="display:flex;align-items:center;gap:9px"><span style="width:26px;height:26px;border-radius:50%;background:#0968F6;color:#fff;font-size:13px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;flex:none">3</span><span style="font-weight:700;font-size:16.5px;letter-spacing:-.2px">Define</span></div>
+      <div style="background:#F7F7F7;border-radius:10px;padding:10px 12px">
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px"><ds-icon name="Profile16" size="13" style="color:#545454"></ds-icon><span style="font-size:10.5px;font-weight:700;letter-spacing:.08em;color:#545454">WORK</span></div>
+        <div style="font-size:12.5px">Problems · journeys · requirements</div>
+      </div>
+      <div style="background:#F7F7F7;border-radius:10px;padding:10px 12px">
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:7px"><ds-icon name="Wrench16" size="13" style="color:#545454"></ds-icon><span style="font-size:10.5px;font-weight:700;letter-spacing:.08em;color:#545454">TOOLS</span></div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:6px"><tool-logo name="figjam" size="26"></tool-logo><tool-logo name="notion" size="26"></tool-logo><tool-logo name="jira" size="26"></tool-logo><tool-logo name="miro" size="26"></tool-logo><tool-logo name="claude" size="26"></tool-logo></div>
+        <div style="font-size:11.5px;color:#545454">FigJam · Notion · Jira · Miro · Claude</div>
+      </div>
+      <div style="background:#F5F9FF;border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;gap:9px;flex:1">
+        <div style="display:flex;align-items:center;gap:6px"><ds-icon name="AI16" size="13" style="color:#0049B8"></ds-icon><span style="font-size:10.5px;font-weight:700;letter-spacing:.08em;color:#0049B8">AI AGENTS</span></div>
+        <div><div style="font-size:12.5px;font-weight:700">Evidence Synthesizer</div><div style="font-size:11.5px;color:#545454;line-height:1.35"><span style="color:#0049B8;font-weight:700">@InsightLinker</span> — ties each requirement to evidence</div></div>
+        <div><div style="font-size:12.5px;font-weight:700">Journey Mapper</div><div style="font-size:11.5px;color:#545454;line-height:1.35"><span style="color:#0049B8;font-weight:700">@PainpointRanker</span> — drafts journeys, ranks painpoints</div></div>
+        <div><div style="font-size:12.5px;font-weight:700">Requirements Critic</div><div style="font-size:11.5px;color:#545454;line-height:1.35"><span style="color:#0049B8;font-weight:700">@AcceptanceDrafter</span> — finds gaps, drafts acceptance criteria</div></div>
+      </div>
+    </article>
+
+    <article data-screen-label="Stage 4 — Design" style="background:#fff;border:1px solid #E5E5E5;border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:10px">
+      <div style="display:flex;align-items:center;gap:9px"><span style="width:26px;height:26px;border-radius:50%;background:#0968F6;color:#fff;font-size:13px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;flex:none">4</span><span style="font-weight:700;font-size:16.5px;letter-spacing:-.2px">Design</span></div>
+      <div style="background:#F7F7F7;border-radius:10px;padding:10px 12px">
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px"><ds-icon name="Profile16" size="13" style="color:#545454"></ds-icon><span style="font-size:10.5px;font-weight:700;letter-spacing:.08em;color:#545454">WORK</span></div>
+        <div style="font-size:12.5px">Flows · content · prototypes</div>
+      </div>
+      <div style="background:#F7F7F7;border-radius:10px;padding:10px 12px">
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:7px"><ds-icon name="Wrench16" size="13" style="color:#545454"></ds-icon><span style="font-size:10.5px;font-weight:700;letter-spacing:.08em;color:#545454">TOOLS</span></div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:6px"><tool-logo name="figma" size="26"></tool-logo><tool-logo name="storybook" size="26"></tool-logo><tool-logo name="vscode" size="26"></tool-logo><tool-logo name="claude" size="26"></tool-logo><tool-logo name="v0" size="26"></tool-logo><tool-logo name="cursor" size="26"></tool-logo><tool-logo name="loom" size="26"></tool-logo></div>
+        <div style="font-size:11.5px;color:#545454">Figma · Storybook · VS Code · Claude · v0 · Cursor · Loom</div>
+      </div>
+      <div style="background:#F5F9FF;border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;gap:9px;flex:1">
+        <div style="display:flex;align-items:center;gap:6px"><ds-icon name="AI16" size="13" style="color:#0049B8"></ds-icon><span style="font-size:10.5px;font-weight:700;letter-spacing:.08em;color:#0049B8">AI AGENTS</span></div>
+        <div><div style="font-size:12.5px;font-weight:700">Design‑System Agent</div><div style="font-size:11.5px;color:#545454;line-height:1.35"><span style="color:#0049B8;font-weight:700">@ComponentMatcher</span> — maps needs to existing components</div></div>
+        <div><div style="font-size:12.5px;font-weight:700">Content Designer</div><div style="font-size:11.5px;color:#545454;line-height:1.35"><span style="color:#0049B8;font-weight:700">@ToneChecker</span> — drafts on‑voice UX copy</div></div>
+        <div><div style="font-size:12.5px;font-weight:700">Prototype Builder</div><div style="font-size:11.5px;color:#545454;line-height:1.35"><span style="color:#0049B8;font-weight:700">@CodePrototyper</span> — builds coded prototypes for testing</div></div>
+      </div>
+    </article>
+
+    <article data-screen-label="Stage 5 — Validate" style="background:#fff;border:1px solid #E5E5E5;border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:10px">
+      <div style="display:flex;align-items:center;gap:9px"><span style="width:26px;height:26px;border-radius:50%;background:#0968F6;color:#fff;font-size:13px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;flex:none">5</span><span style="font-weight:700;font-size:16.5px;letter-spacing:-.2px">Validate</span></div>
+      <div style="background:#F7F7F7;border-radius:10px;padding:10px 12px">
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px"><ds-icon name="Profile16" size="13" style="color:#545454"></ds-icon><span style="font-size:10.5px;font-weight:700;letter-spacing:.08em;color:#545454">WORK</span></div>
+        <div style="font-size:12.5px">Usability · accessibility · risk</div>
+      </div>
+      <div style="background:#F7F7F7;border-radius:10px;padding:10px 12px">
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:7px"><ds-icon name="Wrench16" size="13" style="color:#545454"></ds-icon><span style="font-size:10.5px;font-weight:700;letter-spacing:.08em;color:#545454">TOOLS</span></div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:6px"><tool-logo name="maze" size="26"></tool-logo><tool-logo name="usertesting" size="26"></tool-logo><tool-logo name="axe" size="26"></tool-logo><tool-logo name="lighthouse" size="26"></tool-logo><tool-logo name="v0" size="26"></tool-logo><tool-logo name="vercel" size="26"></tool-logo></div>
+        <div style="font-size:11.5px;color:#545454">Maze · UserTesting · axe · Lighthouse · v0 · Vercel</div>
+      </div>
+      <div style="background:#F5F9FF;border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;gap:9px;flex:1">
+        <div style="display:flex;align-items:center;gap:6px"><ds-icon name="AI16" size="13" style="color:#0049B8"></ds-icon><span style="font-size:10.5px;font-weight:700;letter-spacing:.08em;color:#0049B8">AI AGENTS</span></div>
+        <div><div style="font-size:12.5px;font-weight:700">Test Moderator</div><div style="font-size:11.5px;color:#545454;line-height:1.35"><span style="color:#0049B8;font-weight:700">@TaskScripter</span> — scripts &amp; runs unmoderated tests</div></div>
+        <div><div style="font-size:12.5px;font-weight:700">Accessibility Auditor</div><div style="font-size:11.5px;color:#545454;line-height:1.35"><span style="color:#0049B8;font-weight:700">@WCAGSweeper</span> — audits every state for WCAG</div></div>
+        <div><div style="font-size:12.5px;font-weight:700">Edge‑case Simulator</div><div style="font-size:11.5px;color:#545454;line-height:1.35"><span style="color:#0049B8;font-weight:700">@ChaosPersona</span> — stress‑tests with synthetic personas</div></div>
+      </div>
+    </article>
+
+    <article data-screen-label="Stage 6 — Deliver and Learn" style="background:#fff;border:1px solid #E5E5E5;border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:10px">
+      <div style="display:flex;align-items:center;gap:9px"><span style="width:26px;height:26px;border-radius:50%;background:#0968F6;color:#fff;font-size:13px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;flex:none">6</span><span style="font-weight:700;font-size:16.5px;letter-spacing:-.2px">Deliver &amp; Learn</span></div>
+      <div style="background:#F7F7F7;border-radius:10px;padding:10px 12px">
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px"><ds-icon name="Profile16" size="13" style="color:#545454"></ds-icon><span style="font-size:10.5px;font-weight:700;letter-spacing:.08em;color:#545454">WORK</span></div>
+        <div style="font-size:12.5px">Build · launch · measure · iterate</div>
+      </div>
+      <div style="background:#F7F7F7;border-radius:10px;padding:10px 12px">
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:7px"><ds-icon name="Wrench16" size="13" style="color:#545454"></ds-icon><span style="font-size:10.5px;font-weight:700;letter-spacing:.08em;color:#545454">TOOLS</span></div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:6px"><tool-logo name="figma" size="26"></tool-logo><tool-logo name="v0" size="26"></tool-logo><tool-logo name="github" size="26"></tool-logo><tool-logo name="jira" size="26"></tool-logo><tool-logo name="amplitude" size="26"></tool-logo></div>
+        <div style="font-size:11.5px;color:#545454">Figma Dev Mode · v0 · GitHub · Jira · Amplitude</div>
+      </div>
+      <div style="background:#F5F9FF;border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;gap:9px;flex:1">
+        <div style="display:flex;align-items:center;gap:6px"><ds-icon name="AI16" size="13" style="color:#0049B8"></ds-icon><span style="font-size:10.5px;font-weight:700;letter-spacing:.08em;color:#0049B8">AI AGENTS</span></div>
+        <div><div style="font-size:12.5px;font-weight:700">Handoff Inspector</div><div style="font-size:11.5px;color:#545454;line-height:1.35"><span style="color:#0049B8;font-weight:700">@SpecDiffer</span> — diffs spec vs. build</div></div>
+        <div><div style="font-size:12.5px;font-weight:700">Design QA Agent</div><div style="font-size:11.5px;color:#545454;line-height:1.35"><span style="color:#0049B8;font-weight:700">@VisualRegression</span> — screenshot‑diffs every PR</div></div>
+        <div><div style="font-size:12.5px;font-weight:700">Experiment Analyst</div><div style="font-size:11.5px;color:#545454;line-height:1.35"><span style="color:#0049B8;font-weight:700">@ABReader</span> — reads experiments into insights</div></div>
+      </div>
+    </article>
+  </section>
+
+  <div data-screen-label="Learning loop" style="margin:16px 0;display:flex;justify-content:center">
+    <span style="display:inline-flex;align-items:center;gap:10px;background:#191919;color:#fff;border-radius:999px;padding:9px 22px;font-size:12.5px;font-weight:700;letter-spacing:.14em"><ds-icon name="Refresh16" size="14"></ds-icon>MEASURE · LEARN · REFRAME</span>
+  </div>
+
+  <section data-screen-label="UX Orchestrator" style="display:flex;flex-direction:column;align-items:center">
+    <span style="display:inline-flex;align-items:center;gap:10px;background:#191919;color:#fff;border-radius:999px;padding:11px 24px;font-size:14.5px;font-weight:700;letter-spacing:.06em"><ds-icon name="AITools24" size="19"></ds-icon>UX ORCHESTRATOR</span>
+    <div style="height:18px;border-left:2px dashed #C7C7C7"></div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:12px;width:100%">
+      <div style="background:color-mix(in srgb, rgb(0,111,147) 6%, white);border:1px solid color-mix(in srgb, rgb(0,111,147) 22%, white);border-radius:16px;padding:16px;display:flex;gap:12px">
+        <ds-icon name="Eye24" size="22" style="color:#006F93;margin-top:2px"></ds-icon>
+        <div><div style="font-weight:700;font-size:14px">Accessibility Guardian</div><div style="font-size:12.5px;color:#545454;line-height:1.4">Monitors every artifact for accessibility, at every stage.</div></div>
+      </div>
+      <div style="background:color-mix(in srgb, rgb(0,111,147) 6%, white);border:1px solid color-mix(in srgb, rgb(0,111,147) 22%, white);border-radius:16px;padding:16px;display:flex;gap:12px">
+        <ds-icon name="Book24" size="22" style="color:#006F93;margin-top:2px"></ds-icon>
+        <div><div style="font-weight:700;font-size:14px">Research Repository Agent</div><div style="font-size:12.5px;color:#545454;line-height:1.4">Stores, organizes, and surfaces research and insights.</div></div>
+      </div>
+      <div style="background:color-mix(in srgb, rgb(0,111,147) 6%, white);border:1px solid color-mix(in srgb, rgb(0,111,147) 22%, white);border-radius:16px;padding:16px;display:flex;gap:12px">
+        <ds-icon name="GridView24" size="22" style="color:#006F93;margin-top:2px"></ds-icon>
+        <div><div style="font-weight:700;font-size:14px">Design‑System Librarian</div><div style="font-size:12.5px;color:#545454;line-height:1.4">Keeps components, patterns, and standards in sync.</div></div>
+      </div>
+      <div style="background:color-mix(in srgb, rgb(0,111,147) 6%, white);border:1px solid color-mix(in srgb, rgb(0,111,147) 22%, white);border-radius:16px;padding:16px;display:flex;gap:12px">
+        <ds-icon name="Lock24" size="22" style="color:#006F93;margin-top:2px"></ds-icon>
+        <div><div style="font-weight:700;font-size:14px">Privacy &amp; Safety Reviewer</div><div style="font-size:12.5px;color:#545454;line-height:1.4">Reviews privacy, safety, and policy implications.</div></div>
+      </div>
+    </div>
+    <div style="font-size:12px;color:#707070;margin-top:10px">Always‑on agents run across every stage and report into the orchestrator.</div>
+  </section>
+
+  <section data-screen-label="Approval banner" style="margin-top:18px;background:#FFF5F5;border:1px solid #FFDEDE;border-radius:16px;padding:16px 22px;display:flex;flex-wrap:wrap;gap:12px 16px;align-items:center;justify-content:center">
+    <ds-icon name="AuthenticityGuarantee24" size="24" style="color:#D50B0B"></ds-icon>
+    <span style="font-size:15px;font-weight:700;text-align:center;text-wrap:pretty">Humans approve scope, evidence, design decisions, and consequential actions.</span>
+    <ds-icon name="People24" size="22" style="color:#D50B0B"></ds-icon>
+  </section>
+
+  <sc-if value="{{ showLegend }}" hint-placeholder-val="{{ true }}">
+    <div data-screen-label="Legend" style="margin-top:16px;display:flex;flex-wrap:wrap;gap:8px;justify-content:center;font-size:11.5px;font-weight:700;color:#545454">
+      <span style="padding:5px 12px;border-radius:999px;background:#F7F7F7;border:1px solid #E5E5E5">WORK — human‑led</span>
+      <span style="padding:5px 12px;border-radius:999px;background:#F7F7F7;border:1px solid #E5E5E5">TOOLS — practitioner stack</span>
+      <span style="padding:5px 12px;border-radius:999px;background:#F5F9FF;border:1px solid #D4E5FE;color:#0049B8">AI AGENTS — assistance</span>
+      <span style="padding:5px 12px;border-radius:999px;background:#fff;border:1px dashed #8F8F8F">dashed — orchestration</span>
+      <span style="padding:5px 12px;border-radius:999px;background:#FFF5F5;border:1px solid #FFDEDE;color:#D50B0B">red — approval gate</span>
+    </div>
+  </sc-if>
+
+  <footer style="margin-top:26px;border-top:1px solid #E5E5E5;padding-top:14px;display:flex;flex-wrap:wrap;gap:10px 20px;justify-content:space-between;font-size:12.5px;color:#707070">
+    <span>Illustrative stacks — swap tools and agent names for your org.</span>
+    <span>Next: <a href="Stage-Gate-Blend.dc.html">C · Stage-gate blend</a> · <a href="Phase-Matrix.dc.html">A · Phase matrix</a> · <a href="Evolution-2022-2026.dc.html">Evolution</a></span>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;showStakeholders&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Layout&quot;}, &quot;showLegend&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Layout&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      showNav: !this.props.embedded,
+      showStakeholders: this.props.showStakeholders ?? true,
+      showLegend: this.props.showLegend ?? true,
+    };
+  }
+}
+</script>
+</body>
+</html>

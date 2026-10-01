@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/tokens/fig-tokens.css">
+  <link rel="stylesheet" href="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/tokens/evo-aliases.css">
+  <link rel="stylesheet" href="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/tokens/typography.css">
+  <link rel="stylesheet" href="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/tokens/spacing.css">
+  <link rel="stylesheet" href="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/styles.css">
+  <script src="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/_ds_bundle.js"></script>
+  <script src="./guide-data.js"></script>
+  <style>
+    html,body{margin:0;background:#fff;color:#191919;font-family:'Market Sans',Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+    a{color:#0968F6}a:hover{color:#0049B8}
+    :focus-visible{outline:2px solid #0968F6;outline-offset:2px}
+    @media print{header,footer,[data-noprint]{display:none!important}body{font-size:11pt}main{padding:0!important}[data-print=stack]{display:flex!important;flex-direction:column!important;gap:40px!important}[data-print=aside]{position:static!important;gap:32px!important}[data-print=caps]{order:3}[data-screen-label]{padding-bottom:0!important}[data-print=stats]{display:none!important}}
+    @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+  </style>
+</helmet>
+<dc-import name="SiteHeader" active="resume" hint-size="100%,64px"></dc-import>
+<main id="main" style="font-family:'Market Sans',Inter,system-ui,sans-serif;color:#191919;background:#fff;min-height:calc(100vh - 64px)">
+  <section data-screen-label="Résumé header" style="padding:clamp(40px,6vw,72px) 24px 0">
+    <div style="max-width:1200px;margin:0 auto;display:flex;flex-direction:column;gap:24px">
+      <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap">
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#0968F6">Résumé</div>
+          <h1 style="margin:0;font-size:clamp(32px,4vw,44px);line-height:1.1;font-weight:700;letter-spacing:-.02em">{{ profile.name }}</h1>
+          <div style="font-size:17px;color:#363636">{{ profile.headline }}</div>
+          <div style="display:flex;gap:16px;flex-wrap:wrap;font-size:14px;color:#545454"><span>{{ profile.location }}</span><a href="mailto:{{ profile.email }}" style="text-decoration:none">{{ profile.email }}</a><a href="{{ profile.linkedin }}" target="_blank" rel="noopener" style="text-decoration:none">LinkedIn</a><a href="{{ profile.portfolio }}" style="text-decoration:none">liadivalentin.com</a></div>
+        </div>
+        <div data-noprint="true" style="display:flex;gap:8px;flex-wrap:wrap">
+          <a href="resume/Lia-DiValentin-Resume.pdf" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;height:44px;padding:0 20px;border-radius:999px;border:1.5px solid #0968F6;color:#0968F6;background:#fff;font-size:15px;font-weight:700;text-decoration:none" style-hover="background:#F5F9FF;color:#0968F6">Print / Save PDF</a>
+          <a href="resume/Lia-DiValentin-Resume-ATS.pdf" download="Lia-DiValentin-Resume-ATS.pdf" style="display:inline-flex;align-items:center;height:44px;padding:0 20px;border-radius:999px;background:#0968F6;color:#fff;font-size:15px;font-weight:700;text-decoration:none" style-hover="background:#0049B8;color:#fff">Download ATS PDF</a>
+        </div>
+      </div>
+      <div data-noprint="true" role="tablist" style="display:flex;gap:4px;border-bottom:1px solid #E5E5E5">
+        <button type="button" role="tab" aria-selected="{{ isMaster }}" onClick="{{ showMaster }}" style="height:48px;padding:0 16px;background:none;border:0;border-bottom:2px solid {{ masterLine }};color:{{ masterColor }};font-size:15px;font-weight:700;font-family:inherit;cursor:pointer" style-hover="color:#0968F6">Master résumé</button>
+        <button type="button" role="tab" aria-selected="{{ isArchive }}" onClick="{{ showArchive }}" style="height:48px;padding:0 16px;background:none;border:0;border-bottom:2px solid {{ archiveLine }};color:{{ archiveColor }};font-size:15px;font-weight:700;font-family:inherit;cursor:pointer" style-hover="color:#0968F6">Story archive</button>
+      </div>
+    </div>
+  </section>
+
+  <sc-if value="{{ isMaster }}" hint-placeholder-val="{{ true }}">
+  <section data-screen-label="Master résumé" style="padding:40px 24px clamp(48px,8vw,96px)">
+    <div data-print="stack" style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:minmax(0,2fr) minmax(260px,1fr);gap:48px;align-items:start">
+      <div style="display:flex;flex-direction:column;gap:40px;min-width:0">
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <h2 style="margin:0;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#707070;font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace">Profile</h2>
+          <p style="margin:0;font-size:17px;line-height:1.6;text-wrap:pretty">{{ profile.summary }}</p>
+        </div>
+        <div data-print="stats" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px">
+          <sc-for list="{{ highlights }}" as="h" hint-placeholder-count="4">
+            <div style="border:1px solid #E5E5E5;border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:4px"><div style="font-size:20px;font-weight:700;letter-spacing:-.01em">{{ h.value }}</div><div style="font-size:13px;line-height:1.5;color:#545454">{{ h.label }}</div></div>
+          </sc-for>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:16px">
+          <h2 style="margin:0;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#707070;font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace">Experience</h2>
+          <sc-for list="{{ roles }}" as="r" hint-placeholder-count="3">
+            <article style="display:flex;flex-direction:column;gap:12px;padding:24px 0;border-top:1px solid #E5E5E5">
+              <div style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:baseline">
+                <div style="display:flex;flex-direction:column;gap:2px"><div style="font-size:20px;font-weight:700">{{ r.company }} · {{ r.title }}</div><div style="font-size:13px;color:#707070">{{ r.scope }}</div></div>
+                <div style="font-size:14px;color:#545454;white-space:nowrap">{{ r.dates }}</div>
+              </div>
+              <p style="margin:0;font-size:15px;line-height:1.6;color:#363636">{{ r.summary }}</p>
+              <ul style="margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px;font-size:15px;line-height:1.6">
+                <sc-for list="{{ r.bullets }}" as="b" hint-placeholder-count="4"><li>{{ b }}</li></sc-for>
+              </ul>
+            </article>
+          </sc-for>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <h2 style="margin:0;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#707070;font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace">Earlier experience</h2>
+          <sc-for list="{{ earlier }}" as="r" hint-placeholder-count="3">
+            <div style="display:grid;grid-template-columns:minmax(120px,160px) minmax(0,1fr);gap:16px;padding:16px 0;border-top:1px solid #E5E5E5">
+              <div style="font-size:14px;color:#545454">{{ r.dates }}</div>
+              <div style="display:flex;flex-direction:column;gap:4px"><div style="font-size:16px;font-weight:700">{{ r.company }} · {{ r.title }}</div><div style="font-size:14px;line-height:1.55;color:#363636">{{ r.summary }} {{ r.extra }}</div></div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      <aside data-print="aside" style="display:flex;flex-direction:column;gap:32px;position:sticky;top:88px">
+        <div data-print="caps" style="display:flex;flex-direction:column;gap:16px">
+          <h2 style="margin:0;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#707070;font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace">Capabilities</h2>
+          <sc-for list="{{ caps }}" as="c" hint-placeholder-count="5">
+            <div style="display:flex;flex-direction:column;gap:8px"><div style="font-size:14px;font-weight:700">{{ c.label }}</div><div style="display:flex;gap:6px;flex-wrap:wrap"><sc-for list="{{ c.items }}" as="i" hint-placeholder-count="5"><span style="display:inline-flex;align-items:center;min-height:26px;padding:3px 10px;border-radius:999px;background:#F7F7F7;border:1px solid #E5E5E5;font-size:12px;color:#363636">{{ i }}</span></sc-for></div></div>
+          </sc-for>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <h2 style="margin:0;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#707070;font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace">Education</h2>
+          <sc-for list="{{ education }}" as="e" hint-placeholder-count="3">
+            <div style="display:flex;flex-direction:column;gap:2px"><div style="font-size:14px;font-weight:700">{{ e.credential }}</div><div style="font-size:13px;color:#545454">{{ e.institution }} · {{ e.detail }}</div></div>
+          </sc-for>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <h2 style="margin:0;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#707070;font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace">Recognition</h2>
+          <ul style="margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px;font-size:13px;line-height:1.5;color:#363636"><sc-for list="{{ recognition }}" as="r" hint-placeholder-count="4"><li>{{ r }}</li></sc-for></ul>
+        </div>
+      </aside>
+    </div>
+  </section>
+  </sc-if>
+
+  <sc-if value="{{ isArchive }}" hint-placeholder-val="{{ false }}">
+  <section data-screen-label="Story archive" style="padding:40px 24px clamp(48px,8vw,96px)">
+    <div style="max-width:1200px;margin:0 auto;display:flex;flex-direction:column;gap:24px">
+      <p style="margin:0;font-size:17px;color:#363636">A canonical archive of stories and achievements.</p>
+      <div style="display:flex;flex-direction:column;gap:12px;background:#F7F7F7;border-radius:12px;padding:16px 20px">
+        <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><span style="font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#707070;font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;width:80px">Company</span>
+          <sc-for list="{{ companyChips }}" as="c" hint-placeholder-count="4"><button type="button" onClick="{{ c.toggle }}" aria-pressed="{{ c.on }}" style="display:inline-flex;align-items:center;height:32px;padding:0 14px;border-radius:999px;border:1px solid {{ c.border }};background:{{ c.bg }};color:{{ c.color }};font-size:13px;font-weight:700;font-family:inherit;cursor:pointer">{{ c.label }}</button></sc-for>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><span style="font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#707070;font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;width:80px">Focus</span>
+          <sc-for list="{{ focusChips }}" as="c" hint-placeholder-count="5"><button type="button" onClick="{{ c.toggle }}" aria-pressed="{{ c.on }}" style="display:inline-flex;align-items:center;height:32px;padding:0 14px;border-radius:999px;border:1px solid {{ c.border }};background:{{ c.bg }};color:{{ c.color }};font-size:13px;font-weight:700;font-family:inherit;cursor:pointer">{{ c.label }}</button></sc-for>
+        </div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">
+          <input type="search" value="{{ query }}" onChange="{{ onQuery }}" placeholder="Search stories" aria-label="Search stories" style="flex:1 1 240px;height:40px;border:1.5px solid #8F8F8F;border-radius:8px;padding:0 14px;font-size:14px;font-family:inherit;background:#fff;outline:none" style-focus="border-color:#191919">
+          <span style="font-size:13px;color:#707070">Showing {{ shownCount }} of {{ totalCount }}</span>
+          <button type="button" onClick="{{ clearFilters }}" style="height:40px;padding:0 14px;border-radius:999px;border:0;background:none;color:#0968F6;font-size:13px;font-weight:700;font-family:inherit;cursor:pointer">Clear filters</button>
+        </div>
+      </div>
+      <sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ false }}">
+        <div style="border:1.5px dashed #C7C7C7;border-radius:12px;padding:40px;text-align:center;color:#707070;font-size:15px">No stories match — <button type="button" onClick="{{ clearFilters }}" style="border:0;background:none;color:#0968F6;font-weight:700;font-family:inherit;font-size:15px;cursor:pointer;padding:0">clear filters</button>.</div>
+      </sc-if>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <sc-for list="{{ stories }}" as="s" hint-placeholder-count="6">
+          <article id="story-{{ s.id }}" style="border:1px solid {{ s.border }};border-radius:12px;background:#fff;overflow:hidden;transition:border-color 150ms cubic-bezier(.2,0,0,1)">
+            <button type="button" onClick="{{ s.toggle }}" aria-expanded="{{ s.open }}" style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 22px;background:none;border:0;text-align:left;font-family:inherit;color:#191919;cursor:pointer" style-hover="background:#FAFAFA">
+              <span style="display:flex;flex-direction:column;gap:4px;min-width:0"><span style="font-size:17px;font-weight:700;line-height:1.3">{{ s.title }}</span><span style="font-size:13px;color:#707070">{{ s.company }} · {{ s.role }}</span></span>
+              <span style="display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end;align-items:center;flex:none"><sc-for list="{{ s.focus }}" as="f" hint-placeholder-count="2"><span style="display:inline-flex;align-items:center;height:26px;padding:0 10px;border-radius:999px;background:#F7F7F7;border:1px solid #E5E5E5;font-size:12px;color:#545454">{{ f }}</span></sc-for><span aria-hidden="true" style="font-size:12px;color:#707070;margin-left:6px">{{ s.chev }}</span></span>
+            </button>
+            <sc-if value="{{ s.open }}" hint-placeholder-val="{{ false }}">
+              <div style="padding:4px 22px 22px;display:flex;flex-direction:column;gap:14px;border-top:1px solid #E5E5E5">
+                <sc-for list="{{ s.rows }}" as="r" hint-placeholder-count="4">
+                  <div style="display:grid;grid-template-columns:minmax(100px,130px) minmax(0,1fr);gap:16px;padding-top:14px"><div style="font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#0968F6;font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;padding-top:3px">{{ r.label }}</div><div style="font-size:15px;line-height:1.6;color:#363636;text-wrap:pretty">{{ r.text }}</div></div>
+                </sc-for>
+                <sc-if value="{{ s.hasTradeoffs }}" hint-placeholder-val="{{ false }}">
+                  <div style="margin-top:8px;background:#F7F7F7;border-radius:12px;padding:16px 20px;display:flex;flex-direction:column;gap:12px">
+                    <div style="font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#707070;font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace">Design tradeoffs</div>
+                    <sc-for list="{{ s.tradeoffs }}" as="t" hint-placeholder-count="2"><div style="display:flex;flex-direction:column;gap:4px"><div style="font-size:14px;font-weight:700">{{ t.title }}</div><div style="font-size:14px;line-height:1.6;color:#363636">{{ t.statement }}</div></div></sc-for>
+                  </div>
+                </sc-if>
+              </div>
+            </sc-if>
+          </article>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+  </sc-if>
+
+  <footer data-screen-label="Footer" style="border-top:1px solid #E5E5E5;padding:48px 24px;background:#fff">
+    <div style="max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;font-size:14px;color:#545454">
+      <div style="display:flex;flex-direction:column;gap:4px"><b style="color:#191919;font-size:16px">Lia DiValentin</b><span>Product Design Leader · AI Commerce, Search &amp; Discovery</span></div>
+      <div style="display:flex;gap:20px;flex-wrap:wrap;align-items:center"><a href="mailto:ladivalent@gmail.com" style="text-decoration:none">ladivalent@gmail.com</a><a href="https://www.linkedin.com/in/liadivalentin" target="_blank" rel="noopener" style="text-decoration:none">LinkedIn</a><span style="color:#8F8F8F">Built with my own playbook · Updated 2026-09-16</span></div>
+    </div>
+  </footer>
+</main>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  constructor(p) {
+    super(p);
+    const q = new URLSearchParams(location.search);
+    this.state = { tab: q.get("tab") === "archive" ? "archive" : "master", openId: q.get("story") || null, company: [], focus: [], query: "" };
+  }
+  componentDidMount() {
+    if (this.state.openId) setTimeout(() => { const el = document.getElementById("story-" + this.state.openId); if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 140 }); }, 600);
+  }
+  sanitize(t) {
+    return (t || "")
+      .replace(/;\s*internally, the controlled production cohort was approximately 1%/i, "")
+      .replace(/\s*[^.]*80 out of 100[^.]*\./g, "")
+      .replace(/\s*[^.]*80\/100[^.]*\./g, "");
+  }
+  renderVals() {
+    const D = window.GUIDE_DATA || {};
+    const profile = D.resumeProfile || {};
+    const companies = ["eBay", "Walmart", "The Home Depot", "Earlier"];
+    const focuses = ["Partnering", "Communicating", "Driving results", "Growing continuously", "Product thinking"];
+    const compOf = (s) => { const c = s.company || ""; if (/ebay/i.test(c)) return "eBay"; if (/walmart/i.test(c)) return "Walmart"; if (/home depot/i.test(c)) return "The Home Depot"; return "Earlier"; };
+    const all = D.stories || [];
+    const q = this.state.query.trim().toLowerCase();
+    const shown = all.filter(s => {
+      if (this.state.company.length) { const cs = (s.company || "").split("·").map(x => compOf({ company: x })); if (!cs.some(c => this.state.company.includes(c))) return false; }
+      if (this.state.focus.length && !this.state.focus.some(f => (s.focus || []).includes(f))) return false;
+      if (q && !(s.title + " " + (s.rows || []).map(r => r.text).join(" ")).toLowerCase().includes(q)) return false;
+      return true;
+    });
+    const chip = (label, arr, key) => { const on = this.state[key].includes(label); return { label, on, border: on ? "#191919" : "#C7C7C7", bg: on ? "#191919" : "#fff", color: on ? "#fff" : "#191919", toggle: () => this.setState(s => ({ [key]: on ? s[key].filter(x => x !== label) : [...s[key], label] })) }; };
+    const isMaster = this.state.tab === "master";
+    return {
+      profile, highlights: D.resumeHighlights || [], roles: D.resumeRoles || [],
+      earlier: (D.earlierRoles || []).map(r => ({ ...r, extra: (r.bullets || []).join(" ") })),
+      caps: D.resumeCapabilities || [], education: D.resumeEducation || [], recognition: D.resumeRecognition || [],
+      isMaster, isArchive: !isMaster,
+      masterLine: isMaster ? "#191919" : "transparent", masterColor: isMaster ? "#191919" : "#545454",
+      archiveLine: !isMaster ? "#191919" : "transparent", archiveColor: !isMaster ? "#191919" : "#545454",
+      showMaster: () => this.setState({ tab: "master" }), showArchive: () => this.setState({ tab: "archive" }),
+      print: () => window.print(),
+      companyChips: companies.map(c => chip(c, companies, "company")),
+      focusChips: focuses.map(f => chip(f, focuses, "focus")),
+      query: this.state.query, onQuery: (e) => this.setState({ query: e.target.value }),
+      clearFilters: () => this.setState({ company: [], focus: [], query: "" }),
+      shownCount: shown.length, totalCount: all.length, isEmpty: shown.length === 0,
+      stories: shown.map(s => { const open = this.state.openId === s.id; return {
+        id: s.id, title: s.title, company: s.company, role: s.role, focus: s.focus || [], open,
+        border: open ? "#191919" : "#E5E5E5", chev: open ? "▲" : "▼",
+        rows: (s.rows || []).map(r => ({ label: r.label, text: this.sanitize(r.text) })),
+        tradeoffs: (s.tradeoffs || []).map(t => ({ title: t.title, statement: t.statement })), hasTradeoffs: !!(s.tradeoffs && s.tradeoffs.length),
+        toggle: () => this.setState(st => ({ openId: st.openId === s.id ? null : s.id })),
+      }; }),
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/tokens/fig-tokens.css">
+  <link rel="stylesheet" href="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/tokens/evo-aliases.css">
+  <link rel="stylesheet" href="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/tokens/typography.css">
+  <link rel="stylesheet" href="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/tokens/spacing.css">
+  <link rel="stylesheet" href="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/styles.css">
+  <script src="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/_ds_bundle.js"></script>
+  <style>
+    html,body{margin:0;background:#fff;color:#191919;font-family:'Market Sans',Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+    a{color:#0968F6}a:hover{color:#0049B8}
+    :focus-visible{outline:2px solid #0968F6;outline-offset:2px}
+    @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+    @keyframes fadein{from{opacity:0}to{opacity:1}}
+    @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+  </style>
+</helmet>
+<dc-import name="SiteHeader" active="work" hint-size="100%,64px"></dc-import>
+<main id="main" style="font-family:'Market Sans',Inter,system-ui,sans-serif;color:#191919;min-height:calc(100vh - 64px);display:flex;flex-direction:column;background:#fff">
+
+  <sc-if value="{{ locked }}" hint-placeholder-val="{{ true }}">
+    <section data-screen-label="Gate" style="flex:1;display:flex;align-items:center;justify-content:center;padding:clamp(48px,8vw,96px) 24px;background:#fff">
+      <form onSubmit="{{ submit }}" style="width:100%;max-width:440px;background:#fff;border:1px solid #E5E5E5;border-radius:16px;padding:36px;display:flex;flex-direction:column;gap:20px;animation:{{ shakeAnim }}">
+        <div style="display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;background:#F7F7F7;color:#545454"><x-import component-from-global-scope="EBayEvoDesignSystem_61746e.Icon" name="Lock24" size="24" hint-size="24px,24px"></x-import></div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div style="font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#0968F6">Current work · Sneak peek</div>
+          <h1 style="margin:0;font-size:24px;line-height:1.25;font-weight:700;letter-spacing:-.01em">This work is in progress and shared by request.</h1>
+        </div>
+        <label style="display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:700">Password
+          <input type="password" value="{{ pw }}" onChange="{{ onPw }}" autoComplete="off" aria-invalid="{{ hasError }}" style="height:44px;border:1.5px solid {{ inputBorder }};border-radius:8px;padding:0 14px;font-size:15px;font-family:inherit;color:#191919;outline:none" style-focus="border-color:#191919">
+        </label>
+        <sc-if value="{{ hasError }}" hint-placeholder-val="{{ false }}"><div role="alert" style="font-size:14px;color:#D50B0B;margin-top:-10px">That password didn't match. Try again, or request access.</div></sc-if>
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <button type="submit" style="display:inline-flex;align-items:center;height:44px;padding:0 24px;border-radius:999px;background:#0968F6;color:#fff;font-size:15px;font-weight:700;border:0;font-family:inherit;cursor:pointer" style-hover="background:#0049B8">Unlock</button>
+          <a href="Contact.dc.html?topic=access" style="display:inline-flex;align-items:center;height:44px;padding:0 24px;border-radius:999px;border:1.5px solid #0968F6;color:#0968F6;font-size:15px;font-weight:700;text-decoration:none" style-hover="background:#F5F9FF;color:#0049B8">Request access</a>
+        </div>
+      </form>
+    </section>
+  </sc-if>
+
+  <sc-if value="{{ unlocked }}" hint-placeholder-val="{{ false }}">
+    <div style="animation:fadein 240ms cubic-bezier(.2,0,0,1) both">
+      <section data-screen-label="Current work hero" style="padding:clamp(48px,8vw,96px) 24px 32px">
+        <div style="max-width:1200px;margin:0 auto;display:flex;flex-direction:column;gap:20px">
+          <div style="font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#0968F6">Current work · AI Mode</div>
+          <h1 style="margin:0;font-size:clamp(32px,4vw,44px);line-height:1.1;font-weight:700;letter-spacing:-.02em;max-width:900px;text-wrap:balance">AI Mode — an end-to-end agentic shopping prototype</h1>
+          <p style="margin:0;font-size:17px;line-height:1.6;color:#363636;max-width:760px;text-wrap:pretty">From the first ask to a memory hub: the agent proposes a plan, runs it visibly, handles errors and pauses, cites its sources, drafts an offer, and remembers what it learned. Desktop and mobile, fourteen stages. Concept prototype · work in progress · shared by request.</p>
+        </div>
+      </section>
+      <section data-screen-label="AI Mode frame" style="padding:0 24px 48px">
+        <div style="max-width:1200px;margin:0 auto;display:flex;flex-direction:column;gap:16px">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap">
+            <div style="display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;flex:1 1 400px">
+              <sc-for list="{{ frames }}" as="f" hint-placeholder-count="14">
+                <button type="button" onClick="{{ f.pick }}" style="flex:none;display:inline-flex;align-items:center;height:34px;padding:0 14px;border-radius:999px;border:1.5px solid {{ f.border }};background:{{ f.bg }};color:{{ f.color }};font-size:13px;font-weight:700;font-family:inherit;cursor:pointer;white-space:nowrap" style-hover="background:#F5F9FF">{{ f.label }}</button>
+              </sc-for>
+            </div>
+            <div style="display:flex;gap:8px;align-items:center">
+              <button type="button" onClick="{{ toggleDevice }}" style="display:inline-flex;align-items:center;height:36px;padding:0 14px;border-radius:999px;border:1.5px solid #C7C7C7;background:#fff;color:#191919;font-size:13px;font-weight:700;font-family:inherit;cursor:pointer" style-hover="background:#F7F7F7">{{ deviceLabel }}</button>
+              <a href="View.dc.html?slot=ai-mode&amp;back=Work-Current.dc.html" onClick="{{ rememberView }}" style="display:inline-flex;align-items:center;height:36px;padding:0 14px;border-radius:999px;border:1.5px solid #0968F6;color:#0968F6;font-size:13px;font-weight:700;text-decoration:none" style-hover="background:#F5F9FF;color:#0049B8">Open full screen ↗</a>
+            </div>
+          </div>
+          <div style="border:1px solid #E5E5E5;border-radius:16px;overflow:hidden;background:#F7F7F7;height:{{ frameHeight }}">
+            <iframe src="{{ frameSrc }}" title="AI Mode prototype" sandbox="allow-scripts allow-same-origin allow-popups allow-forms" referrerPolicy="no-referrer" style="display:block;width:100%;height:100%;border:0;background:#fff"></iframe>
+          </div>
+          <div style="font-size:13px;color:#707070">Concept prototype · interactive · hotspots link every stage. Use the stage pills above to jump between frames.</div>
+        </div>
+      </section>
+    </div>
+  </sc-if>
+
+  <footer data-screen-label="Footer" style="border-top:1px solid #E5E5E5;padding:48px 24px;background:#fff">
+    <div style="max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;font-size:14px;color:#545454">
+      <div style="display:flex;flex-direction:column;gap:4px"><b style="color:#191919;font-size:16px">Lia DiValentin</b><span>Product Design Leader · AI Commerce, Search &amp; Discovery</span></div>
+      <div style="display:flex;gap:20px;flex-wrap:wrap;align-items:center"><a href="mailto:ladivalent@gmail.com" style="text-decoration:none">ladivalent@gmail.com</a><a href="https://www.linkedin.com/in/liadivalentin" target="_blank" rel="noopener" style="text-decoration:none">LinkedIn</a><span style="color:#8F8F8F">Built with my own playbook · Updated 2026-09-16</span></div>
+    </div>
+  </footer>
+</main>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { unlocked: typeof sessionStorage !== "undefined" && sessionStorage.getItem("lia-gate") === "1", pw: "", error: false, shake: 0, frame: "00", device: "desktop" };
+  renderVals() {
+    const list = [["00","00-intro"],["01","01-entry"],["02","02-composing"],["03","03-thinking"],["04","04-plan-proposed"],["05","05-plan-editing"],["06","06-running"],["06-error","06-running-error"],["06-paused","06-running-paused"],["07","07-answer"],["07-empty","07-answer-empty"],["08","08-sources"],["09","09-draft-offer"],["10","10-offer-sent"],["11","11-classic-search"],["12","12-history"],["13","13-memory-hub"]];
+    const mobile = this.state.device === "mobile";
+    return {
+      rememberView: () => { try { sessionStorage.setItem("lia-view", JSON.stringify({ slot: "ai-mode", back: "Work-Current.dc.html" })); } catch (_) {} },
+      locked: !this.state.unlocked, unlocked: this.state.unlocked,
+      pw: this.state.pw, hasError: this.state.error,
+      inputBorder: this.state.error ? "#D50B0B" : "#8F8F8F",
+      shakeAnim: this.state.shake ? "shake 320ms cubic-bezier(.2,0,0,1) " + this.state.shake : "none",
+      onPw: (e) => this.setState({ pw: e.target.value, error: false }),
+      submit: (e) => {
+        e.preventDefault();
+        if (this.state.pw === "preview") { sessionStorage.setItem("lia-gate", "1"); this.setState({ unlocked: true }); }
+        else this.setState(s => ({ error: true, shake: s.shake + 1 }));
+      },
+      frames: list.map(([id, label]) => { const on = id === this.state.frame; return { label, pick: () => this.setState({ frame: id }), border: on ? "#191919" : "#0968F6", bg: on ? "#191919" : "#fff", color: on ? "#fff" : "#0968F6" }; }),
+      frameSrc: "embeds/AI-Mode.html#/" + this.state.frame + "/" + this.state.device,
+      frameHeight: mobile ? "920px" : "1000px",
+      deviceLabel: mobile ? "Mobile · switch to desktop" : "Desktop · switch to mobile",
+      toggleDevice: () => this.setState(s => ({ device: s.device === "mobile" ? "desktop" : "mobile" })),
+    };
+  }
+}
+</script>
+</body>
+</html>

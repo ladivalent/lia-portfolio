@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/tokens/fig-tokens.css">
+  <link rel="stylesheet" href="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/tokens/evo-aliases.css">
+  <link rel="stylesheet" href="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/tokens/typography.css">
+  <link rel="stylesheet" href="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/tokens/spacing.css">
+  <link rel="stylesheet" href="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/styles.css">
+  <script src="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/_ds_bundle.js"></script>
+  <style>
+    body{margin:0;background:#EBEBEB}
+    a{color:#0968F6;text-decoration:none}
+    a:hover{color:#0850BC;text-decoration:underline}
+  </style>
+</helmet>
+
+<div style="display:flex;flex-direction:column;gap:36px;padding:28px;width:fit-content;font-family:'Market Sans',-apple-system,'Segoe UI',sans-serif;color:#191919">
+
+  <!-- ============ SLIDE 1 · DIRECTOR ============ -->
+  <section id="slide-director" data-screen-label="01 Director journey" style="width:1920px;height:1080px;background:#FFFFFF;padding:44px 52px 36px;display:flex;flex-direction:column;gap:16px;box-sizing:border-box;overflow:hidden">
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:24px">
+      <div style="display:flex;align-items:center;gap:20px">
+        <div style="width:104px;height:42px;overflow:hidden;display:flex;align-items:center">
+          <x-import component-from-global-scope="EBayEvoDesignSystem_61746e.EBayLogo" height="42" hint-size="104px,42px"></x-import>
+        </div>
+        <div style="width:1px;height:44px;background:#E5E5E5"></div>
+        <div>
+          <div style="font-size:31px;font-weight:700;letter-spacing:-0.4px;line-height:1.15">Buyer + seller size intelligence <span style="color:#0968F6">— Director lens</span></div>
+          <div style="font-size:15.5px;color:#707070;margin-top:4px">Make listing quality and buyer confidence one governed marketplace program</div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:5px">
+        <div style="display:inline-flex;align-items:center;gap:8px;border:1.5px solid #0968F6;color:#0968F6;border-radius:9999px;padding:7px 16px;font-size:13.5px;font-weight:700">
+          <span style="width:8px;height:8px;border-radius:50%;background:#0968F6"></span>Interactive — click any stage below
+        </div>
+        <div style="font-size:12px;color:#707070">Static view defaults to stage 01</div>
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:center;gap:10px;background:#F7F7F7;border-radius:9999px;padding:8px 18px;width:fit-content">
+      <span style="font-size:11.5px;font-weight:700;letter-spacing:0.8px;color:#707070">PROGRAM THESIS</span>
+      <span style="font-size:13.5px;font-weight:700">Better seller evidence</span><span style="color:#0968F6;font-weight:700">→</span>
+      <span style="font-size:13.5px;font-weight:700">more explainable buyer guidance</span><span style="color:#0968F6;font-weight:700">→</span>
+      <span style="font-size:13.5px;font-weight:700">confirmed outcomes</span><span style="color:#0968F6;font-weight:700">→</span>
+      <span style="font-size:13.5px;font-weight:700">actionable seller improvement</span>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(9,1fr);gap:11px;flex:1;min-height:0">
+      <sc-for list="{{ dStages }}" as="s" hint-placeholder-count="9">
+        <div role="button" onClick="{{ s.pick }}" style="display:flex;flex-direction:column;gap:7px;padding:14px 13px;border-radius:14px;cursor:pointer;border:{{ s.border }};background:{{ s.bg }};box-shadow:{{ s.shadow }};transition:transform 160ms cubic-bezier(0.2,0,0,1)" style-hover="transform:translateY(-3px)">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:6px">
+            <span style="width:30px;height:30px;border-radius:50%;background:{{ s.numBg }};color:#FFFFFF;display:inline-flex;align-items:center;justify-content:center;font-size:13.5px;font-weight:700">{{ s.num }}</span>
+            <span style="border:1px solid #E5E5E5;border-radius:9999px;padding:2px 9px;font-size:10.5px;font-weight:700;color:{{ s.phaseColor }};white-space:nowrap">{{ s.phase }}</span>
+          </div>
+          <div style="font-size:19.5px;font-weight:700;letter-spacing:-0.2px;line-height:1.1">{{ s.name }}</div>
+          <div style="height:1px;background:#E5E5E5"></div>
+          <div>
+            <div style="font-size:10.5px;font-weight:700;letter-spacing:0.7px;color:#0968F6">BUYER OUTCOME</div>
+            <div style="font-size:13.5px;line-height:1.3;margin-top:2px">{{ s.buyer }}</div>
+          </div>
+          <div>
+            <div style="font-size:10.5px;font-weight:700;letter-spacing:0.7px;color:#707070">SELLER JOB</div>
+            <div style="font-size:13.5px;line-height:1.3;margin-top:2px">{{ s.seller }}</div>
+          </div>
+          <div>
+            <div style="font-size:10.5px;font-weight:700;letter-spacing:0.7px;color:#707070">EBAY INTERVENTION</div>
+            <div style="font-size:13.5px;line-height:1.3;margin-top:2px">{{ s.ebay }}</div>
+          </div>
+          <div style="margin-top:auto;display:{{ s.riskDisplay }};gap:6px;align-items:flex-start;border-top:1px dashed #E5E5E5;padding-top:7px">
+            <span style="width:7px;height:7px;border-radius:50%;background:#D50B0B;flex:none;margin-top:4px"></span>
+            <span style="font-size:12px;line-height:1.3;color:#D50B0B">{{ s.risk }}</span>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+
+    <div style="background:#F7F7F7;border-radius:16px;padding:20px 24px;height:196px;box-sizing:border-box;display:flex;flex-direction:column;gap:12px">
+      <div style="display:flex;align-items:center;gap:12px">
+        <span style="background:#0968F6;color:#FFF;border-radius:9999px;padding:4px 14px;font-size:13px;font-weight:700">Stage {{ dNum }} of 9</span>
+        <span style="font-size:20px;font-weight:700;letter-spacing:-0.2px">{{ dName }}</span>
+        <span style="font-size:13px;color:#707070">selected stage detail — updates on click</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:28px">
+        <div>
+          <div style="font-size:11px;font-weight:700;letter-spacing:0.8px;color:#0968F6">BUYER VALUE</div>
+          <div style="font-size:15px;line-height:1.4;margin-top:5px">{{ dA }}</div>
+        </div>
+        <div>
+          <div style="font-size:11px;font-weight:700;letter-spacing:0.8px;color:#707070">SELLER VALUE</div>
+          <div style="font-size:15px;line-height:1.4;margin-top:5px">{{ dB }}</div>
+        </div>
+        <div>
+          <div style="font-size:11px;font-weight:700;letter-spacing:0.8px;color:#191919">LEADERSHIP DECISION</div>
+          <div style="font-size:15px;line-height:1.4;margin-top:5px">{{ dC }}</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex;justify-content:space-between;gap:24px;font-size:12px;color:#707070">
+      <span>Program architecture: 1 Evidence foundation · 2 Decision intelligence · 3 Distributed experience · 4 Responsible learning</span>
+      <span>Source shows 3 views (journey, seller insights, outcomes); risks fold in the outcomes view. Emotion data not specified in source.</span>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 2 · PRINCIPAL ============ -->
+  <section id="slide-principal" data-screen-label="02 Principal journey" style="width:1920px;height:1080px;background:#FFFFFF;padding:44px 52px 36px;display:flex;flex-direction:column;gap:16px;box-sizing:border-box;overflow:hidden">
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:24px">
+      <div style="display:flex;align-items:center;gap:20px">
+        <div style="width:104px;height:42px;overflow:hidden;display:flex;align-items:center">
+          <x-import component-from-global-scope="EBayEvoDesignSystem_61746e.EBayLogo" height="42" hint-size="104px,42px"></x-import>
+        </div>
+        <div style="width:1px;height:44px;background:#E5E5E5"></div>
+        <div>
+          <div style="font-size:31px;font-weight:700;letter-spacing:-0.4px;line-height:1.15">Size personalization system <span style="color:#8638E5">— Principal lens</span></div>
+          <div style="font-size:15.5px;color:#707070;margin-top:4px">Gucci sneakers · first-time buyer · seller evidence to confirmed outcome</div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:5px">
+        <div style="display:inline-flex;align-items:center;gap:8px;border:1.5px solid #8638E5;color:#8638E5;border-radius:9999px;padding:7px 16px;font-size:13.5px;font-weight:700">
+          <span style="width:8px;height:8px;border-radius:50%;background:#8638E5"></span>Interactive — click any stage below
+        </div>
+        <div style="font-size:12px;color:#707070">Static view defaults to stage 01</div>
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:center;gap:10px;background:#F7F7F7;border-radius:9999px;padding:8px 18px;width:fit-content">
+      <span style="font-size:11.5px;font-weight:700;letter-spacing:0.8px;color:#707070">SYSTEM CONTRACT</span>
+      <span style="font-size:13.5px;font-weight:700">Seller declares truth</span><span style="color:#8638E5;font-weight:700">→</span>
+      <span style="font-size:13.5px;font-weight:700">eBay detects ambiguity</span><span style="color:#8638E5;font-weight:700">→</span>
+      <span style="font-size:13.5px;font-weight:700">buyer sees inference</span><span style="color:#8638E5;font-weight:700">→</span>
+      <span style="font-size:13.5px;font-weight:700">outcomes improve both sides</span>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(9,1fr);gap:11px;flex:1;min-height:0">
+      <sc-for list="{{ pStages }}" as="s" hint-placeholder-count="9">
+        <div role="button" onClick="{{ s.pick }}" style="display:flex;flex-direction:column;gap:7px;padding:14px 13px;border-radius:14px;cursor:pointer;border:{{ s.border }};background:{{ s.bg }};box-shadow:{{ s.shadow }};transition:transform 160ms cubic-bezier(0.2,0,0,1)" style-hover="transform:translateY(-3px)">
+          <div style="display:flex;align-items:center;gap:8px">
+            <span style="width:30px;height:30px;border-radius:50%;background:{{ s.numBg }};color:#FFFFFF;display:inline-flex;align-items:center;justify-content:center;font-size:13.5px;font-weight:700;flex:none">{{ s.num }}</span>
+            <span style="font-size:19.5px;font-weight:700;letter-spacing:-0.2px;line-height:1.05">{{ s.name }}</span>
+          </div>
+          <div style="border:1px solid #E5E5E5;border-radius:9999px;padding:3px 10px;font-size:11.5px;font-weight:700;color:#707070;width:fit-content;max-width:100%">{{ s.tp }}</div>
+          <div style="height:1px;background:#E5E5E5"></div>
+          <div>
+            <div style="font-size:10.5px;font-weight:700;letter-spacing:0.7px;color:#8638E5">BUYER JOB</div>
+            <div style="font-size:13.5px;line-height:1.3;margin-top:2px">{{ s.buyer }}</div>
+          </div>
+          <div>
+            <div style="font-size:10.5px;font-weight:700;letter-spacing:0.7px;color:#707070">SELLER JOB</div>
+            <div style="font-size:13.5px;line-height:1.3;margin-top:2px">{{ s.seller }}</div>
+          </div>
+          <div>
+            <div style="font-size:10.5px;font-weight:700;letter-spacing:0.7px;color:#707070">CORE DECISION</div>
+            <div style="font-size:13.5px;line-height:1.3;margin-top:2px">{{ s.decision }}</div>
+          </div>
+          <div style="margin-top:auto;display:{{ s.riskDisplay }};gap:6px;align-items:flex-start;border-top:1px dashed #E5E5E5;padding-top:7px">
+            <span style="width:7px;height:7px;border-radius:50%;background:#D50B0B;flex:none;margin-top:4px"></span>
+            <span style="font-size:12px;line-height:1.3;color:#D50B0B">{{ s.risk }}</span>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+
+    <div style="background:#F7F7F7;border-radius:16px;padding:20px 24px;height:196px;box-sizing:border-box;display:flex;flex-direction:column;gap:12px">
+      <div style="display:flex;align-items:center;gap:12px">
+        <span style="background:#8638E5;color:#FFF;border-radius:9999px;padding:4px 14px;font-size:13px;font-weight:700">Stage {{ pNum }} of 9</span>
+        <span style="font-size:20px;font-weight:700;letter-spacing:-0.2px">{{ pName }}</span>
+        <span style="border:1px solid #191919;border-radius:9999px;padding:3px 12px;font-size:12.5px;font-weight:700">Guardrail: {{ pGuard }}</span>
+        <span style="font-size:13px;color:#707070">updates on click</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:28px">
+        <div>
+          <div style="font-size:11px;font-weight:700;letter-spacing:0.8px;color:#8638E5">EXPERIENCE PRINCIPLE</div>
+          <div style="font-size:15px;line-height:1.4;margin-top:5px">{{ pA }}</div>
+        </div>
+        <div>
+          <div style="font-size:11px;font-weight:700;letter-spacing:0.8px;color:#707070">SERVICE + DATA CONTRACT</div>
+          <div style="font-size:15px;line-height:1.4;margin-top:5px">{{ pB }}</div>
+        </div>
+        <div>
+          <div style="font-size:11px;font-weight:700;letter-spacing:0.8px;color:#191919">VALIDATION QUESTION</div>
+          <div style="font-size:15px;line-height:1.4;margin-top:5px">{{ pC }}</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex;justify-content:space-between;gap:24px;font-size:12px;color:#707070">
+      <span>Platform layers: Listing evidence · Intent + decision · Experience patterns · Outcome intelligence · Memory + insights</span>
+      <span>Scenario shown: sneakers, first-time buyer (source also covers returning buyer + apparel). Emotion data not specified in source.</span>
+    </div>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;2016&quot;,&quot;height&quot;:&quot;2280&quot;},&quot;showRisks&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Content&quot;}}">
+class Component extends DCLogic {
+  state = { d: 0, p: 0 };
+  renderVals() {
+    const showRisks = this.props.showRisks ?? true;
+    const D = [
+      ['List + enrich','Foundation','#191919','Credible inventory exists','Describe item accurately — region, department, model, label','Listing validation: detect conflicts before publish','Seller burden — too many required fields'],
+      ['Discover','Foundation','#191919','Find items quickly','Become discoverable — match real buyer intent','Intent understanding: map query to evidence','False relevance — wrong buyers see listing'],
+      ['Set context','Foundation','#191919','Understand assumptions','Resolve ambiguity — supply missing context','Minimum clarification: ask only when needed','Clarification sprawl — demand friction'],
+      ['Personalize','Foundation → Scale','#0968F6','Compare global supply','Reach compatible buyers — support translation + ranking','Translate + rerank: preserve seller label','False precision — weak inputs appear certain'],
+      ['Evaluate','Scale','#288034','Choose with evidence','Build confidence — provide measurements and condition','Explain recommendation: known vs inferred','Overclaiming — trust erosion'],
+      ['Buy','Foundation','#191919','Confirm exact item','Fulfill listing truth — ship exact labelled item','Dual-label boundary: seller label + buyer view','Transaction mismatch — disputes'],
+      ['Receive','Scale','#288034','Try in real life','Support resolution — accurate order context','Timed fit check: delivery is not fit','Prompt fatigue — low-quality feedback'],
+      ['Learn','Scale','#288034','Share outcome once','Improve future listings — act on aggregate patterns','Outcome governance: independent validation','Privacy + blame — seller harm'],
+      ['Re-engage','Future state','#707070','Shop again with less effort','Stay eligible — maintain useful attributes','Context orchestration: relevant, reversible memory','Creepy persistence — buyer harm']
+    ];
+    const DD = [
+      ['The buyer can only receive trustworthy guidance if the listing starts with sufficient product evidence.','Catch ambiguity during listing and explain the smallest useful fix.','Fund structured evidence and seller-friendly validation before advanced fit prediction.'],
+      ['Buyer intent and seller evidence must meet in the ranking system.','Show how complete attributes improve qualified discovery, not just listing quality scores.','Centralize intent policy while categories define evidence requirements.'],
+      ['Clarification should resolve the gap once — on the buyer or seller side — where it costs less.','Help sellers remove repeat ambiguity at the source while keeping buyer correction available.','Set a marketplace standard: one buyer question maximum; reusable seller correction.'],
+      ['Personalized ranking creates seller value only when eligibility is transparent.','Dashboard should explain why a listing is included, suppressed or uncertain.','Do not create opaque ranking penalties; publish evidence and eligibility rules.'],
+      ['Item-specific guidance requires objective seller evidence and calibrated language.','Offer one evidence action tied to buyer confidence, such as a label photo or measurement.','Approve categories only when evidence quality supports a defensible fit statement.'],
+      ['Checkout must preserve the seller\u2019s exact label beside the buyer\u2019s interpretation.','Preview the buyer-facing translation and allow correction before a sale occurs.','Make dual-label persistence a non-negotiable platform contract.'],
+      ['Delivery is a transaction event, not a fit outcome.','Keep sellers informed without creating premature or noisy dashboard alerts.','Protect the learning system by excluding delivery from fit confirmation.'],
+      ['Aggregate outcomes should help sellers improve without exposing or blaming individual buyers.','Surface trends only after privacy and sample thresholds, then offer a specific listing action.','Govern privacy, statistical thresholds, language and undo before launch.'],
+      ['The program succeeds when better listings and buyer memory compound over time.','Show directional impact from enrichment while keeping insights honest about causality.','Scale where reduced buyer setup and improved seller sell-through coexist.']
+    ];
+    const P = [
+      ['List + enrich','Seller listing flow','No buyer yet','Describe exact item','Validate evidence','Department or region conflict — block or warn before publish','Seller confirms; no invented data'],
+      ['Discover','Buyer search','Find products quickly','Supply discoverable evidence','Interpret buyer intent','Query says \u201c8\u201d — regional meaning uncertain','Inference disclosed'],
+      ['Set context','Results banner / sheet','Understand US-size assumption','Resolve recurring ambiguity','Clarify minimally','Medium confidence — correction remains available','One question only if valuable'],
+      ['Personalize','Search results','Compare EU / UK / US inventory','Qualify for matching','Convert + rank','Mixed seller systems — need comparable display','Original seller label persists'],
+      ['Evaluate','Product page','Judge one Gucci pair','Support buyer confidence','Predict item fit','Conversion may be known — fit still uncertain','Conversion and fit stay separate'],
+      ['Buy','Cart + checkout','Confirm EU 39 knowingly','Fulfill listing truth','Confirm transaction','Interpretation mismatch risk — must repeat both labels','No silent mutation or purchase'],
+      ['Receive','Order details','Try sneakers','Support order resolution','Make no fit inference','No fit outcome yet — do not infer','Delivery excluded from fit learning'],
+      ['Learn','Fit check-in + dashboard','Report fit once','Improve listing from trends','Validate + aggregate outcome','Trend suggests \u201cruns small\u201d — verify sample + listing truth','Privacy threshold; no buyer exposure'],
+      ['Re-engage','Future search + insights','Shop with fewer questions','Maintain evidence over time','Reuse context + recommend action','Saved buyer fit may apply — check relevance and scope','Relevant, editable and reversible']
+    ];
+    const PD = [
+      ['The seller should resolve preventable ambiguity once, before it becomes repeated buyer friction.','Validation returns issue severity, evidence provenance, buyer impact, one recommended action and seller override.','Does the insight fix real ambiguity without making listing completion meaningfully harder?'],
+      ['Buyer intent can only match inventory when the query and seller evidence share a normalized vocabulary.','Intent service returns interpretation, confidence and provenance; ranking requests listing evidence eligibility.','Does complete seller evidence improve qualified discovery rather than simply increasing impressions?'],
+      ['Clarification should happen on the side where one answer creates the most durable value.','Question policy weighs buyer interruption against whether a seller-side correction could remove the ambiguity at source.','Can the system avoid asking many buyers the same question by improving the listing once?'],
+      ['Personalized ranking needs a transparent eligibility contract for sellers.','Conversion service preserves original label and provenance; ranking exposes missing-field reasons to Seller Insights.','Can a seller understand and correct why the listing is uncertain or excluded?'],
+      ['The product page must explain the recommendation while pointing sellers to evidence that would improve it.','Evidence service returns known, inferred and missing inputs; seller dashboard translates missing inputs into one action.','Does the requested seller evidence materially improve buyer comprehension or confidence?'],
+      ['Checkout is a strict cross-surface data contract, not a recommendation surface.','Seller label and buyer interpretation persist atomically through cart, payment, order and support records.','Can any variant, offer, cart or checkout path lose one of the two labels?'],
+      ['Delivery may schedule a future check-in but cannot validate the recommendation.','Order service emits eligibility only; model training and seller dashboard remain unchanged until independent outcome.','Is the system free of hidden proxies that treat delivery, no return or time elapsed as fit success?'],
+      ['One buyer outcome can update their profile; seller action requires privacy-safe aggregate evidence.','Outcome service records provenance; aggregation enforces thresholds; insight service returns trend, confidence and action.','Is the trend strong, private and actionable enough to justify asking the seller to change the listing?'],
+      ['Re-engagement should reduce buyer setup and help sellers maintain higher-quality inventory.','Retrieval evaluates buyer relevance; insight service measures listing enrichment impact without claiming unsupported causality.','Do buyer effort and seller ambiguity both decline over repeated marketplace activity?']
+    ];
+    const mk = (rows, sel, accent, tint, key) => rows.map((r, i) => {
+      const on = i === sel;
+      return {
+        num: '0' + (i + 1), on,
+        border: on ? '2px solid ' + accent : '1.5px solid #E5E5E5',
+        bg: on ? tint : '#FFFFFF',
+        shadow: on ? '0 6px 18px rgb(0 0 0 / 10%)' : 'none',
+        numBg: on ? accent : '#191919',
+        riskDisplay: showRisks ? 'flex' : 'none',
+        pick: () => this.setState({ [key]: i }),
+        ...r
+      };
+    });
+    const dStages = mk(D.map(r => ({ name: r[0], phase: r[1], phaseColor: r[2], buyer: r[3], seller: r[4], ebay: r[5], risk: r[6] })), this.state.d, '#0968F6', 'rgb(9 104 246 / 6%)', 'd');
+    const pStages = mk(P.map(r => ({ name: r[0], tp: r[1], buyer: r[2], seller: r[3], decision: r[4], risk: r[5], guard: r[6] })), this.state.p, '#8638E5', 'rgb(134 56 229 / 6%)', 'p');
+    const dd = DD[this.state.d], pd = PD[this.state.p];
+    return {
+      dStages, pStages,
+      dNum: '0' + (this.state.d + 1), dName: D[this.state.d][0], dA: dd[0], dB: dd[1], dC: dd[2],
+      pNum: '0' + (this.state.p + 1), pName: P[this.state.p][0], pGuard: P[this.state.p][6], pA: pd[0], pB: pd[1], pC: pd[2]
+    };
+  }
+}
+</script>
+</body>
+</html>

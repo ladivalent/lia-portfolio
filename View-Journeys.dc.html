@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Interactive User Journey Mapping · full screen</title>
+
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/tokens/colors.css">
+  <script src="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/_ds_bundle.js"></script>
+  <style>
+    html,body{margin:0;height:100%;background:#fff;color:#191919;font-family:'Market Sans',Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow:hidden}
+    a{color:#0968F6}a:hover{color:#0049B8}
+    :focus-visible{outline:2px solid #0968F6;outline-offset:2px}
+  </style>
+</helmet>
+<dc-import name="View" slot="size-journeys" back="Process.dc.html" hint-size="100%,100vh"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

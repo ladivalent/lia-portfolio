@@ -1,0 +1,148 @@
+{
+  "siteUpdated": "2026-09-16",
+  "slots": {
+    "playbook": {
+      "title": "UX Playbook",
+      "source": {
+        "mode": "file",
+        "file": "Phase-Matrix.dc.html"
+      },
+      "height": {
+        "desktop": 880,
+        "tablet": 720
+      },
+      "updated": "2026-07-31",
+      "status": "live",
+      "summary": "Strategy & Discovery → Ideation & Concept → Design & Prototyping → Testing & Validation → Delivery & Handoff."
+    },
+    "collab-map": {
+      "title": "Interactive Collaboration Map",
+      "source": {
+        "mode": "file",
+        "file": "CollabMap.dc.html"
+      },
+      "height": {
+        "desktop": 900
+      },
+      "updated": "2026-09-15",
+      "status": "live",
+      "summary": "Twelve teams, thirteen logged decisions, nine months — one preference model."
+    },
+    "size-journeys": {
+      "title": "Interactive User Journey Mapping",
+      "source": {
+        "mode": "file",
+        "file": "Size-Personalization-Journeys.dc.html"
+      },
+      "height": {
+        "desktop": 820
+      },
+      "updated": "2026-08-14",
+      "status": "live",
+      "summary": "Buyer and seller size intelligence across nine stages; Director and Principal lenses."
+    },
+    "agentic-policy-map": {
+      "title": "Agentic Search Policy Map",
+      "source": {
+        "mode": "file",
+        "file": "Agentic-Search-Policy-Map.dc.html"
+      },
+      "height": {
+        "desktop": 620
+      },
+      "updated": "2026-08-17",
+      "status": "live",
+      "summary": "Fifteen queries, one confidence axis, three rules that bend it."
+    },
+    "agentic-framework": {
+      "title": "Agentic Search Framework",
+      "source": {
+        "mode": "file",
+        "file": "Agentic-Search-Framework.dc.html"
+      },
+      "height": {
+        "desktop": 620
+      },
+      "updated": "2026-08-17",
+      "status": "live",
+      "summary": "Five layers from signal extraction to a named disambiguation component."
+    },
+    "prompt-library": {
+      "title": "Prompt library + agentic loops",
+      "status": "coming-soon",
+      "summary": "Reusable prompts and the loops that run them between rituals."
+    },
+    "case-study-size": {
+      "title": "AI Size Intelligence",
+      "kind": "case-study",
+      "source": {
+        "mode": "file",
+        "file": "embeds/AI-Size-Intelligence-Case-Study.dc.html"
+      },
+      "height": {
+        "desktop": 1000
+      },
+      "tall": true,
+      "updated": "2026-09-16",
+      "status": "live",
+      "summary": "Fit guessing → fit confidence. Eight sections, 01 The problem to 08 Reflection."
+    },
+    "size-proto": {
+      "title": "AI Size Intelligence prototype",
+      "kind": "prototype",
+      "source": {
+        "mode": "file",
+        "file": "embeds/AI-Size-Intelligence-Prototype.dc.html"
+      },
+      "height": {
+        "desktop": 960
+      },
+      "updated": "2026-09-16",
+      "status": "live",
+      "summary": "Eight steps from Home to Size Memory; first-time and returning shopper modes; ACT / ASK / NEVER rulebook."
+    },
+    "case-study-pickup": {
+      "title": "Agentic Local Pickup",
+      "kind": "case-study",
+      "source": {
+        "mode": "file",
+        "file": "embeds/Local-Pickup-Case-Study.dc.html"
+      },
+      "height": {
+        "desktop": 1000
+      },
+      "tall": true,
+      "updated": "2026-09-16",
+      "status": "live",
+      "summary": "Twelve sections, from the problem to what I'd do differently."
+    },
+    "pickup-proto": {
+      "title": "Local Pickup prototype",
+      "kind": "prototype",
+      "source": {
+        "mode": "file",
+        "file": "embeds/Local-Pickup-Prototype.dc.html"
+      },
+      "height": {
+        "desktop": 900
+      },
+      "updated": "2026-09-15",
+      "status": "live",
+      "summary": "The buyer loop as Olivia, the seller loop as Sam, from the first ask to the payout."
+    },
+    "ai-mode": {
+      "title": "AI Mode — E2E prototype",
+      "source": {
+        "mode": "file",
+        "file": "embeds/AI-Mode.html#/00/desktop"
+      },
+      "height": {
+        "desktop": 900
+      },
+      "updated": "2026-09-14",
+      "status": "live",
+      "gated": true,
+      "summary": "Frames 00-intro → 13-memory-hub, desktop and mobile."
+    }
+  }
+}

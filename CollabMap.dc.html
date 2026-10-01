@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+@font-face{font-family:"Market Sans";font-weight:400;src:url("/_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/assets/fonts/MarketSans-Regular.woff2") format("woff2")}
+@font-face{font-family:"Market Sans";font-weight:700;src:url("/_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/assets/fonts/MarketSans-Bold.woff2") format("woff2")}
+html,body{margin:0;height:100%}
+a{color:#0968F6}a:hover{color:#0049B8}
+@keyframes cm-pulse{0%{box-shadow:0 0 0 0 rgba(213,11,11,.45)}70%{box-shadow:0 0 0 14px rgba(213,11,11,0)}100%{box-shadow:0 0 0 0 rgba(213,11,11,0)}}
+@keyframes cm-shimmer{0%{opacity:.5}50%{opacity:1}100%{opacity:.5}}
+</style>
+</helmet>
+<div ref="{{ rootRef }}" tabIndex="0" onKeyDown="{{ onKey }}" aria-label="Collaboration map" style="width:100%;height:100%;display:flex;flex-direction:column;background:#fff;font-family:'Market Sans',system-ui,sans-serif;color:#191919;position:relative;overflow:hidden;outline:none;text-align:left">
+  <div aria-live="polite" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">{{ announce }}</div>
+
+  <sc-if value="{{ showHeader }}" hint-placeholder-val="{{ true }}">
+  <div style="display:flex;flex-direction:column;align-items:stretch;gap:12px;padding:16px 32px 12px 32px;border-bottom:1px solid #E5E5E5">
+    <div style="display:flex;flex-direction:column;gap:4px;width:100%;max-width:900px">
+      <h1 style="margin:0;font-size:22px;font-weight:700;line-height:1.15;letter-spacing:-.01em">One search problem → an end-to-end personalization initiative</h1>
+      <p style="margin:0;font-size:14px;color:#545454;line-height:1.35">How a sneaker sizing query pulled twelve teams into one preference model — and where design was the connective tissue.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:flex-start;gap:8px;flex-shrink:0">
+      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-start">
+        <div role="group" aria-label="Lens" style="display:flex;gap:2px;padding:3px;border:1px solid #C7C7C7;border-radius:999px;background:#fff">
+          <sc-for list="{{ lenses }}" as="l" hint-placeholder-count="5">
+            <button onClick="{{ l.set }}" aria-pressed="{{ l.on }}" style="border:0;cursor:pointer;border-radius:999px;padding:6px 12px;font:700 13px 'Market Sans',system-ui;background:{{ l.bg }};color:{{ l.fg }}">{{ l.label }}</button>
+          </sc-for>
+        </div>
+        <div role="group" aria-label="Layout" style="display:flex;gap:2px;padding:3px;border:1px solid #C7C7C7;border-radius:999px;background:#fff">
+          <button onClick="{{ setMap }}" style="border:0;cursor:pointer;border-radius:999px;padding:6px 12px;font:700 13px 'Market Sans',system-ui;background:{{ mapBg }};color:{{ mapFg }}">Map</button>
+          <button onClick="{{ setOrg }}" style="border:0;cursor:pointer;border-radius:999px;padding:6px 12px;font:700 13px 'Market Sans',system-ui;background:{{ orgBg }};color:{{ orgFg }}">Org</button>
+        </div>
+        <button onClick="{{ toggleConn }}" aria-pressed="{{ conn }}" style="cursor:pointer;border-radius:999px;padding:7px 14px;font:700 13px 'Market Sans',system-ui;border:1px solid #191919;background:{{ connBg }};color:{{ connFg }}">Connections</button>
+        <button onClick="{{ toggleOutcomes }}" aria-pressed="{{ outcomes }}" style="cursor:pointer;border-radius:999px;padding:7px 14px;font:700 13px 'Market Sans',system-ui;border:1px solid #191919;background:{{ outBg }};color:{{ outFg }}">Outcomes</button>
+        <button onClick="{{ toggleLog }}" aria-pressed="{{ log }}" style="cursor:pointer;border-radius:999px;padding:7px 14px;font:700 13px 'Market Sans',system-ui;border:1px solid #191919;background:{{ logBg }};color:{{ logFg }}">Decision log</button>
+        <div role="group" aria-label="Zoom" style="display:flex;gap:2px;padding:3px;border:1px solid #C7C7C7;border-radius:999px;background:#fff">
+          <button onClick="{{ zoomOut }}" aria-label="Zoom out" style="border:0;cursor:pointer;border-radius:999px;width:30px;height:30px;font:700 16px 'Market Sans',system-ui;background:transparent;color:#191919">−</button>
+          <button onClick="{{ fit }}" style="border:0;cursor:pointer;border-radius:999px;padding:0 12px;font:700 13px 'Market Sans',system-ui;background:transparent;color:#191919">Fit</button>
+          <button onClick="{{ zoomIn }}" aria-label="Zoom in" style="border:0;cursor:pointer;border-radius:999px;width:30px;height:30px;font:700 16px 'Market Sans',system-ui;background:transparent;color:#191919">+</button>
+        </div>
+        <button onClick="{{ present }}" style="cursor:pointer;border-radius:999px;padding:7px 16px;font:700 13px 'Market Sans',system-ui;border:1px solid #0968F6;background:#0968F6;color:#fff">Present</button>
+        <button onClick="{{ toggleStates }}" aria-expanded="{{ statesOpen }}" style="display:none;cursor:pointer;border-radius:999px;padding:7px 12px;font:400 12px 'Market Sans',system-ui;border:1px dashed #8F8F8F;background:#fff;color:#545454">States</button>
+      </div>
+      <sc-if value="{{ statesOpen }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end">
+          <button onClick="{{ reload }}" style="cursor:pointer;border-radius:999px;padding:4px 10px;font:400 12px 'Market Sans',system-ui;border:1px solid #C7C7C7;background:#fff;color:#191919">Loading</button>
+          <button onClick="{{ toggleEmpty }}" aria-pressed="{{ emptyTeam }}" style="cursor:pointer;border-radius:999px;padding:4px 10px;font:400 12px 'Market Sans',system-ui;border:1px solid #C7C7C7;background:{{ emptyBg }};color:{{ emptyFg }}">Empty team (Cart &amp; Checkout)</button>
+          <button onClick="{{ toggleReduced }}" aria-pressed="{{ reduced }}" style="cursor:pointer;border-radius:999px;padding:4px 10px;font:400 12px 'Market Sans',system-ui;border:1px solid #C7C7C7;background:{{ redBg }};color:{{ redFg }}">Reduced motion</button>
+        </div>
+      </sc-if>
+    </div>
+  </div>
+
+  <div style="display:flex;align-items:center;gap:12px 16px;padding:10px 32px;background:#F7F7F7;border-bottom:1px solid #E5E5E5;flex-wrap:wrap">
+    <button onClick="{{ play }}" style="cursor:pointer;border-radius:999px;padding:8px 16px;font:700 14px 'Market Sans',system-ui;border:1px solid #191919;background:#191919;color:#fff;flex-shrink:0">{{ playLabel }}</button>
+    <div style="display:flex;align-items:center;gap:10px;flex-shrink:0">
+      <sc-for list="{{ pips }}" as="p" hint-placeholder-count="3">
+        <button onClick="{{ p.set }}" aria-pressed="{{ p.on }}" aria-label="{{ p.aria }}" style="cursor:pointer;display:flex;align-items:center;gap:8px;border:0;background:transparent;padding:0;font:700 13px 'Market Sans',system-ui;color:{{ p.fg }}"><span style="display:inline-flex;width:22px;height:22px;border-radius:999px;align-items:center;justify-content:center;font-size:12px;border:2px solid {{ p.c }};background:{{ p.bg }};color:{{ p.pipFg }}">{{ p.n }}</span><span>{{ p.name }}</span></button>
+      </sc-for>
+    </div>
+    <input type="range" min="1" max="3" step="1" value="{{ phase }}" onChange="{{ scrub }}" onInput="{{ scrub }}" aria-label="Story phase" style="width:120px;accent-color:#191919;flex-shrink:0">
+    <p style="margin:0;font-size:14px;line-height:1.35;color:#191919;min-width:0;flex:1 1 320px">{{ caption }}</p>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ outcomes }}" hint-placeholder-val="{{ false }}">
+    <div style="display:flex;gap:28px;align-items:center;padding:10px 32px;border-bottom:1px solid #E5E5E5;background:#fff">
+      <span style="font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#545454">Initiative outcomes</span>
+      <span style="font-size:15px"><b>3</b> components approved</span>
+      <span style="font-size:15px"><b>12</b> teams</span>
+      <span style="font-size:15px"><b>13</b> logged decisions</span>
+      <span style="font-size:12px;font-weight:700;border-radius:999px;padding:3px 10px;background:#FFF0D3;color:#5E4000">Pending · markets · refinement usage · sizing returns</span>
+    </div>
+  </sc-if>
+
+  <div ref="{{ vpRef }}" onPointerDown="{{ onDown }}" onPointerMove="{{ onMove }}" onPointerUp="{{ onUp }}" onPointerCancel="{{ onUp }}" style="flex:1;position:relative;overflow:hidden;min-height:0;user-select:none;touch-action:none;cursor:{{ cursor }};background-color:#FAFAFA;background-image:radial-gradient(#E5E5E5 1px, transparent 1px);background-size:24px 24px">
+
+    <div style="position:absolute;left:0;top:0;width:1600px;height:830px;transform-origin:0 0;transform:{{ camT }};transition:{{ camTr }}">
+
+      <sc-if value="{{ isMapView }}" hint-placeholder-val="{{ true }}">
+        <sc-for list="{{ rows }}" as="r" hint-placeholder-count="7">
+          <div style="position:absolute;left:12px;top:{{ r.y }}px;height:{{ r.h }}px;width:106px;display:flex;align-items:center;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:{{ r.c }};opacity:{{ r.op }};transition:opacity .3s">{{ r.label }}</div>
+        </sc-for>
+        <div style="position:absolute;left:{{ arrowX }}px;top:112px;width:{{ arrowW }}px;text-align:center;font-size:12px;color:#288034;opacity:{{ arrowOp }};transition:opacity .3s">↓ listing signal feeds every surface</div>
+      </sc-if>
+
+      <sc-if value="{{ isOrgView }}" hint-placeholder-val="{{ false }}">
+        <div style="position:absolute;left:690px;top:380px;width:220px;height:70px;border-radius:999px;background:#191919;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:15px;font-weight:700;line-height:1.2"><span>Personalization E2E</span><span style="font-size:11px;font-weight:400;opacity:.8">one preference model</span></div>
+      </sc-if>
+
+      <sc-if value="{{ isTimeline }}" hint-placeholder-val="{{ false }}">
+        <div style="position:absolute;left:0;top:0;width:1600px;height:830px">
+          <sc-for list="{{ months }}" as="m" hint-placeholder-count="9">
+            <div onMouseEnter="{{ m.enter }}" onMouseLeave="{{ m.leave }}" style="position:absolute;left:{{ m.x }}px;top:20px;width:150px;height:790px;border-left:1px solid #E5E5E5;background:{{ m.bg }}"><span style="position:absolute;top:0;left:10px;font-size:12px;font-weight:700;color:#545454">{{ m.label }}</span></div>
+          </sc-for>
+          <sc-for list="{{ lanes }}" as="ln" hint-placeholder-count="12">
+            <div style="position:absolute;left:0;top:{{ ln.y }}px;width:1600px;height:56px;border-bottom:1px solid #EFEFEF">
+              <button onClick="{{ ln.focus }}" style="position:absolute;left:16px;top:14px;width:190px;text-align:left;border:0;background:transparent;cursor:pointer;font:700 14px 'Market Sans',system-ui;color:#191919;padding:0;display:flex;align-items:center;gap:8px"><span style="width:8px;height:8px;border-radius:999px;background:{{ ln.c }};flex-shrink:0"></span><span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ ln.name }}</span></button>
+              <div style="position:absolute;left:{{ ln.bx }}px;top:22px;width:{{ ln.bw }}px;height:12px;border-radius:999px;background:{{ ln.pc }};opacity:.25"></div>
+              <sc-for list="{{ ln.dots }}" as="d" hint-placeholder-count="1">
+                <button onClick="{{ d.open }}" title="{{ d.title }}" aria-label="{{ d.title }}" style="position:absolute;left:{{ d.x }}px;top:17px;width:22px;height:22px;border-radius:999px;border:2px solid #fff;background:{{ d.c }};cursor:pointer;box-shadow:0 1px 2px rgba(0,0,0,.2)"></button>
+              </sc-for>
+            </div>
+          </sc-for>
+          <div style="position:absolute;left:220px;top:790px;font-size:12px;color:#707070">Bar = phase joined · dot = a logged decision (click to open) · 9-month span</div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ notTimeline }}" hint-placeholder-val="{{ true }}">
+      <svg width="1600" height="830" viewBox="0 0 1600 830" style="position:absolute;left:0;top:0;overflow:visible;pointer-events:none">
+        <sc-for list="{{ edges }}" as="e" hint-placeholder-count="0">
+          <path d="{{ e.d }}" pathLength="1" fill="none" stroke="{{ e.c }}" strokeWidth="{{ e.sw }}" strokeDasharray="1" strokeDashoffset="{{ e.off }}" strokeLinecap="round" style="opacity:{{ e.op }};transition:stroke-dashoffset .6s ease-out, opacity .2s, stroke .2s"></path>
+        </sc-for>
+        <sc-for list="{{ edgeLabels }}" as="e" hint-placeholder-count="0">
+          <text x="{{ e.mx }}" y="{{ e.my }}" textAnchor="middle" style="font:700 12px 'Market Sans',system-ui;fill:{{ e.c }};paint-order:stroke;stroke:#fff;stroke-width:4px;stroke-linejoin:round">{{ e.label }}</text>
+        </sc-for>
+      </svg>
+
+      <sc-for list="{{ nodes }}" as="n" hint-placeholder-count="12">
+        <button onClick="{{ n.focus }}" onMouseEnter="{{ n.enter }}" onMouseLeave="{{ n.leave }}" aria-label="{{ n.aria }}" style="position:absolute;left:{{ n.x }}px;top:{{ n.y }}px;width:{{ n.w }}px;height:{{ n.h }}px;opacity:{{ n.op }};pointer-events:{{ n.pe }};box-sizing:border-box;border-radius:12px;border:{{ n.bw }}px solid {{ n.bc }};background:{{ n.bg }};color:#191919;text-align:left;cursor:pointer;padding:{{ n.pad }};display:flex;flex-direction:{{ n.dir }};align-items:{{ n.align }};justify-content:{{ n.justify }};gap:{{ n.gap }};font-family:'Market Sans',system-ui;box-shadow:{{ n.shadow }};transition:{{ n.tr }};animation:{{ n.anim }};overflow:hidden">
+          <div style="display:flex;align-items:center;gap:8px;min-width:0">
+            <span style="width:8px;height:8px;border-radius:999px;background:{{ n.c }};flex-shrink:0"></span>
+            <span style="font-size:{{ n.fs }}px;font-weight:700;line-height:1.15;white-space:{{ n.wrap }};overflow:hidden;text-overflow:ellipsis;text-wrap:balance">{{ n.name }}</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;min-width:0">
+            <sc-if value="{{ n.origin }}" hint-placeholder-val="{{ false }}"><span style="font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#fff;background:#D50B0B;border-radius:999px;padding:2px 7px;white-space:nowrap">where it started</span></sc-if>
+            <span style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:{{ n.c }}">{{ n.layerLabel }}</span>
+            <span aria-label="{{ n.phaseAria }}" style="display:inline-flex;width:18px;height:18px;border-radius:999px;align-items:center;justify-content:center;font-size:11px;font-weight:700;border:1.5px solid {{ n.pc }};color:{{ n.pc }}">{{ n.phase }}</span>
+            <span style="font-size:11px;font-weight:700;border-radius:999px;padding:2px 8px;background:{{ n.mc }};color:#fff;white-space:nowrap">{{ n.mode }}</span>
+          </div>
+          <div style="font-size:13px;line-height:1.3;color:#545454;min-width:0;overflow:hidden;text-overflow:ellipsis;display:{{ n.subDisplay }}">{{ n.sub }}</div>
+          <sc-if value="{{ outcomes }}" hint-placeholder-val="{{ false }}"><div style="font-size:11px;font-weight:700;color:{{ n.oc }};background:{{ n.obg }};border:1px solid {{ n.obc }};border-radius:999px;padding:2px 8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%">{{ n.outcome }}</div></sc-if>
+        </button>
+      </sc-for>
+
+      <sc-if value="{{ tip }}" hint-placeholder-val="{{ false }}">
+        <div role="tooltip" style="position:absolute;left:{{ tip.x }}px;top:{{ tip.y }}px;width:{{ tip.w }}px;background:#191919;color:#fff;border-radius:10px;padding:10px 12px;font-size:13px;line-height:1.35;pointer-events:none;z-index:5;box-shadow:0 4px 12px rgba(0,0,0,.15)">{{ tip.text }}</div>
+      </sc-if>
+
+      <sc-if value="{{ panel }}" hint-placeholder-val="{{ false }}">
+        <section aria-label="Team detail" style="position:absolute;left:{{ panel.x }}px;top:{{ panel.y }}px;width:620px;min-height:540px;box-sizing:border-box;background:#fff;border:2px solid {{ panel.c }};border-radius:16px;padding:22px 24px;display:flex;flex-direction:column;gap:14px;box-shadow:0 12px 40px rgba(0,0,0,.14);z-index:6;transform-origin:top left">
+          <sc-if value="{{ noMoment }}" hint-placeholder-val="{{ true }}">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px">
+              <div style="display:flex;flex-direction:column;gap:6px;min-width:0">
+                <h2 style="margin:0;font-size:24px;font-weight:700;line-height:1.1">{{ panel.name }}</h2>
+                <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+                  <span style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:{{ panel.c }}">{{ panel.layerLabel }}</span>
+                  <span style="font-size:12px;color:#545454">joined in Phase {{ panel.phase }}</span>
+                  <span style="font-size:11px;font-weight:700;border-radius:999px;padding:2px 8px;background:{{ panel.mc }};color:#fff">{{ panel.mode }}</span>
+                </div>
+              </div>
+              <button onClick="{{ back }}" style="cursor:pointer;border-radius:999px;padding:6px 12px;font:700 12px 'Market Sans',system-ui;border:1px solid #191919;background:#fff;color:#191919;white-space:nowrap">← All teams</button>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:4px">
+              <span style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#707070">Job to be done · {{ panel.at }}</span>
+              <p style="margin:0;font-size:17px;line-height:1.35;font-weight:700">“{{ panel.jtbd }}”</p>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:4px">
+              <span style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#707070">What we did together</span>
+              <ul style="margin:0;padding-left:18px;display:flex;flex-direction:column;gap:3px">
+                <sc-for list="{{ panel.together }}" as="t" hint-placeholder-count="3"><li style="font-size:14px;line-height:1.35">{{ t }}</li></sc-for>
+              </ul>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+              <div style="display:flex;flex-direction:column;gap:6px">
+                <span style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#707070">Artifacts</span>
+                <div style="display:flex;gap:6px;flex-wrap:wrap">
+                  <sc-for list="{{ panel.artifacts }}" as="a" hint-placeholder-count="2"><span style="font-size:12px;border:1px solid #C7C7C7;border-radius:999px;padding:3px 10px;background:#F7F7F7">{{ a }}</span></sc-for>
+                </div>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:6px">
+                <span style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#707070">Depends on / feeds</span>
+                <div style="display:flex;gap:6px;flex-wrap:wrap">
+                  <sc-for list="{{ panel.deps }}" as="d" hint-placeholder-count="3"><button onClick="{{ d.go }}" style="cursor:pointer;font:700 12px 'Market Sans',system-ui;border:1px solid {{ d.c }};color:{{ d.c }};border-radius:999px;padding:3px 10px;background:#fff">{{ d.name }}</button></sc-for>
+                  <sc-if value="{{ panel.noDeps }}" hint-placeholder-val="{{ false }}"><span style="font-size:12px;color:#707070">Touches every column</span></sc-if>
+                </div>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:6px">
+              <span style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#707070">Moments</span>
+              <sc-if value="{{ panel.hasMoments }}" hint-placeholder-val="{{ true }}">
+                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:8px">
+                  <sc-for list="{{ panel.moments }}" as="m" hint-placeholder-count="1">
+                    <button onClick="{{ m.open }}" style="cursor:pointer;text-align:left;border:1px solid #E5E5E5;border-radius:12px;padding:10px 12px;background:#fff;display:flex;flex-direction:column;gap:3px;font-family:'Market Sans',system-ui;color:#191919" style-hover="border-color:#191919">
+                      <span style="font-size:14px;font-weight:700;line-height:1.2">{{ m.title }}</span>
+                      <span style="font-size:12px;color:#545454;line-height:1.3">{{ m.ctx }}</span>
+                      <span style="font-size:12px;color:#0968F6;font-weight:700">Open moment →</span>
+                    </button>
+                  </sc-for>
+                </div>
+              </sc-if>
+              <sc-if value="{{ panel.empty }}" hint-placeholder-val="{{ false }}">
+                <div style="border:1px dashed #C7C7C7;border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:8px;align-items:flex-start;background:#F7F7F7">
+                  <span style="font-size:14px;color:#545454">No moments captured yet</span>
+                  <button disabled="" style="border-radius:999px;padding:6px 12px;font:700 12px 'Market Sans',system-ui;border:1px solid #E5E5E5;background:#E5E5E5;color:#8F8F8F;cursor:not-allowed">Add a moment</button>
+                </div>
+              </sc-if>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:auto;padding-top:8px;border-top:1px solid #E5E5E5">
+              <span style="font-size:13px;display:inline-flex;align-items:center;gap:8px"><b>Outcome</b><span style="font-size:11px;font-weight:700;border-radius:999px;padding:2px 8px;background:{{ panel.obg }};color:{{ panel.oc }}">{{ panel.outcome }}</span></span>
+              <div style="display:flex;gap:6px">
+                <button onClick="{{ prevTeam }}" style="cursor:pointer;border-radius:999px;padding:6px 12px;font:700 12px 'Market Sans',system-ui;border:1px solid #C7C7C7;background:#fff;color:#191919">‹ Previous</button>
+                <button onClick="{{ nextTeam }}" style="cursor:pointer;border-radius:999px;padding:6px 12px;font:700 12px 'Market Sans',system-ui;border:1px solid #C7C7C7;background:#fff;color:#191919">Next ›</button>
+              </div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ moment }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px">
+              <div style="display:flex;flex-direction:column;gap:4px">
+                <span style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:{{ panel.c }}">{{ panel.name }} · Moment</span>
+                <h2 style="margin:0;font-size:26px;font-weight:700;line-height:1.1">{{ moment.title }}</h2>
+              </div>
+              <button onClick="{{ back }}" style="cursor:pointer;border-radius:999px;padding:6px 12px;font:700 12px 'Market Sans',system-ui;border:1px solid #191919;background:#fff;color:#191919;white-space:nowrap">← Back to {{ panel.short }}</button>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+              <div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#707070">Context</span><p style="margin:0;font-size:15px;line-height:1.4">{{ moment.ctx }}</p></div>
+              <div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#707070">Decision</span><p style="margin:0;font-size:15px;line-height:1.4;font-weight:700">{{ moment.decision }}</p></div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:6px">
+              <span style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#707070">Who was in the room</span>
+              <div style="display:flex;gap:6px;flex-wrap:wrap">
+                <sc-for list="{{ moment.who }}" as="w" hint-placeholder-count="3"><span style="font-size:12px;border:1px solid #C7C7C7;border-radius:999px;padding:3px 10px;background:#fff">{{ w }}</span></sc-for>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:4px;background:#F5F9FF;border-radius:12px;padding:12px 14px"><span style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#0049B8">What changed</span><p style="margin:0;font-size:15px;line-height:1.4">{{ moment.result }}</p></div>
+            <div style="display:flex;flex-direction:column;gap:4px;margin-top:auto"><span style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#707070">What I'd do differently</span><p style="margin:0;font-size:14px;line-height:1.4;color:#545454">{{ moment.diff }}</p></div>
+          </sc-if>
+        </section>
+      </sc-if>
+      </sc-if>
+
+      <sc-if value="{{ loading }}" hint-placeholder-val="{{ false }}">
+        <sc-for list="{{ skeletons }}" as="s" hint-placeholder-count="12">
+          <div style="position:absolute;left:{{ s.x }}px;top:{{ s.y }}px;width:{{ s.w }}px;height:{{ s.h }}px;border-radius:12px;background:#E5E5E5;animation:cm-shimmer 1.2s ease-in-out infinite;z-index:8"></div>
+        </sc-for>
+      </sc-if>
+    </div>
+
+    <nav aria-label="Breadcrumb" style="position:absolute;left:16px;top:12px;display:flex;gap:6px;align-items:center;font-size:13px;background:rgba(255,255,255,.92);border:1px solid #E5E5E5;border-radius:999px;padding:6px 12px;z-index:9">
+      <button onClick="{{ fit }}" style="border:0;background:transparent;cursor:pointer;font:700 13px 'Market Sans',system-ui;color:{{ crumb0c }};padding:0">All teams</button>
+      <sc-if value="{{ panel }}" hint-placeholder-val="{{ false }}"><span style="color:#8F8F8F">›</span><button onClick="{{ backToTeam }}" style="border:0;background:transparent;cursor:pointer;font:700 13px 'Market Sans',system-ui;color:{{ crumb1c }};padding:0">{{ panel.name }}</button></sc-if>
+      <sc-if value="{{ moment }}" hint-placeholder-val="{{ false }}"><span style="color:#8F8F8F">›</span><span style="font-weight:700">{{ moment.title }}</span></sc-if>
+    </nav>
+
+    <sc-if value="{{ legend }}" hint-placeholder-val="{{ false }}">
+      <div style="position:absolute;left:16px;bottom:12px;display:flex;gap:12px;align-items:center;font-size:12px;background:rgba(255,255,255,.92);border:1px solid #E5E5E5;border-radius:999px;padding:6px 12px;z-index:9">
+        <span style="font-weight:700;color:#545454">{{ legend.title }}</span>
+        <sc-for list="{{ legend.items }}" as="i" hint-placeholder-count="3"><span style="display:inline-flex;align-items:center;gap:5px"><span style="width:10px;height:10px;border-radius:999px;background:{{ i.c }}"></span>{{ i.label }}</span></sc-for>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ notTimeline }}" hint-placeholder-val="{{ true }}">
+    <div onClick="{{ miniClick }}" role="img" aria-label="Mini-map of the viewport" style="position:absolute;right:16px;bottom:12px;width:160px;height:83px;background:rgba(255,255,255,.95);border:1px solid #C7C7C7;border-radius:8px;overflow:hidden;cursor:crosshair;z-index:9">
+      <sc-for list="{{ mini }}" as="m" hint-placeholder-count="12"><div style="position:absolute;left:{{ m.x }}px;top:{{ m.y }}px;width:{{ m.w }}px;height:{{ m.h }}px;background:{{ m.c }};opacity:.7;border-radius:1px"></div></sc-for>
+      <div style="position:absolute;left:{{ mv.x }}px;top:{{ mv.y }}px;width:{{ mv.w }}px;height:{{ mv.h }}px;border:1.5px solid #191919;box-sizing:border-box;background:rgba(9,104,246,.08)"></div>
+    </div>
+    </sc-if>
+
+    <sc-if value="{{ log }}" hint-placeholder-val="{{ false }}">
+      <aside aria-label="Decision log" style="position:absolute;right:0;top:0;bottom:0;width:340px;background:#fff;border-left:1px solid #E5E5E5;box-shadow:-8px 0 24px rgba(0,0,0,.08);display:flex;flex-direction:column;z-index:10">
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:16px 18px;border-bottom:1px solid #E5E5E5"><span style="font-size:16px;font-weight:700">Decision log · 13</span><button onClick="{{ toggleLog }}" aria-label="Close" style="border:0;background:transparent;cursor:pointer;font-size:18px;color:#191919">×</button></div>
+        <div style="overflow:auto;flex:1">
+          <sc-for list="{{ logRows }}" as="r" hint-placeholder-count="13">
+            <button onClick="{{ r.go }}" style="width:100%;text-align:left;border:0;border-bottom:1px solid #F0F0F0;background:{{ r.bg }};cursor:pointer;padding:10px 18px;display:flex;flex-direction:column;gap:2px;font-family:'Market Sans',system-ui;color:#191919" style-hover="background:#F7F7F7">
+              <span style="font-size:14px;font-weight:700;line-height:1.25">{{ r.title }}</span>
+              <span style="font-size:12px;color:#545454;display:flex;gap:6px;align-items:center"><span style="width:7px;height:7px;border-radius:999px;background:{{ r.c }}"></span>{{ r.team }} · Phase {{ r.phase }} · month {{ r.month }}</span>
+            </button>
+          </sc-for>
+        </div>
+      </aside>
+    </sc-if>
+  </div>
+
+  <sc-if value="{{ showStrip }}" hint-placeholder-val="{{ true }}">
+    <div style="display:grid;grid-template-columns:auto repeat(4,minmax(0,1fr));gap:12px;align-items:center;padding:12px 32px;border-top:1px solid #E5E5E5;background:#fff">
+      <span style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#545454;padding-right:8px">How we worked</span>
+      <div style="border:1px solid #E5E5E5;border-radius:12px;padding:10px 14px;font-size:13px;line-height:1.3">E2E journey map as the shared source of truth</div>
+      <div style="border:1px solid #E5E5E5;border-radius:12px;padding:10px 14px;font-size:13px;line-height:1.3">Weekly cross-surface design sync</div>
+      <div style="border:1px solid #E5E5E5;border-radius:12px;padding:10px 14px;font-size:13px;line-height:1.3">Decision log, one page per decision</div>
+      <div style="border:1px solid #E5E5E5;border-radius:12px;padding:10px 14px;font-size:13px;line-height:1.3">Design System contribution track</div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isPresent }}" hint-placeholder-val="{{ false }}">
+    <div style="display:flex;align-items:center;gap:20px;padding:14px 32px;background:#191919;color:#fff">
+      <span style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#C7C7C7;white-space:nowrap">Speaker notes · {{ tourPos }}</span>
+      <p style="margin:0;font-size:16px;line-height:1.4;flex:1">{{ tourNote }}</p>
+      <span style="font-size:12px;color:#C7C7C7;white-space:nowrap">→ next · ← back · Esc exit</span>
+      <button onClick="{{ exitPresent }}" style="cursor:pointer;border-radius:999px;padding:6px 14px;font:700 12px 'Market Sans',system-ui;border:1px solid #fff;background:transparent;color:#fff">Exit</button>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;defaultLens&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;teams&quot;,&quot;options&quot;:[&quot;teams&quot;,&quot;jtbd&quot;,&quot;role&quot;,&quot;phase&quot;,&quot;timeline&quot;],&quot;tsType&quot;:&quot;'teams'|'jtbd'|'role'|'phase'|'timeline'&quot;,&quot;section&quot;:&quot;Map&quot;},&quot;showStrip&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Map&quot;},&quot;reducedMotion&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Map&quot;}}">
+const W=1600,H=830,COLW=230,COLG=12,COL0=130;
+const cx=i=>COL0+(i-1)*(COLW+COLG);
+const span=(a,b)=>({x:cx(a),w:(b-a+1)*COLW+(b-a)*COLG});
+const ROW={SUPPLY:[20,90],JOURNEY:[140,150],PLATFORM:[320,90],MONETIZATION:[440,90],GOVERNANCE:[560,60],VERTICAL:[650,60],GLOBAL:[740,60]};
+const LAYER={SUPPLY:{c:'#288034',bg:'#F1FDF1',l:'Supply'},JOURNEY:{c:'#0968F6',bg:'#F5F9FF',l:'Journey'},PLATFORM:{c:'#8638E5',bg:'#F5EEFF',l:'Platform'},MONETIZATION:{c:'#B07700',bg:'#FFFBF5',l:'Monetization'},GOVERNANCE:{c:'#545454',bg:'#F7F7F7',l:'Governance'},VERTICAL:{c:'#E8178A',bg:'#FFF0F8',l:'Vertical slice'},GLOBAL:{c:'#006F93',bg:'#EEF8FB',l:'Global'}};
+const LAYER_ORDER=['SUPPLY','JOURNEY','PLATFORM','MONETIZATION','GOVERNANCE','VERTICAL','GLOBAL'];
+const MODE={Led:'#0049B8','Co-designed':'#288034',Consulted:'#8638E5',Aligned:'#707070'};
+const MODE_BG={Led:'#F5F9FF','Co-designed':'#F1FDF1',Consulted:'#F5EEFF',Aligned:'#F7F7F7'};
+const PHASE={1:'#D50B0B',2:'#0968F6',3:'#006F93'};
+const PHASE_BG={1:'#FFF5F5',2:'#F5F9FF',3:'#EEF8FB'};
+const PHASE_NAME={1:'It started as a search problem',2:"We followed the customer's job",3:'It became the end-to-end initiative'};
+const CAPTION={1:"Sneaker buyers couldn't express size, condition, or trust in a query. The filters weren't the problem — intent was.",2:"The fix depended on listing data we didn't have, and on intent we lost the moment someone clicked through.",3:"Multiple jobs to be done at multiple touchpoints. One preference model. Twelve teams."};
+const PHASE_MONTH={1:1,2:3,3:6};
+const MM={m1:1,m12:1,m2:2,m3:3,m6:3,m7:4,m11:4,m8:5,m5:6,m10:6,m4:7,m9:7,m13:8};
+const g=(x,w,row)=>({x,w,y:ROW[row][0],h:ROW[row][1]});
+const TEAMS=[
+{id:'search-srp',name:'Search / SRP',short:'Search',layer:'JOURNEY',at:'Search / SRP · touchpoint 3',tag:'Touchpoint 3',phase:1,mode:'Led',origin:true,geo:g(cx(3),COLW,'JOURNEY'),ring:[190,30],
+ jtbd:"Help me find the exact pair I want — my size, a condition I'll accept, from a seller I can trust.",
+ together:['Reframed the brief from "fix the filters" to "understand intent"','Reviewed the top sneaker queries with the Search PM and ranking engineers','Designed intent-aware refinements that pre-apply saved size/condition preferences as visible, removable "receipt" chips'],
+ artifacts:['Query-intent audit','SRP concepts v1–v3','Refinement-receipt pattern'],dependsOn:['ai','seller-listing','my-account','design-system','ads'],
+ moments:[{id:'m1',title:'The query that broke the brief',ctx:'A review of the top 200 sneaker queries.',decision:'The problem was intent, not filter UI.',who:['Search PM','Ranking engineer','Product designer (me)','UX researcher'],result:'The brief expanded upstream (listing data) and downstream (View Item, Checkout).',diff:'Bring the Seller Listing team into the query review from day one.'},
+ {id:'m2',title:'Auto-applied, never silent',ctx:'Ranking wanted to pre-apply size.',decision:'Allowed only with a removable receipt chip and a "why".',who:['Ranking engineer','Search PM','Product designer (me)','Content designer'],result:'The pattern was later adopted by Homepage and Recs.',diff:'Write the usage rule at the same time as the component, not after.'}],
+ outcome:'Pending · refinement usage, null-result rate'},
+{id:'seller-listing',name:'Seller Listing',short:'Seller Listing',layer:'SUPPLY',at:'Listing flow · above touchpoints 3–4',tag:'listing signal feeds every surface',phase:2,mode:'Co-designed',geo:g(cx(3),span(3,4).w,'SUPPLY'),ring:[280,-90],
+ jtbd:'Help me list my item so the right buyer actually finds it.',
+ together:['Mapped which attributes personalization needed (size, condition, authenticity)','Designed guided listing prompts for those attributes','Agreed a "signal quality" measure both teams would own'],
+ artifacts:['Attribute dependency map','Guided-listing flow'],dependsOn:['focused-category','global-marketplace'],
+ moments:[{id:'m3',title:"The attributes we couldn't personalize without",ctx:'A large share of sneaker listings lacked a structured size.',decision:'Capture it at listing time with guided prompts rather than infer it later.',who:['Selling PM','Listing designer','Product designer (me)','Data scientist'],result:'A shared roadmap item and a shared metric.',diff:'Pilot the prompts in one category before writing the shared metric.'}],
+ outcome:'Pending · structured-attribute coverage'},
+{id:'homepage',name:'Homepage',short:'Homepage',layer:'JOURNEY',at:'Homepage · touchpoint 1',tag:'Touchpoint 1',phase:3,mode:'Co-designed',geo:g(cx(1),COLW,'JOURNEY'),ring:[190,-90],
+ jtbd:"Show me what's new for the things I already care about.",
+ together:['Personalized modules driven by the same preference model as Search','A module hierarchy for known vs. cold-start shoppers','Reused the receipt-chip pattern'],
+ artifacts:['Module hierarchy','Cold-start state spec'],dependsOn:['my-account','ai','design-system','ads'],
+ moments:[{id:'m4',title:'Cold start vs. known shopper',ctx:'The same module had to work with zero signal.',decision:'An explicit "tell us what you\'re into" entry instead of guessing.',who:['Homepage PM','Homepage designer','Product designer (me)'],result:'One module, two honest states.',diff:'Test the cold-start entry with new accounts earlier.'}],
+ outcome:'Pending'},
+{id:'discovery-recs',name:'Discovery & Recs',short:'Recs',layer:'JOURNEY',at:'Discovery & Recs · touchpoint 2',tag:'Touchpoint 2',phase:3,mode:'Co-designed',geo:g(cx(2),COLW,'JOURNEY'),ring:[190,-30],
+ jtbd:"Help me find things I didn't know to look for — without losing the thread.",
+ together:['Aligned recs logic with search intent so shoppers never see contradicting personalization','Designed the "Why this?" explanation','Defined what Recs must expose to the UI'],
+ artifacts:['Recs/Search alignment doc','"Why this?" disclosure spec'],dependsOn:['ai','my-account','design-system'],
+ moments:[{id:'m5',title:'One preference model, two surfaces',ctx:'Recs and Search personalized from different signals.',decision:'A single preference source of truth in My Account.',who:['Recs PM','Recs ML lead','Search PM','Product designer (me)'],result:'Consistency across surfaces.',diff:'Get the two ML teams in one room before drawing the UI.'}],
+ outcome:'Pending'},
+{id:'ai',name:'AI',short:'AI',layer:'PLATFORM',at:'Platform · under touchpoints 2–4',tag:'query understanding, attributes, explanations',phase:2,mode:'Consulted',geo:g(cx(2),span(2,4).w,'PLATFORM'),ring:[280,30],
+ jtbd:'Understand what the shopper meant — and be able to say why.',
+ together:['Defined what the model must return for the UI (matched attributes, confidence, reason)','Designed for failure modes (low confidence → ask, don\'t assume)','Reviewed explanation copy'],
+ artifacts:['Model-to-UI contract','Confidence-state matrix'],dependsOn:['seller-listing'],
+ moments:[{id:'m6',title:'What the model has to tell the UI',ctx:"The UI couldn't explain pre-applied filters.",decision:'The model returns a reason per attribute.',who:['Applied science lead','Platform PM','Product designer (me)'],result:'Transparency became a product requirement, not a nice-to-have.',diff:'Define the confidence states before the first SRP concept.'}],
+ outcome:'Pending'},
+{id:'view-item',name:'View Item',short:'View Item',layer:'JOURNEY',at:'View Item · touchpoint 4',tag:'Touchpoint 4',phase:2,mode:'Co-designed',geo:g(cx(4),COLW,'JOURNEY'),ring:[190,90],
+ jtbd:'Help me trust that this specific item is the one.',
+ together:['Carried intent context from SRP into View Item (size match, condition match)','Placed the authenticity guarantee where trust is decided','"Matches your size" callout'],
+ artifacts:['Intent hand-off spec','View Item trust hierarchy'],dependsOn:['seller-listing','ai','design-system','ads'],
+ moments:[{id:'m7',title:'Carrying intent across the seam',ctx:'Everything the shopper told Search vanished on click.',decision:'Pass intent as context and render it as a compact receipt.',who:['View Item PM','View Item designer','Front-end lead','Product designer (me)'],result:'Fewer back-to-results loops.',diff:'Prototype the hand-off end to end before splitting into tickets.'}],
+ outcome:'Pending'},
+{id:'cart-checkout',name:'Cart & Checkout',short:'Checkout',layer:'JOURNEY',at:'Cart & Checkout · touchpoint 5',tag:'Touchpoint 5',phase:2,mode:'Consulted',geo:g(cx(5),COLW,'JOURNEY'),ring:[190,150],
+ jtbd:'Let me buy without second-guessing.',
+ together:['Size confirmation for footwear at checkout','Preserved intent context','Reviewed delivery-estimate placement'],
+ artifacts:['Checkout confirmation pattern'],dependsOn:['view-item','global-marketplace'],
+ moments:[{id:'m8',title:'The last chance to catch a size mistake',ctx:'Returns data pointed at sizing.',decision:'A one-line size confirmation, not a modal.',who:['Checkout PM','Checkout designer','Product designer (me)'],result:'Pending — measurement in progress.',diff:'Pair the confirmation with a returns-rate dashboard from launch.'}],
+ outcome:'Pending · sizing returns'},
+{id:'ads',name:'Ads (Promoted Listings)',short:'Ads',layer:'MONETIZATION',at:'Homepage · SRP · View Item',tag:'Homepage · SRP · View Item',phase:3,mode:'Aligned',geo:g(cx(1),span(1,4).w,'MONETIZATION'),ring:[280,150],
+ jtbd:"Monetize without breaking the shopper's trust.",
+ together:['Promoted placements respect the same intent and preferences','Relevance guardrails','Clear labeling inside personalized modules'],
+ artifacts:['Relevance-guardrail principles'],dependsOn:['search-srp','homepage','view-item'],
+ moments:[{id:'m9',title:'Relevance guardrails for promoted placements',ctx:'Promoted items could ignore size preferences.',decision:'Promoted must satisfy the same hard constraints.',who:['Ads PM','Ads ranking engineer','Product designer (me)'],result:'Pending — measurement in progress.',diff:'Bring Ads in during Phase 2, not after.'}],
+ outcome:'Pending'},
+{id:'my-account',name:'My Account · Preferences',short:'My Account',layer:'JOURNEY',at:'My Account · touchpoint 6',tag:'Touchpoint 6',phase:3,mode:'Led',geo:g(cx(6),COLW,'JOURNEY'),ring:[190,210],
+ jtbd:'Let me tell you what I like once — and have it stick everywhere.',
+ together:['Designed the preference center (size profile, followed interests, per-surface controls)','Established it as the single source of truth for personalization','Edit and undo from any surface'],
+ artifacts:['Preference model','Preference-center flows'],dependsOn:['design-system','global-marketplace'],
+ moments:[{id:'m10',title:'Preferences as the source of truth',ctx:'Five surfaces, five notions of "what you like".',decision:'One model, edited anywhere, honored everywhere.',who:['Account PM','Identity engineer','Product designer (me)','Privacy counsel'],result:'The backbone of the initiative.',diff:'Start the preference model in Phase 1; it was the keystone.'}],
+ outcome:'Pending'},
+{id:'design-system',name:'Design System',short:'Design System',layer:'GOVERNANCE',at:'Every surface',tag:'component approval',phase:2,mode:'Led',band:true,geo:g(cx(1),span(1,6).w,'GOVERNANCE'),ring:[360,-30],
+ jtbd:'Ship one pattern, not twelve variations.',
+ together:['Proposed and won approval for three components — the receipt chip, the "Why am I seeing this?" disclosure, the size-match badge','Followed the contribution track','Documented usage rules'],
+ artifacts:['Component proposals ×3','Usage guidelines'],dependsOn:[],
+ moments:[{id:'m11',title:'Component approval: the receipt chip',ctx:'Three teams had drawn their own chip.',decision:'One component with two variants.',who:['Design System lead','Design System engineer','Product designer (me)','Accessibility specialist'],result:'Approved and adopted across Search, Homepage, Recs, and View Item.',diff:'File the proposal at the first duplicate, not the third.'}],
+ outcome:'3 components approved'},
+{id:'focused-category',name:'Collectible Sneakers & Fashion',short:'Sneakers & Fashion',layer:'VERTICAL',at:'Every touchpoint',tag:'proving ground',phase:1,mode:'Co-designed',band:true,geo:g(cx(1),span(1,6).w,'VERTICAL'),ring:[360,90],
+ jtbd:'Authenticity, sizing, and drops — the jobs that make this category different.',
+ together:['Chose it as the proving ground','Defined category-specific jobs at every touchpoint','Ran the vertical slice end to end before generalizing'],
+ artifacts:['Category JTBD map','Vertical-slice plan'],dependsOn:[],
+ moments:[{id:'m12',title:'Why sneakers first',ctx:'Needed a category where intent is sharp and trust is fragile.',decision:'Prove the pattern where it is hardest.',who:['Category GM','Category PM','Product designer (me)'],result:'A repeatable playbook for the next category.',diff:'Name the second category up front so generalizing has a deadline.'}],
+ outcome:'Pending'},
+{id:'global-marketplace',name:'Global Marketplace',short:'Global',layer:'GLOBAL',at:'Every market',tag:'does it survive a size conversion?',phase:3,mode:'Aligned',band:true,geo:g(cx(1),span(1,6).w,'GLOBAL'),ring:[360,210],
+ jtbd:'Make it work in every market, not just the first one.',
+ together:['Size conversions across regions','Localization of the preference center','Market-specific requirements review'],
+ artifacts:['Localization checklist','Size-conversion rules'],dependsOn:['my-account','seller-listing'],
+ moments:[{id:'m13',title:'Does the pattern survive a size conversion?',ctx:'US 10 ≠ EU 44 ≠ UK 9.',decision:'Store one canonical size, render locally.',who:['International PM','Localization lead','Product designer (me)'],result:'Pending — measurement in progress.',diff:'Run the size-conversion check on the very first SRP concept.'}],
+ outcome:'Pending'}];
+const BY=Object.fromEntries(TEAMS.map(t=>[t.id,t]));
+const ORDER=['seller-listing','homepage','discovery-recs','search-srp','view-item','cart-checkout','my-account','ai','ads','design-system','focused-category','global-marketplace'];
+const EL={'search-srp>ai':'query understanding','search-srp>seller-listing':'structured attributes','search-srp>my-account':'saved preferences','search-srp>design-system':'component approval','search-srp>ads':'relevance guardrails','seller-listing>focused-category':'category attributes','seller-listing>global-marketplace':'size conversions','homepage>my-account':'preference model','homepage>ai':'cold-start signals','homepage>design-system':'receipt chip','homepage>ads':'labeled placements','discovery-recs>ai':'shared intent','discovery-recs>my-account':'one preference source','discovery-recs>design-system':'"Why this?" disclosure','ai>seller-listing':'attribute extraction','view-item>seller-listing':'authenticity data','view-item>ai':'size match','view-item>design-system':'size-match badge','view-item>ads':'placement guardrails','cart-checkout>view-item':'intent hand-off','cart-checkout>global-marketplace':'local sizes','ads>search-srp':'same hard constraints','ads>homepage':'module labeling','ads>view-item':'placement guardrails','my-account>design-system':'preference controls','my-account>global-marketplace':'localization','global-marketplace>my-account':'canonical size','global-marketplace>seller-listing':'regional attributes'};
+const TOUR=[
+{note:'This is the whole organization laid over the shopper\'s journey. Twelve teams, one preference model. Let me rewind to how it started.'},
+{phase:1,note:'Phase 1. A single lit node: Search. Sneaker buyers could not express size, condition or trust in a query. The brief said "fix the filters".'},
+{phase:2,note:'Phase 2. Following the customer\'s job pulled in listing data upstream and View Item and Checkout downstream. Design System came in for governance.'},
+{phase:3,note:'Phase 3. Homepage, Recs, Ads, My Account and Global lit up. It became the end-to-end personalization initiative.'},
+{team:'search-srp',note:'Search is where I led. Five dependencies light up across the org — that is the connective-tissue role in one picture.'},
+{team:'search-srp',moment:'m1',note:'The moment the brief broke: reviewing the top 200 queries showed the problem was intent, not filter UI. The scope expanded upstream and downstream.'},
+{team:'seller-listing',note:'Upstream, we could not personalize on attributes that were never captured. We co-designed guided listing prompts and a shared signal-quality metric.'},
+{team:'design-system',note:'Three teams had drawn their own chip. I took the receipt chip, the disclosure and the size-match badge through the contribution track.'},
+{team:'design-system',moment:'m11',note:'One component, two variants, approved and adopted across four surfaces. Governance is how twelve teams shipped one pattern.'},
+{team:'focused-category',note:'Sneakers were the proving ground: sharp intent, fragile trust. Prove the pattern where it is hardest, then generalize.'},
+{fit:true,note:'Back to the full map. One search problem, twelve teams, one preference model — and a repeatable way of working.'}];
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+const PANEL_W=620,PANEL_H=540;
+
+class Component extends DCLogic {
+  state={cam:{x:0,y:0,s:.9},anim:true,zl:0,team:null,moment:null,hover:null,lens:null,view:'map',conn:true,phase:3,playing:false,present:false,tour:0,outcomes:false,log:false,hoverMonth:null,loading:true,emptyTeam:false,reduced:null,statesOpen:false,announce:'',vw:1600,vh:830,drag:null};
+  rootRef=React.createRef(); vpRef=React.createRef();
+  componentDidMount(){
+    const vp=this.vpRef.current;
+    const measure=()=>{ if(!vp) return; const vw=vp.clientWidth||1600,vh=vp.clientHeight||830; this.setState({vw,vh},()=>{ if(this.state.zl===0) this.setState({cam:this.fitCam(),anim:false}); }); };
+    measure();
+    this.ro=new ResizeObserver(measure); vp&&this.ro.observe(vp);
+    this.onWheel=e=>{ e.preventDefault(); const {cam,vw}=this.state; const r=vp.getBoundingClientRect(); const k=r.width/vp.clientWidth||1; const px=(e.clientX-r.left)/k,py=(e.clientY-r.top)/k; const f=Math.exp(-e.deltaY*0.0015); const s=clamp(cam.s*f,.5,3.2); const q=s/cam.s; this.setState({cam:{s,x:px-(px-cam.x)*q,y:py-(py-cam.y)*q},anim:false}); };
+    vp&&vp.addEventListener('wheel',this.onWheel,{passive:false});
+    this.loadT=setTimeout(()=>this.setState({loading:false}),1000);
+    this.mq=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)');
+  }
+  componentWillUnmount(){ this.ro&&this.ro.disconnect(); const vp=this.vpRef.current; vp&&vp.removeEventListener('wheel',this.onWheel); clearTimeout(this.loadT); clearTimeout(this.playT); }
+  get reduced(){ return this.state.reduced ?? (this.props.reducedMotion ?? (this.mq&&this.mq.matches)) ?? false; }
+  get lens(){ return this.state.lens ?? this.props.defaultLens ?? 'teams'; }
+  geo(t){ const {view}=this.state; if(view==='org'){ const [r,a]=t.ring; const rad=a*Math.PI/180; return {x:800+r*Math.cos(rad)-100,y:415+r*Math.sin(rad)-38,w:200,h:76}; } return t.geo; }
+  fitCam(){ const {vw,vh}=this.state; const s=clamp(Math.min(vw/W,vh/H)*.97,.5,3.2); return {s,x:(vw-W*s)/2,y:(vh-H*s)/2}; }
+  fitRect(r,pad){ const {vw,vh}=this.state; const s=clamp(Math.min(vw/(r.w+pad*2),vh/(r.h+pad*2)),.5,3.2); return {s,x:vw/2-(r.x+r.w/2)*s,y:vh/2-(r.y+r.h/2)*s}; }
+  panelRect(id){ const g=this.geo(BY[id]); return {x:clamp(g.x,16,W-PANEL_W-16),y:clamp(g.y,16,H-PANEL_H-16),w:PANEL_W,h:PANEL_H}; }
+  focusTeam(id){ const t=BY[id]; this.setState({team:id,moment:null,zl:1,hover:null,cam:this.fitRect(this.panelRect(id),40),anim:true,announce:`Zoomed to ${t.name}`}); }
+  openMoment(teamId,mid){ const pr=this.panelRect(teamId); const m=BY[teamId].moments.find(m=>m.id===mid); this.setState({team:teamId,moment:mid,zl:2,cam:this.fitRect({...pr,y:pr.y+40,h:pr.h-80},10),anim:true,announce:`Opened moment ${m.title}`}); }
+  back(){ const {zl,team}=this.state; if(zl===2) this.focusTeam(team); else if(zl===1) this.fit(); }
+  fit(){ this.setState({zl:0,team:null,moment:null,cam:this.fitCam(),anim:true,announce:'All teams'}); }
+  setPhase(p,playing=false){ clearTimeout(this.playT); this.setState({phase:p,playing,announce:`Phase ${p}: ${PHASE_NAME[p]}`}); if(playing&&p<3) this.playT=setTimeout(()=>this.setPhase(p+1,true),2500); else if(playing) this.playT=setTimeout(()=>this.setState({playing:false}),1200); }
+  play(){ if(this.state.playing){ clearTimeout(this.playT); this.setState({playing:false}); return; } this.setPhase(this.state.phase===3?1:this.state.phase,true); }
+  applyTour(i){ const st=TOUR[i]; if(!st) return; this.setState({tour:i}); if(st.phase) { if(this.state.zl>0) this.fit(); this.setPhase(st.phase); } else if(st.moment) this.openMoment(st.team,st.moment); else if(st.team){ this.setPhase(3); this.focusTeam(st.team); } else if(st.fit){ this.fit(); } }
+  stepTeam(d){ const i=ORDER.indexOf(this.state.team); this.focusTeam(ORDER[(i+d+ORDER.length)%ORDER.length]); }
+  stepLayer(d){ const t=BY[this.state.team]; let li=LAYER_ORDER.indexOf(t.layer); for(let k=0;k<7;k++){ li=(li+d+7)%7; const cands=TEAMS.filter(x=>x.layer===LAYER_ORDER[li]); if(!cands.length) continue; const cx0=t.geo.x+t.geo.w/2; const best=cands.reduce((a,b)=>Math.abs(b.geo.x+b.geo.w/2-cx0)<Math.abs(a.geo.x+a.geo.w/2-cx0)?b:a); this.focusTeam(best.id); return; } }
+  zoom(d){ const {cam,vw,vh}=this.state; const s=clamp(cam.s+d,.5,3.2),q=s/cam.s; this.setState({cam:{s,x:vw/2-(vw/2-cam.x)*q,y:vh/2-(vh/2-cam.y)*q},anim:true}); }
+  onKey=e=>{ const {present,tour,zl}=this.state; let h=true;
+    if(present&&(e.key==='ArrowRight'||e.key==='Enter')) this.applyTour(Math.min(tour+1,TOUR.length-1));
+    else if(present&&e.key==='ArrowLeft') this.applyTour(Math.max(tour-1,0));
+    else if(e.key==='Escape'){ if(this.state.log) this.setState({log:false}); else if(present) this.setState({present:false}); else if(zl>0) this.back(); else h=false; }
+    else if(e.key==='+'||e.key==='=') this.zoom(.4);
+    else if(e.key==='-') { zl>0?this.back():this.zoom(-.4); }
+    else if(zl===1&&e.key==='ArrowRight') this.stepTeam(1);
+    else if(zl===1&&e.key==='ArrowLeft') this.stepTeam(-1);
+    else if(zl===1&&e.key==='ArrowDown') this.stepLayer(1);
+    else if(zl===1&&e.key==='ArrowUp') this.stepLayer(-1);
+    else if(zl===1&&e.key==='Enter'&&e.target===this.rootRef.current){ const m=BY[this.state.team].moments[0]; m&&this.openMoment(this.state.team,m.id); }
+    else h=false;
+    if(h){ e.preventDefault(); e.stopPropagation(); } };
+  k(){ const vp=this.vpRef.current; if(!vp) return 1; return vp.getBoundingClientRect().width/vp.clientWidth||1; }
+  onDown=e=>{ if(e.button!==0) return; if(e.target.closest('button,input,aside,section,nav')) return; this.rootRef.current&&this.rootRef.current.focus({preventScroll:true}); this.setState({drag:{x:e.clientX,y:e.clientY,cx:this.state.cam.x,cy:this.state.cam.y,moved:false},anim:false}); };
+  onMove=e=>{ const {drag,cam}=this.state; if(!drag) return; const k=this.k(); const dx=(e.clientX-drag.x)/k,dy=(e.clientY-drag.y)/k; this.setState({cam:{...cam,x:drag.cx+dx,y:drag.cy+dy},drag:{...drag,moved:drag.moved||Math.hypot(dx,dy)>4}}); };
+  onUp=()=>{ this.state.drag&&this.setState({drag:null}); };
+  renderVals(){
+    const S=this.state,{cam,zl,team,moment,hover,view,conn,phase,playing,present,tour,outcomes,log,loading,vw,vh}=S;
+    const lens=this.lens,reduced=this.reduced;
+    const isTimeline=lens==='timeline';
+    const lit=id=>BY[id].phase<=phase;
+    const active=[hover,team].filter(Boolean);
+    const connected=id=>team&&team!==id&&(BY[team].dependsOn.includes(id)||BY[id].dependsOn.includes(team));
+    const nodes=TEAMS.map(t=>{ const gg=this.geo(t); const L=LAYER[t.layer]; const isF=team===t.id; const hov=hover===t.id;
+      let op=1; if(!lit(t.id)) op=.2; else if(team&&!isF&&!connected(t.id)) op=.35; if(isF&&zl>=1) op=0;
+      let bg='#fff',bc='#E5E5E5',bw=1; if(lens==='role'){bg=MODE_BG[t.mode];bc=MODE[t.mode];} else if(lens==='phase'){bg=PHASE_BG[t.phase];bc=PHASE[t.phase];} if(hov||connected(t.id)){bc=L.c;bw=2;}
+      const sub=lens==='jtbd'?t.jtbd:lens==='role'?`${t.mode} · ${t.at}`:lens==='phase'?`Joined in Phase ${t.phase} — ${PHASE_NAME[t.phase]}`:t.tag;
+      const band=t.band&&view==='map'; const wide=view==='map'&&!band&&t.geo.h<=90;
+      return {id:t.id,name:t.name,x:gg.x,y:gg.y,w:gg.w,h:gg.h,op,pe:op===0?'none':'auto',bg,bc,bw,c:L.c,layerLabel:L.l,phase:t.phase,pc:PHASE[t.phase],phaseAria:`joined Phase ${t.phase}`,mode:t.mode,mc:MODE[t.mode],sub,origin:!!t.origin,outcome:t.outcome,oc:t.outcome.startsWith('Pending')?'#5E4000':'#1B561A',obg:t.outcome.startsWith('Pending')?'#FFF0D3':'#F1FDF1',obc:t.outcome.startsWith('Pending')?'#FFE0A6':'#CEF5CE',
+        aria:`${t.name}, joined Phase ${t.phase}, ${t.mode}`,fs:band?15:(view==='org'?15:18),wrap:(band||view==='org')?'nowrap':'normal',pad:band?'0 16px':(wide?'10px 14px':'14px 16px'),dir:band?'row':'column',align:band?'center':'stretch',justify:band?'flex-start':'flex-start',gap:band?'16px':(wide?'4px':'8px'),subDisplay:(view==='org'&&lens==='teams')?'none':'block',
+        shadow:hov?'0 4px 12px rgba(0,0,0,.10)':'0 1px 2px rgba(0,0,0,.06)',tr:reduced?'none':'left .5s,top .5s,width .5s,height .5s,opacity .3s,border-color .2s,box-shadow .2s',anim:(t.origin&&lit(t.id)&&!reduced&&zl===0)?'cm-pulse 2.4s ease-out infinite':'none',
+        focus:()=>this.focusTeam(t.id),enter:()=>this.setState({hover:t.id}),leave:()=>this.setState({hover:null})}; });
+    const anchor=(a,b)=>{ const ga=this.geo(a),gb=this.geo(b); const bcx=gb.x+gb.w/2,bcy=gb.y+gb.h/2; const ax=clamp(bcx,ga.x+24,ga.x+ga.w-24); const ay=bcy<ga.y?ga.y:bcy>ga.y+ga.h?ga.y+ga.h:ga.y+ga.h/2; return [ax,ay]; };
+    const edges=[],edgeLabels=[];
+    if(!isTimeline) TEAMS.forEach(t=>t.dependsOn.forEach(d=>{ const a=t,b=BY[d]; const hi=active.includes(a.id)||active.includes(b.id); const bandy=(a.band||b.band)&&view==='map'; const vis=conn&&lit(a.id)&&lit(b.id)&&(!bandy||hi); if(!vis&&!conn) {} const [ax,ay]=anchor(a,b),[bx,by]=anchor(b,a); const my=(ay+by)/2; const d0=view==='org'?`M${ax} ${ay}L${bx} ${by}`:`M${ax} ${ay}C${ax} ${my},${bx} ${my},${bx} ${by}`; const dim=team&&!hi;
+      edges.push({d:d0,c:hi?LAYER[b.layer].c:'#B5B5B5',sw:hi?2.5:1.5,off:vis?0:1,op:vis?(dim?.25:(hi?1:.7)):0});
+      if(vis&&hi) edgeLabels.push({mx:(ax+bx)/2,my:my+4,c:LAYER[b.layer].c,label:EL[`${a.id}>${b.id}`]||'shared dependency'}); }));
+    const hovT=hover&&zl===0&&!isTimeline?BY[hover]:null; const tip=hovT?(()=>{ const gg=this.geo(hovT); return {x:clamp(gg.x,8,W-328),y:gg.y+gg.h+8,w:320,text:hovT.jtbd}; })():false;
+    const pt=team?BY[team]:null; const pr=team?this.panelRect(team):null; const L=pt?LAYER[pt.layer]:null;
+    const empty=pt&&S.emptyTeam&&pt.id==='cart-checkout'; const deps=pt?[...new Set([...pt.dependsOn,...TEAMS.filter(x=>x.dependsOn.includes(pt.id)).map(x=>x.id)])]:[];
+    const panel=pt?{x:pr.x,y:pr.y,c:L.c,name:pt.name,short:pt.short,layerLabel:L.l,phase:pt.phase,mode:pt.mode,mc:MODE[pt.mode],at:pt.at,jtbd:pt.jtbd,together:pt.together,artifacts:pt.artifacts,noDeps:deps.length===0,deps:deps.map(id=>({name:BY[id].short,c:LAYER[BY[id].layer].c,go:()=>this.focusTeam(id)})),hasMoments:!empty&&pt.moments.length>0,empty:!!empty,moments:pt.moments.map(m=>({title:m.title,ctx:m.ctx,open:()=>this.openMoment(pt.id,m.id)})),outcome:pt.outcome,oc:pt.outcome.startsWith('Pending')?'#5E4000':'#1B561A',obg:pt.outcome.startsWith('Pending')?'#FFF0D3':'#F1FDF1'}:false;
+    const mo=pt&&moment?pt.moments.find(m=>m.id===moment):null;
+    const momentV=mo?{title:mo.title,ctx:mo.ctx,decision:mo.decision,who:mo.who,result:mo.result,diff:mo.diff}:false;
+    const lensDefs=[['teams','Teams'],['jtbd','Jobs to be done'],['role','My role'],['phase','Phase'],['timeline','Timeline']];
+    const lenses=lensDefs.map(([id,label])=>({label,on:lens===id,bg:lens===id?'#191919':'transparent',fg:lens===id?'#fff':'#191919',set:()=>this.setState({lens:id,hover:null,announce:`Lens: ${label}`,...(id==='timeline'&&zl>0?{zl:0,team:null,moment:null,cam:this.fitCam(),anim:true}:{})})}));
+    const pips=[1,2,3].map(n=>({n,name:PHASE_NAME[n],on:phase===n,c:PHASE[n],bg:phase>=n?PHASE[n]:'#fff',pipFg:phase>=n?'#fff':PHASE[n],fg:phase===n?'#191919':'#707070',aria:`Phase ${n}: ${PHASE_NAME[n]}`,set:()=>this.setPhase(n)}));
+    const legend=lens==='role'?{title:'Collaboration mode',items:Object.entries(MODE).map(([label,c])=>({label,c}))}:lens==='phase'?{title:'Phase joined',items:[1,2,3].map(n=>({label:`${n} · ${PHASE_NAME[n]}`,c:PHASE[n]}))}:lens==='jtbd'?{title:'One job per touchpoint',items:[]}:false;
+    const m=.1; const mini=TEAMS.map(t=>{ const gg=this.geo(t); return {x:gg.x*m,y:gg.y*m,w:gg.w*m,h:gg.h*m,c:lit(t.id)?LAYER[t.layer].c:'#E5E5E5'}; });
+    const mv={x:clamp(-cam.x/cam.s*m,0,160),y:clamp(-cam.y/cam.s*m,0,83),w:clamp(vw/cam.s*m,4,160),h:clamp(vh/cam.s*m,4,83)};
+    const months=Array.from({length:9},(_,i)=>({x:220+i*150,label:`M${i+1}`,bg:S.hoverMonth===i+1?'rgba(9,104,246,.06)':'transparent',enter:()=>this.setState({hoverMonth:i+1}),leave:()=>this.setState({hoverMonth:null})}));
+    const lanes=TEAMS.map((t,i)=>({name:t.name,c:LAYER[t.layer].c,y:44+i*58,bx:220+(PHASE_MONTH[t.phase]-1)*150+8,bw:(9-PHASE_MONTH[t.phase]+1)*150-16,pc:PHASE[t.phase],focus:()=>{ this.setState({lens:'teams'},()=>this.focusTeam(t.id)); },dots:t.moments.map(mm=>({x:220+(MM[mm.id]-1)*150+64,c:PHASE[t.phase],title:mm.title,open:()=>{ this.setState({lens:'teams'},()=>this.openMoment(t.id,mm.id)); }}))}));
+    const logRows=TEAMS.flatMap(t=>t.moments.map(mm=>({title:mm.title,team:t.short,phase:t.phase,month:MM[mm.id],c:LAYER[t.layer].c,bg:moment===mm.id?'#F5F9FF':'#fff',go:()=>{ this.setState({lens:lens==='timeline'?'teams':lens},()=>this.openMoment(t.id,mm.id)); }}))).sort((a,b)=>a.month-b.month||a.phase-b.phase);
+    const rows=LAYER_ORDER.map(l=>({label:LAYER[l].l,c:LAYER[l].c,y:ROW[l][0],h:ROW[l][1],op:TEAMS.some(t=>t.layer===l&&lit(t.id))?1:.3}));
+    const skeletons=TEAMS.map(t=>({x:t.geo.x,y:t.geo.y,w:t.geo.w,h:t.geo.h}));
+    const onBtn=on=>({bg:on?'#191919':'#fff',fg:on?'#fff':'#191919'});
+    const cb=onBtn(conn),ob=onBtn(outcomes),lb=onBtn(log),eb=onBtn(S.emptyTeam),rb=onBtn(!!reduced);
+    return {rootRef:this.rootRef,vpRef:this.vpRef,onKey:this.onKey,onDown:this.onDown,onMove:this.onMove,onUp:this.onUp,announce:S.announce,
+      showHeader:!present,isPresent:present,showStrip:(this.props.showStrip??true)&&!present,
+      lenses,setMap:()=>this.setState({view:'map'}),setOrg:()=>this.setState({view:'org'}),mapBg:view==='map'?'#191919':'transparent',mapFg:view==='map'?'#fff':'#191919',orgBg:view==='org'?'#191919':'transparent',orgFg:view==='org'?'#fff':'#191919',
+      conn,toggleConn:()=>this.setState({conn:!conn}),connBg:cb.bg,connFg:cb.fg,outcomes,toggleOutcomes:()=>this.setState({outcomes:!outcomes}),outBg:ob.bg,outFg:ob.fg,log,toggleLog:()=>this.setState({log:!log}),logBg:lb.bg,logFg:lb.fg,
+      zoomIn:()=>this.zoom(.4),zoomOut:()=>zl>0?this.back():this.zoom(-.4),fit:()=>this.fit(),present:()=>{ this.setState({present:true,log:false,statesOpen:false},()=>{ this.applyTour(0); this.rootRef.current&&this.rootRef.current.focus({preventScroll:true}); }); },exitPresent:()=>this.setState({present:false}),
+      statesOpen:S.statesOpen,toggleStates:()=>this.setState({statesOpen:!S.statesOpen}),reload:()=>{ this.setState({loading:true}); clearTimeout(this.loadT); this.loadT=setTimeout(()=>this.setState({loading:false}),1000); },emptyTeam:S.emptyTeam,toggleEmpty:()=>this.setState({emptyTeam:!S.emptyTeam}),emptyBg:eb.bg,emptyFg:eb.fg,reduced:!!reduced,toggleReduced:()=>this.setState({reduced:!reduced}),redBg:rb.bg,redFg:rb.fg,
+      play:()=>this.play(),playLabel:playing?'❚❚ Pause':'▶ Play the story',pips,phase,scrub:e=>this.setPhase(+e.target.value),caption:CAPTION[phase],
+      cursor:S.drag?'grabbing':'grab',camT:`translate(${cam.x}px,${cam.y}px) scale(${cam.s})`,camTr:(S.anim&&!reduced)?'transform 450ms cubic-bezier(.2,.7,.2,1)':'none',
+      isMapView:view==='map'&&!isTimeline,isOrgView:view==='org'&&!isTimeline,isTimeline,notTimeline:!isTimeline,rows,arrowX:cx(3),arrowW:span(3,4).w,arrowOp:lit('seller-listing')?1:.3,
+      edges,edgeLabels,nodes,tip,panel,noMoment:!mo,moment:momentV,back:()=>this.back(),backToTeam:()=>team&&this.focusTeam(team),prevTeam:()=>this.stepTeam(-1),nextTeam:()=>this.stepTeam(1),
+      crumb0c:zl===0?'#191919':'#0968F6',crumb1c:zl===1?'#191919':'#0968F6',legend,mini,mv,
+      miniClick:e=>{ const r=e.currentTarget.getBoundingClientRect(); const k=r.width/160; const wx=(e.clientX-r.left)/k/m,wy=(e.clientY-r.top)/k/m; this.setState({cam:{...cam,x:vw/2-wx*cam.s,y:vh/2-wy*cam.s},anim:true}); },
+      months,lanes,logRows,loading,skeletons,tourPos:`${tour+1} / ${TOUR.length}`,tourNote:TOUR[tour].note};
+  }
+}
+</script>
+</body>
+</html>

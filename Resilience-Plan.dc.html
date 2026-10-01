@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/tokens/fig-tokens.css">
+  <link rel="stylesheet" href="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/tokens/evo-aliases.css">
+  <link rel="stylesheet" href="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/tokens/typography.css">
+  <link rel="stylesheet" href="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/tokens/spacing.css">
+  <script src="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/_ds_bundle.js"></script>
+  <script src="embeds/logos.js"></script>
+  <style>
+    html, body { margin: 0; padding: 0; background: #F7F7F7; color: #191919; font-family: "Market Sans", Arial, sans-serif; font-size: 14px; line-height: 1.45; -webkit-font-smoothing: antialiased; }
+    *, *::before, *::after { box-sizing: border-box; }
+    a { color: rgb(9, 104, 246); text-decoration: none; }
+    a:hover { color: rgb(0, 73, 184); text-decoration: underline; }
+  </style>
+</helmet>
+<div style="max-width:1400px;margin:0 auto;padding:clamp(20px,4vw,52px) clamp(16px,3vw,40px) 48px">
+
+  <header data-screen-label="Header" style="display:flex;flex-wrap:wrap;gap:18px;align-items:flex-end;justify-content:space-between;margin-bottom:24px">
+    <div style="max-width:800px">
+      <div style="font-size:12px;font-weight:700;letter-spacing:.1em;color:#0968F6;margin-bottom:8px">CORPORATE UX PLAYBOOK · CONTINUITY</div>
+      <h1 style="margin:0 0 10px;font-size:clamp(26px,4.2vw,40px);font-weight:700;letter-spacing:-.6px;line-height:1.08">The fallback plan when agents fail</h1>
+      <p style="margin:0;font-size:15px;color:#545454;max-width:680px;text-wrap:pretty">Three operating modes for when model quality lags or systems go down, the manual fallback for every phase, and where the work is stored and backed up. The process degrades gracefully — it never stops.</p>
+    </div>
+    <sc-if value="{{ showNav }}" hint-placeholder-val="{{ true }}"><nav style="display:flex;flex-wrap:wrap;gap:8px">
+      <a href="Phase-Matrix.dc.html" style="display:inline-flex;align-items:center;height:34px;padding:0 15px;border-radius:999px;border:1.5px solid #0968F6;color:#0968F6;font-size:13px;font-weight:700;background:#fff" style-hover="background:#F5F9FF;text-decoration:none">A · Phase matrix</a>
+      <a href="Orchestrated-Pipeline.dc.html" style="display:inline-flex;align-items:center;height:34px;padding:0 15px;border-radius:999px;border:1.5px solid #0968F6;color:#0968F6;font-size:13px;font-weight:700;background:#fff" style-hover="background:#F5F9FF;text-decoration:none">B · Orchestrated pipeline</a>
+      <a href="Stage-Gate-Blend.dc.html" style="display:inline-flex;align-items:center;height:34px;padding:0 15px;border-radius:999px;border:1.5px solid #0968F6;color:#0968F6;font-size:13px;font-weight:700;background:#fff" style-hover="background:#F5F9FF;text-decoration:none">C · Stage-gate blend</a>
+      <a href="Evolution-2022-2026.dc.html" style="display:inline-flex;align-items:center;height:34px;padding:0 15px;border-radius:999px;border:1.5px solid #0968F6;color:#0968F6;font-size:13px;font-weight:700;background:#fff" style-hover="background:#F5F9FF;text-decoration:none">Evolution 2022→26</a>
+      <a href="Resilience-Plan.dc.html" style="display:inline-flex;align-items:center;height:34px;padding:0 15px;border-radius:999px;background:#191919;color:#fff;font-size:13px;font-weight:700">Resilience plan</a>
+    </nav></sc-if>
+  </header>
+
+  <section data-screen-label="Operating modes" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:12px">
+    <article data-screen-label="Mode 0 — Full orchestration" style="background:#F1FDF1;border:1px solid #CEF5CE;border-radius:16px;padding:18px 20px;display:flex;flex-direction:column;gap:10px">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
+        <span style="font-size:11.5px;font-weight:700;letter-spacing:.09em;color:#288034">MODE 0 · NORMAL</span>
+        <div style="display:flex;align-items:center;gap:8px">
+          <sc-if value="{{ isNormal }}" hint-placeholder-val="{{ true }}"><span style="font-size:10.5px;font-weight:700;letter-spacing:.06em;padding:3px 9px;border-radius:999px;background:#288034;color:#fff">ACTIVE</span></sc-if>
+          <ds-icon name="AITools24" size="22" style="color:#288034"></ds-icon>
+        </div>
+      </div>
+      <div style="font-size:19px;font-weight:700;letter-spacing:-.2px">Full orchestration</div>
+      <div style="font-size:13px;color:#545454;text-wrap:pretty">Agents draft, loops run between rituals, humans approve at the gates.</div>
+      <div style="display:flex;flex-direction:column;gap:5px;font-size:12.5px">
+        <div style="display:flex;gap:8px"><span style="width:4px;height:4px;border-radius:50%;background:#288034;margin-top:7px;flex:none"></span><span>All subagents and automation loops on</span></div>
+        <div style="display:flex;gap:8px"><span style="width:4px;height:4px;border-radius:50%;background:#288034;margin-top:7px;flex:none"></span><span>Agent output spot‑checked at gates</span></div>
+      </div>
+      <div style="margin-top:auto;font-size:12px;color:#1B561A"><span style="font-weight:700">Health check:</span> weekly eval dashboard review</div>
+    </article>
+
+    <article data-screen-label="Mode 1 — Draft-only" style="background:#FFFBF5;border:1px solid #FFF0D3;border-radius:16px;padding:18px 20px;display:flex;flex-direction:column;gap:10px">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
+        <span style="font-size:11.5px;font-weight:700;letter-spacing:.09em;color:#B07700">MODE 1 · DEGRADED</span>
+        <div style="display:flex;align-items:center;gap:8px">
+          <sc-if value="{{ isDegraded }}" hint-placeholder-val="{{ false }}"><span style="font-size:10.5px;font-weight:700;letter-spacing:.06em;padding:3px 9px;border-radius:999px;background:#B07700;color:#fff">ACTIVE</span></sc-if>
+          <ds-icon name="Speedometer24" size="22" style="color:#B07700"></ds-icon>
+        </div>
+      </div>
+      <div style="font-size:19px;font-weight:700;letter-spacing:-.2px">Draft‑only agents</div>
+      <div style="font-size:13px;color:#545454;text-wrap:pretty">Declared when model quality lags, latency spikes, or evals dip below the bar.</div>
+      <div style="display:flex;flex-direction:column;gap:5px;font-size:12.5px">
+        <div style="display:flex;gap:8px"><span style="width:4px;height:4px;border-radius:50%;background:#B07700;margin-top:7px;flex:none"></span><span>Auto‑actions and loops paused; agents draft only</span></div>
+        <div style="display:flex;gap:8px"><span style="width:4px;height:4px;border-radius:50%;background:#B07700;margin-top:7px;flex:none"></span><span>Humans re‑take synthesis, QA, and audits</span></div>
+        <div style="display:flex;gap:8px"><span style="width:4px;height:4px;border-radius:50%;background:#B07700;margin-top:7px;flex:none"></span><span>Every agent draft gets a second reviewer</span></div>
+      </div>
+      <div style="margin-top:auto;font-size:12px;color:#5E4000"><span style="font-weight:700">Target:</span> restore or roll back same‑day</div>
+    </article>
+
+    <article data-screen-label="Mode 2 — Manual craft" style="background:#FFF5F5;border:1px solid #FFDEDE;border-radius:16px;padding:18px 20px;display:flex;flex-direction:column;gap:10px">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
+        <span style="font-size:11.5px;font-weight:700;letter-spacing:.09em;color:#D50B0B">MODE 2 · OUTAGE</span>
+        <div style="display:flex;align-items:center;gap:8px">
+          <sc-if value="{{ isManual }}" hint-placeholder-val="{{ false }}"><span style="font-size:10.5px;font-weight:700;letter-spacing:.06em;padding:3px 9px;border-radius:999px;background:#D50B0B;color:#fff">ACTIVE</span></sc-if>
+          <ds-icon name="Wrench24" size="22" style="color:#D50B0B"></ds-icon>
+        </div>
+      </div>
+      <div style="font-size:19px;font-weight:700;letter-spacing:-.2px">Manual craft</div>
+      <div style="font-size:13px;color:#545454;text-wrap:pretty">Full outage or trust incident: run the <a href="Evolution-2022-2026.dc.html">2022 process</a> — it still works.</div>
+      <div style="display:flex;flex-direction:column;gap:5px;font-size:12.5px">
+        <div style="display:flex;gap:8px"><span style="width:4px;height:4px;border-radius:50%;background:#D50B0B;margin-top:7px;flex:none"></span><span>Workshops, manual synthesis, hand‑made specs</span></div>
+        <div style="display:flex;gap:8px"><span style="width:4px;height:4px;border-radius:50%;background:#D50B0B;margin-top:7px;flex:none"></span><span>SLAs stretch; the quality bar does not</span></div>
+        <div style="display:flex;gap:8px"><span style="width:4px;height:4px;border-radius:50%;background:#D50B0B;margin-top:7px;flex:none"></span><span>Nothing about shipping depends on an agent</span></div>
+      </div>
+      <div style="margin-top:auto;font-size:12px;color:#570303"><span style="font-weight:700">Rule:</span> gates 1–4 run unchanged — they were always human</div>
+    </article>
+  </section>
+
+  <section data-screen-label="Manual fallback per phase" style="margin-top:22px">
+    <div style="font-size:16px;font-weight:700;letter-spacing:-.2px;margin-bottom:10px">Manual fallback, phase by phase</div>
+    <div style="display:flex;flex-direction:column;gap:10px">
+
+      <article data-screen-label="Fallback — Strategy and Discovery" style="background:#fff;border:1px solid #E5E5E5;border-radius:16px;padding:16px 18px;display:flex;flex-wrap:wrap;gap:12px 22px">
+        <div style="flex:1 1 190px;min-width:190px;display:flex;align-items:center;gap:10px">
+          <span style="width:26px;height:26px;border-radius:8px;background:#D4E5FE;color:#0049B8;font-size:13px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;flex:none">1</span>
+          <span style="font-size:14.5px;font-weight:700">Strategy &amp; Discovery</span>
+        </div>
+        <div style="flex:1.1 1 240px;min-width:min(100%,240px)">
+          <div style="font-size:10.5px;font-weight:700;letter-spacing:.08em;color:#B07700;margin-bottom:4px">IF AGENTS ARE DOWN, YOU LOSE</div>
+          <div style="font-size:12.5px;color:#545454">Auto‑synthesis of interviews · competitive teardowns</div>
+        </div>
+        <div style="flex:1.4 1 280px;min-width:min(100%,280px)">
+          <div style="font-size:10.5px;font-weight:700;letter-spacing:.08em;color:#288034;margin-bottom:4px">MANUAL FALLBACK</div>
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap"><tool-logo name="dovetail" size="24"></tool-logo><tool-logo name="miro" size="24"></tool-logo><tool-logo name="obsidian" size="24"></tool-logo><span style="font-size:12.5px">Hand‑tag in Dovetail; synthesis blocks in Miro; local notes in Obsidian</span></div>
+        </div>
+      </article>
+
+      <article data-screen-label="Fallback — Ideation and Concept" style="background:#fff;border:1px solid #E5E5E5;border-radius:16px;padding:16px 18px;display:flex;flex-wrap:wrap;gap:12px 22px">
+        <div style="flex:1 1 190px;min-width:190px;display:flex;align-items:center;gap:10px">
+          <span style="width:26px;height:26px;border-radius:8px;background:#CEF5CE;color:#1B561A;font-size:13px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;flex:none">2</span>
+          <span style="font-size:14.5px;font-weight:700">Ideation &amp; Concept</span>
+        </div>
+        <div style="flex:1.1 1 240px;min-width:min(100%,240px)">
+          <div style="font-size:10.5px;font-weight:700;letter-spacing:.08em;color:#B07700;margin-bottom:4px">IF AGENTS ARE DOWN, YOU LOSE</div>
+          <div style="font-size:12.5px;color:#545454">Generated concept sets · IA &amp; flow drafts</div>
+        </div>
+        <div style="flex:1.4 1 280px;min-width:min(100%,280px)">
+          <div style="font-size:10.5px;font-weight:700;letter-spacing:.08em;color:#288034;margin-bottom:4px">MANUAL FALLBACK</div>
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap"><tool-logo name="figjam" size="24"></tool-logo><span style="font-size:12.5px">FigJam workshops: crazy‑8s, journey walls, dot votes</span></div>
+        </div>
+      </article>
+
+      <article data-screen-label="Fallback — Design and Prototyping" style="background:#fff;border:1px solid #E5E5E5;border-radius:16px;padding:16px 18px;display:flex;flex-wrap:wrap;gap:12px 22px">
+        <div style="flex:1 1 190px;min-width:190px;display:flex;align-items:center;gap:10px">
+          <span style="width:26px;height:26px;border-radius:8px;background:#EDE2FF;color:#3C186E;font-size:13px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;flex:none">3</span>
+          <span style="font-size:14.5px;font-weight:700">Design &amp; Prototyping</span>
+        </div>
+        <div style="flex:1.1 1 240px;min-width:min(100%,240px)">
+          <div style="font-size:10.5px;font-weight:700;letter-spacing:.08em;color:#B07700;margin-bottom:4px">IF AGENTS ARE DOWN, YOU LOSE</div>
+          <div style="font-size:12.5px;color:#545454">Token lint · coded prototypes from mocks</div>
+        </div>
+        <div style="flex:1.4 1 280px;min-width:min(100%,280px)">
+          <div style="font-size:10.5px;font-weight:700;letter-spacing:.08em;color:#288034;margin-bottom:4px">MANUAL FALLBACK</div>
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap"><tool-logo name="figma" size="24"></tool-logo><tool-logo name="storybook" size="24"></tool-logo><span style="font-size:12.5px">Library lint in Figma; prototype in Figma, review in Storybook</span></div>
+        </div>
+      </article>
+
+      <article data-screen-label="Fallback — Testing and Validation" style="background:#fff;border:1px solid #E5E5E5;border-radius:16px;padding:16px 18px;display:flex;flex-wrap:wrap;gap:12px 22px">
+        <div style="flex:1 1 190px;min-width:190px;display:flex;align-items:center;gap:10px">
+          <span style="width:26px;height:26px;border-radius:8px;background:#FFF0D3;color:#5E4000;font-size:13px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;flex:none">4</span>
+          <span style="font-size:14.5px;font-weight:700">Testing &amp; Validation</span>
+        </div>
+        <div style="flex:1.1 1 240px;min-width:min(100%,240px)">
+          <div style="font-size:10.5px;font-weight:700;letter-spacing:.08em;color:#B07700;margin-bottom:4px">IF AGENTS ARE DOWN, YOU LOSE</div>
+          <div style="font-size:12.5px;color:#545454">Session summaries · automated KPI checks</div>
+        </div>
+        <div style="flex:1.4 1 280px;min-width:min(100%,280px)">
+          <div style="font-size:10.5px;font-weight:700;letter-spacing:.08em;color:#288034;margin-bottom:4px">MANUAL FALLBACK</div>
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap"><tool-logo name="usertesting" size="24"></tool-logo><tool-logo name="amplitude" size="24"></tool-logo><span style="font-size:12.5px">Moderated sessions with notetakers; KPI checks by hand in Amplitude</span></div>
+        </div>
+      </article>
+
+      <article data-screen-label="Fallback — Delivery and Handoff" style="background:#fff;border:1px solid #E5E5E5;border-radius:16px;padding:16px 18px;display:flex;flex-wrap:wrap;gap:12px 22px">
+        <div style="flex:1 1 190px;min-width:190px;display:flex;align-items:center;gap:10px">
+          <span style="width:26px;height:26px;border-radius:8px;background:#FFD6ED;color:#6E0640;font-size:13px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;flex:none">5</span>
+          <span style="font-size:14.5px;font-weight:700">Delivery &amp; Handoff</span>
+        </div>
+        <div style="flex:1.1 1 240px;min-width:min(100%,240px)">
+          <div style="font-size:10.5px;font-weight:700;letter-spacing:.08em;color:#B07700;margin-bottom:4px">IF AGENTS ARE DOWN, YOU LOSE</div>
+          <div style="font-size:12.5px;color:#545454">Codegen &amp; spec diffs · automated a11y audits</div>
+        </div>
+        <div style="flex:1.4 1 280px;min-width:min(100%,280px)">
+          <div style="font-size:10.5px;font-weight:700;letter-spacing:.08em;color:#288034;margin-bottom:4px">MANUAL FALLBACK</div>
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap"><tool-logo name="figma" size="24"></tool-logo><tool-logo name="axe" size="24"></tool-logo><span style="font-size:12.5px">Dev Mode inspect + eng pairing; manual axe scans before release</span></div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section data-screen-label="Where the work lives" style="margin-top:22px">
+    <div style="font-size:16px;font-weight:700;letter-spacing:-.2px;margin-bottom:10px">Where the work lives — storage &amp; backup</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,270px),1fr));gap:12px">
+      <article style="background:#fff;border:1px solid #E5E5E5;border-radius:16px;padding:16px 18px;display:flex;flex-direction:column;gap:8px">
+        <div style="display:flex;align-items:center;gap:10px"><tool-logo name="figma" size="30"></tool-logo><span style="font-size:14px;font-weight:700">Design source</span></div>
+        <div style="font-size:12.5px;color:#545454;line-height:1.5"><span style="font-weight:700;color:#191919">System of record:</span> Figma cloud, org‑managed, 30‑day version history + branching.</div>
+        <div style="font-size:12.5px;color:#545454;line-height:1.5"><span style="font-weight:700;color:#191919">Backup:</span> nightly .fig snapshots to the design‑vault repo on GitHub.</div>
+      </article>
+      <article style="background:#fff;border:1px solid #E5E5E5;border-radius:16px;padding:16px 18px;display:flex;flex-direction:column;gap:8px">
+        <div style="display:flex;align-items:center;gap:10px"><tool-logo name="dovetail" size="30"></tool-logo><tool-logo name="airtable" size="30"></tool-logo><span style="font-size:14px;font-weight:700">Research &amp; insights</span></div>
+        <div style="font-size:12.5px;color:#545454;line-height:1.5"><span style="font-weight:700;color:#191919">System of record:</span> Dovetail; consent forms in an access‑controlled vault, transcripts PII‑redacted.</div>
+        <div style="font-size:12.5px;color:#545454;line-height:1.5"><span style="font-weight:700;color:#191919">Backup:</span> weekly export to Confluence + company drive; study tracker in Airtable.</div>
+      </article>
+      <article style="background:#fff;border:1px solid #E5E5E5;border-radius:16px;padding:16px 18px;display:flex;flex-direction:column;gap:8px">
+        <div style="display:flex;align-items:center;gap:10px"><tool-logo name="confluence" size="30"></tool-logo><tool-logo name="gdocs" size="30"></tool-logo><span style="font-size:14px;font-weight:700">Decisions &amp; specs</span></div>
+        <div style="font-size:12.5px;color:#545454;line-height:1.5"><span style="font-weight:700;color:#191919">System of record:</span> Confluence + Google Docs (briefs, gate decisions, specs), human‑readable without any agent.</div>
+        <div style="font-size:12.5px;color:#545454;line-height:1.5"><span style="font-weight:700;color:#191919">Backup:</span> quarterly HTML/PDF archive to cold storage.</div>
+      </article>
+      <article style="background:#fff;border:1px solid #E5E5E5;border-radius:16px;padding:16px 18px;display:flex;flex-direction:column;gap:8px">
+        <div style="display:flex;align-items:center;gap:10px"><tool-logo name="github" size="30"></tool-logo><span style="font-size:14px;font-weight:700">Tokens, code &amp; prototypes</span></div>
+        <div style="font-size:12.5px;color:#545454;line-height:1.5"><span style="font-weight:700;color:#191919">System of record:</span> Git repos — tokens are canonical; Figma variables sync <i>from</i> the repo.</div>
+        <div style="font-size:12.5px;color:#545454;line-height:1.5"><span style="font-weight:700;color:#191919">Backup:</span> mirrored remotes; Storybook rebuilt from source.</div>
+      </article>
+      <article style="background:#fff;border:1px solid #E5E5E5;border-radius:16px;padding:16px 18px;display:flex;flex-direction:column;gap:8px">
+        <div style="display:flex;align-items:center;gap:10px"><tool-logo name="mcp" size="30"></tool-logo><span style="font-size:14px;font-weight:700">Agent memory &amp; context</span></div>
+        <div style="font-size:12.5px;color:#545454;line-height:1.5"><span style="font-weight:700;color:#191919">Disposable cache:</span> vector index + prompt configs in company cloud storage.</div>
+        <div style="font-size:12.5px;color:#545454;line-height:1.5"><span style="font-weight:700;color:#191919">Recovery:</span> rebuilt on demand from the systems of record above — nothing lives only here.</div>
+      </article>
+      <article style="background:#F5F9FF;border:1px solid #D4E5FE;border-radius:16px;padding:16px 18px;display:flex;gap:12px">
+        <ds-icon name="Information16" size="18" style="color:#0968F6;margin-top:2px"></ds-icon>
+        <div style="font-size:13px;line-height:1.5;color:#002A69;text-wrap:pretty"><span style="font-weight:700">The rule that makes this work:</span> agents hold caches, never the source of truth. Every system of record is human‑readable SaaS with scheduled exports — losing the agents loses speed, not work.</div>
+      </article>
+    </div>
+  </section>
+
+  <sc-if value="{{ showCadence }}" hint-placeholder-val="{{ true }}">
+    <section data-screen-label="Backup cadence" style="margin-top:16px;background:#fff;border:1px solid #E5E5E5;border-radius:16px;padding:14px 18px;display:flex;flex-wrap:wrap;gap:8px 10px;align-items:center">
+      <span style="font-size:11px;font-weight:700;letter-spacing:.09em;color:#707070;margin-right:6px">BACKUP CADENCE</span>
+      <span style="display:inline-flex;align-items:center;gap:7px;padding:6px 13px;border-radius:999px;background:#F7F7F7;font-size:12.5px"><ds-icon name="Clock16" size="13" style="color:#0968F6"></ds-icon><span style="font-weight:700">Continuous</span>&nbsp;Git + Figma history</span>
+      <span style="display:inline-flex;align-items:center;gap:7px;padding:6px 13px;border-radius:999px;background:#F7F7F7;font-size:12.5px"><ds-icon name="Download16" size="13" style="color:#0968F6"></ds-icon><span style="font-weight:700">Nightly</span>&nbsp;.fig snapshots + agent reindex</span>
+      <span style="display:inline-flex;align-items:center;gap:7px;padding:6px 13px;border-radius:999px;background:#F7F7F7;font-size:12.5px"><ds-icon name="Calendar16" size="13" style="color:#0968F6"></ds-icon><span style="font-weight:700">Weekly</span>&nbsp;research exports</span>
+      <span style="display:inline-flex;align-items:center;gap:7px;padding:6px 13px;border-radius:999px;background:#F7F7F7;font-size:12.5px"><ds-icon name="Refresh16" size="13" style="color:#0968F6"></ds-icon><span style="font-weight:700">Quarterly</span>&nbsp;full archive + restore drill</span>
+      <span style="font-size:12px;color:#707070">The drill is the point: a backup you never restored is a hope, not a plan.</span>
+    </section>
+  </sc-if>
+
+  <section data-screen-label="Incident response" style="margin-top:16px;background:#FFF5F5;border:1px solid #FFDEDE;border-radius:16px;padding:18px 22px;display:flex;flex-wrap:wrap;gap:14px 22px;align-items:center">
+    <ds-icon name="AuthenticityGuarantee24" size="26" style="color:#D50B0B"></ds-icon>
+    <div style="flex:1;min-width:260px">
+      <div style="font-size:15px;font-weight:700">When it breaks, in order</div>
+      <div style="font-size:13px;color:#545454;text-wrap:pretty">Design ops declares the mode in #ux‑ops and on the status page. Phase owners switch to their manual rituals. Work ships anyway. Retro within 48 hours; agents return only after evals pass.</div>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center">
+      <span style="padding:6px 12px;border-radius:999px;background:#fff;border:1px solid #FFDEDE;font-size:12.5px;font-weight:700"><span style="color:#D50B0B">1</span> Declare</span>
+      <ds-icon name="ArrowRight12" size="11" style="color:#D50B0B"></ds-icon>
+      <span style="padding:6px 12px;border-radius:999px;background:#fff;border:1px solid #FFDEDE;font-size:12.5px;font-weight:700"><span style="color:#D50B0B">2</span> Switch</span>
+      <ds-icon name="ArrowRight12" size="11" style="color:#D50B0B"></ds-icon>
+      <span style="padding:6px 12px;border-radius:999px;background:#fff;border:1px solid #FFDEDE;font-size:12.5px;font-weight:700"><span style="color:#D50B0B">3</span> Ship</span>
+      <ds-icon name="ArrowRight12" size="11" style="color:#D50B0B"></ds-icon>
+      <span style="padding:6px 12px;border-radius:999px;background:#fff;border:1px solid #FFDEDE;font-size:12.5px;font-weight:700"><span style="color:#D50B0B">4</span> Retro</span>
+    </div>
+  </section>
+
+  <footer style="margin-top:26px;border-top:1px solid #E5E5E5;padding-top:14px;display:flex;flex-wrap:wrap;gap:10px 20px;justify-content:space-between;font-size:12.5px;color:#707070">
+    <span>Illustrative systems — map to your org’s actual vendors and retention policies.</span>
+    <span>Models: <a href="Phase-Matrix.dc.html">A</a> · <a href="Orchestrated-Pipeline.dc.html">B</a> · <a href="Stage-Gate-Blend.dc.html">C</a> · <a href="Evolution-2022-2026.dc.html">Evolution</a></span>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;activeMode&quot;: {&quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;normal&quot;, &quot;degraded&quot;, &quot;manual&quot;], &quot;default&quot;: &quot;normal&quot;, &quot;tsType&quot;: &quot;\&quot;normal\&quot; | \&quot;degraded\&quot; | \&quot;manual\&quot;&quot;, &quot;section&quot;: &quot;State&quot;}, &quot;showCadence&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Detail&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const mode = this.props.activeMode ?? "normal";
+    return {
+      showNav: !this.props.embedded,
+      isNormal: mode === "normal",
+      isDegraded: mode === "degraded",
+      isManual: mode === "manual",
+      showCadence: this.props.showCadence ?? true,
+    };
+  }
+}
+</script>
+</body>
+</html>

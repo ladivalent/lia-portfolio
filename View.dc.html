@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/tokens/colors.css">
+  <script src="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/_ds_bundle.js"></script>
+  <style>
+    html,body{margin:0;height:100%;background:#fff;color:#191919;font-family:'Market Sans',Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow:hidden}
+    a{color:#0968F6}a:hover{color:#0049B8}
+    :focus-visible{outline:2px solid #0968F6;outline-offset:2px}
+  </style>
+</helmet>
+<div style="height:100vh;display:flex;flex-direction:column;font-family:'Market Sans',Inter,system-ui,sans-serif;color:#191919">
+  <div style="height:56px;flex:none;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:0 20px;border-bottom:1px solid #E5E5E5;background:#fff">
+    <a href="{{ backHref }}" style="display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 14px;border-radius:999px;border:1.5px solid #C7C7C7;background:#fff;color:#191919;font-size:14px;font-weight:700;text-decoration:none" style-hover="background:#F7F7F7;color:#191919">← Back</a>
+    <div style="display:flex;flex-direction:column;align-items:center;min-width:0"><div style="font-size:15px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ title }}</div><div style="font-size:12px;color:#707070">Lia DiValentin · liadivalentin.com</div></div>
+    <a href="Home.dc.html" style="font-size:14px;font-weight:700;color:#191919;text-decoration:none;white-space:nowrap">Lia DiValentin</a>
+  </div>
+  <div ref="{{ areaRef }}" style="flex:1;min-height:0;overflow:auto;background:#fff">
+    <sc-if value="{{ isPlaybook }}" hint-placeholder-val="{{ true }}">
+      <div style="max-width:1248px;margin:0 auto;padding:24px">
+        <dc-import name="PlaybookViews" hint-size="100%,1400px"></dc-import>
+      </div>
+    </sc-if>
+    <sc-if value="{{ isCollab }}" hint-placeholder-val="{{ false }}">
+      <div style="height:100%;min-height:760px;position:relative">
+        <dc-import name="CollabMap" style="display:block;width:100%;height:100%" hint-size="100%,900px"></dc-import>
+      </div>
+    </sc-if>
+    <sc-if value="{{ isJourneys }}" hint-placeholder-val="{{ false }}">
+      <dc-import name="Size-Personalization-Journeys" hint-size="2016px,2280px"></dc-import>
+    </sc-if>
+    <sc-if value="{{ isPolicy }}" hint-placeholder-val="{{ false }}">
+      <div style="width:100%;height:{{ boardH }};overflow:hidden;position:relative">
+        <div style="position:absolute;left:0;top:0;width:1920px;height:1080px;transform-origin:0 0;transform:{{ boardTf }}">
+          <dc-import name="Agentic-Search-Policy-Map" embedded="{{ true }}" hint-size="1920px,1080px"></dc-import>
+        </div>
+      </div>
+    </sc-if>
+    <sc-if value="{{ isFramework }}" hint-placeholder-val="{{ false }}">
+      <div style="width:100%;height:{{ boardH }};overflow:hidden;position:relative">
+        <div style="position:absolute;left:0;top:0;width:1920px;height:1080px;transform-origin:0 0;transform:{{ boardTf }}">
+          <dc-import name="Agentic-Search-Framework" embedded="{{ true }}" hint-size="1920px,1080px"></dc-import>
+        </div>
+      </div>
+    </sc-if>
+    <sc-if value="{{ isFrame }}" hint-placeholder-val="{{ false }}">
+      <iframe src="{{ src }}" title="{{ title }}" sandbox="allow-scripts allow-same-origin allow-popups allow-forms" style="display:block;width:100%;height:100%;border:0;background:#fff"></iframe>
+    </sc-if>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"slot":{"editor":"enum","default":"playbook","options":["playbook","collab-map","size-journeys","agentic-policy-map","agentic-framework"]},"back":{"editor":null}}'>
+class Component extends DCLogic {
+  state = { entry: null, areaW: 1280 };
+  areaRef = React.createRef();
+  pick() {
+    const q = new URLSearchParams(location.search);
+    let saved = {};
+    try { saved = JSON.parse(sessionStorage.getItem("lia-view") || "{}") || {}; } catch (_) {}
+    return { slot: q.get("slot") || this.props.slot || saved.slot || "playbook", back: q.get("back") || this.props.back || saved.back || "Process.dc.html" };
+  }
+  componentDidMount() {
+    fetch("embeds.json").then(r => r.json()).then(m => this.setState({ entry: (m.slots || {})[this.pick().slot] || null })).catch(() => {});
+    const measure = () => { const el = this.areaRef.current; this.setState({ areaW: (el && el.clientWidth) || window.innerWidth }); };
+    this._onResize = measure;
+    window.addEventListener("resize", measure);
+    setTimeout(measure, 50);
+  }
+  componentWillUnmount() { window.removeEventListener("resize", this._onResize); }
+  renderVals() {
+    const slot = this.pick().slot;
+    const back = this.pick().back;
+    const e = this.state.entry;
+    const titles = { "playbook": "UX Playbook", "collab-map": "Interactive Collaboration Map", "size-journeys": "Interactive User Journey Mapping", "agentic-policy-map": "Agentic Search Policy Map", "agentic-framework": "Agentic Search Framework" };
+    const inline = Object.prototype.hasOwnProperty.call(titles, slot);
+    const src = !inline && e && e.source ? (e.source.mode === "url" ? e.source.url + (e.source.params || "") : e.source.file) : undefined;
+    const s = Math.min(1, (this.state.areaW || 1280) / 1920);
+    return {
+      areaRef: this.areaRef,
+      title: titles[slot] || (e && e.title) || "",
+      isPlaybook: slot === "playbook", isCollab: slot === "collab-map", isJourneys: slot === "size-journeys",
+      isPolicy: slot === "agentic-policy-map", isFramework: slot === "agentic-framework",
+      isFrame: !inline && !!src, src,
+      boardTf: "scale(" + s.toFixed(4) + ")", boardH: Math.round(1080 * s) + "px",
+      backHref: /^[\w .%-]+\.dc\.html(\?.*)?$/.test(back) ? back : "Process.dc.html",
+    };
+  }
+}
+</script>
+</body>
+</html>

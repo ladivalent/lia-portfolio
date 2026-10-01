@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/tokens/fig-tokens.css">
+  <link rel="stylesheet" href="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/tokens/evo-aliases.css">
+  <link rel="stylesheet" href="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/tokens/typography.css">
+  <link rel="stylesheet" href="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/tokens/spacing.css">
+  <link rel="stylesheet" href="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/styles.css">
+  <script src="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/_ds_bundle.js"></script>
+  <style>
+    html, body { margin: 0; padding: 0; background: #ffffff; }
+    a { color: #0968F6; text-decoration: none; }
+    a:hover { color: #0757C8; text-decoration: underline; }
+    button { font-family: inherit; }
+  </style>
+</helmet>
+<div style="background: #ffffff; overflow: hidden; font-family: var(--font-brand, 'Market Sans', sans-serif); color: #191919; {{wrapSty}}">
+  <div data-screen-label="Framework board" style="position: absolute; left: 50%; top: 0; width: 1920px; height: 1080px; background: #ffffff; display: flex; flex-direction: column; transform: translate(-50%, 0) scale({{scale}}); transform-origin: top center;">
+
+    <div style="display: flex; justify-content: space-between; align-items: flex-start; padding: 26px 48px 14px;">
+      <div>
+        <div style="font-size: 12px; font-weight: 700; letter-spacing: 2px; color: #288034; text-transform: uppercase;">Interactive artifact · Routing &amp; disambiguation</div>
+        <div style="font-size: 38px; font-weight: 700; letter-spacing: -0.5px; line-height: 1.1; margin-top: 6px;">How the agent decides.</div>
+        <div style="font-size: 15px; color: #707070; margin-top: 6px;">Three intents, one spine — every query resolves to a move, and when it must ask, to a named component.</div>
+      </div>
+      <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 10px; padding-top: 6px;">
+        <x-import component-from-global-scope="EBayEvoDesignSystem_61746e.SegmentedButton" items="{{laneItems}}" value="{{lane}}" onChange="{{setLane}}" size="small" hint-size="420px,38px"></x-import>
+        <div style="display: flex; align-items: center; gap: 18px;">
+          <x-import component-from-global-scope="EBayEvoDesignSystem_61746e.SegmentedButton" items="{{viewItems}}" value="{{view}}" onChange="{{setView}}" size="small" hint-size="270px,38px"></x-import>
+          <x-import component-from-global-scope="EBayEvoDesignSystem_61746e.Switch" checked="{{scores}}" onChange="{{toggleScores}}" label="Scores" hint-size="96px,24px"></x-import>
+          <button onClick="{{replay}}" style="display: inline-flex; align-items: center; gap: 6px; height: 32px; padding: 0 14px; border: 1.5px solid #191919; border-radius: 999px; background: #ffffff; font-size: 13px; font-weight: 700; cursor: pointer;" style-hover="background: #F7F7F7;">
+            <x-import component-from-global-scope="EBayEvoDesignSystem_61746e.Icon" name="Refresh16" size="14" hint-size="14px,14px"></x-import>
+            Replay
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div style="flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 16px; padding: 4px 48px 0;">
+      <div style="flex: 1; min-height: 0; display: flex; gap: 26px;">
+
+        <div style="width: 430px; flex-shrink: 0; display: flex; flex-direction: column; min-height: 0;">
+          <div style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 10px;">
+            <div style="font-size: 12px; font-weight: 700; letter-spacing: 1.5px; color: #191919;">01 · THE QUERY</div>
+            <div style="font-size: 11px; letter-spacing: 1px; color: #707070; text-transform: uppercase;">broad → narrow</div>
+          </div>
+          <div style="flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 8px;">
+            <sc-for list="{{queries}}" as="qq" hint-placeholder-count="5">
+              <div onClick="{{qq.onSelect}}" role="button" tabIndex="0" style="flex: 1; min-height: 0; display: flex; flex-direction: column; justify-content: center; gap: 5px; padding: 9px 14px; border: 1.5px solid {{qq.bc}}; border-radius: 12px; background: #ffffff; box-shadow: {{qq.sh}}; cursor: pointer; transition: border-color .2s, box-shadow .2s;" style-hover="border-color: #191919;">
+                <div style="font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace; font-size: 13.5px; font-weight: 600; line-height: 1.35;">“{{qq.q}}”</div>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <sc-if value="{{scores}}" hint-placeholder-val="{{true}}">
+                    <span style="font-family: ui-monospace, Menlo, monospace; font-size: 11.5px; font-weight: 700; padding: 2px 7px; border-radius: 6px; background: #F7F7F7; color: {{qq.scoreCol}};">{{qq.scoreTxt}}</span>
+                  </sc-if>
+                  <span style="font-size: 12px; color: #707070;">{{qq.meaning}}</span>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+          <div style="border-top: 1px solid #E5E5E5; margin-top: 12px; padding-top: 10px;">
+            <div style="font-size: 11px; font-weight: 700; letter-spacing: 1.5px; color: #707070; margin-bottom: 8px;">TRY IT — TYPE ANY QUERY</div>
+            <div style="display: flex; gap: 8px;">
+              <input value="{{tryText}}" onChange="{{onTryChange}}" onKeyDown="{{onTryKey}}" placeholder="e.g. mid-century dresser near me this weekend" style="flex: 1; height: 40px; border: 1.5px solid #8F8F8F; border-radius: 8px; padding: 0 12px; font-size: 13.5px; font-family: inherit; outline-color: #0968F6; color: #191919; background: #ffffff;">
+              <button onClick="{{runTry}}" style="height: 40px; padding: 0 18px; border: none; border-radius: 999px; background: #0968F6; color: #ffffff; font-size: 14px; font-weight: 700; cursor: pointer;" style-hover="background: #0757C8;">Trace</button>
+            </div>
+            <div style="display: flex; gap: 14px; margin-top: 8px;">
+              <sc-for list="{{suggestions}}" as="sug" hint-placeholder-count="3">
+                <button onClick="{{sug.onClick}}" style="border: none; background: none; padding: 0; font-size: 12px; color: #0968F6; cursor: pointer;" style-hover="text-decoration: underline;">{{sug.label}}</button>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+
+        <div style="width: 622px; flex-shrink: 0; display: flex; flex-direction: column; gap: 12px; min-height: 0;">
+          <div style="border: 1px solid #E5E5E5; border-radius: 16px; padding: 14px 18px;">
+            <div style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 10px;">
+              <div style="display: flex; align-items: baseline; gap: 10px;">
+                <span style="font-size: 12px; font-weight: 700; letter-spacing: 1.5px;">02 · SIGNALS</span>
+                <sc-if value="{{isFull}}" hint-placeholder-val="{{false}}"><span style="font-size: 10.5px; letter-spacing: 1px; color: #707070;">L1 · SIGNAL EXTRACTION — WHAT THEY SAID</span></sc-if>
+              </div>
+              <span style="font-family: ui-monospace, Menlo, monospace; font-size: 11px; font-weight: 700; color: #ffffff; background: #191919; border-radius: 6px; padding: 2px 8px;">{{traceTag}}</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 7px; min-height: 66px; align-content: flex-start;">
+              <sc-for list="{{signals}}" as="sg" hint-placeholder-count="3">
+                <span style="display: inline-flex; align-items: baseline; gap: 6px; background: #F7F7F7; border-radius: 8px; padding: 7px 10px; {{sg.rv}}">
+                  <span style="font-family: ui-monospace, Menlo, monospace; font-size: 12.5px; font-weight: 700;">{{sg.t}}</span>
+                  <span style="font-size: 12px; color: #707070;">→ {{sg.b}}</span>
+                </span>
+              </sc-for>
+            </div>
+          </div>
+
+          <sc-if value="{{isFull}}" hint-placeholder-val="{{false}}">
+            <div style="border: 1px solid #E5E5E5; border-radius: 16px; padding: 12px 18px; {{s2}}">
+              <div style="display: flex; align-items: baseline; gap: 10px; margin-bottom: 6px;">
+                <span style="font-size: 12px; font-weight: 700; letter-spacing: 1.5px;">CONTEXT</span>
+                <span style="font-size: 10.5px; letter-spacing: 1px; color: #707070;">L2 · ENRICHMENT — WHAT WE KNOW</span>
+              </div>
+              <div style="font-size: 13.5px; color: #191919;">{{contextLine}}</div>
+            </div>
+          </sc-if>
+
+          <div style="flex: 1; min-height: 0; border: 1px solid #E5E5E5; border-radius: 16px; padding: 14px 18px; display: flex; flex-direction: column; gap: 10px;">
+            <div style="display: flex; align-items: baseline; gap: 10px;">
+              <span style="font-size: 12px; font-weight: 700; letter-spacing: 1.5px;">03 · ROUTE</span>
+              <sc-if value="{{isFull}}" hint-placeholder-val="{{false}}"><span style="font-size: 10.5px; letter-spacing: 1px; color: #707070;">L3 · INTENT &amp; ROUTING → L4 · POLICY</span></sc-if>
+            </div>
+            <div style="font-size: 21px; font-weight: 700; line-height: 1.2; {{s3}}">{{routeText}}</div>
+            <sc-if value="{{scores}}" hint-placeholder-val="{{true}}">
+              <div style="{{s3}}">
+                <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 20px;">
+                  <span style="font-size: 10.5px; letter-spacing: 1px; color: #707070;">{{gaugeLabel}}</span>
+                  <span style="font-family: ui-monospace, Menlo, monospace; font-size: 18px; font-weight: 700; color: {{scoreCol}};">{{scoreTxt}}</span>
+                </div>
+                <div style="position: relative; height: 12px; border-radius: 999px; overflow: hidden; display: flex;">
+                  <div style="width: 60%; background: rgba(154,106,0,0.14);"></div>
+                  <div style="width: 25%; background: rgba(154,106,0,0.06); border-left: 2px solid #ffffff;"></div>
+                  <div style="width: 15%; background: rgba(9,104,246,0.14); border-left: 2px solid #ffffff;"></div>
+                  <div style="position: absolute; top: -3px; bottom: -3px; width: 3px; border-radius: 2px; background: #191919; left: {{needleLeft}}; transition: left .6s cubic-bezier(0.2,0,0,1);"></div>
+                </div>
+                <div style="display: flex; margin-top: 6px;">
+                  <span style="width: 60%; font-size: 10.5px; color: #707070; letter-spacing: 0.5px;">&lt; .60 — ASK</span>
+                  <span style="width: 25%; font-size: 10.5px; color: #707070; letter-spacing: 0.5px;">.60–.85 — ASK / ACT VISIBLY</span>
+                  <span style="width: 15%; font-size: 10.5px; color: #707070; letter-spacing: 0.5px;">&gt; .85 — ACT</span>
+                </div>
+              </div>
+            </sc-if>
+            <div style="display: flex; align-items: center; gap: 10px; {{s3}}">
+              <span style="font-size: 10.5px; letter-spacing: 1px; color: #707070;">STAKES</span>
+              <span style="font-size: 12.5px; font-weight: 700; color: {{stakesCol}}; border: 1.5px solid {{stakesCol}}; border-radius: 999px; padding: 3px 12px;">{{stakesTxt}}</span>
+            </div>
+            <sc-if value="{{invNow}}" hint-placeholder-val="{{false}}">
+              <div style="display: flex; align-items: center; gap: 10px; background: rgba(213,11,11,0.06); border-radius: 10px; padding: 10px 12px; {{s3}}">
+                <x-import component-from-global-scope="EBayEvoDesignSystem_61746e.Icon" name="FlagFilled16" size="16" color="#D50B0B" hint-size="16px,16px"></x-import>
+                <span style="font-size: 13px; font-weight: 700; color: #D50B0B;">IRREVERSIBLE ⇒ ASK (CONFIRM) — the rule that never bends. No score overrides it.</span>
+              </div>
+            </sc-if>
+            <sc-if value="{{invLater}}" hint-placeholder-val="{{false}}">
+              <div style="display: flex; align-items: center; gap: 10px; background: #F7F7F7; border-radius: 10px; padding: 10px 12px; {{s3}}">
+                <x-import component-from-global-scope="EBayEvoDesignSystem_61746e.Icon" name="Flag16" size="16" color="#707070" hint-size="16px,16px"></x-import>
+                <span style="font-size: 12.5px; color: #707070;">Invariant armed downstream — the reserve still confirms before anything locks, at any confidence.</span>
+              </div>
+            </sc-if>
+            <sc-if value="{{hasRouteNote}}" hint-placeholder-val="{{false}}">
+              <div style="font-size: 12px; color: #707070; font-style: italic; {{s3}}">{{routeNote}}</div>
+            </sc-if>
+          </div>
+        </div>
+
+        <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 12px; min-height: 0;">
+          <div style="border: 1px solid #E5E5E5; border-radius: 16px; padding: 14px 18px;">
+            <div style="display: flex; align-items: baseline; gap: 10px; margin-bottom: 12px;">
+              <span style="font-size: 12px; font-weight: 700; letter-spacing: 1.5px;">04 · THE MOVE</span>
+              <sc-if value="{{isFull}}" hint-placeholder-val="{{false}}"><span style="font-size: 10.5px; letter-spacing: 1px; color: #707070;">L4 · RESPONSE POLICY — THE DECISION SPINE</span></sc-if>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;">
+              <sc-for list="{{moves}}" as="mv" hint-placeholder-count="6">
+                <div style="height: 46px; border-radius: 999px; display: flex; align-items: center; justify-content: center; gap: 7px; border: 1.5px solid {{mv.bd}}; background: {{mv.bg}}; color: {{mv.fg}}; {{mv.rv}}">
+                  <span style="font-size: 14px; font-weight: 700; letter-spacing: 0.5px;">{{mv.name}}</span>
+                  <sc-if value="{{mv.hasRole}}" hint-placeholder-val="{{false}}">
+                    <span style="font-size: 9.5px; font-weight: 700; letter-spacing: 1px; opacity: 0.75;">{{mv.role}}</span>
+                  </sc-if>
+                </div>
+              </sc-for>
+            </div>
+            <div style="margin-top: 12px; {{s4}}">
+              <div style="font-size: 10.5px; letter-spacing: 1px; color: #707070; margin-bottom: 4px;">THE CALL</div>
+              <div style="font-size: 14.5px; line-height: 1.45;">{{behavior}}</div>
+            </div>
+          </div>
+
+          <div style="flex: 1; min-height: 0; border: 1px solid #E5E5E5; border-radius: 16px; padding: 14px 18px; display: flex; flex-direction: column;">
+            <div style="display: flex; align-items: baseline; gap: 10px; margin-bottom: 10px;">
+              <span style="font-size: 12px; font-weight: 700; letter-spacing: 1.5px;">05 · DISAMBIGUATION COMPONENT</span>
+              <sc-if value="{{isFull}}" hint-placeholder-val="{{false}}"><span style="font-size: 10.5px; letter-spacing: 1px; color: #707070;">L5 · EXECUTION</span></sc-if>
+            </div>
+            <div style="{{s5}} display: flex; flex-direction: column; flex: 1; min-height: 0;">
+              <div style="display: flex; align-items: center; gap: 10px;">
+                <span style="font-size: 11px; font-weight: 700; color: #ffffff; background: {{compBadgeBg}}; border-radius: 6px; padding: 3px 8px; letter-spacing: 0.5px;">{{compId}}</span>
+                <span style="font-size: 16.5px; font-weight: 700;">{{compName}}</span>
+              </div>
+              <div style="font-size: 13px; color: #707070; margin-top: 4px;">{{compOne}}</div>
+              <div style="background: #F7F7F7; border-radius: 12px; padding: 16px 18px; margin-top: 12px; flex: 1; min-height: 0; display: flex; flex-direction: column; justify-content: center; gap: 10px;">
+
+                <sc-if value="{{cSoft}}" hint-placeholder-val="{{false}}">
+                  <div style="background: #ffffff; border: 1px solid #E5E5E5; border-radius: 12px; padding: 14px 16px; display: flex; align-items: center; gap: 12px;">
+                    <x-import component-from-global-scope="EBayEvoDesignSystem_61746e.Icon" name="Location16" size="18" color="#0968F6" hint-size="18px,18px"></x-import>
+                    <div style="flex: 1;">
+                      <div style="font-size: 14px; font-weight: 700;">{{cPrompt}}</div>
+                      <div style="font-size: 12px; color: #707070; margin-top: 2px;">Results stay untouched — this is an offer, not a filter.</div>
+                    </div>
+                    <span style="border: 1.5px solid #0968F6; color: #0968F6; border-radius: 999px; padding: 7px 14px; font-size: 13px; font-weight: 700; white-space: nowrap;">Show pickup nearby</span>
+                  </div>
+                </sc-if>
+
+                <sc-if value="{{cChips}}" hint-placeholder-val="{{false}}">
+                  <div style="font-size: 14px; font-weight: 700;">{{cPrompt}}</div>
+                  <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                    <sc-for list="{{cChipList}}" as="ch" hint-placeholder-count="3">
+                      <span style="border: 1.5px solid #707070; border-radius: 999px; padding: 8px 16px; font-size: 13.5px; font-weight: 700; background: #ffffff;">{{ch.label}}</span>
+                    </sc-for>
+                  </div>
+                </sc-if>
+
+                <sc-if value="{{cSys}}" hint-placeholder-val="{{false}}">
+                  <div style="font-size: 14px; font-weight: 700;">{{cPrompt}}</div>
+                  <div style="display: flex; flex-direction: column; gap: 6px;">
+                    <sc-for list="{{cOptions}}" as="op" hint-placeholder-count="4">
+                      <div style="display: flex; align-items: center; justify-content: space-between; background: #ffffff; border: 1.5px solid {{op.bc}}; border-radius: 8px; padding: 8px 12px;">
+                        <span style="font-size: 13px;"><b>{{op.label}}</b> <span style="color: #707070;">{{op.sub}}</span></span>
+                        <span style="font-size: 11.5px; font-weight: 700; color: #0968F6;">{{op.tag}}</span>
+                      </div>
+                    </sc-for>
+                  </div>
+                  <div style="font-size: 12px; color: #707070; text-align: right;">Don't ask again</div>
+                </sc-if>
+
+                <sc-if value="{{cCards}}" hint-placeholder-val="{{false}}">
+                  <div style="font-size: 14px; font-weight: 700;">{{cPrompt}}</div>
+                  <div style="display: flex; gap: 8px;">
+                    <sc-for list="{{cCardList}}" as="cd" hint-placeholder-count="3">
+                      <div style="flex: 1; background: #ffffff; border: 1px solid #E5E5E5; border-radius: 10px; padding: 10px 12px;">
+                        <div style="font-size: 13px; font-weight: 700;">{{cd.label}}</div>
+                        <div style="font-size: 11.5px; color: #707070; margin-top: 3px;">{{cd.desc}}</div>
+                      </div>
+                    </sc-for>
+                  </div>
+                </sc-if>
+
+                <sc-if value="{{cTiles}}" hint-placeholder-val="{{false}}">
+                  <div style="font-size: 14px; font-weight: 700;">{{cPrompt}}</div>
+                  <div style="display: flex; gap: 8px;">
+                    <sc-for list="{{cTileList}}" as="tl" hint-placeholder-count="3">
+                      <div style="flex: 1;">
+                        <div style="height: 58px; border-radius: 8px; background: linear-gradient(180deg, #EDEDED, #E0E0E0); border: 1px solid #E5E5E5;"></div>
+                        <div style="font-size: 12px; font-weight: 700; margin-top: 5px; text-align: center;">{{tl.label}}</div>
+                      </div>
+                    </sc-for>
+                  </div>
+                  <div style="font-size: 12px; color: #0968F6; font-weight: 700;">None of these</div>
+                </sc-if>
+
+                <sc-if value="{{cReceipt}}" hint-placeholder-val="{{false}}">
+                  <div style="display: inline-flex; align-items: center; gap: 10px; background: #ffffff; border: 1px solid #E5E5E5; border-radius: 999px; padding: 10px 16px; align-self: flex-start;">
+                    <x-import component-from-global-scope="EBayEvoDesignSystem_61746e.Icon" name="Location16" size="16" color="#0968F6" hint-size="16px,16px"></x-import>
+                    <span style="font-size: 14px; font-weight: 700;">{{cText}}</span>
+                    <x-import component-from-global-scope="EBayEvoDesignSystem_61746e.Icon" name="Close12" size="12" color="#707070" hint-size="12px,12px"></x-import>
+                  </div>
+                  <div style="display: inline-flex; align-items: center; gap: 8px; background: #191919; color: #ffffff; border-radius: 10px; padding: 9px 14px; align-self: flex-start;">
+                    <x-import component-from-global-scope="EBayEvoDesignSystem_61746e.Icon" name="Undo16" size="14" color="#ffffff" hint-size="14px,14px"></x-import>
+                    <span style="font-size: 12.5px;">Added by agent — tap ✕ to take it back.</span>
+                  </div>
+                </sc-if>
+
+                <sc-if value="{{cLast}}" hint-placeholder-val="{{false}}">
+                  <div style="background: #ffffff; border: 1.5px solid #191919; border-radius: 12px; padding: 12px 16px;">
+                    <div style="display: flex; align-items: center; gap: 7px; margin-bottom: 8px;">
+                      <x-import component-from-global-scope="EBayEvoDesignSystem_61746e.Icon" name="FlagFilled16" size="14" color="#D50B0B" hint-size="14px,14px"></x-import>
+                      <span style="font-size: 10.5px; font-weight: 700; letter-spacing: 1.5px; color: #D50B0B;">ALWAYS — THE LAST SAFE MOMENT</span>
+                    </div>
+                    <sc-for list="{{cRows}}" as="rw" hint-placeholder-count="3">
+                      <div style="display: flex; justify-content: space-between; gap: 16px; padding: 5px 0; border-bottom: 1px solid #F1F1F1;">
+                        <span style="font-size: 12px; color: #707070;">{{rw.k}}</span>
+                        <span style="font-size: 13px; font-weight: 700; text-align: right;">{{rw.v}}</span>
+                      </div>
+                    </sc-for>
+                    <div style="display: flex; gap: 8px; margin-top: 12px;">
+                      <span style="flex: 1; text-align: center; background: #0968F6; color: #ffffff; border-radius: 999px; padding: 9px 0; font-size: 13.5px; font-weight: 700;">{{cConfirm}}</span>
+                      <span style="flex: 1; text-align: center; border: 1.5px solid #191919; border-radius: 999px; padding: 9px 0; font-size: 13.5px; font-weight: 700;">{{cAlt}}</span>
+                    </div>
+                  </div>
+                </sc-if>
+
+                <sc-if value="{{cStep}}" hint-placeholder-val="{{false}}">
+                  <div style="display: flex; align-items: center; gap: 8px;">
+                    <span style="font-size: 14px; font-weight: 700;">{{cPrompt}}</span>
+                    <span style="font-size: 11px; color: #707070; letter-spacing: 2px;">● ○ ○</span>
+                  </div>
+                  <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                    <sc-for list="{{cChipList}}" as="ch" hint-placeholder-count="3">
+                      <span style="border: 1.5px solid #707070; border-radius: 999px; padding: 8px 16px; font-size: 13.5px; font-weight: 700; background: #ffffff;">{{ch.label}}</span>
+                    </sc-for>
+                  </div>
+                  <div style="display: flex; align-items: center; gap: 7px; font-size: 12px; color: #707070; font-style: italic;">
+                    <x-import component-from-global-scope="EBayEvoDesignSystem_61746e.Icon" name="Lightbulb16" size="14" color="#707070" hint-size="14px,14px"></x-import>
+                    {{cTip}}
+                  </div>
+                </sc-if>
+
+                <sc-if value="{{cEdu}}" hint-placeholder-val="{{false}}">
+                  <div style="background: rgba(123,43,235,0.05); border: 1px solid rgba(123,43,235,0.18); border-radius: 12px; padding: 14px 16px;">
+                    <div style="display: flex; align-items: center; gap: 7px; margin-bottom: 6px;">
+                      <x-import component-from-global-scope="EBayEvoDesignSystem_61746e.Icon" name="AI16" size="14" color="#7B2BEB" hint-size="14px,14px"></x-import>
+                      <span style="font-size: 10.5px; font-weight: 700; letter-spacing: 1.5px; color: #7B2BEB;">FROM EBAY AI</span>
+                    </div>
+                    <div style="font-size: 14.5px; font-weight: 700;">{{cTitle}}</div>
+                    <div style="font-size: 13px; color: #707070; margin-top: 4px; line-height: 1.45;">{{cBody}}</div>
+                  </div>
+                </sc-if>
+
+                <sc-if value="{{cNone}}" hint-placeholder-val="{{false}}">
+                  <div style="border: 1.5px dashed #C7C7C7; border-radius: 12px; padding: 26px 20px; text-align: center; font-size: 13.5px; color: #707070;">{{cText}}</div>
+                </sc-if>
+
+                <sc-if value="{{cFall}}" hint-placeholder-val="{{false}}">
+                  <div style="font-size: 14px; font-weight: 700;">{{cPrompt}}</div>
+                  <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                    <sc-for list="{{cChipList}}" as="ch" hint-placeholder-count="3">
+                      <span style="border: 1.5px solid #707070; border-radius: 999px; padding: 8px 16px; font-size: 13.5px; font-weight: 700; background: #ffffff;">{{ch.label}}</span>
+                    </sc-for>
+                  </div>
+                </sc-if>
+
+                <sc-if value="{{cRestate}}" hint-placeholder-val="{{false}}">
+                  <div style="font-size: 14px; font-weight: 700; line-height: 1.4;">{{cPrompt}}</div>
+                  <div style="display: flex; gap: 8px;">
+                    <span style="background: #0968F6; color: #ffffff; border-radius: 999px; padding: 8px 18px; font-size: 13.5px; font-weight: 700;">Looks good</span>
+                    <span style="border: 1.5px solid #191919; border-radius: 999px; padding: 8px 18px; font-size: 13.5px; font-weight: 700;">Adjust</span>
+                  </div>
+                </sc-if>
+
+              </div>
+              <sc-if value="{{hasCompNote}}" hint-placeholder-val="{{false}}">
+                <div style="font-size: 12px; color: #707070; margin-top: 8px;">{{compNote}}</div>
+              </sc-if>
+              <div style="display: flex; align-items: flex-start; gap: 7px; margin-top: 8px;">
+                <x-import component-from-global-scope="EBayEvoDesignSystem_61746e.Icon" name="Information16" size="14" color="#707070" hint-size="14px,14px"></x-import>
+                <span style="font-size: 12.5px; color: #707070; line-height: 1.4;"><b>Why:</b> {{why}}</span>
+              </div>
+            </div>
+          </div>
+
+          <sc-if value="{{isFull}}" hint-placeholder-val="{{false}}">
+            <div style="border: 1px solid rgba(232,23,138,0.35); background: rgba(232,23,138,0.04); border-radius: 16px; padding: 10px 18px; display: flex; align-items: center; gap: 12px; flex-shrink: 0; {{s6}}">
+              <span style="font-size: 12px; font-weight: 700; letter-spacing: 1.5px; white-space: nowrap;">06 · FEEDBACK</span>
+              <span style="font-size: 10.5px; letter-spacing: 1px; color: #707070; white-space: nowrap;">L6 · NEXT TURN</span>
+              <x-import component-from-global-scope="EBayEvoDesignSystem_61746e.Icon" name="Refresh16" size="15" color="#E8178A" hint-size="15px,15px"></x-import>
+              <span style="font-size: 12.5px; line-height: 1.35; color: #191919;">{{learnLine}}</span>
+            </div>
+          </sc-if>
+        </div>
+      </div>
+
+      <sc-if value="{{isFull}}" hint-placeholder-val="{{false}}">
+        <div style="display: grid; grid-template-columns: 1.15fr 1fr 1.15fr 1fr; gap: 14px; height: 186px; flex-shrink: 0;">
+          <div style="border: 1px solid #E5E5E5; border-radius: 16px; padding: 12px 16px;">
+            <div style="font-size: 13.5px; font-weight: 700; margin-bottom: 7px;">The pipeline — six layers, six owners</div>
+            <div style="display: flex; flex-direction: column; gap: 3.5px; font-size: 11.5px; line-height: 1.35;">
+              <div><b>L1 Signal extraction</b> <span style="color: #707070;">— what the user said</span></div>
+              <div><b>L2 Context enrichment</b> <span style="color: #707070;">— what we know about them &amp; the world</span></div>
+              <div><b>L3 Intent &amp; routing</b> <span style="color: #707070;">— calibrated confidence × stakes</span></div>
+              <div><b>L4 Response policy</b> <span style="color: #707070;">— the decision spine picks the move</span></div>
+              <div><b>L5 Execution</b> <span style="color: #707070;">— search, facets, disambiguation UI</span></div>
+              <div><b>L6 Feedback</b> <span style="color: #707070;">— overrides &amp; accepts re-tune Ask ↔ Act</span></div>
+            </div>
+          </div>
+          <div style="border: 1px solid #E5E5E5; border-radius: 16px; padding: 12px 16px; background: rgba(213,11,11,0.04);">
+            <div style="display: flex; align-items: center; gap: 7px; margin-bottom: 7px;">
+              <x-import component-from-global-scope="EBayEvoDesignSystem_61746e.Icon" name="FlagFilled16" size="15" color="#D50B0B" hint-size="15px,15px"></x-import>
+              <span style="font-size: 13.5px; font-weight: 700;">The rule that never bends</span>
+            </div>
+            <div style="font-size: 12.5px; line-height: 1.45;">If it can't be undone — a trip, a payment, a bid, a meetup — the agent asks first. <b>Every time. At any confidence.</b></div>
+            <div style="font-size: 11.5px; color: #707070; margin-top: 6px; line-height: 1.4;">Stakes override signal strength — a confident detection still asks before it costs someone a Saturday.</div>
+          </div>
+          <div style="border: 1px solid #E5E5E5; border-radius: 16px; padding: 12px 16px;">
+            <div style="font-size: 13.5px; font-weight: 700; margin-bottom: 7px;">Trust ledger — how LEARN moves the dial</div>
+            <div style="display: flex; flex-direction: column; gap: 5px; font-size: 11.5px; line-height: 1.35;">
+              <div><span style="background: #288034; color: #ffffff; border-radius: 999px; padding: 1px 8px; font-size: 10px; font-weight: 700;">EARN</span> Say yes a few times → it stops asking about that one thing.</div>
+              <div><span style="background: #D50B0B; color: #ffffff; border-radius: 999px; padding: 1px 8px; font-size: 10px; font-weight: 700;">LOSE</span> Fix it three times → it goes back to asking.</div>
+              <div><span style="background: #191919; color: #ffffff; border-radius: 999px; padding: 1px 8px; font-size: 10px; font-weight: 700;">NOTE</span> Quiet is never secret — every choice leaves an undoable receipt.</div>
+              <div style="font-family: ui-monospace, Menlo, monospace; font-size: 11px; color: #707070; margin-top: 3px;">“another barstool like last time” → 0.74 → Act, visibly.</div>
+            </div>
+          </div>
+          <div style="border: 1px solid #E5E5E5; border-radius: 16px; padding: 12px 16px;">
+            <div style="font-size: 13.5px; font-weight: 700; margin-bottom: 7px;">The discipline of doing nothing</div>
+            <div style="display: flex; flex-direction: column; gap: 5px; font-size: 11px; font-family: ui-monospace, Menlo, monospace; color: #191919;">
+              <div>“USB-C cable 2m braided” → 0.08 → stays out of the way</div>
+              <div>“Nike AF1 Low size 10.5” → 0.96 → just shows</div>
+            </div>
+            <div style="font-size: 11.5px; color: #707070; margin-top: 7px; line-height: 1.4;">A terse expert query is an instruction, not an invitation. A no-op is a scored decision, not an absence.</div>
+          </div>
+        </div>
+      </sc-if>
+    </div>
+
+    <div style="display: flex; justify-content: space-between; align-items: center; height: 46px; margin: 10px 48px 0; border-top: 1px solid #E5E5E5; flex-shrink: 0;">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <div style="transform: scale(0.62); transform-origin: left center; height: 28px; display: flex; align-items: center;">
+          <x-import component-from-global-scope="EBayEvoDesignSystem_61746e.EBayLogo" hint-size="92px,37px"></x-import>
+        </div>
+        <span style="font-size: 13px; color: #707070;">{{footerCredit}}</span>
+      </div>
+      <span style="font-size: 11px; letter-spacing: 1.5px; color: #707070;">EDUCATE · ASK · SHOW · ACT · EXPLAIN · LEARN — ONE SPINE, THREE INTENTS</span>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;: {&quot;width&quot;: 1920, &quot;height&quot;: 1080}, &quot;footerCredit&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;eBay agentic search · Lia Divalentin&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Board&quot;}, &quot;startLane&quot;: {&quot;editor&quot;: &quot;enum&quot;, &quot;default&quot;: &quot;local&quot;, &quot;options&quot;: [&quot;local&quot;, &quot;fashion&quot;, &quot;collect&quot;], &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Board&quot;}, &quot;traceSpeed&quot;: {&quot;editor&quot;: &quot;range&quot;, &quot;default&quot;: 450, &quot;min&quot;: 200, &quot;max&quot;: 900, &quot;step&quot;: 50, &quot;unit&quot;: &quot;ms&quot;, &quot;tsType&quot;: &quot;number&quot;, &quot;section&quot;: &quot;Animation&quot;}}">
+class Component extends DCLogic {
+  state = {
+    lane: (this.props && this.props.startLane) || 'local',
+    view: 'full',
+    scores: true,
+    sel: 0,
+    step: 0,
+    custom: null,
+    tryText: '',
+    vw: window.innerWidth,
+    vh: window.innerHeight
+  };
+
+  static MOVES = [
+    { key: 'EDUCATE', col: '#7B2BEB' },
+    { key: 'ASK', col: '#9A6A00' },
+    { key: 'SHOW', col: '#288034' },
+    { key: 'ACT', col: '#0968F6' },
+    { key: 'EXPLAIN', col: '#191919' },
+    { key: 'LEARN', col: '#E8178A' }
+  ];
+
+  static D = {
+    local: {
+      gauge: 'LOCAL-INTENT SCORE',
+      queries: [
+        { q: 'sectional couch', meaning: 'Maybe local', score: 0.68, stakes: 'Low', stakesTone: 'low',
+          signals: [ { t: 'couch', b: 'Tier-1 · high freight burden' }, { t: 'fulfillment cue', b: 'none · unknown' }, { t: 'geo density', b: 'dense local supply' } ],
+          context: 'Metro buyer · dense local supply · first local session — no saved radius, no pickup history.',
+          route: 'Passive — normal results + a soft local card', lead: 'ASK', cos: [],
+          behavior: 'Normal results plus a gentle chip: “Available near you to pick up.” One tap opts in — it never auto-applies.',
+          comp: { kind: 'soft', id: 'C1', badge: '#9A6A00', name: 'Soft local offer — injected module', one: 'The gentlest Ask: an offer, not a filter.', prompt: 'Available near you to pick up' },
+          why: 'Tier-1 category and high local supply, but no cue from the buyer — so the agent offers, and never assumes.' },
+        { q: 'need a desk this week', meaning: 'Could go either way', score: 0.55, stakes: 'Low', stakesTone: 'low',
+          signals: [ { t: 'this week', b: '7-day window' }, { t: 'desk', b: 'ships small or hauls large' }, { t: 'fulfillment', b: 'COLLISION — ship-fast vs. pickup' } ],
+          context: 'No pickup history · urgency reads two ways — deadline to receive, or timing to collect.',
+          route: 'Disambiguate first — before spending a search', lead: 'ASK', cos: [],
+          behavior: 'Asks before searching: “Pick up, or ship?” — and the Either chip keeps the question non-blocking.',
+          comp: { kind: 'chips', id: 'C1', badge: '#9A6A00', name: 'Inline chip row', one: 'The lightest Ask — one tap, in-thread, never a modal.', prompt: 'Looking to pick up nearby, or ship to you?', chips: ['Pick up nearby', 'Ship to me — by this week', 'Either'] },
+          why: '“This week” is a named collision. Unbound terms trigger an Ask — never a silent default.' },
+        { q: 'USB-C cable 2m braided', meaning: 'Not local at all', score: 0.08, stakes: 'Low', stakesTone: 'low',
+          signals: [ { t: 'cable', b: 'commodity · cheap to ship' }, { t: '2m braided', b: 'spec, not urgency' }, { t: 'local supply', b: 'irrelevant — national ≫ local' } ],
+          context: 'National selection beats proximity for shippable commodities — nothing local to offer.',
+          route: 'Standard search — no local behavior at all', lead: 'SHOW', cos: [],
+          behavior: 'Stays out of the way. Nothing injected, nothing asked — a no-op is a scored decision.',
+          comp: { kind: 'none', id: '—', badge: '#707070', name: 'No component fires', one: 'The discipline of doing nothing is part of the spec.', text: 'No chip. No module. No question. The agent earns trust here by staying silent.' },
+          routeNote: 'Class override — national / anti-fit routes straight to Show. A low score means “not local,” not “ask.”',
+          why: 'Injecting a local module on a 0.08 is noise — over-injection is a guardrail metric, not a growth hack.' },
+        { q: 'real Rolex Submariner I can check in person', meaning: 'Wants proof', score: 0.88, stakes: 'High — money · fraud', stakesTone: 'high',
+          signals: [ { t: 'real', b: 'verification_intent: true' }, { t: 'check in person', b: 'inspect before paying' }, { t: 'Rolex Submariner', b: 'Tier-2 · luxury watch' } ],
+          context: 'Educate-need 0.80 — authentication and in-person inspection are unfamiliar to most buyers.',
+          route: 'Active — the authenticate path leads', lead: 'EDUCATE', cos: ['SHOW', 'ASK'],
+          behavior: 'One tip on what authentication covers, then the local + eBay-authenticated rack. Confirms before reserving.',
+          comp: { kind: 'edu', id: 'EDU', badge: '#7B2BEB', name: 'Educate module → C3 confirm at reserve', one: 'Explain once, right on time — never a lecture up front.', title: 'Authenticity Guarantee — even for pickup.', body: 'Verified by experts before you meet the seller. The inspection checklist covers exactly what to look at in person.' },
+          why: 'A request-to-find wearing a request-to-verify — the operative need is trust, not discovery.' },
+        { q: 'sectional couch near me, pick up Saturday, under $400', meaning: 'Clearly local', score: 0.94, stakes: 'Trip + money — locks at reserve', stakesTone: 'mid', inv: 'later',
+          signals: [ { t: 'near me', b: 'user geo' }, { t: 'pick up', b: 'fulfillment: pickup' }, { t: 'Saturday', b: 'next Sat window' }, { t: 'under $400', b: 'price ≤ 400' } ],
+          context: 'Logistics-confident phrasing · educate-need 0.10 — this buyer already knows the trade-offs.',
+          route: 'Active, local-first — acts without asking', lead: 'ACT', cos: ['SHOW', 'EXPLAIN'],
+          behavior: 'Pre-applies pickup ≤ 10 mi · ready Saturday · ≤ $400 — the same facets a power user would set by hand.',
+          comp: { kind: 'receipt', id: 'C5', badge: '#0968F6', name: 'Inference receipt', one: 'Did it for you. Tap ✕ to take it back.', text: 'Pickup ≤ 10 mi · ready Saturday', note: 'C10 Last-Safe-Moment preview still fires before the Saturday window locks — at any confidence.' },
+          why: 'Every constraint arrived typed and bound — asking again would be friction, not care.' }
+      ]
+    },
+    fashion: {
+      gauge: 'CALIBRATED CONFIDENCE',
+      queries: [
+        { q: 'something nice for a summer wedding, not too formal', meaning: 'Exploring — no item yet', score: 0.42, stakes: 'Low', stakesTone: 'low',
+          signals: [ { t: 'wedding', b: 'occasion' }, { t: 'not too formal', b: 'style constraint' }, { t: 'item · size · brand', b: 'none' } ],
+          context: 'Past style embeddings · kept brands · locale season — purchase intent exists, the item doesn’t.',
+          route: 'Progressive disclosure — size deferred', lead: 'ASK', cos: ['EDUCATE'],
+          behavior: 'One easy question per stage — “Dress, jumpsuit, or separates?” A size question now would spend the ask-once budget on noise.',
+          comp: { kind: 'step', id: 'C7', badge: '#9A6A00', name: 'Staged discovery stepper', one: 'Broad first; specificity is earned. Prior answers persist as editable chips.', prompt: 'Dress, jumpsuit, or separates?', chips: ['Dress', 'Jumpsuit', 'Separates'], tip: 'Tip: I’ll match measurements, not labels — sizes shift across US · UK · EU.' },
+          why: 'Clarity deficit dominates — no size Ask until an item class exists.' },
+        { q: 'size 10 boots', meaning: 'Which 10? Systems collide', score: 0.55, stakes: 'Return risk', stakesTone: 'high',
+          signals: [ { t: '10', b: 'size token · system: UNBOUND' }, { t: 'boots', b: 'footwear · width unrecorded' }, { t: 'locale UK × US catalog', b: 'COLLISION' } ],
+          context: 'US 10, UK 10 and EU 44 are materially different boots — and the mistake fails silently.',
+          route: 'Ask once — answer cached to profile', lead: 'ASK', cos: [],
+          behavior: 'Asks once — “Which size 10?” — locale pre-selects the likely answer; “don’t ask again” is one tap.',
+          comp: { kind: 'sys', id: 'C4', badge: '#9A6A00', name: 'System chips — “Which size 10?”', one: 'Four words, no apology, dismissable with a tap on the likeliest answer.', prompt: 'Which size 10?', options: [ { label: 'UK 10', sub: '· women’s', tag: 'Your locale', hot: true }, { label: 'US 10', sub: '· women’s', tag: '' }, { label: 'US 10', sub: '· men’s', tag: '' }, { label: 'EU 44', sub: '', tag: '' } ] },
+          routeNote: 'Domain override — even ≥ .90 still Asks on a material US/UK divergence. A wrong bind manufactures a return.',
+          why: 'UNRESOLVED is a legal, honest output — the silent US default is the bug this product exists to kill.' },
+        { q: 'UK 12 dresses', meaning: 'Explicit system — buyer disambiguated herself', score: 0.88, stakes: 'Low', stakesTone: 'low',
+          signals: [ { t: 'UK 12', b: 'size · system: explicit' }, { t: 'dress', b: 'apparel' }, { t: 'catalog', b: 'US-default or UNRESOLVED' } ],
+          context: 'Locale UK confirms · listing size-data quality low — the catalog is the risky side of this query.',
+          route: 'Translate + apply — visible, editable receipt', lead: 'ACT', cos: ['EDUCATE', 'EXPLAIN'],
+          behavior: 'Translates UK 12 → US 8 · EU 40 and applies it as an editable facet — the conversion she’d otherwise do in her head.',
+          comp: { kind: 'receipt', id: 'C5', badge: '#0968F6', name: 'Inference receipt', one: 'Act with a receipt — silent ≠ secret.', text: 'Showing UK 12 · US 8 · EU 40', note: 'Listings with unconfirmed size systems go to a separate, labeled tray — never silently included.' },
+          why: 'She did the disambiguation; re-asking would be the agent failing to listen.' },
+        { q: 'Nike Air Force 1 Low white size 10.5', meaning: 'Expert query — fully specified', score: 0.96, stakes: 'Low', stakesTone: 'low',
+          signals: [ { t: 'Nike AF1 Low', b: 'brand + model' }, { t: 'white', b: 'color' }, { t: '10.5', b: 'binds US · locale + profile' } ],
+          context: 'Locale US binds the system · profile confirms US 10.5 footwear — nothing is uncertain.',
+          route: 'Standard results — no special behavior', lead: 'SHOW', cos: [],
+          behavior: 'Shows. No Educate, no Ask — intervening on an expert query is the over-education failure.',
+          comp: { kind: 'none', id: '—', badge: '#707070', name: 'No component fires', one: 'Suppressing the agent is a designed state.', text: 'Facet indicator only — a small “US 10.5.” A terse expert query is an instruction, not an invitation.' },
+          routeNote: 'No-special-behavior class — the taxonomy names it so teams don’t forget it exists.',
+          why: 'The discipline of knowing when to do nothing clever.' },
+        { q: 'buy the black Prada boots in my size', meaning: 'Money on the line', score: 0.93, stakes: 'IRREVERSIBLE — $620 commit', stakesTone: 'irr', inv: 'now',
+          signals: [ { t: 'buy', b: 'purchase commit' }, { t: 'my size', b: 'profile supplies EU 39' }, { t: 'Prada', b: 'fit_offset −0.5 · significant' } ],
+          context: 'Rich footwear profile · brand runs a half-size small · high item value.',
+          route: 'Confirm — always. No score overrides it', lead: 'ASK', cos: ['EDUCATE'],
+          behavior: '“Prada runs about a half-size small — EU 39.5 suggested.” Pre-selects, previews, and waits for the human tap.',
+          comp: { kind: 'last', id: 'C10', badge: '#D50B0B', name: 'Last-Safe-Moment preview', one: 'Preview, your yes, and an undo window — at any confidence.', rows: [ { k: 'Item', v: 'Prada leather boots · black' }, { k: 'Size', v: 'EU 39.5 — sized up for you' }, { k: 'Price', v: '$620.00 · protected' } ], confirm: 'Confirm purchase', alt: 'Change something' },
+          why: 'The 0.93 never auto-commits. Irreversible ⇒ confirm is policy, not tuning.' }
+      ]
+    },
+    collect: {
+      gauge: 'CALIBRATED CONFIDENCE',
+      queries: [
+        { q: 'pokemon cards', meaning: 'Ultra-broad — three different markets', score: 0.30, stakes: 'Low', stakesTone: 'low',
+          signals: [ { t: 'pokemon cards', b: '40M+ listings' }, { t: 'set · grade · budget', b: 'none' }, { t: 'speech act', b: 'browse, not buy' } ],
+          context: 'First collectibles session · no profile — collector, player and investor want different racks.',
+          route: 'Progressive disclosure — one question per stage', lead: 'ASK', cos: ['EDUCATE'],
+          behavior: '“Collecting, playing, or investing?” — three markets, one question. Specificity is earned, not demanded.',
+          comp: { kind: 'step', id: 'C7', badge: '#9A6A00', name: 'Staged discovery stepper', one: 'Broad first; each answer narrows the next question.', prompt: 'Collecting, playing, or investing?', chips: ['Collecting', 'Playing', 'Investing'], tip: 'Tip: sealed product, singles, and graded slabs are three different markets.' },
+          why: 'The query is a category, not an intent — the first job is finding out which market she’s in.' },
+        { q: 'charizard', meaning: 'One name · 400+ printings', score: 0.58, stakes: 'Low', stakesTone: 'low',
+          signals: [ { t: 'charizard', b: 'semantic collision' }, { t: 'set · year · grade', b: 'none' }, { t: 'price span', b: '$2 → $300,000' } ],
+          context: 'Base Set holo and a modern reprint diverge by 1000× — no reading clears the threshold.',
+          route: 'Show the readings — honest beats guessing', lead: 'ASK', cos: [],
+          behavior: 'Two or three readings, side by side — never a silent default to the expensive one.',
+          comp: { kind: 'cards', id: 'C4', badge: '#9A6A00', name: 'Interpretation cards', one: 'When the agent can’t rank readings, showing them is more honest than guessing.', prompt: 'Which Charizard did you mean?', cards: [ { label: 'Base Set ’99', desc: 'The icon — unlimited run' }, { label: 'Shadowless', desc: 'Early run — no drop shadow' }, { label: '1st Edition', desc: 'Stamped — the grail tier' } ] },
+          why: 'Guessing wrong wastes the session either way — options resolve in one tap.' },
+        { q: 'base set charizard, good condition', meaning: '“Good” is unbound — vocabulary unreliable', score: 0.62, stakes: 'Low', stakesTone: 'low',
+          signals: [ { t: 'Base Set', b: 'set: bound ✓' }, { t: 'good condition', b: 'UNBOUND — no typed rule' }, { t: 'raw vs. graded', b: 'unstated' } ],
+          context: 'Raw “near mint” and a PSA 8 slab can differ by 3× in price — words won’t settle it.',
+          route: 'Visual beats verbal — tiles seed preferences', lead: 'ASK', cos: ['EDUCATE'],
+          behavior: 'Condition tiles seed soft preferences — the rack re-ranks, nothing is excluded.',
+          comp: { kind: 'tiles', id: 'C6', badge: '#9A6A00', name: 'Condition tiles', one: 'Recognition beats description — tiles never hard-filter inventory.', prompt: 'Which condition looks right?', tiles: [ { label: 'Graded slab' }, { label: 'Raw · near mint' }, { label: 'Played' } ] },
+          why: 'Condition words don’t bind to typed rules; selection is a preference signal, not a filter.' },
+        { q: 'PSA 10 1st edition Charizard', meaning: 'Five-figure card — trust leads', score: 0.91, stakes: 'High — authenticity', stakesTone: 'high',
+          signals: [ { t: 'PSA 10', b: 'grade: bound · slab' }, { t: '1st edition', b: 'print run: bound' }, { t: 'comps', b: 'median ≈ $18,000' } ],
+          context: 'Authenticity Guarantee applies over $250 — the buyer may not know verification exists.',
+          route: 'Authenticated path leads the rack', lead: 'EDUCATE', cos: ['SHOW', 'EXPLAIN'],
+          behavior: 'One line of trust — expert-verified over $250 — then authenticated listings lead the rack.',
+          comp: { kind: 'edu', id: 'EDU', badge: '#7B2BEB', name: 'Educate module — Authenticity Guarantee', one: 'Trust leads; the rack follows.', title: 'Every card over $250 is expert-verified.', body: 'Graded slabs are authenticated before they reach you — cert numbers are checked against PSA’s registry.' },
+          why: 'At this price the dominant deficit isn’t discovery — it’s proof.' },
+        { q: 'bid on the PSA 10 Charizard ending tonight', meaning: 'A bid is a commitment', score: 0.97, stakes: 'IRREVERSIBLE — auction bid', stakesTone: 'irr', inv: 'now',
+          signals: [ { t: 'bid', b: 'commit verb · money' }, { t: 'ending tonight', b: 'deadline 9:14 PM' }, { t: 'cert #63921488', b: 'verifiable' } ],
+          context: 'Your max unset · comps median $18,400 · 14 min of sniping culture — pressure is the risk.',
+          route: 'Confirm — always. Even at 0.97', lead: 'ASK', cos: ['EXPLAIN', 'EDUCATE'],
+          behavior: 'Checks the cert, pulls comps, sets nothing. The max bid is yours to confirm — the agent never places it.',
+          comp: { kind: 'last', id: 'C10', badge: '#D50B0B', name: 'Last-Safe-Moment preview', one: 'A bid binds — so the preview shows everything before your yes.', rows: [ { k: 'Card', v: 'Charizard · Base Set 1st ed. · PSA 10' }, { k: 'Cert', v: '#63921488 · verified' }, { k: 'Current bid', v: '$16,250 · ends 9:14 PM' }, { k: 'Your max', v: '— you set it' } ], confirm: 'Confirm max bid', alt: 'Not yet' },
+          why: 'Auto-bidding is the fastest way to end the relationship — emotional irreversibility counts too.' }
+      ]
+    }
+  };
+
+  componentDidMount() {
+    this._t = [];
+    this._onR = () => this.setState({ vw: window.innerWidth, vh: window.innerHeight });
+    window.addEventListener('resize', this._onR);
+    this._t.push(setTimeout(() => this.play(), 350));
+  }
+  componentWillUnmount() {
+    window.removeEventListener('resize', this._onR);
+    (this._t || []).forEach(clearTimeout);
+  }
+  speed() { return (this.props && this.props.traceSpeed) || 450; }
+  play() {
+    (this._t || []).forEach(clearTimeout);
+    this._t = [];
+    this.setState({ step: 0 });
+    for (let i = 1; i <= 6; i++) this._t.push(setTimeout(() => this.setState({ step: i }), i * this.speed()));
+  }
+  select(i) { this.setState({ sel: i, custom: null }); this.play(); }
+
+  parse(raw) {
+    const q = (raw || '').trim();
+    if (!q) return null;
+    const t = q.toLowerCase();
+    const sig = [];
+    let score = 0.2;
+    const commit = /\b(buy|bid|checkout|purchase|order)\b/.test(t);
+    const prox = /near me|nearby|close by|in town/.test(t);
+    const pick = /pick ?up|no shipping|meet ?up/.test(t);
+    const when = t.match(/today|tonight|tomorrow|saturday|sunday|weekend|this week|asap/);
+    const price = t.match(/under \$?(\d+)|\$(\d+)/);
+    const verify = /\breal\b|authentic|legit|check in person|verify/.test(t);
+    const bulky = t.match(/couch|sofa|sectional|desk|dresser|table|treadmill|fridge|washer|barstool|bookcase|cabinet|bike|mattress|piano/);
+    const commodity = /cable|charger|usb|hdmi|phone case|screen protector|batter(y|ies)|toner/.test(t);
+    const garment = t.match(/dress|boots?|shoes?|sneakers?|heels|jeans|jacket|coat|hoodie|shirt|suit|skirt/);
+    const brandF = t.match(/nike|adidas|prada|gucci|levi'?s|jordan|new balance|zara/);
+    const sizeTok = t.match(/\bsize\s?(\d{1,2}(?:\.5)?)\b/);
+    const sysTok = t.match(/\b(us|uk|eu)\s?\d/);
+    const alpha = t.match(/\b(xs|small|medium|large|xl|xxl)\b/);
+    const collect = t.match(/pok[eé]mon|charizard|pikachu|blastoise|holo|1st edition|first edition|slab|graded|tcg|mtg|topps|rookie|card\b/);
+    const grade = t.match(/\b(psa|bgs|cgc)\s?(\d{1,2})\b/);
+    const cond = /(good|great|mint|near mint|played)\s?condition|\bnm\b|\blp\b/.test(t);
+    const repeat = /like last time|another|again|like the ones/.test(t);
+
+    const lf = (garment || brandF || sizeTok || alpha) ? 1 : 0;
+    const lc = (collect || grade) ? 1 : 0;
+    const ll = (prox || pick || bulky) ? 1 : 0;
+    let lane = lc ? 'collect' : (ll ? 'local' : (lf ? 'fashion' : this.state.lane));
+
+    if (prox) { sig.push({ t: 'near me', b: 'user geo' }); score += 0.28; }
+    if (pick) { sig.push({ t: 'pick up', b: 'fulfillment: pickup' }); score += 0.26; }
+    if (bulky) { sig.push({ t: bulky[0], b: 'Tier-1 · high freight burden' }); score += 0.18; }
+    if (when) { sig.push({ t: when[0], b: 'time window' }); score += 0.06; }
+    if (price) { sig.push({ t: price[0], b: 'price ceiling — typed' }); score += 0.05; }
+    if (verify) { sig.push({ t: 'authentic / real', b: 'verification_intent: true' }); score += 0.1; }
+    if (garment) { sig.push({ t: garment[0], b: 'garment class' }); score += 0.12; }
+    if (brandF) { sig.push({ t: brandF[0], b: 'brand — validated' }); score += 0.1; }
+    if (sizeTok && !sysTok) { sig.push({ t: 'size ' + sizeTok[1], b: 'system: UNBOUND at birth' }); }
+    if (sysTok) { sig.push({ t: sysTok[0].toUpperCase(), b: 'system: explicit' }); score += 0.22; }
+    if (alpha && garment) { sig.push({ t: alpha[0], b: 'alpha size — no system' }); }
+    if (collect) { sig.push({ t: collect[0], b: 'collectibles · TCG' }); score += 0.1; }
+    if (grade) { sig.push({ t: grade[0].toUpperCase(), b: 'grade: bound · slab' }); score += 0.22; }
+    if (cond) { sig.push({ t: 'condition word', b: 'UNBOUND — no typed rule' }); }
+    if (repeat) { sig.push({ t: 'like last time', b: 'profile memory · prior accepts' }); score += 0.2; }
+    if (commit) { sig.push({ t: 'buy / bid', b: 'commit verb — money' }); }
+    if (commodity) score = 0.08;
+    score = Math.max(0.05, Math.min(0.97, score));
+
+    const base = { tag: 'TRY IT', q: q, signals: sig, stakes: 'Low', stakesTone: 'low', cos: [] };
+
+    if (!sig.length) return Object.assign(base, {
+      meaning: 'No intent extracted', score: 0.12,
+      context: 'Parse failure — the honest state is admitting it.',
+      route: 'Graceful fallback — never a dead end', lead: 'ASK',
+      behavior: 'Admits the miss and offers two likely paths plus a free-text escape hatch.',
+      comp: { kind: 'fall', id: 'C9', badge: '#9A6A00', name: 'Recovery menu', one: 'Honest admission + likely paths + an escape hatch.', prompt: 'I didn’t quite catch that — want to pick up nearby, or browse everything?', chips: ['Pickup near me', 'Browse all', 'Type it differently'] },
+      why: 'A graceful failure with a real next step is the difference between a trusted assistant and an abandoned session.'
+    });
+
+    if (commit) return Object.assign(base, {
+      meaning: 'Commit verb — money moves', score: score, stakes: 'IRREVERSIBLE — commit', stakesTone: 'irr', inv: 'now', lane: lane,
+      context: 'Money or a binding bid is on the line — reversibility, not confidence, decides.',
+      route: 'Confirm — always. No score overrides it', lead: 'ASK', cos: ['EXPLAIN'],
+      behavior: 'Prepares everything, places nothing — the preview shows the full intended transaction before your yes.',
+      comp: { kind: 'last', id: 'C10', badge: '#D50B0B', name: 'Last-Safe-Moment preview', one: 'Preview, your yes, and an undo window — at any confidence.', rows: [ { k: 'Item', v: q.replace(/^(buy|bid on|order|purchase)\s*/i, '').slice(0, 42) || 'your item' }, { k: 'Price', v: price ? price[0] : 'set at commit' }, { k: 'Protection', v: 'eBay Money Back Guarantee' } ], confirm: 'Confirm', alt: 'Not yet' },
+      why: 'Irreversible ⇒ confirm is a safety invariant — policy, not tuning.'
+    });
+
+    if (commodity) return Object.assign(base, {
+      meaning: 'Commodity — not local, not special', score: 0.08, lane: 'local',
+      context: 'Cheap to ship, national selection wins — nothing to add.',
+      route: 'Standard search — no special behavior', lead: 'SHOW',
+      behavior: 'Stays out of the way. Nothing injected, nothing asked.',
+      comp: { kind: 'none', id: '—', badge: '#707070', name: 'No component fires', one: 'The discipline of doing nothing.', text: 'No chip. No module. No question.' },
+      routeNote: 'Class override — national / anti-fit routes straight to Show.',
+      why: 'Any module here is noise charged against the over-injection guardrail.'
+    });
+
+    if (verify) return Object.assign(base, {
+      meaning: 'Wants proof', score: score, stakes: 'High — authenticity', stakesTone: 'high', lane: lane,
+      context: 'Trust language detected — educate-need runs high on verification queries.',
+      route: 'Authenticate path leads', lead: 'EDUCATE', cos: ['SHOW', 'ASK'],
+      behavior: 'One tip on what verification covers, then the authenticated rack — confirm before anything locks.',
+      comp: { kind: 'edu', id: 'EDU', badge: '#7B2BEB', name: 'Educate module', one: 'Explain once, right on time.', title: 'Authenticity Guarantee applies here.', body: 'Expert verification happens before you pay or meet anyone — here’s what it covers.' },
+      why: 'The operative need is trust, not discovery.'
+    });
+
+    if (lane === 'fashion' && (sizeTok && !sysTok)) return Object.assign(base, {
+      meaning: 'Which ' + sizeTok[1] + '? Systems collide', score: 0.55, lane: lane, stakes: 'Return risk', stakesTone: 'high',
+      context: 'US, UK and EU ' + sizeTok[1] + ' are materially different garments.',
+      route: 'Ask once — answer cached to profile', lead: 'ASK',
+      behavior: 'Asks once — locale pre-selects the likely answer; “don’t ask again” is one tap.',
+      comp: { kind: 'sys', id: 'C4', badge: '#9A6A00', name: 'System chips — “Which size ' + sizeTok[1] + '?”', one: 'Four words, no apology.', prompt: 'Which size ' + sizeTok[1] + '?', options: [ { label: 'US ' + sizeTok[1], sub: '· women’s', tag: 'Your locale', hot: true }, { label: 'US ' + sizeTok[1], sub: '· men’s', tag: '' }, { label: 'UK ' + sizeTok[1], sub: '', tag: '' }, { label: 'EU equivalent', sub: '', tag: '' } ] },
+      routeNote: 'Domain override — a wrong system bind manufactures a return.',
+      why: 'The size token is born UNBOUND; silent-defaulting to US is the canonical bug.'
+    });
+
+    if (lane === 'collect' && cond) return Object.assign(base, {
+      meaning: 'Condition word — unbound', score: 0.62, lane: lane,
+      context: 'Raw “near mint” and a graded slab can differ by 3× in price.',
+      route: 'Visual beats verbal', lead: 'ASK', cos: ['EDUCATE'],
+      behavior: 'Condition tiles seed soft preferences — ranking narrows, nothing is excluded.',
+      comp: { kind: 'tiles', id: 'C6', badge: '#9A6A00', name: 'Condition tiles', one: 'Recognition beats description.', prompt: 'Which condition looks right?', tiles: [ { label: 'Graded slab' }, { label: 'Raw · near mint' }, { label: 'Played' } ] },
+      why: 'Condition vocabulary doesn’t bind to typed rules.'
+    });
+
+    if (lane === 'collect' && collect && !grade && !when) return Object.assign(base, {
+      meaning: 'One name, many printings', score: Math.min(score, 0.58), lane: lane,
+      context: 'Named collectibles span decades of sets — readings diverge wildly in price.',
+      route: 'Show the readings — honest beats guessing', lead: 'ASK',
+      behavior: 'Two or three readings side by side — never a silent default to the expensive one.',
+      comp: { kind: 'cards', id: 'C4', badge: '#9A6A00', name: 'Interpretation cards', one: 'Honest beats guessing.', prompt: 'A few ways to read that — which fits?', cards: [ { label: 'Vintage · graded', desc: 'Slabbed, investment-grade' }, { label: 'Vintage · raw', desc: 'Original runs, ungraded' }, { label: 'Modern printings', desc: 'Affordable & playable' } ] },
+      why: 'No reading clears the threshold — options resolve in one tap.'
+    });
+
+    if (score >= 0.85 || (repeat && score >= 0.6)) return Object.assign(base, {
+      meaning: repeat ? 'Repeat buyer — earned autonomy' : 'Clear intent — acts without asking', score: score, lane: lane, inv: 'later',
+      context: repeat ? 'Prior accepts on this facet — the trust ledger earned this Act.' : 'Every constraint arrived typed and bound.',
+      route: repeat ? 'Act visibly — labeled, undoable facets' : 'Active — pre-applies the obvious facets', lead: 'ACT', cos: ['SHOW', 'EXPLAIN'],
+      behavior: 'Applies the facets a power user would set by hand — each one labeled, each one undoable.',
+      comp: { kind: 'receipt', id: 'C5', badge: '#0968F6', name: 'Inference receipt', one: 'Did it for you. Tap ✕ to take it back.', text: (pick || prox) ? 'Pickup ≤ 10 mi · added by agent' : 'Applied your saved preferences', note: 'Three overrides on any facet demote it from Act back to Ask.' },
+      why: 'High confidence × low stakes × supporting profile — the best disambiguation is the one you never see.'
+    });
+
+    if (score >= 0.55) return Object.assign(base, {
+      meaning: 'One dominant reading — worth a beat', score: score, lane: lane,
+      context: 'The agent is probably right — and says so out loud before applying.',
+      route: 'Restate and confirm — act, but visibly', lead: 'ASK', cos: ['SHOW'],
+      behavior: 'Restates its best guess as one sentence — “Looks good” proceeds, “Adjust” expands the chips inline.',
+      comp: { kind: 'restate', id: 'C3', badge: '#9A6A00', name: 'Restate-and-confirm card', one: 'Act, but let me veto — respects time when the agent is probably right.', prompt: 'Showing ' + (bulky ? bulky[0] : garment ? garment[0] : 'results') + (prox || pick ? ' for pickup nearby' : '') + (when ? ', ' + when[0] : '') + (price ? ', ' + price[0] : '') + ' — sound right?' },
+      why: 'One interpretation dominates but hasn’t earned silence yet.'
+    });
+
+    return Object.assign(base, {
+      meaning: 'Ambiguous — clarify before searching', score: score, lane: lane,
+      context: 'Multiple readings, none dominant — a one-tap question is cheaper than a wrong rack.',
+      route: 'Disambiguate first', lead: 'ASK',
+      behavior: 'Asks the smallest closed question that unblocks the search — with a non-blocking escape chip.',
+      comp: lane === 'local'
+        ? { kind: 'chips', id: 'C1', badge: '#9A6A00', name: 'Inline chip row', one: 'The lightest Ask — one tap, never a modal.', prompt: 'Looking to pick up nearby, or ship to you?', chips: ['Pick up nearby', 'Ship to me', 'Either'] }
+        : { kind: 'step', id: 'C7', badge: '#9A6A00', name: 'Staged discovery stepper', one: 'Broad first; specificity is earned.', prompt: lane === 'collect' ? 'Collecting, playing, or investing?' : 'What’s the occasion?', chips: lane === 'collect' ? ['Collecting', 'Playing', 'Investing'] : ['Everyday', 'Event', 'Gift'], tip: 'Tip: one easy question per stage — prior answers stay editable.' },
+      why: 'Below the threshold the honest move is a question, not a guess.'
+    });
+  }
+
+  runTry() {
+    const tr = this.parse(this.state.tryText);
+    if (!tr) return;
+    const patch = { custom: tr };
+    if (tr.lane) patch.lane = tr.lane;
+    this.setState(patch);
+    this.play();
+  }
+
+  renderVals() {
+    const D = Component.D;
+    const st = this.state;
+    const laneData = D[st.lane] || D.local;
+    const tr = st.custom || laneData.queries[Math.min(st.sel, laneData.queries.length - 1)];
+    const step = st.step;
+    const sty = (n) => step >= n ? 'opacity: 1; transform: translateY(0); transition: opacity .45s cubic-bezier(0.2,0,0,1), transform .45s cubic-bezier(0.2,0,0,1);' : 'opacity: 0; transform: translateY(10px); transition: opacity .45s, transform .45s;';
+    const scoreCol = (s) => s >= 0.85 ? '#0968F6' : s >= 0.6 ? '#191919' : '#9A6A00';
+    const stakesCol = { low: '#707070', mid: '#9A6A00', high: '#9A6A00', irr: '#D50B0B' };
+
+    const queries = laneData.queries.map((qq, i) => ({
+      q: qq.q, meaning: qq.meaning,
+      scoreTxt: qq.score.toFixed(2), scoreCol: scoreCol(qq.score),
+      bc: (!st.custom && i === st.sel) ? '#191919' : '#E5E5E5',
+      sh: (!st.custom && i === st.sel) ? 'var(--shadow-100)' : 'none',
+      onSelect: () => this.select(i)
+    }));
+
+    const moves = Component.MOVES.map((m, i) => {
+      const lead = step >= 4 && tr.lead === m.key;
+      const co = step >= 4 && (tr.cos || []).indexOf(m.key) >= 0;
+      const loop = !lead && !co && m.key === 'LEARN' && step >= 6 && st.view === 'full';
+      return {
+        name: m.key,
+        bg: lead ? m.col : '#ffffff',
+        fg: lead ? '#ffffff' : (co || loop) ? m.col : '#C0C0C0',
+        bd: lead ? m.col : (co || loop) ? m.col : '#EBEBEB',
+        role: lead ? 'LEAD' : co ? 'CO-FIRES' : 'LOOP', hasRole: lead || co || loop,
+        rv: 'transition: all .4s cubic-bezier(0.2,0,0,1) ' + (i * 60) + 'ms;'
+      };
+    });
+
+    const LEARNLINES = {
+      soft: 'Tap or skip on the soft card feeds the engagement adapter — accepted offers move this buyer toward Act next time.',
+      chips: 'The chip answer caches to the session; repeated picks teach a default fulfillment.',
+      sys: 'Answered once → cached to profile. The Ask never repeats this session — that’s the deal that makes asking cheap.',
+      receipt: 'Each kept facet raises Act confidence; three overrides on any facet demote it back to Ask.',
+      none: 'Nothing to learn — no behavior, no signal. The silence is logged with the score that produced it.',
+      edu: 'Tip engagement calibrates educate-need — dismissed unread lowers it, so the agent teaches less next time.',
+      step: 'Each stage answer narrows the session vector; prior answers persist as editable chips.',
+      cards: 'The chosen reading trains the collision default — resolve one way often enough and it becomes a default with a correction chip.',
+      tiles: 'Tile picks seed soft style/condition preferences for future ranking — never hard filters.',
+      last: 'Kept vs. returned updates the fit and comps models — but the confirm gate itself never relaxes.',
+      fall: 'Failed parses feed the vocabulary-gap list — the term that would have worked gets taught next time.',
+      restate: '“Looks good” streaks promote this facet toward silent Act; “Adjust” streaks keep it an Ask.'
+    };
+    const learnLine = tr.learn || LEARNLINES[(tr.comp || {}).kind] || 'Accepts and overrides re-tune Ask ↔ Act — autonomy is a ledger, not a setting.';
+
+    const signals = (tr.signals || []).map((s, i) => ({
+      t: s.t, b: s.b,
+      rv: 'opacity: ' + (step >= 1 ? 1 : 0) + '; transform: translateY(' + (step >= 1 ? 0 : 8) + 'px); transition: opacity .4s ease ' + (i * 110) + 'ms, transform .4s ease ' + (i * 110) + 'ms;'
+    }));
+
+    const c = tr.comp || {};
+    const kinds = ['soft', 'chips', 'sys', 'cards', 'tiles', 'receipt', 'last', 'step', 'edu', 'none', 'fall', 'restate'];
+    const kindFlags = {};
+    kinds.forEach(k => { kindFlags['c' + k.charAt(0).toUpperCase() + k.slice(1)] = c.kind === k; });
+
+    const embedded = !!(this.props && this.props.embedded);
+    const scale = embedded ? 1 : Math.min(st.vw / 1920, st.vh / 1080);
+
+    return Object.assign({
+      scale: scale.toFixed(4),
+      wrapSty: embedded ? 'position: relative; width: 1920px; height: 1080px;' : 'position: fixed; inset: 0;',
+      lane: st.lane, view: st.view, scores: st.scores,
+      laneItems: [ { value: 'local', label: 'Local pickup' }, { value: 'fashion', label: 'Fashion & size' }, { value: 'collect', label: 'Collectibles' } ],
+      viewItems: [ { value: 'simple', label: 'Simple' }, { value: 'full', label: 'Full' } ],
+      setLane: (v) => { this.setState({ lane: v, sel: 0, custom: null }); this.play(); },
+      setView: (v) => this.setState({ view: v }),
+      toggleScores: (e) => this.setState({ scores: e.target.checked }),
+      replay: () => this.play(),
+      isFull: st.view === 'full',
+      queries: queries,
+      traceTag: st.custom ? 'TRY IT' : 'QUERY 0' + (Math.min(st.sel, laneData.queries.length - 1) + 1),
+      signals: signals,
+      contextLine: tr.context || '',
+      routeText: tr.route || '',
+      gaugeLabel: laneData.gauge,
+      scoreTxt: (tr.score || 0).toFixed(2),
+      scoreCol: scoreCol(tr.score || 0),
+      needleLeft: 'calc(' + Math.round((tr.score || 0) * 100) + '% - 1px)',
+      stakesTxt: tr.stakes || 'Low',
+      stakesCol: stakesCol[tr.stakesTone || 'low'],
+      invNow: step >= 3 && tr.inv === 'now',
+      invLater: step >= 3 && tr.inv === 'later',
+      hasRouteNote: step >= 3 && !!tr.routeNote,
+      routeNote: tr.routeNote || '',
+      moves: moves,
+      behavior: tr.behavior || '',
+      compId: c.id || '—', compBadgeBg: c.badge || '#707070',
+      compName: c.name || '', compOne: c.one || '',
+      cPrompt: c.prompt || '', cText: c.text || '',
+      cChipList: (c.chips || []).map(x => ({ label: x })),
+      cOptions: (c.options || []).map(o => ({ label: o.label, sub: o.sub || '', tag: o.tag || '', bc: o.hot ? '#0968F6' : '#E5E5E5' })),
+      cCardList: c.cards || [], cTileList: c.tiles || [], cRows: c.rows || [],
+      cConfirm: c.confirm || 'Confirm', cAlt: c.alt || 'Change', cTip: c.tip || '',
+      cTitle: c.title || '', cBody: c.body || '',
+      hasCompNote: step >= 5 && !!c.note, compNote: c.note || '',
+      why: tr.why || '',
+      s2: sty(2), s3: sty(3), s4: sty(4), s5: sty(5), s6: sty(6),
+      learnLine: learnLine,
+      tryText: st.tryText,
+      onTryChange: (e) => this.setState({ tryText: e.target.value }),
+      onTryKey: (e) => { if (e.key === 'Enter') this.runTry(); },
+      runTry: () => this.runTry(),
+      suggestions: [
+        { label: '“mid-century dresser near me”', onClick: () => { this.setState({ tryText: 'mid-century dresser near me' }); setTimeout(() => this.runTry(), 0); } },
+        { label: '“size 9 heels”', onClick: () => { this.setState({ tryText: 'size 9 heels' }); setTimeout(() => this.runTry(), 0); } },
+        { label: '“bid on psa 9 pikachu”', onClick: () => { this.setState({ tryText: 'bid on psa 9 pikachu' }); setTimeout(() => this.runTry(), 0); } }
+      ],
+      footerCredit: (this.props && this.props.footerCredit) || 'eBay agentic search · Lia Divalentin'
+    }, kindFlags);
+  }
+}
+</script>
+</body>
+</html>

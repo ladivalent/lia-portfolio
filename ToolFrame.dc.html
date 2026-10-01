@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/tokens/colors.css">
+  <script src="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/_ds_bundle.js"></script>
+  <style>
+    body{margin:0}
+    a{color:#0968F6}a:hover{color:#0049B8}
+    @keyframes tf-shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+  </style>
+</helmet>
+<section id="{{ anchorId }}" style="border:1px solid #E5E5E5;border-radius:16px;background:#fff;overflow:hidden;font-family:'Market Sans',Inter,system-ui,sans-serif;color:#191919">
+  <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:24px;padding:20px 24px;border-bottom:1px solid #E5E5E5;flex-wrap:wrap">
+    <div style="display:flex;flex-direction:column;gap:6px;min-width:0;flex:1 1 320px">
+      <div style="font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#0968F6">{{ eyebrow }}</div>
+      <h3 style="margin:0;font-size:24px;line-height:1.25;font-weight:700;letter-spacing:-.01em">{{ title }}</h3>
+      <p style="margin:0;font-size:15px;line-height:1.5;color:#545454;max-width:720px;text-wrap:pretty">{{ description }}</p>
+      <sc-if value="{{ hasTags }}" hint-placeholder-val="{{ true }}">
+        <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:4px">
+          <sc-for list="{{ tagList }}" as="t" hint-placeholder-count="3">
+            <span style="display:inline-flex;align-items:center;height:26px;padding:0 10px;border-radius:999px;background:#F7F7F7;border:1px solid #E5E5E5;font-size:12px;color:#545454">{{ t }}</span>
+          </sc-for>
+        </div>
+      </sc-if>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+      <sc-if value="{{ hasUpdated }}" hint-placeholder-val="{{ false }}"><span style="display:inline-flex;align-items:center;height:32px;padding:0 12px;border-radius:999px;background:#F7F7F7;font-size:13px;color:#545454">Updated {{ updated }}</span></sc-if>
+      <sc-if value="{{ isLive }}" hint-placeholder-val="{{ true }}">
+        <button type="button" onClick="{{ toggleExpand }}" style="display:inline-flex;align-items:center;height:36px;padding:0 14px;border-radius:999px;border:1.5px solid #C7C7C7;background:#fff;color:#191919;font-size:13px;font-weight:700;font-family:inherit;cursor:pointer" style-hover="background:#F7F7F7">{{ expandLabel }}</button>
+        <a href="{{ openUrl }}" onClick="{{ rememberView }}" style="display:inline-flex;align-items:center;height:36px;padding:0 14px;border-radius:999px;border:1.5px solid #0968F6;color:#0968F6;font-size:13px;font-weight:700;text-decoration:none" style-hover="background:#F5F9FF;color:#0049B8">Open full screen ↗</a>
+      </sc-if>
+    </div>
+  </div>
+
+  <sc-if value="{{ isLive }}" hint-placeholder-val="{{ true }}">
+    <div style="position:relative;background:#F7F7F7;height:{{ frameHeight }}">
+      <sc-if value="{{ showSkeleton }}" hint-placeholder-val="{{ true }}">
+        <div aria-hidden="true" style="position:absolute;inset:0;padding:32px;display:flex;flex-direction:column;gap:16px;background:#F7F7F7">
+          <div style="height:28px;width:40%;border-radius:8px;background:linear-gradient(90deg,#ECECEC 25%,#F7F7F7 50%,#ECECEC 75%);background-size:200% 100%;animation:tf-shimmer 1.4s linear infinite"></div>
+          <div style="height:16px;width:65%;border-radius:8px;background:linear-gradient(90deg,#ECECEC 25%,#F7F7F7 50%,#ECECEC 75%);background-size:200% 100%;animation:tf-shimmer 1.4s linear infinite"></div>
+          <div style="flex:1;border-radius:12px;background:linear-gradient(90deg,#ECECEC 25%,#F7F7F7 50%,#ECECEC 75%);background-size:200% 100%;animation:tf-shimmer 1.4s linear infinite"></div>
+        </div>
+      </sc-if>
+      <sc-if value="{{ isError }}" hint-placeholder-val="{{ false }}">
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:32px;background:#F7F7F7">
+          <div style="max-width:480px;background:#fff;border:1px solid #E5E5E5;border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:12px;text-align:center;align-items:center">
+            <div style="font-size:18px;font-weight:700">This tool couldn't load here</div>
+            <p style="margin:0;font-size:14px;line-height:1.55;color:#545454">{{ summary }}</p>
+            <a href="{{ openUrl }}" style="display:inline-flex;align-items:center;height:40px;padding:0 20px;border-radius:999px;background:#0968F6;color:#fff;font-size:14px;font-weight:700;text-decoration:none">Open in a new tab ↗</a>
+          </div>
+        </div>
+      </sc-if>
+      <sc-if value="{{ hasSrc }}" hint-placeholder-val="{{ false }}">
+        <iframe src="{{ src }}" title="{{ title }}" onLoad="{{ onLoad }}" sandbox="allow-scripts allow-same-origin allow-popups allow-forms" referrerPolicy="no-referrer" style="position:relative;display:block;width:100%;height:100%;border:0;background:#fff;opacity:{{ frameOpacity }};transition:opacity 180ms cubic-bezier(.2,0,0,1)"></iframe>
+      </sc-if>
+    </div>
+    <sc-if value="{{ hasCaption }}" hint-placeholder-val="{{ false }}">
+      <div style="padding:12px 24px;border-top:1px solid #E5E5E5;font-size:13px;color:#707070">{{ caption }}</div>
+    </sc-if>
+  </sc-if>
+
+  <sc-if value="{{ isComing }}" hint-placeholder-val="{{ false }}">
+    <div style="margin:24px;border:1.5px dashed #C7C7C7;border-radius:12px;padding:40px 24px;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;background:#FAFAFA">
+      <div style="font-size:18px;font-weight:700;color:#707070">Coming soon</div>
+      <p style="margin:0;font-size:14px;line-height:1.55;color:#8F8F8F;max-width:420px">{{ summary }}</p>
+      <a href="Contact.dc.html?topic=prompt-library" style="font-size:14px;font-weight:700;color:#0968F6;text-decoration:none;margin-top:6px;display:inline-flex;align-items:center;min-height:44px">Notify me →</a>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isPlaceholder }}" hint-placeholder-val="{{ false }}">
+    <div style="margin:24px;border:1.5px dashed #C7C7C7;border-radius:12px;padding:40px 24px;display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center;background:#FAFAFA">
+      <div aria-hidden="true" style="width:120px;height:80px;border:2px solid #C7C7C7;border-radius:12px;position:relative"><span style="position:absolute;left:50%;bottom:-14px;transform:translateX(-50%);width:44px;height:6px;border-radius:3px;background:#C7C7C7"></span></div>
+      <div style="font-size:18px;font-weight:700;color:#707070;margin-top:8px">Prototype coming soon</div>
+      <a href="Contact.dc.html" style="font-size:14px;font-weight:700;color:#0968F6;text-decoration:none;display:inline-flex;align-items:center;min-height:44px">Notify me →</a>
+    </div>
+  </sc-if>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1200,&quot;height&quot;:900},&quot;slot&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;playbook&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;eyebrow&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Tool 1&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;title&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;UX Playbook&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;description&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;tags&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;caption&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;height&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:760,&quot;tsType&quot;:&quot;number&quot;},&quot;anchorId&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  state = { entry: null, status: "loading", expanded: false, msgHeight: 0 };
+  componentDidMount() {
+    fetch("embeds.json").then(r => r.json()).then(m => {
+      const entry = (m.slots || {})[this.props.slot] || null;
+      this.setState({ entry, status: entry && entry.status !== "live" ? "ready" : "loading" });
+      this._t = setTimeout(() => { if (this.state.status === "loading") this.setState({ status: "ready" }); }, 8000);
+    }).catch(() => this.setState({ status: "error" }));
+    this._onMsg = (e) => {
+      if (e.data && e.data.type === "dc-height" && this._iframe && e.source === this._iframe.contentWindow) this.setState({ msgHeight: e.data.height });
+    };
+    window.addEventListener("message", this._onMsg);
+  }
+  componentWillUnmount() { clearTimeout(this._t); window.removeEventListener("message", this._onMsg); }
+  renderVals() {
+    const e = this.state.entry;
+    const status = e ? (e.status || "live") : "live";
+    const src = e && e.source ? (e.source.mode === "url" ? (e.source.url + (e.source.params || "")) : e.source.file) : undefined;
+    const base = (e && e.height && e.height.desktop) || this.props.height || 760;
+    const tall = e && e.tall;
+    const h = this.state.expanded ? "calc(100vh - 64px)" : (this.state.msgHeight ? this.state.msgHeight + "px" : base + "px");
+    const tags = (this.props.tags || "").split(",").map(s => s.trim()).filter(Boolean);
+    const loading = this.state.status === "loading";
+    return {
+      anchorId: this.props.anchorId || ("tool-" + this.props.slot),
+      eyebrow: this.props.eyebrow || "",
+      title: this.props.title || (e && e.title) || "",
+      description: this.props.description || "",
+      tagList: tags, hasTags: tags.length > 0,
+      updated: e && e.updated, hasUpdated: !!(e && e.updated),
+      summary: e && e.summary,
+      isLive: status === "live", isComing: status === "coming-soon", isPlaceholder: status === "placeholder",
+      hasSrc: !!src, src,
+      rememberView: () => { try { sessionStorage.setItem("lia-view", JSON.stringify({ slot: this.props.slot || "", back: location.pathname.split("/").pop() + location.search })); } catch (_) {} },
+      openUrl: "View.dc.html?slot=" + encodeURIComponent(this.props.slot || "") + "&back=" + encodeURIComponent(location.pathname.split("/").pop() + location.search),
+      frameHeight: h,
+      showSkeleton: loading, isError: this.state.status === "error",
+      frameOpacity: loading ? 0 : 1,
+      expandLabel: this.state.expanded ? "Collapse" : "Expand",
+      toggleExpand: () => this.setState(s => ({ expanded: !s.expanded })),
+      onLoad: (ev) => { this._iframe = ev.currentTarget; clearTimeout(this._t); this.setState({ status: "ready" }); },
+      caption: this.props.caption || (tall && e ? "A 3–5 minute scroll · updated " + e.updated : ""),
+      hasCaption: !!(this.props.caption || tall),
+    };
+  }
+}
+</script>
+</body>
+</html>

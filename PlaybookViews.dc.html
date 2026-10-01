@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UX Playbook views</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/tokens/fonts.css">
+  <style>body{margin:0}</style>
+</helmet>
+<div style="width:100%;display:flex;flex-direction:column;background:#fff;font-family:'Market Sans',Inter,system-ui,sans-serif;color:#191919">
+  <nav aria-label="Playbook views" style="display:flex;flex-wrap:wrap;gap:8px;padding:16px 24px;border-bottom:1px solid #E5E5E5;background:#F7F7F7">
+    <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="5">
+      <button type="button" onClick="{{ t.pick }}" aria-pressed="{{ t.on }}" style="{{ t.sty }}">{{ t.label }}</button>
+    </sc-for>
+  </nav>
+  <sc-if value="{{ v0 }}" hint-placeholder-val="{{ true }}"><dc-import name="Phase-Matrix" embedded="{{ true }}" hint-size="100%,1400px"></dc-import></sc-if>
+  <sc-if value="{{ v1 }}" hint-placeholder-val="{{ false }}"><dc-import name="Orchestrated-Pipeline" embedded="{{ true }}" hint-size="100%,1400px"></dc-import></sc-if>
+  <sc-if value="{{ v2 }}" hint-placeholder-val="{{ false }}"><dc-import name="Stage-Gate-Blend" embedded="{{ true }}" hint-size="100%,1400px"></dc-import></sc-if>
+  <sc-if value="{{ v3 }}" hint-placeholder-val="{{ false }}"><dc-import name="Evolution-2022-2026" embedded="{{ true }}" hint-size="100%,1400px"></dc-import></sc-if>
+  <sc-if value="{{ v4 }}" hint-placeholder-val="{{ false }}"><dc-import name="Resilience-Plan" embedded="{{ true }}" hint-size="100%,1400px"></dc-import></sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1200,"height":1400}}'>
+class Component extends DCLogic {
+  state = { view: 0 };
+  renderVals() {
+    const labels = ["A · Phase matrix", "B · Orchestrated pipeline", "C · Stage-gate blend", "Evolution 2022→26", "Resilience plan"];
+    const base = { display: "inline-flex", alignItems: "center", height: "36px", padding: "0 16px", borderRadius: "999px", fontSize: "13px", fontWeight: 700, fontFamily: "inherit", cursor: "pointer" };
+    const v = this.state.view;
+    return {
+      tabs: labels.map((label, i) => ({
+        label,
+        on: i === v ? "true" : "false",
+        sty: i === v
+          ? Object.assign({}, base, { background: "#191919", color: "#fff", border: "1.5px solid #191919" })
+          : Object.assign({}, base, { background: "#fff", color: "#0968F6", border: "1.5px solid #0968F6" }),
+        pick: () => this.setState({ view: i }),
+      })),
+      v0: v === 0, v1: v === 1, v2: v === 2, v3: v === 3, v4: v === 4,
+    };
+  }
+}
+</script>
+</body>
+</html>
