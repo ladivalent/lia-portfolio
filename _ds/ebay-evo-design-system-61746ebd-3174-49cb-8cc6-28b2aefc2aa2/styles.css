@@ -1,0 +1,15 @@
+/* ============================================================================
+   eBay Evo Design System — global stylesheet entry point.
+   Consumers link THIS file. It is an @import manifest only.
+   ============================================================================ */
+
+/* Full extracted Figma variable set (all collections + theme modes), loaded
+   FIRST so our curated semantic tokens below take precedence for components.
+   Shipped for completeness and deep reference. */
+@import "./tokens/fig-tokens.css";
+
+@import "./tokens/fonts.css";
+@import "./tokens/colors.css";
+@import "./tokens/evo-aliases.css";
+@import "./tokens/typography.css";
+@import "./tokens/spacing.css";
