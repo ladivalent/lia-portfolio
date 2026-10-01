@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+
+<meta charset="utf-8">
+<meta name="design_doc_mode" content="canvas">
+<title>eBay AI Mode — E2E prototype canvas</title>
+<style>
+body{margin:0;font-family:"Market Sans",system-ui,sans-serif;color:#191919}
+.frame{position:absolute;background:#fff;border:1px solid #e5e5e5;border-radius:4px;overflow:hidden}
+.frame h2{position:absolute;top:-36px;left:0;margin:0;font-size:14px;font-weight:700;color:#707070;white-space:nowrap}
+.frame iframe{border:0;width:100%;height:100%;display:block}
+.frame.mobile{background:transparent;border:0}
+.frame.mobile iframe{background:transparent}
+.rowlabel{position:absolute;left:0;margin:0;font-size:20px;font-weight:700;color:#191919}
+a{color:#191919}a:hover{color:#0968f6}
+</style>
+</head>
+<body>
+<h1 class="rowlabel" style="top:8px">Desktop · 1440×1000 — click through any frame; hotspots link every stage</h1>
+<h1 class="rowlabel" style="top:1240px">Mobile · 390×844</h1>
+<section class="frame" data-screen-label="00-intro" style="left:0px;top:80px;width:1440px;height:1000px"><h2>00-intro</h2><iframe title="00-intro" src="AI-Mode.html#/00/desktop" loading="lazy"></iframe></section>
+<section class="frame" data-screen-label="01-entry" style="left:1560px;top:80px;width:1440px;height:1000px"><h2>01-entry</h2><iframe title="01-entry" src="AI-Mode.html#/01/desktop" loading="lazy"></iframe></section>
+<section class="frame" data-screen-label="02-composing" style="left:3120px;top:80px;width:1440px;height:1000px"><h2>02-composing</h2><iframe title="02-composing" src="AI-Mode.html#/02/desktop" loading="lazy"></iframe></section>
+<section class="frame" data-screen-label="03-thinking" style="left:4680px;top:80px;width:1440px;height:1000px"><h2>03-thinking</h2><iframe title="03-thinking" src="AI-Mode.html#/03/desktop" loading="lazy"></iframe></section>
+<section class="frame" data-screen-label="04-plan-proposed" style="left:6240px;top:80px;width:1440px;height:1000px"><h2>04-plan-proposed</h2><iframe title="04-plan-proposed" src="AI-Mode.html#/04/desktop" loading="lazy"></iframe></section>
+<section class="frame" data-screen-label="05-plan-editing" style="left:7800px;top:80px;width:1440px;height:1000px"><h2>05-plan-editing</h2><iframe title="05-plan-editing" src="AI-Mode.html#/05/desktop" loading="lazy"></iframe></section>
+<section class="frame" data-screen-label="06-running" style="left:9360px;top:80px;width:1440px;height:1000px"><h2>06-running</h2><iframe title="06-running" src="AI-Mode.html#/06/desktop" loading="lazy"></iframe></section>
+<section class="frame" data-screen-label="06-running-error" style="left:10920px;top:80px;width:1440px;height:1000px"><h2>06-running-error</h2><iframe title="06-running-error" src="AI-Mode.html#/06-error/desktop" loading="lazy"></iframe></section>
+<section class="frame" data-screen-label="06-running-paused" style="left:12480px;top:80px;width:1440px;height:1000px"><h2>06-running-paused</h2><iframe title="06-running-paused" src="AI-Mode.html#/06-paused/desktop" loading="lazy"></iframe></section>
+<section class="frame" data-screen-label="07-answer" style="left:14040px;top:80px;width:1440px;height:1000px"><h2>07-answer</h2><iframe title="07-answer" src="AI-Mode.html#/07/desktop" loading="lazy"></iframe></section>
+<section class="frame" data-screen-label="07-answer-empty" style="left:15600px;top:80px;width:1440px;height:1000px"><h2>07-answer-empty</h2><iframe title="07-answer-empty" src="AI-Mode.html#/07-empty/desktop" loading="lazy"></iframe></section>
+<section class="frame" data-screen-label="08-sources" style="left:17160px;top:80px;width:1440px;height:1000px"><h2>08-sources</h2><iframe title="08-sources" src="AI-Mode.html#/08/desktop" loading="lazy"></iframe></section>
+<section class="frame" data-screen-label="09-draft-offer" style="left:18720px;top:80px;width:1440px;height:1000px"><h2>09-draft-offer</h2><iframe title="09-draft-offer" src="AI-Mode.html#/09/desktop" loading="lazy"></iframe></section>
+<section class="frame" data-screen-label="10-offer-sent" style="left:20280px;top:80px;width:1440px;height:1000px"><h2>10-offer-sent</h2><iframe title="10-offer-sent" src="AI-Mode.html#/10/desktop" loading="lazy"></iframe></section>
+<section class="frame" data-screen-label="11-classic-search" style="left:21840px;top:80px;width:1440px;height:1000px"><h2>11-classic-search</h2><iframe title="11-classic-search" src="AI-Mode.html#/11/desktop" loading="lazy"></iframe></section>
+<section class="frame" data-screen-label="12-history" style="left:23400px;top:80px;width:1440px;height:1000px"><h2>12-history</h2><iframe title="12-history" src="AI-Mode.html#/12/desktop" loading="lazy"></iframe></section>
+<section class="frame" data-screen-label="13-memory-hub" style="left:24960px;top:80px;width:1440px;height:1000px"><h2>13-memory-hub</h2><iframe title="13-memory-hub" src="AI-Mode.html#/13/desktop" loading="lazy"></iframe></section>
+<section class="frame" data-screen-label="00-component-index" style="left:26520px;top:80px;width:1440px;height:1000px"><h2>00-component-index</h2><iframe title="00-component-index" src="AI-Mode.html#/index/desktop" loading="lazy"></iframe></section>
+<section class="frame mobile" data-screen-label="00-intro-mobile" style="left:0px;top:1280px;width:430px;height:920px"><h2>00-intro-mobile</h2><iframe title="00-intro-mobile" src="AI-Mode.html#/00/mobile" loading="lazy"></iframe></section>
+<section class="frame mobile" data-screen-label="01-entry-mobile" style="left:1560px;top:1280px;width:430px;height:920px"><h2>01-entry-mobile</h2><iframe title="01-entry-mobile" src="AI-Mode.html#/01/mobile" loading="lazy"></iframe></section>
+<section class="frame mobile" data-screen-label="02-composing-mobile" style="left:3120px;top:1280px;width:430px;height:920px"><h2>02-composing-mobile</h2><iframe title="02-composing-mobile" src="AI-Mode.html#/02/mobile" loading="lazy"></iframe></section>
+<section class="frame mobile" data-screen-label="03-thinking-mobile" style="left:4680px;top:1280px;width:430px;height:920px"><h2>03-thinking-mobile</h2><iframe title="03-thinking-mobile" src="AI-Mode.html#/03/mobile" loading="lazy"></iframe></section>
+<section class="frame mobile" data-screen-label="04-plan-proposed-mobile" style="left:6240px;top:1280px;width:430px;height:920px"><h2>04-plan-proposed-mobile</h2><iframe title="04-plan-proposed-mobile" src="AI-Mode.html#/04/mobile" loading="lazy"></iframe></section>
+<section class="frame mobile" data-screen-label="05-plan-editing-mobile" style="left:7800px;top:1280px;width:430px;height:920px"><h2>05-plan-editing-mobile</h2><iframe title="05-plan-editing-mobile" src="AI-Mode.html#/05/mobile" loading="lazy"></iframe></section>
+<section class="frame mobile" data-screen-label="06-running-mobile" style="left:9360px;top:1280px;width:430px;height:920px"><h2>06-running-mobile</h2><iframe title="06-running-mobile" src="AI-Mode.html#/06/mobile" loading="lazy"></iframe></section>
+<section class="frame mobile" data-screen-label="06-running-error-mobile" style="left:10920px;top:1280px;width:430px;height:920px"><h2>06-running-error-mobile</h2><iframe title="06-running-error-mobile" src="AI-Mode.html#/06-error/mobile" loading="lazy"></iframe></section>
+<section class="frame mobile" data-screen-label="06-running-paused-mobile" style="left:12480px;top:1280px;width:430px;height:920px"><h2>06-running-paused-mobile</h2><iframe title="06-running-paused-mobile" src="AI-Mode.html#/06-paused/mobile" loading="lazy"></iframe></section>
+<section class="frame mobile" data-screen-label="07-answer-mobile" style="left:14040px;top:1280px;width:430px;height:920px"><h2>07-answer-mobile</h2><iframe title="07-answer-mobile" src="AI-Mode.html#/07/mobile" loading="lazy"></iframe></section>
+<section class="frame mobile" data-screen-label="07-answer-empty-mobile" style="left:15600px;top:1280px;width:430px;height:920px"><h2>07-answer-empty-mobile</h2><iframe title="07-answer-empty-mobile" src="AI-Mode.html#/07-empty/mobile" loading="lazy"></iframe></section>
+<section class="frame mobile" data-screen-label="08-sources-mobile" style="left:17160px;top:1280px;width:430px;height:920px"><h2>08-sources-mobile</h2><iframe title="08-sources-mobile" src="AI-Mode.html#/08/mobile" loading="lazy"></iframe></section>
+<section class="frame mobile" data-screen-label="09-draft-offer-mobile" style="left:18720px;top:1280px;width:430px;height:920px"><h2>09-draft-offer-mobile</h2><iframe title="09-draft-offer-mobile" src="AI-Mode.html#/09/mobile" loading="lazy"></iframe></section>
+<section class="frame mobile" data-screen-label="10-offer-sent-mobile" style="left:20280px;top:1280px;width:430px;height:920px"><h2>10-offer-sent-mobile</h2><iframe title="10-offer-sent-mobile" src="AI-Mode.html#/10/mobile" loading="lazy"></iframe></section>
+<section class="frame mobile" data-screen-label="11-classic-search-mobile" style="left:21840px;top:1280px;width:430px;height:920px"><h2>11-classic-search-mobile</h2><iframe title="11-classic-search-mobile" src="AI-Mode.html#/11/mobile" loading="lazy"></iframe></section>
+<section class="frame mobile" data-screen-label="12-history-mobile" style="left:23400px;top:1280px;width:430px;height:920px"><h2>12-history-mobile</h2><iframe title="12-history-mobile" src="AI-Mode.html#/12/mobile" loading="lazy"></iframe></section>
+<section class="frame mobile" data-screen-label="13-memory-hub-mobile" style="left:24960px;top:1280px;width:430px;height:920px"><h2>13-memory-hub-mobile</h2><iframe title="13-memory-hub-mobile" src="AI-Mode.html#/13/mobile" loading="lazy"></iframe></section>
+</body>
+</html>

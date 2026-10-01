@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="../_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/tokens/fonts.css">
+  <link rel="stylesheet" href="../_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/tokens/colors.css">
+  <script src="../_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/_ds_bundle.js"></script>
+  <style>
+    body { margin: 0; background: #f7f7f7; -webkit-font-smoothing: antialiased; }
+    a { color: #0968f6; } a:hover { color: #0757ce; }
+    @keyframes szUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+    @keyframes szCaret { 0%, 55% { opacity: 1; } 56%, 100% { opacity: 0; } }
+    @keyframes szBlip { 0%, 100% { opacity: 0.5; transform: scale(1); } 50% { opacity: 0; transform: scale(2.4); } }
+    @keyframes szPulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(9,104,246,0.38); } 55% { box-shadow: 0 0 0 12px rgba(9,104,246,0); } }
+  </style>
+</helmet>
+
+<section style="min-height: 100vh; padding: {{ pagePad }}; font-family: 'Market Sans', Helvetica, Arial, sans-serif; color: #191919; box-sizing: border-box;">
+  <div style="max-width: 1360px; margin: 0 auto; display: flex; flex-direction: column; gap: 24px;">
+
+    <div style="display: {{ headerDisplay }}; align-items: center; gap: 20px; flex-wrap: wrap;">
+      <div style="display: flex; flex-direction: column; gap: 4px; min-width: 0;">
+        <span style="font-size: 12px; color: #707070;">Case study · Prototype</span>
+        <h1 style="margin: 0; font-size: 24px; font-weight: 700; letter-spacing: -0.01em;">AI Size Intelligence · “nike air max EU 42”</h1>
+      </div>
+      <span style="flex: 1;"></span>
+      <div style="display: inline-flex; background: #ffffff; border: 1px solid #e5e5e5; border-radius: 999px; padding: 3px;">
+        <span onClick="{{ setFirst }}" style="{{ tabFirst }}">First-time shopper</span>
+        <span onClick="{{ setReturning }}" style="{{ tabReturning }}">Returning shopper</span>
+      </div>
+      <span onClick="{{ reset }}" style="display: inline-flex; align-items: center; height: 38px; padding: 0 18px; border-radius: 999px; border: 1.5px solid #191919; font-size: 13px; font-weight: 700; cursor: pointer; background: #fff;">Restart</span>
+      
+    </div>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 28px; align-items: flex-start; justify-content: center;">
+
+      <!-- Rail -->
+      <div style="flex: 1 1 280px; max-width: 320px; min-width: 260px; order: 1; background: #fff; border: 1px solid #e5e5e5; border-radius: 16px; padding: 10px; display: flex; flex-direction: column; gap: 2px;">
+        <div style="padding: 10px 12px 8px; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #707070;">Journey · {{ stepNum }} of 8</div>
+        <sc-for list="{{ rail }}" as="r" hint-placeholder-count="8">
+          <div onClick="{{ r.onClick }}" style="display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 12px; cursor: pointer; background: {{ r.bg }};" style-hover="background: #f7f7f7;">
+            <span style="width: 24px; height: 24px; flex: none; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; font-size: 11.5px; font-weight: 700; background: {{ r.numBg }}; color: {{ r.numColor }}; border: 1.5px solid {{ r.numBorder }}; box-sizing: border-box;">{{ r.mark }}</span>
+            <span style="flex: 1; font-size: 13.5px; font-weight: {{ r.weight }};">{{ r.label }}</span>
+            <span style="font-size: 10px; font-weight: 700; letter-spacing: 0.6px; padding: 3px 8px; border-radius: 999px; background: {{ r.ruleBg }}; color: {{ r.ruleColor }};">{{ r.rule }}</span>
+          </div>
+        </sc-for>
+        <div style="display: flex; gap: 8px; padding: 12px 10px 6px;">
+          <span onClick="{{ back }}" style="flex: 1; height: 38px; border-radius: 999px; border: 1.5px solid #191919; display: inline-flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; cursor: pointer;">Back</span>
+          <span onClick="{{ next }}" style="flex: 1; height: 38px; border-radius: 999px; background: #0968f6; color: #fff; display: inline-flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; cursor: pointer;">{{ nextLabel }}</span>
+        </div>
+      </div>
+
+      <!-- Phone -->
+      <div style="flex: none; width: 402px; order: 0; display: flex; justify-content: center;">
+        <x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" hint-size="402px,874px">
+
+          <!-- 0 · Home -->
+          <sc-if value="{{ s0 }}" hint-placeholder-val="{{ true }}">
+            <div data-screen-label="1 Home" style="font-family: 'Market Sans', Helvetica, Arial, sans-serif; height: 100%; display: flex; flex-direction: column; background: #fff; overflow: hidden; animation: szUp 0.28s cubic-bezier(0.2,0,0,1);">
+              <div style="flex: none; padding: 58px 16px 12px;">
+                <div style="display: flex; align-items: center; gap: 14px;">
+                  <x-import component-from-global-scope="EBayEvoDesignSystem_61746e.EBayLogo" hint-size="80px,32px" style="height: 32px;"></x-import>
+                  <span style="flex: 1;"></span>
+                  <x-import component-from-global-scope="EBayEvoDesignSystem_61746e.Icon" name="Cart24" size="22" hint-size="22px,22px"></x-import>
+                </div>
+                <div onClick="{{ toSearch }}" data-screen-label="Search field" style="display: flex; align-items: center; gap: 10px; height: 44px; padding: 0 8px 0 14px; border: 1px solid #8f8f8f; border-radius: 999px; margin-top: 12px; cursor: pointer;">
+                  <x-import component-from-global-scope="EBayEvoDesignSystem_61746e.Icon" name="Search16" size="15" hint-size="15px,15px" style="color: #707070;"></x-import>
+                  <span style="flex: 1; font-size: 14px; color: #707070;">Search or ask anything</span>
+                  <x-import component-from-global-scope="EBayEvoDesignSystem_61746e.Icon" name="Microphone24" size="18" hint-size="18px,18px"></x-import>
+                  <span style="width: 30px; height: 30px; border-radius: 999px; background: #eef4ff; display: inline-flex; align-items: center; justify-content: center; color: #0968f6;"><x-import component-from-global-scope="EBayEvoDesignSystem_61746e.Icon" name="AI16" size="15" hint-size="15px,15px"></x-import></span>
+                </div>
+                <div style="display: flex; gap: 8px; margin-top: 10px; overflow: hidden; margin-right: -16px;">
+                  <span style="flex: none; display: inline-flex; align-items: center; gap: 7px; height: 34px; padding: 0 14px; border-radius: 999px; background: #191919; color: #fff; font-size: 13px; font-weight: 700;"><x-import component-from-global-scope="EBayEvoDesignSystem_61746e.Icon" name="Sneaker16" size="15" hint-size="15px,15px"></x-import>Sneakers</span>
+                  <span style="flex: none; display: inline-flex; align-items: center; height: 34px; padding: 0 14px; border-radius: 999px; background: #f2f2f2; font-size: 13px;">Fashion</span>
+                  <span style="flex: none; display: inline-flex; align-items: center; height: 34px; padding: 0 14px; border-radius: 999px; background: #f2f2f2; font-size: 13px;">Watches</span>
+                  <span style="flex: none; display: inline-flex; align-items: center; height: 34px; padding: 0 14px; border-radius: 999px; background: #f2f2f2; font-size: 13px;">Collectibles</span>
+                </div>
+              </div>
+              <div style="flex: 1; overflow: auto; padding: 4px 16px 96px;">
+                <sc-if value="{{ homeBannerOn }}" hint-placeholder-val="{{ true }}">
+                  <div data-screen-label="Size memory banner" style="border: 1px solid #e5e5e5; border-radius: 16px; padding: 14px; margin-bottom: 18px; display: flex; gap: 12px; align-items: flex-start;">
+                    <span style="width: 38px; height: 38px; flex: none; border-radius: 999px; background: #eef4ff; display: inline-flex; align-items: center; justify-content: center; color: #0968f6;"><x-import component-from-global-scope="EBayEvoDesignSystem_61746e.Icon" name="Ruler24" size="19" hint-size="19px,19px"></x-import></span>
+                    <div style="flex: 1; min-width: 0;">
+                      <div style="font-size: 14px; font-weight: 700;">{{ homeBannerTitle }}</div>
+                      <div style="font-size: 12.5px; line-height: 17px; color: #707070; margin-top: 3px;">{{ homeBannerSub }}</div>
+                    </div>
+                  </div>
+                </sc-if>
+                <div style="display: flex; align-items: flex-end; margin-bottom: 10px;">
+                  <div><div style="font-size: 16px; font-weight: 700;">Sneakers in your size</div><div style="font-size: 12px; color: #707070; margin-top: 2px;">{{ homeShelfSub }}</div></div>
+                  <span style="flex: 1;"></span>
+                  <span style="font-size: 12.5px; font-weight: 700; text-decoration: underline;">See all</span>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                  <sc-for list="{{ homeShelf }}" as="h" hint-placeholder-count="4">
+                    <div style="min-width: 0;">
+                      <div style="position: relative; height: 150px; border-radius: 12px; background: #f2f2f2; overflow: hidden;"><span role="img" style="display: block; width: 100%; height: 100%; background-image: url({{ h.img }}); background-size: cover; background-position: center;"></span>
+                        <span style="position: absolute; top: 8px; right: 8px; width: 28px; height: 28px; border-radius: 999px; background: rgba(255,255,255,0.92); display: inline-flex; align-items: center; justify-content: center; box-shadow: 0 1px 3px rgba(0,0,0,0.18); color: #191919;"><x-import component-from-global-scope="EBayEvoDesignSystem_61746e.Icon" name="Heart16" size="14" hint-size="14px,14px"></x-import></span>
+                      </div>
+                      <div style="font-size: 12.5px; line-height: 16px; height: 32px; overflow: hidden; margin-top: 7px;">{{ h.title }}</div>
+                      <div style="font-size: 15px; font-weight: 700; margin-top: 3px;">{{ h.price }}</div>
+                      <div style="font-size: 11px; color: #707070; margin-top: 1px;">{{ h.meta }}</div>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
+              <div style="flex: none; position: relative; z-index: 30;">
+                <div style="position: absolute; left: 10px; right: 10px; bottom: 8px; height: 62px; background: #fff; border-radius: 999px; box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 6px 22px rgba(0,0,0,0.18); display: flex; align-items: center; padding: 0 6px;">
+                  <span style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px;"><x-import component-from-global-scope="EBayEvoDesignSystem_61746e.Icon" name="HomeFilled24" size="22" hint-size="22px,22px"></x-import><span style="font-size: 10px; font-weight: 700;">Home</span></span>
+                  <span style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; color: #707070;"><x-import component-from-global-scope="EBayEvoDesignSystem_61746e.Icon" name="Profile24" size="22" hint-size="22px,22px"></x-import><span style="font-size: 10px;">My eBay</span></span>
+                  <span onClick="{{ toSearch }}" style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; color: #707070; cursor: pointer;"><x-import component-from-global-scope="EBayEvoDesignSystem_61746e.Icon" name="Search24" size="22" hint-size="22px,22px"></x-import><span style="font-size: 10px;">Search</span></span>
+                  <span style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; color: #707070;"><x-import component-from-global-scope="EBayEvoDesignSystem_61746e.Icon" name="Notification24" size="22" hint-size="22px,22px"></x-import><span style="font-size: 10px;">Inbox</span></span>
+                  <span style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; color: #707070;"><x-import component-from-global-scope="EBayEvoDesignSystem_61746e.Icon" name="Selling24" size="22" hint-size="22px,22px"></x-import><span style="font-size: 10px;">Selling</span></span>
+                </div>
+              </div>
+            </div>
+          </sc-if>
+
+          <!-- 1 · Typing -->
+          <sc-if value="{{ s1 }}" hint-placeholder-val="{{ false }}">
+            <div data-screen-label="2 Search typing" style="font-family: 'Market Sans', Helvetica, Arial, sans-serif; height: 100%; display: flex; flex-direction: column; background: #fff; overflow: hidden;">
+              <div style="flex: 1; overflow: auto; padding: 58px 16px 0;">
+                <sc-for list="{{ suggestions }}" as="sg" hint-placeholder-count="5">
+                  <div onClick="{{ sg.go }}" style="display: flex; align-items: center; gap: 12px; min-height: 46px; cursor: pointer; opacity: {{ sg.op }};">
+                    <span style="color: #707070; display: inline-flex;"><x-import component-from-global-scope="EBayEvoDesignSystem_61746e.Icon" name="{{ sg.icon }}" size="16" hint-size="16px,16px"></x-import></span>
+                    <span style="flex: 1; min-width: 0; display: flex; flex-direction: column;">
+                      <span style="font-size: 14.5px;">{{ sg.pre }}<span style="font-weight: 700;">{{ sg.bold }}</span></span>
+                      <span style="display: {{ sg.subDisplay }}; font-size: 11.5px; color: #707070; margin-top: 1px;">{{ sg.sub }}</span>
+                    </span>
+                  </div>
+                </sc-for>
+              </div>
+              <div style="flex: none; padding: 10px 12px 12px;">
+                <div data-screen-label="Composer" style="border: 1.5px solid #0968f6; box-shadow: 0 0 0 3px rgba(9,104,246,0.12); border-radius: 18px; padding: 12px 12px 10px; background: #fff;">
+                  <div style="font-size: 15px; line-height: 20px; min-height: 20px;">{{ typed }}<span style="display: {{ caretDisplay }}; width: 2px; height: 15px; background: #0968f6; margin-left: 1px; vertical-align: -2px; animation: szCaret 0.9s steps(1) infinite;"></span></div>
+                  <div style="display: flex; align-items: center; gap: 16px; margin-top: 12px;">
+                    <x-import component-from-global-scope="EBayEvoDesignSystem_61746e.Icon" name="Camera24" size="20" hint-size="20px,20px"></x-import>
+                    <span style="flex: 1;"></span>
+                    <x-import component-from-global-scope="EBayEvoDesignSystem_61746e.Icon" name="Microphone24" size="20" hint-size="20px,20px"></x-import>
+                    <span onClick="{{ submit }}" style="width: 32px; height: 32px; border-radius: 999px; background: {{ goBg }}; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; color: #fff; animation: {{ goAnim }};"><x-import component-from-global-scope="EBayEvoDesignSystem_61746e.Icon" name="ArrowRight24" size="18" hint-size="18px,18px"></x-import></span>
+                  </div>
+                </div>
+              </div>
+              <div onClick="{{ submit }}" style="flex: none; background: #d3d7dc; padding: 8px 3px 0; cursor: pointer;">
+                <div style="display: flex; gap: 5px; justify-content: center;"><sc-for list="{{ kb1 }}" as="k" hint-placeholder-count="10"><span style="width: 33px; height: 42px; background: #fff; border-radius: 5px; box-shadow: 0 1px 0 #898a8d; display: inline-flex; align-items: center; justify-content: center; font-size: 17px;">{{ k }}</span></sc-for></div>
+                <div style="display: flex; gap: 5px; justify-content: center; margin-top: 9px;"><sc-for list="{{ kb2 }}" as="k" hint-placeholder-count="9"><span style="width: 33px; height: 42px; background: #fff; border-radius: 5px; box-shadow: 0 1px 0 #898a8d; display: inline-flex; align-items: center; justify-content: center; font-size: 17px;">{{ k }}</span></sc-for></div>
+                <div style="display: flex; gap: 5px; justify-content: center; margin-top: 9px;"><span style="width: 44px; height: 42px; background: #aeb3bc; border-radius: 5px; box-shadow: 0 1px 0 #898a8d; display: inline-flex; align-items: center; justify-content: center; font-size: 15px;">⇧</span><sc-for list="{{ kb3 }}" as="k" hint-placeholder-count="7"><span style="width: 33px; height: 42px; background: #fff; border-radius: 5px; box-shadow: 0 1px 0 #898a8d; display: inline-flex; align-items: center; justify-content: center; font-size: 17px;">{{ k }}</span></sc-for><span style="width: 44px; height: 42px; background: #aeb3bc; border-radius: 5px; box-shadow: 0 1px 0 #898a8d; display: inline-flex; align-items: center; justify-content: center; font-size: 15px;">⌫</span></div>
+                <div style="display: flex; gap: 5px; margin-top: 9px; padding: 0 3px;"><span style="width: 92px; height: 42px; background: #aeb3bc; border-radius: 5px; box-shadow: 0 1px 0 #898a8d; display: inline-flex; align-items: center; justify-content: center; font-size: 14px;">123</span><span style="flex: 1; height: 42px; background: #fff; border-radius: 5px; box-shadow: 0 1px 0 #898a8d; display: inline-flex; align-items: center; justify-content: center; font-size: 15px;">space</span><span style="width: 92px; height: 42px; background: #0968f6; color: #fff; border-radius: 5px; box-shadow: 0 1px 0 #898a8d; display: inline-flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 700;">go</span></div>
+                <div style="width: 134px; height: 5px; border-radius: 3px; background: #191919; margin: 14px auto 8px;"></div>
+              </div>
+            </div>
+          </sc-if>
+
+          <!-- 2 · Agent reads it back -->
+          <sc-if value="{{ s2 }}" hint-placeholder-val="{{ false }}">
+            <div data-screen-label="3 Agent reads it back" style="font-family: 'Market Sans', Helvetica, Arial, sans-serif; height: 100%; display: flex; flex-direction: column; background: #fff; overflow: hidden; animation: szUp 0.28s cubic-bezier(0.2,0,0,1);">
+              <div style="flex: none; display: flex; align-items: center; padding: 58px 16px 10px;">
+                <span onClick="{{ toTyping }}" style="width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; margin-left: -8px;"><x-import component-from-global-scope="EBayEvoDesignSystem_61746e.Icon" name="ArrowLeft24" size="22" hint-size="22px,22px"></x-import></span>
+                <span style="flex: 1;"></span>
+                <span style="display: inline-flex; align-items: center; gap: 10px; height: 34px; padding: 0 14px; border: 1px solid #e5e5e5; border-radius: 999px; background: #f7f7f7;"><x-import component-from-global-scope="EBayEvoDesignSystem_61746e.Icon" name="Search16" size="15" hint-size="15px,15px"></x-import><span style="width: 1px; height: 16px; background: #d5d5d5;"></span><span style="color: #0968f6; display: inline-flex;"><x-import component-from-global-scope="EBayEvoDesignSystem_61746e.Icon" name="AI16" size="15" hint-size="15px,15px"></x-import></span></span>
+                <span style="flex: 1;"></span>
+                <x-import component-from-global-scope="EBayEvoDesignSystem_61746e.Icon" name="Filter24" size="20" hint-size="20px,20px"></x-import>
+              </div>
+              <div style="flex: 1; overflow: auto; padding: 8px 16px 0; display: flex; flex-direction: column; gap: 14px;">
+                <div style="align-self: flex-end; max-width: 280px; background: #0968f6; color: #fff; border-radius: 16px 16px 4px 16px; padding: 11px 13px; font-size: 14px; line-height: 19px;">nike air max EU 42</div>
+                <div style="display: {{ planDisplay }}; flex-direction: column; gap: 11px; border: 1px solid #e5e5e5; border-radius: 16px; padding: 14px;">
+                  <div style="display: flex; align-items: center; gap: 7px; font-size: 13px; font-weight: 700;"><span style="color: #0968f6; display: inline-flex;"><x-import component-from-global-scope="EBayEvoDesignSystem_61746e.Icon" name="AI16" size="15" hint-size="15px,15px"></x-import></span>Here’s how I read that</div>
+                  <sc-for list="{{ plan }}" as="pl" hint-placeholder-count="3">
+                    <div style="display: flex; gap: 9px; align-items: flex-start; animation: szUp 0.3s cubic-bezier(0.2,0,0,1);">
+                      <span style="color: {{ pl.color }}; display: inline-flex; margin-top: 1px;"><x-import component-from-global-scope="EBayEvoDesignSystem_61746e.Icon" name="{{ pl.icon }}" size="15" hint-size="15px,15px"></x-import></span>
+                      <div style="flex: 1; min-width: 0;">
+                        <div style="font-size: 13px; font-weight: 700; line-height: 17px;">{{ pl.t }}</div>
+                        <div style="font-size: 11.5px; color: #707070; line-height: 15px; margin-top: 1px;">{{ pl.s }}</div>
+                      </div>
+                    </div>
+                  </sc-for>
+                  <div style="display: {{ statusDisplay }}; align-items: center; gap: 8px; border-top: 1px solid #f0f0f0; padding-top: 11px;">
+                    <span style="width: 8px; height: 8px; flex: none; border-radius: 999px; background: #0968f6; animation: szBlip 1.1s infinite;"></span>
+                    <span style="font-size: 12px; color: #707070;">{{ statusLine }}</span>
+                  </div>
+                </div>
+                <div style="display: {{ confDisplay }}; align-items: center; gap: 10px; padding: 10px 14px; border-radius: 12px; background: #f7f7f7; font-size: 12px; color: #707070; line-height: 16px;">
+                  <span style="font-size: 16px; font-weight: 700; color: #191919;">{{ confPct }}</span>
+                  <span>sure about the size. Above 90%, so I apply it and leave you an undo. No question needed.</span>
+                </div>
+              </div>
+              <div style="flex: none; padding: 0 16px 34px; text-align: center;"><span onClick="{{ toResults }}" style="font-size: 13px; font-weight: 700; color: #0968f6; cursor: pointer;">Skip to results</span></div>
+            </div>
+          </sc-if>
+
+          <!-- 3 · Results with receipt -->
+          <sc-if value="{{ s3 }}" hint-placeholder-val="{{ false }}">
+            <div data-screen-label="4 Results with receipt bar" style="font-family: 'Market Sans', Helvetica, Arial, sans-serif; position: relative; height: 100%; display: flex; flex-direction: column; background: #fff; overflow: hidden; animation: szUp 0.28s cubic-bezier(0.2,0,0,1);">
+              <div style="flex: none; display: flex; align-items: center; gap: 10px; padding: 58px 16px 8px;">
+                <span onClick="{{ toTyping }}" style="width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; margin-left: -8px;"><x-import component-from-global-scope="EBayEvoDesignSystem_61746e.Icon" name="ArrowLeft24" size="22" hint-size="22px,22px"></x-import></span>
+                <span style="flex: 1; display: flex; align-items: center; gap: 8px; height: 36px; padding: 0 12px; border: 1px solid #8f8f8f; border-radius: 999px; font-size: 13.5px;"><x-import component-from-global-scope="EBayEvoDesignSystem_61746e.Icon" name="Search16" size="14" hint-size="14px,14px"></x-import>nike air max EU 42</span>
+                <x-import component-from-global-scope="EBayEvoDesignSystem_61746e.Icon" name="Filter24" size="20" hint-size="20px,20px"></x-import>
+              </div>
+              <sc-if value="{{ applied }}" hint-placeholder-val="{{ true }}">
+                <div data-screen-label="Receipt bar" style="flex: none; margin: 4px 12px 0; padding: 10px 12px; border-radius: 12px; background: #191919; color: #fff; display: flex; align-items: center; gap: 10px; animation: szUp 0.25s cubic-bezier(0.2,0,0,1);">
+                  <span style="color: #8cc0ff; display: inline-flex;"><x-import component-from-global-scope="EBayEvoDesignSystem_61746e.Icon" name="AI16" size="14" hint-size="14px,14px"></x-import></span>
+                  <span style="flex: 1; font-size: 12.5px; line-height: 16px;"><strong>Applied EU 42</strong> · US 8.5 M · UK 7.5 · {{ appliedCount }} listings</span>
+                  <span onClick="{{ undo }}" style="font-size: 12.5px; font-weight: 700; color: #8cc0ff; cursor: pointer; display: inline-flex; align-items: center; gap: 4px;"><x-import component-from-global-scope="EBayEvoDesignSystem_61746e.Icon" name="Undo16" size="13" hint-size="13px,13px"></x-import>Undo</span>
+                </div>
+              </sc-if>
+              <sc-if value="{{ undone }}" hint-placeholder-val="{{ false }}">
+                <div data-screen-label="Undone bar" style="flex: none; margin: 4px 12px 0; padding: 10px 12px; border-radius: 12px; background: #f7f7f7; border: 1px solid #e5e5e5; display: flex; align-items: center; gap: 10px;">
+                  <span style="flex: 1; font-size: 12.5px; line-height: 16px; color: #707070;">Showing every “42” as listed. Sizes may mix scales.</span>
+                  <span onClick="{{ reapply }}" style="font-size: 12.5px; font-weight: 700; color: #0968f6; cursor: pointer;">Reapply EU 42</span>
+                </div>
+              </sc-if>
+              <div style="flex: none; display: flex; gap: 6px; padding: 10px 16px; overflow-x: auto; border-bottom: 1px solid #f0f0f0;">
+                <sc-for list="{{ chips }}" as="c" hint-placeholder-count="4">
+                  <span onClick="{{ c.onClick }}" style="flex: none; display: inline-flex; align-items: center; gap: 5px; height: 30px; padding: 0 12px; border: 1px solid {{ c.border }}; border-radius: 999px; font-size: 12px; font-weight: 700; background: {{ c.bg }}; color: {{ c.color }}; cursor: pointer;">{{ c.label }}</span>
+                </sc-for>
+              </div>
+              <div style="flex: 1; overflow: auto; padding: 12px 16px 120px;">
+                <div style="font-size: 12px; color: #707070; margin-bottom: 10px;">{{ resultsLabel }}</div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px 12px;">
+                  <sc-for list="{{ results }}" as="it" hint-placeholder-count="4">
+                    <div onClick="{{ it.open }}" style="min-width: 0; cursor: pointer;">
+                      <div style="position: relative; height: 150px; border-radius: 12px; background: #f2f2f2; overflow: hidden;"><span role="img" style="display: block; width: 100%; height: 100%; background-image: url({{ it.img }}); background-size: cover; background-position: center;"></span>
+                        <span style="position: absolute; left: 8px; bottom: 8px; display: inline-flex; align-items: center; gap: 5px; height: 22px; padding: 0 9px; border-radius: 999px; font-size: 10px; font-weight: 700; background: {{ it.fitBg }}; color: {{ it.fitColor }}; border: 1px solid {{ it.fitBorder }};">{{ it.fit }}</span>
+                      </div>
+                      <div style="font-size: 12.5px; line-height: 16px; height: 32px; overflow: hidden; margin-top: 7px;">{{ it.title }}</div>
+                      <div style="font-size: 15px; font-weight: 700; margin-top: 3px;">{{ it.price }}</div>
+                      <div style="font-size: 11px; color: #707070; margin-top: 1px;">{{ it.meta }}</div>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
+              <sc-if value="{{ widthAskOn }}" hint-placeholder-val="{{ false }}">
+                <div data-screen-label="Width ask sheet" style="position: absolute; left: 0; right: 0; bottom: 0; z-index: 20; background: #fff; border-radius: 20px 20px 0 0; box-shadow: 0 -8px 30px rgba(0,0,0,0.16); padding: 14px 16px 40px; animation: szUp 0.3s cubic-bezier(0.2,0,0,1);">
+                  <div style="width: 36px; height: 4px; border-radius: 2px; background: #d9d9d9; margin: 0 auto 12px;"></div>
+                  <div style="display: flex; align-items: center; gap: 8px;"><span style="color: #0968f6; display: inline-flex;"><x-import component-from-global-scope="EBayEvoDesignSystem_61746e.Icon" name="AI16" size="15" hint-size="15px,15px"></x-import></span><span style="font-size: 15px; font-weight: 700;">One thing: what width?</span><span style="flex: 1;"></span><span onClick="{{ skipWidth }}" style="font-size: 12.5px; font-weight: 700; color: #707070; cursor: pointer;">Skip</span></div>
+                  <div style="font-size: 12.5px; color: #707070; line-height: 17px; margin-top: 4px;">Air Max runs narrow. Results stay right here while you answer.</div>
+                  <div style="display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap;">
+                    <sc-for list="{{ widthOpts }}" as="w" hint-placeholder-count="3">
+                      <span onClick="{{ w.onClick }}" style="display: inline-flex; flex-direction: column; gap: 2px; padding: 10px 14px; border-radius: 12px; border: 1.5px solid #191919; cursor: pointer;"><span style="font-size: 13px; font-weight: 700;">{{ w.label }}</span><span style="font-size: 11px; color: #707070;">{{ w.sub }}</span></span>
+                    </sc-for>
+                  </div>
+                </div>
+              </sc-if>
+            </div>
+          </sc-if>
+
+          <!-- 4 · Item page -->
+          <sc-if value="{{ s4 }}" hint-placeholder-val="{{ false }}">
+            <div data-screen-label="5 Item page" style="font-family: 'Market Sans', Helvetica, Arial, sans-serif; height: 100%; display: flex; flex-direction: column; background: #fff; overflow: hidden; animation: szUp 0.28s cubic-bezier(0.2,0,0,1);">
+              <div style="flex: 1; overflow: auto;">
+                <div style="position: relative; height: 300px; background: #f2f2f2; overflow: hidden;">
+                  <span role="img" style="display: block; width: 100%; height: 100%; background-image: url({{ heroImg }}); background-size: cover; background-position: center;"></span>
+                  <span onClick="{{ toResults }}" style="position: absolute; top: 58px; left: 12px; width: 36px; height: 36px; border-radius: 999px; background: rgba(255,255,255,0.92); display: inline-flex; align-items: center; justify-content: center; cursor: pointer; color: #191919;"><x-import component-from-global-scope="EBayEvoDesignSystem_61746e.Icon" name="ArrowLeft24" size="20" hint-size="20px,20px"></x-import></span>
+                  <span style="position: absolute; top: 58px; right: 12px; width: 36px; height: 36px; border-radius: 999px; background: rgba(255,255,255,0.92); display: inline-flex; align-items: center; justify-content: center; color: #191919;"><x-import component-from-global-scope="EBayEvoDesignSystem_61746e.Icon" name="Heart16" size="16" hint-size="16px,16px"></x-import></span>
+                </div>
+                <div style="padding: 14px 16px 0;">
+                  <div style="font-size: 16px; line-height: 21px;">Nike Air Max 90 ‘Infrared’ (2020) · Men’s</div>
+                  <div style="display: flex; align-items: baseline; gap: 8px; margin-top: 8px;"><span style="font-size: 24px; font-weight: 700;">$128.00</span><span style="font-size: 13px; color: #707070;">Buy It Now · Free shipping</span></div>
+                  <div style="font-size: 12.5px; color: #707070; margin-top: 4px;">Pre-owned, excellent · kicksvault_eu (2,431) · 99.4% positive</div>
+                </div>
+                <div data-screen-label="Size selector" style="margin: 16px 16px 0; border: 1px solid #e5e5e5; border-radius: 16px; padding: 14px;">
+                  <div style="display: flex; align-items: center; gap: 8px;"><span style="font-size: 14px; font-weight: 700;">Size</span><span style="flex: 1;"></span><span style="font-size: 12.5px; font-weight: 700; text-decoration: underline; display: inline-flex; align-items: center; gap: 5px;"><x-import component-from-global-scope="EBayEvoDesignSystem_61746e.Icon" name="Ruler16" size="13" hint-size="13px,13px"></x-import>Size guide</span></div>
+                  <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-top: 10px;">
+                    <sc-for list="{{ sizeCells }}" as="sz" hint-placeholder-count="3">
+                      <div style="border-radius: 12px; padding: 10px 8px; text-align: center; background: {{ sz.bg }}; border: {{ sz.border }};"><div style="font-size: 10.5px; font-weight: 700; letter-spacing: 0.6px; color: {{ sz.labelColor }};">{{ sz.scale }}</div><div style="font-size: 17px; font-weight: 700; margin-top: 2px; color: {{ sz.color }};">{{ sz.val }}</div></div>
+                    </sc-for>
+                  </div>
+                  <div style="display: flex; gap: 14px; margin-top: 12px; font-size: 12px; color: #707070; line-height: 16px;">
+                    <span><strong style="color: #191919;">26.5 cm</strong> insole</span><span><strong style="color: #191919;">D</strong> width</span><span><strong style="color: #191919;">Same size</strong> you asked for</span>
+                  </div>
+                </div>
+                <div data-screen-label="Fit note" style="margin: 12px 16px 0; padding: 12px 14px; border-radius: 12px; background: #fff7e6; border: 1px solid #f5d38a; display: flex; gap: 10px; align-items: flex-start;">
+                  <span style="color: #b06f00; display: inline-flex; margin-top: 1px;"><x-import component-from-global-scope="EBayEvoDesignSystem_61746e.Icon" name="Attention16" size="15" hint-size="15px,15px"></x-import></span>
+                  <div style="flex: 1; font-size: 12.5px; line-height: 17px;"><strong>Air Max 90 runs about a half size small.</strong> 312 buyers of this model said so. If you’re between sizes, consider EU 42.5. <span onClick="{{ toggleWhy }}" style="font-weight: 700; text-decoration: underline; cursor: pointer;">{{ whyLabel }}</span>
+                    <div style="display: {{ whyDisplay }}; margin-top: 8px; color: #707070;">Fit notes come from verified purchases of this exact model since 2020 (312), not from the seller. Your EU 42 sits at the edge; 71% of EU 42 buyers kept it, 22% exchanged for 42.5.</div>
+                  </div>
+                </div>
+                <div style="padding: 16px; display: flex; flex-direction: column; gap: 10px; font-size: 12.5px; color: #707070; line-height: 17px;">
+                  <span style="display: flex; gap: 8px; align-items: center;"><x-import component-from-global-scope="EBayEvoDesignSystem_61746e.Icon" name="Return16" size="14" hint-size="14px,14px"></x-import>30-day returns · seller pays return shipping on fit issues</span>
+                  <span style="display: flex; gap: 8px; align-items: center;"><x-import component-from-global-scope="EBayEvoDesignSystem_61746e.Icon" name="Confirmation16" size="14" hint-size="14px,14px"></x-import>Authenticity Guarantee</span>
+                </div>
+                <div style="height: 110px;"></div>
+              </div>
+              <div style="flex: none; position: absolute; left: 0; right: 0; bottom: 0; padding: 12px 16px 38px; background: linear-gradient(180deg, rgba(255,255,255,0), #fff 30%); display: flex; flex-direction: column; gap: 8px;">
+                <span onClick="{{ toCheckout }}" style="height: 48px; border-radius: 999px; background: #0968f6; color: #fff; display: inline-flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 700; cursor: pointer;">Buy It Now</span>
+                <span style="height: 48px; border-radius: 999px; border: 1.5px solid #0968f6; color: #0968f6; display: inline-flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 700;">Add to cart</span>
+              </div>
+            </div>
+          </sc-if>
+
+          <!-- 5 · Checkout -->
+          <sc-if value="{{ s5 }}" hint-placeholder-val="{{ false }}">
+            <div data-screen-label="6 Checkout last safe moment" style="font-family: 'Market Sans', Helvetica, Arial, sans-serif; height: 100%; display: flex; flex-direction: column; background: #fff; overflow: hidden; animation: szUp 0.28s cubic-bezier(0.2,0,0,1);">
+              <div style="flex: none; display: flex; align-items: center; gap: 12px; padding: 62px 16px 10px; border-bottom: 1px solid #e5e5e5;">
+                <span onClick="{{ toItem }}" style="width: 36px; height: 36px; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; margin-left: -8px;"><x-import component-from-global-scope="EBayEvoDesignSystem_61746e.Icon" name="ArrowLeft24" size="22" hint-size="22px,22px"></x-import></span>
+                <span style="font-size: 18px; font-weight: 700;">Review and pay</span>
+              </div>
+              <div style="flex: 1; overflow: auto; padding: 16px;">
+                <div style="display: flex; gap: 12px;">
+                  <div style="width: 84px; height: 84px; border-radius: 12px; background: #f2f2f2; flex: none; overflow: hidden;"><span role="img" style="display: block; width: 100%; height: 100%; background-image: url({{ heroImg }}); background-size: cover; background-position: center;"></span></div>
+                  <div style="flex: 1; min-width: 0;"><div style="font-size: 14px; line-height: 19px;">Nike Air Max 90 ‘Infrared’ (2020) · Men’s</div><div style="font-size: 16px; font-weight: 700; margin-top: 4px;">$128.00</div><div style="font-size: 12px; color: #707070; margin-top: 2px;">Free shipping · Est. delivery Thu, Sep 24</div></div>
+                </div>
+                <div data-screen-label="Size check" style="margin-top: 16px; border: 1px solid #e5e5e5; border-radius: 16px; overflow: hidden;">
+                  <div style="display: flex; align-items: center; gap: 8px; padding: 12px 14px; background: #f7f7f7; font-size: 13px; font-weight: 700;"><span style="color: #0968f6; display: inline-flex;"><x-import component-from-global-scope="EBayEvoDesignSystem_61746e.Icon" name="AI16" size="14" hint-size="14px,14px"></x-import></span>Size check</div>
+                  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: #e5e5e5;">
+                    <div style="background: #fff; padding: 12px 14px;"><div style="font-size: 11px; color: #707070;">You asked for</div><div style="font-size: 18px; font-weight: 700; margin-top: 2px;">EU 42</div></div>
+                    <div style="background: #fff; padding: 12px 14px;"><div style="font-size: 11px; color: #707070;">Seller listed</div><div style="font-size: 18px; font-weight: 700; margin-top: 2px;">US 8.5 M</div></div>
+                  </div>
+                  <div style="padding: 12px 14px; font-size: 12.5px; line-height: 17px; display: flex; flex-direction: column; gap: 6px;">
+                    <span style="display: flex; gap: 8px; align-items: center; color: #288034; font-weight: 700;"><x-import component-from-global-scope="EBayEvoDesignSystem_61746e.Icon" name="ConfirmationFilled16" size="14" hint-size="14px,14px"></x-import>Same size, Nike men’s chart</span>
+                    <span style="color: #707070;">This model runs a half size small. {{ checkoutWidthLine }} 30-day returns cover fit.</span>
+                    <span onClick="{{ toItem }}" style="font-weight: 700; text-decoration: underline; cursor: pointer;">Change size</span>
+                  </div>
+                </div>
+                <div style="margin-top: 16px; border: 1px solid #e5e5e5; border-radius: 16px; padding: 14px; display: flex; flex-direction: column; gap: 10px; font-size: 13px;">
+                  <div style="display: flex; justify-content: space-between;"><span>Ship to</span><span style="font-weight: 700;">Lia D. · Brooklyn, NY 11201</span></div>
+                  <div style="display: flex; justify-content: space-between;"><span>Pay with</span><span style="font-weight: 700;">Visa ···· 4421</span></div>
+                  <div style="height: 1px; background: #e5e5e5;"></div>
+                  <div style="display: flex; justify-content: space-between;"><span>Item</span><span>$128.00</span></div>
+                  <div style="display: flex; justify-content: space-between;"><span>Shipping</span><span>Free</span></div>
+                  <div style="display: flex; justify-content: space-between;"><span>Tax</span><span>$11.36</span></div>
+                  <div style="display: flex; justify-content: space-between; font-size: 16px; font-weight: 700;"><span>Order total</span><span>$139.36</span></div>
+                </div>
+                <div style="font-size: 12px; color: #707070; line-height: 16px; margin-top: 12px; display: flex; gap: 8px; align-items: flex-start;"><x-import component-from-global-scope="EBayEvoDesignSystem_61746e.Icon" name="Lock16" size="13" hint-size="13px,13px"></x-import><span>The AI never taps this button. Buying is your call, and your size gets saved only if you say so on the next screen.</span></div>
+                <div style="height: 100px;"></div>
+              </div>
+              <div style="flex: none; padding: 12px 16px 38px; border-top: 1px solid #e5e5e5;">
+                <span onClick="{{ placeOrder }}" style="height: 48px; border-radius: 999px; background: #0968f6; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 700; cursor: pointer;">Confirm and pay</span>
+              </div>
+            </div>
+          </sc-if>
+
+          <!-- 6 · Confirmation -->
+          <sc-if value="{{ s6 }}" hint-placeholder-val="{{ false }}">
+            <div data-screen-label="7 Order confirmed and size saved" style="font-family: 'Market Sans', Helvetica, Arial, sans-serif; height: 100%; display: flex; flex-direction: column; background: #fff; overflow: hidden; animation: szUp 0.28s cubic-bezier(0.2,0,0,1);">
+              <div style="flex: 1; overflow: auto; padding: 84px 16px 16px; box-sizing: border-box; display: flex; flex-direction: column; align-items: stretch; text-align: center;">
+                <span style="width: 64px; height: 64px; align-self: center; border-radius: 999px; background: #e8f3ea; color: #288034; display: inline-flex; align-items: center; justify-content: center;"><x-import component-from-global-scope="EBayEvoDesignSystem_61746e.Icon" name="Confirmation24" size="32" hint-size="32px,32px"></x-import></span>
+                <div style="font-size: 22px; font-weight: 700; margin-top: 16px;">Order confirmed</div>
+                <div style="font-size: 13px; color: #707070; margin-top: 6px; line-height: 18px;">Nike Air Max 90 · EU 42 (US 8.5 M)<br>Arrives Thu, Sep 24</div>
+                <sc-if value="{{ savedOn }}" hint-placeholder-val="{{ true }}">
+                  <div data-screen-label="Saved size receipt" style="margin-top: 28px; padding: 12px 14px; border-radius: 12px; background: #191919; color: #fff; display: flex; align-items: center; gap: 10px; text-align: left; animation: szUp 0.3s cubic-bezier(0.2,0,0,1);">
+                    <span style="color: #8cc0ff; display: inline-flex;"><x-import component-from-global-scope="EBayEvoDesignSystem_61746e.Icon" name="AI16" size="14" hint-size="14px,14px"></x-import></span>
+                    <span style="flex: 1; font-size: 12.5px; line-height: 16px;"><strong>Saved EU 42{{ savedWidth }}</strong> as your sneaker size</span>
+                    <span onClick="{{ unsave }}" style="font-size: 12.5px; font-weight: 700; color: #8cc0ff; cursor: pointer; display: inline-flex; align-items: center; gap: 4px;"><x-import component-from-global-scope="EBayEvoDesignSystem_61746e.Icon" name="Undo16" size="13" hint-size="13px,13px"></x-import>Undo</span>
+                  </div>
+                </sc-if>
+                <sc-if value="{{ savedOff }}" hint-placeholder-val="{{ false }}">
+                  <div style="margin-top: 28px; padding: 12px 14px; border-radius: 12px; background: #f7f7f7; border: 1px solid #e5e5e5; display: flex; align-items: center; gap: 10px; text-align: left;">
+                    <span style="flex: 1; font-size: 12.5px; line-height: 16px; color: #707070;">Not saved. I’ll ask again next time.</span>
+                    <span onClick="{{ resave }}" style="font-size: 12.5px; font-weight: 700; color: #0968f6; cursor: pointer;">Save it</span>
+                  </div>
+                </sc-if>
+                <div style="margin-top: 12px; font-size: 12px; color: #707070; line-height: 16px; text-align: left;">Saving is separate from buying. Nothing is remembered without a receipt you can undo.</div>
+                <div style="margin-top: 24px; border: 1px solid #e5e5e5; border-radius: 16px; padding: 14px; text-align: left;">
+                  <div style="font-size: 14px; font-weight: 700;">After it arrives</div>
+                  <div style="font-size: 12.5px; color: #707070; line-height: 17px; margin-top: 4px;">A one-tap fit check-in: too small, just right, too big. Your answer tunes the next recommendation, and only yours.</div>
+                </div>
+              </div>
+              <div style="flex: none; padding: 12px 16px 38px; display: flex; flex-direction: column; gap: 8px;">
+                <span onClick="{{ toMemory }}" style="height: 48px; border-radius: 999px; background: #191919; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 700; cursor: pointer;">See what I remember</span>
+              </div>
+            </div>
+          </sc-if>
+
+          <!-- 7 · Size Memory -->
+          <sc-if value="{{ s7 }}" hint-placeholder-val="{{ false }}">
+            <div data-screen-label="8 Size Memory" style="font-family: 'Market Sans', Helvetica, Arial, sans-serif; height: 100%; display: flex; flex-direction: column; background: #fff; overflow: hidden; animation: szUp 0.28s cubic-bezier(0.2,0,0,1);">
+              <div style="flex: none; display: flex; align-items: center; gap: 12px; padding: 62px 16px 10px; border-bottom: 1px solid #e5e5e5;">
+                <span onClick="{{ toConfirm }}" style="width: 36px; height: 36px; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; margin-left: -8px;"><x-import component-from-global-scope="EBayEvoDesignSystem_61746e.Icon" name="ArrowLeft24" size="22" hint-size="22px,22px"></x-import></span>
+                <span style="font-size: 18px; font-weight: 700;">Size Memory</span>
+              </div>
+              <div style="flex: 1; overflow: auto; padding: 16px;">
+                
+                <div style="margin-top: 16px; display: flex; flex-direction: column; gap: 10px;">
+                  <sc-for list="{{ memory }}" as="m" hint-placeholder-count="3">
+                    <div style="border: 1px solid #e5e5e5; border-radius: 16px; padding: 14px; display: flex; gap: 12px; align-items: flex-start; opacity: {{ m.op }};">
+                      <span style="width: 36px; height: 36px; flex: none; border-radius: 999px; background: #f7f7f7; display: inline-flex; align-items: center; justify-content: center; color: #191919;"><x-import component-from-global-scope="EBayEvoDesignSystem_61746e.Icon" name="{{ m.icon }}" size="18" hint-size="18px,18px"></x-import></span>
+                      <div style="flex: 1; min-width: 0;">
+                        <div style="font-size: 14px; font-weight: 700; text-decoration: {{ m.deco }};">{{ m.title }}</div>
+                        <div style="font-size: 12px; color: #707070; line-height: 16px; margin-top: 3px;">{{ m.source }}</div>
+                        <div style="display: flex; gap: 14px; margin-top: 8px; font-size: 12.5px; font-weight: 700;">
+                          <span style="text-decoration: underline; cursor: pointer;">Edit</span>
+                          <span onClick="{{ m.toggle }}" style="text-decoration: underline; cursor: pointer; color: {{ m.eraseColor }};">{{ m.eraseLabel }}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </sc-for>
+                </div>
+                <div style="margin-top: 16px; border-radius: 16px; background: #f7f7f7; padding: 14px; font-size: 12.5px; line-height: 17px; color: #707070;">
+                  <strong style="color: #191919;">How it’s used.</strong> Sizes apply automatically only above 90% confidence, always with a receipt. Below that, the AI asks once. It never buys.
+                </div>
+                <div style="height: 40px;"></div>
+              </div>
+            </div>
+          </sc-if>
+
+        </x-import>
+      </div>
+
+      <!-- Right panel -->
+      <div style="flex: 1 1 300px; max-width: 360px; min-width: 260px; order: 2; display: flex; flex-direction: column; gap: 16px;">
+        <div style="background: #fff; border: 1px solid #e5e5e5; border-radius: 16px; padding: 20px; display: flex; flex-direction: column; gap: 12px;">
+          <div style="display: flex; align-items: center; gap: 10px;"><span style="font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #707070;">Step {{ stepNum }}</span><span style="font-size: 10.5px; font-weight: 700; letter-spacing: 0.6px; padding: 4px 10px; border-radius: 999px; background: {{ ruleBg }}; color: {{ ruleColor }};">{{ rule }}</span></div>
+          <div style="font-size: 20px; font-weight: 700; line-height: 1.2;">{{ stepLabel }}</div>
+          <div style="font-size: 13.5px; line-height: 20px; color: #444; text-wrap: pretty;">{{ stepDesc }}</div>
+          <div style="height: 1px; background: #e5e5e5;"></div>
+          <div style="font-size: 12px; color: #707070; line-height: 17px;"><strong style="color: #191919;">Try:</strong> {{ stepTry }}</div>
+        </div>
+        <div style="background: #191919; color: #fff; border-radius: 16px; padding: 20px; display: flex; flex-direction: column; gap: 12px;">
+          <div style="font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #b3b3b3;">The rulebook</div>
+          <div style="display: flex; gap: 10px; align-items: flex-start; font-size: 12.5px; line-height: 17px;"><span style="flex: none; padding: 3px 9px; border-radius: 999px; background: #fff; color: #191919; font-size: 10px; font-weight: 700; letter-spacing: 0.6px;">ACT</span><span>Sure (≥90%): apply quietly, pin a receipt, one-tap Undo.</span></div>
+          <div style="display: flex; gap: 10px; align-items: flex-start; font-size: 12.5px; line-height: 17px;"><span style="flex: none; padding: 3px 9px; border-radius: 999px; background: #0968f6; color: #fff; font-size: 10px; font-weight: 700; letter-spacing: 0.6px;">ASK</span><span>Unsure (50–70%): one question, results stay visible.</span></div>
+          <div style="display: flex; gap: 10px; align-items: flex-start; font-size: 12.5px; line-height: 17px;"><span style="flex: none; padding: 3px 9px; border-radius: 999px; background: #d50b0b; color: #fff; font-size: 10px; font-weight: 700; letter-spacing: 0.6px;">NEVER</span><span>Money on the line: a human review, a human tap.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;shopperDefault&quot;: {&quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;First-time&quot;, &quot;Returning&quot;], &quot;default&quot;: &quot;First-time&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Flow&quot;}}">
+class Component extends DCLogic {
+  state = { s: 0, shopper: null, typed: 0, plan: 0, applied: true, width: null, widthDismissed: false, whyOpen: false, saved: true, erased: {}, tol: 'exact' };
+
+  componentDidMount() {
+    this._keys = (e) => { if (e.key === 'ArrowRight') this.next(); if (e.key === 'ArrowLeft') this.back(); };
+    document.addEventListener('keydown', this._keys);
+    const q = new URLSearchParams(location.search);
+    const step = parseInt(q.get('step'), 10);
+    if (q.get('shopper') === 'returning') this.setState({ shopper: 'returning' });
+    if (!isNaN(step)) setTimeout(() => this.go(step), 50);
+  }
+  componentWillUnmount() { document.removeEventListener('keydown', this._keys); this.stop(); }
+  stop() { (this._t || []).forEach(clearTimeout); this._t = []; if (this._i) { clearInterval(this._i); this._i = null; } }
+  Q = 'nike air max EU 42';
+  go(n) {
+    this.stop();
+    n = Math.max(0, Math.min(7, n));
+    if (n === 1) {
+      this.setState({ s: 1, typed: 0 });
+      this._i = setInterval(() => {
+        const t = Math.min(this.Q.length, this.state.typed + 1);
+        this.setState({ typed: t });
+        if (t >= this.Q.length) { clearInterval(this._i); this._i = null; }
+      }, 55);
+    } else if (n === 2) {
+      this.setState({ s: 2, typed: this.Q.length, plan: 0 });
+      this._t = [1, 2, 3, 4, 5].map((k, i) => setTimeout(() => this.setState({ plan: k }), 350 + i * 520));
+      this._t.push(setTimeout(() => this.go(3), 350 + 5 * 520 + 1100));
+    } else {
+      this.setState({ s: n, typed: n > 1 ? this.Q.length : 0, plan: n > 2 ? 5 : 0 });
+    }
+  }
+  next() { if (this.state.s >= 7) this.reset(); else this.go(this.state.s + 1); }
+  back() { this.go(this.state.s - 1); }
+  reset() { this.stop(); this.setState({ s: 0, typed: 0, plan: 0, applied: true, width: null, widthDismissed: false, whyOpen: false, saved: true, erased: {}, tol: 'exact' }); }
+
+  renderVals() {
+    const S = this.state, s = S.s;
+    const shopper = S.shopper || (this.props.shopperDefault === 'Returning' ? 'returning' : 'first');
+    const first = shopper === 'first';
+    const shown = Math.min(S.typed, this.Q.length);
+    const typing = s === 1 && shown < this.Q.length;
+    const done = s === 1 && shown >= this.Q.length;
+
+    const rulesDef = [
+      ['Home', 'ACT', first ? 'A first-time shopper. No size is known yet, so the home shelf shows nothing personalized and the AI says so.' : 'A returning shopper. Size Memory already holds EU 42, so the home shelf is filtered to it, with a receipt line saying why.', 'Tap the search field or the Search tab.'],
+      ['Search: typing the ask', 'ACT', 'Keywords and a size in one field. “EU 42” is an explicit scale, so autocomplete offers translated variants right away. Nothing is a mode switch.', 'Tap go, or any key, to submit.'],
+      ['Agent reads it back', 'ACT', 'Before results: how the ask was parsed. Brand, model, and size scale each trace to a word she typed. Sneakers plus an explicit EU size puts confidence above 90%, so the AI applies the size and moves on. No question.', 'Watch the status lines; they describe real steps, not theater. Skip to results anytime.'],
+      ['Results with a receipt', first ? 'ASK' : 'ACT', first ? 'The receipt bar pins what was applied (EU 42 · US 8.5 · UK 7.5) with Undo. One thing the AI is not sure about is width, so it asks once, in a sheet that keeps results visible. Skippable.' : 'The receipt bar pins what was applied with one-tap Undo. Width is already known from Size Memory, so there is no question. Fit badges follow the band grammar: solid green sure, outlined est., grey needs a look.', 'Tap Undo on the receipt and see the raw “42” results mix scales. Toggle the tolerance chip.'],
+      ['Item page', 'ACT', 'Sizes shown side by side in all three scales with your scale highlighted. Measurements in centimeters replace free-text blurbs. When a model runs small, an amber note sits beside the buy button, at the moment anxiety peaks.', 'Tap Why? on the fit note. Explanations are pulled, not pushed.'],
+      ['Checkout: the last safe moment', 'NEVER', 'Everything the AI did is visible in one place: what you asked, what the seller listed, why they match, the return window. The AI never taps Confirm and pay. That tap belongs to a person.', 'Change size goes back without losing the cart.'],
+      ['Confirmed, and a saved-size receipt', 'ACT', 'Saving your size is a separate, visible choice, never bundled with the purchase. The receipt says exactly what was remembered and Undo forgets it instantly.', 'Tap Undo, then Save it.'],
+      ['Size Memory', 'ACT', 'Every learned fact, where it came from, and Edit or Erase per row. Memory you can audit is the difference between personalized and creepy.', 'Erase a row, then restore it.'],
+    ];
+    const ruleStyle = (r) => r === 'ASK' ? ['#0968f6', '#fff'] : r === 'NEVER' ? ['#d50b0b', '#fff'] : ['#191919', '#fff'];
+    const rail = rulesDef.map((d, i) => ({
+      label: d[0], rule: d[1], ruleBg: ruleStyle(d[1])[0], ruleColor: ruleStyle(d[1])[1],
+      mark: i < s ? '\u2713' : String(i + 1),
+      bg: i === s ? '#f5f9ff' : 'transparent',
+      numBg: i === s ? '#0968f6' : (i < s ? '#288034' : '#ffffff'),
+      numColor: i === s || i < s ? '#ffffff' : '#707070',
+      numBorder: i === s ? '#0968f6' : (i < s ? '#288034' : '#c7c7c7'),
+      weight: i === s ? 700 : 400,
+      onClick: () => this.go(i),
+    }));
+    const cur = rulesDef[s];
+
+    const tab = (on) => ({ display: 'inline-flex', alignItems: 'center', height: 32, padding: '0 16px', borderRadius: 999, cursor: 'pointer', fontSize: 13, fontWeight: on ? 700 : 400, background: on ? '#191919' : 'transparent', color: on ? '#fff' : '#191919', whiteSpace: 'nowrap' });
+
+    const suggestions = [
+      { icon: 'Search16', pre: 'nike air max ', bold: '90', sub: '' },
+      { icon: 'Search16', pre: 'nike air max ', bold: '95 og', sub: '' },
+      { icon: 'Ruler16', pre: 'nike air max EU 42', bold: '', sub: 'US 8.5 M · UK 7.5 · 1,204 listings translated' },
+      { icon: 'AI16', pre: 'Does Air Max run small?', bold: '', sub: 'Fit notes from 312 buyers' },
+      { icon: 'AI16', pre: 'Air Max 90 vs 95 fit', bold: '', sub: '' },
+    ].map((x, i) => ({ ...x, subDisplay: x.sub ? 'block' : 'none', op: shown < 14 && i > 1 ? 0.35 : 1, go: () => this.go(2) }));
+
+    const planRows = [
+      { icon: 'ConfirmationFilled16', color: '#288034', t: 'Nike Air Max, men\u2019s sneakers', s: 'from \u201cnike air max\u201d; default gender from your browsing, editable' },
+      { icon: 'ConfirmationFilled16', color: '#288034', t: 'EU 42 \u2192 US 8.5 M \u00b7 UK 7.5', s: 'from \u201cEU 42\u201d, an explicit scale; Nike men\u2019s chart' },
+      { icon: 'ConfirmationFilled16', color: '#288034', t: 'Translate every listing to one scale', s: 'sellers label in US, UK, EU and cm; you see one number' },
+      { icon: first ? 'Attention16' : 'ConfirmationFilled16', color: first ? '#b06f00' : '#288034', t: first ? 'Width: unknown' : 'Width: D (standard), from Size Memory', s: first ? 'I\u2019ll ask once, after results load' : 'saved Jun 2026, editable' },
+    ];
+    const plan = planRows.slice(0, Math.min(S.plan, 4));
+    const statusLines = ['Reading the size scale\u2026', 'Translating EU 42 across 1,204 listings\u2026', 'Checking Nike fit notes\u2026', 'Ranking by fit certainty\u2026', 'Ranking by fit certainty\u2026'];
+
+    const applied = S.applied;
+    const tol = S.tol;
+    const IMG = ['photo-1542291026-7eec264c27ff','photo-1600185365483-26d7a4cc7519','photo-1606107557195-0e29a4b5b4aa','photo-1595950653106-6c9ebd614d3a','photo-1608231387042-66d1773070a5','photo-1552346154-21d32810aba3','photo-1539185441755-769473a23570','photo-1597045566677-8cf032ed6634'].map(id => 'https://images.unsplash.com/' + id + '?q=80&w=600&auto=format&fit=crop');
+    const R = [
+      { title: 'Nike Air Max 90 \u2018Infrared\u2019 (2020) Men\u2019s', price: '$128.00', meta: 'US 8.5 M · listed as US', fit: 'Fits EU 42', band: 'high', bg: '#f2f2f2', raw: 'US 8.5' },
+      { title: 'Nike Air Max 95 OG Neon, worn twice', price: '$164.50', meta: 'EU 42 · listed as EU', fit: 'Fits EU 42', band: 'high', bg: '#ececec', raw: 'EU 42' },
+      { title: 'Nike Air Max 1 \u2018Anniversary Red\u2019', price: '$142.00', meta: 'UK 7.5 · listed as UK', fit: 'Est. EU 42', band: 'mid', bg: '#f2f2f2', raw: 'UK 7.5' },
+      { title: 'Nike Air Max Plus TN, deadstock', price: '$189.00', meta: '26.5 cm · listed in cm', fit: 'Est. EU 42', band: 'mid', bg: '#ececec', raw: '26.5 cm' },
+      { title: 'Nike Air Max 97 Silver Bullet', price: '$171.00', meta: 'Size “42”, scale not stated', fit: 'Check scale', band: 'low', bg: '#f2f2f2', raw: '42' },
+      { title: 'Nike Air Max 90 Essential, EU 42.5', price: '$119.00', meta: 'EU 42.5 · half size up, runs small', fit: 'EU 42.5 · consider', band: 'mid', bg: '#ececec', raw: 'EU 42.5', half: true },
+    ];
+    const bandStyle = { high: ['#288034', '#fff', '#288034'], mid: ['#fff', '#191919', '#191919'], low: ['#f7f7f7', '#707070', '#c7c7c7'] };
+    const rawSet = R.map(r => ({ ...r, fit: r.raw, band: 'low', meta: 'As listed by seller' }));
+    const src = applied ? R.filter(r => tol === 'half' || !r.half) : rawSet;
+    const results = src.map((r, i) => ({ img: IMG[R.indexOf(R.find(x => x.title === r.title))], title: r.title, price: r.price, meta: r.meta, fit: r.fit, bg: r.bg, fitBg: bandStyle[r.band][0], fitColor: bandStyle[r.band][1], fitBorder: bandStyle[r.band][2], open: () => this.go(4) }));
+    const appliedCount = tol === 'half' ? '1,876' : '1,204';
+    const chipS = (on) => ({ bg: on ? '#191919' : '#fff', color: on ? '#fff' : '#191919', border: on ? '#191919' : '#8f8f8f' });
+    const widthLabel = S.width ? 'Width ' + S.width : (first ? 'Width: any' : 'Width D');
+    const chips = [
+      { label: 'EU 42 (US 8.5)', ...chipS(applied), onClick: () => this.setState({ applied: !applied }) },
+      { label: tol === 'half' ? '\u00b1 half size' : 'Exact size', ...chipS(tol === 'half'), onClick: () => this.setState({ tol: tol === 'half' ? 'exact' : 'half' }) },
+      { label: widthLabel, ...chipS(!!S.width || !first), onClick: () => this.setState({ widthDismissed: false, width: null }) },
+      { label: 'Men\u2019s', ...chipS(false), onClick: () => {} },
+    ];
+    const widthAskOn = s === 3 && first && applied && !S.width && !S.widthDismissed;
+    const widthOpts = [['D', 'Standard'], ['2E', 'Wide'], ['B', 'Narrow']].map(o => ({ label: o[0], sub: o[1], onClick: () => this.setState({ width: o[0] }) }));
+    const widthKnown = S.width || (!first ? 'D' : null);
+
+    const sizeCells = [['EU', '42', true], ['US M', '8.5', false], ['UK', '7.5', false]].map(c => ({ scale: c[0], val: c[1], bg: c[2] ? '#191919' : '#fff', border: c[2] ? '1px solid #191919' : '1px solid #e5e5e5', color: c[2] ? '#fff' : '#191919', labelColor: c[2] ? '#b3b3b3' : '#707070' }));
+
+    const memoryDef = [
+      { key: 'sneaker', icon: 'Sneaker16', title: 'Sneakers \u00b7 EU 42 (US 8.5 M)' + (widthKnown ? ' \u00b7 width ' + widthKnown : ''), source: 'From your Air Max 90 purchase today. You confirmed the save.' },
+      { key: 'shirt', icon: 'AIShirt16', title: 'Tops \u00b7 M (EU 48\u201350)', source: first ? 'Not learned yet. Add it, or let a purchase teach it.' : 'From two kept orders, Apr and Jun 2026.' },
+      { key: 'fit', icon: 'Ruler16', title: 'Runs-small brands: size up half', source: 'Inferred from a Nike exchange in May 2026. Reversible.' },
+    ];
+    const memory = memoryDef.map(m => { const e = !!S.erased[m.key]; return { icon: m.icon, title: m.title, source: e ? 'Erased. The AI will ask next time.' : m.source, op: e ? 0.6 : 1, deco: e ? 'line-through' : 'none', eraseLabel: e ? 'Restore' : 'Erase', eraseColor: e ? '#0968f6' : '#d50b0b', toggle: () => this.setState({ erased: { ...this.state.erased, [m.key]: !e } }) }; });
+
+    const embed = new URLSearchParams(location.search).get('embed') === '1';
+    return {
+      pagePad: embed ? '16px 20px 24px' : '32px 40px 64px', headerDisplay: embed ? 'none' : 'flex',
+      s0: s === 0, s1: s === 1, s2: s === 2, s3: s === 3, s4: s === 4, s5: s === 5, s6: s === 6, s7: s === 7,
+      stepNum: s + 1, stepLabel: cur[0], stepDesc: cur[2], stepTry: cur[3], rule: cur[1], ruleBg: ruleStyle(cur[1])[0], ruleColor: ruleStyle(cur[1])[1],
+      rail, back: () => this.back(), next: () => this.next(), nextLabel: s >= 7 ? 'Restart' : 'Next',
+      reset: () => this.reset(),
+      tabFirst: tab(first), tabReturning: tab(!first),
+      setFirst: () => this.setState({ shopper: 'first', width: null, widthDismissed: false }),
+      setReturning: () => this.setState({ shopper: 'returning', width: null, widthDismissed: false }),
+      homeBannerOn: true,
+      homeBannerTitle: first ? 'No size on file yet' : 'Showing sneakers in EU 42',
+      homeBannerSub: first ? 'Search with a size once and I\u2019ll offer to remember it. Nothing is saved without asking.' : 'From Size Memory. Tap to edit or turn off.',
+      homeShelfSub: first ? 'Popular this week' : 'EU 42 \u00b7 US 8.5 M, from Size Memory',
+      homeShelf: [
+        { img: IMG[0], title: 'Nike Air Max 90 \u2018Infrared\u2019', price: '$128.00', meta: first ? 'Sizes vary' : 'Fits EU 42' },
+        { img: IMG[6], title: 'New Balance 990v6, grey', price: '$142.00', meta: first ? 'Sizes vary' : 'Fits EU 42' },
+        { img: IMG[7], title: 'Adidas Samba OG, white', price: '$96.00', meta: first ? 'Sizes vary' : 'Est. EU 42' },
+        { img: IMG[5], title: 'Asics Gel-Kayano 14', price: '$118.00', meta: first ? 'Sizes vary' : 'Fits EU 42' },
+      ],
+      toSearch: () => this.go(1), toTyping: () => this.go(1), submit: () => this.go(2), toResults: () => this.go(3), toItem: () => this.go(4), toCheckout: () => this.go(5), placeOrder: () => this.go(6), toMemory: () => this.go(7), toConfirm: () => this.go(6),
+      suggestions,
+      typed: this.Q.slice(0, shown), caretDisplay: typing ? 'inline-block' : 'none',
+      goBg: done ? '#0968f6' : '#c7c7c7', goAnim: done ? 'szPulse 2.4s infinite' : 'none',
+      kb1: 'QWERTYUIOP'.split(''), kb2: 'ASDFGHJKL'.split(''), kb3: 'ZXCVBNM'.split(''),
+      planDisplay: S.plan > 0 ? 'flex' : 'none', plan,
+      statusDisplay: S.plan > 0 && S.plan < 5 ? 'flex' : 'none', statusLine: statusLines[Math.max(0, S.plan - 1)],
+      confDisplay: S.plan >= 5 ? 'flex' : 'none', confPct: '96%',
+      applied, undone: !applied, undo: () => this.setState({ applied: false }), reapply: () => this.setState({ applied: true }),
+      appliedCount, chips, results,
+      resultsLabel: applied ? (tol === 'half' ? '1,876 results \u00b7 EU 42 and 42.5, translated from US, UK, EU and cm' : '1,204 results \u00b7 translated from US, UK, EU and cm') : '2,930 results \u00b7 any \u201c42\u201d as listed, scales may mix',
+      widthAskOn, widthOpts, skipWidth: () => this.setState({ widthDismissed: true }),
+      sizeCells, whyOpen: S.whyOpen, whyLabel: S.whyOpen ? 'Hide' : 'Why?', whyDisplay: S.whyOpen ? 'block' : 'none', toggleWhy: () => this.setState({ whyOpen: !this.state.whyOpen }),
+      checkoutWidthLine: widthKnown ? 'Width ' + widthKnown + ' matches your profile.' : 'Width wasn\u2019t set; standard D listed.',
+      savedOn: S.saved, savedOff: !S.saved, unsave: () => this.setState({ saved: false }), resave: () => this.setState({ saved: true }),
+      savedWidth: widthKnown ? ' \u00b7 width ' + widthKnown : '',
+      memory, heroImg: IMG[0],
+    };
+  }
+}
+</script>
+</body>
+</html>
