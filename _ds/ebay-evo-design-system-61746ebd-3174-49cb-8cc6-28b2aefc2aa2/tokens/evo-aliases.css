@@ -1,0 +1,140 @@
+/* ============================================================================
+   eBay Evo — canonical token aliases (evo-web / @ebay/skin vocabulary)
+   ----------------------------------------------------------------------------
+   The real eBay "skin" CSS library (github.com/eBay/evo-web, packages/skin)
+   names its semantic tokens `--color-background-accent`, `--color-foreground-
+   on-accent`, `--color-border-medium`, etc., and its base palette
+   `--color-blue-500`, `--color-neutral-800`, …
+
+   Our curated semantic tokens (colors.css) use the same names WITHOUT the
+   `--color-` prefix. This file bridges the two so that real evo-web component
+   CSS and markup can be dropped into a consuming project unchanged and resolve
+   against our palette. Sourced from packages/skin/src/tokens/evo-light.scss
+   and evo-core.scss.
+   ============================================================================ */
+
+:root {
+  /* ---- Base palette (skin names → our ramp) --------------------------- */
+  --color-neutral-100: var(--neutral-0);
+  --color-neutral-200: var(--neutral-100);
+  --color-neutral-300: var(--neutral-200);
+  --color-neutral-400: var(--neutral-400);
+  --color-neutral-500: var(--neutral-400);
+  --color-neutral-600: var(--neutral-500);
+  --color-neutral-700: var(--neutral-700);
+  --color-neutral-800: var(--neutral-800);
+  --color-neutral-900: var(--neutral-900);
+  --color-neutral-100-rgb: 255, 255, 255;
+  --color-neutral-200-rgb: 247, 247, 247;
+  --color-neutral-800-rgb: 25, 25, 25;
+  --color-neutral-900-rgb: 0, 0, 0;
+
+  --color-blue-500: var(--blue-500);
+  --color-blue-700: var(--blue-700);
+  --color-red-200: var(--red-200);
+  --color-red-600: var(--red-600);
+  --color-kiwi-400: var(--kiwi-200);
+  --color-kiwi-600: var(--kiwi-600);
+  --color-kiwi-700: var(--kiwi-700);
+  --color-pink-400: var(--pink-400);
+  --color-pink-500: var(--pink-500);
+  --color-pink-600: var(--pink-700);
+  --color-yellow-400: var(--marigold-400);
+  --color-avocado-500: var(--expressive-avocado);
+
+  /* ---- Brand accents (brand moments only — confirmed from file) ------- */
+  --color-brand-red: #f02d2d;
+  --color-brand-blue: #0968f6;
+  --color-brand-yellow: #ffbd14;
+  --color-brand-green: #92c821;
+
+  /* ---- AI / generative spectrum (AI surfaces ONLY) --------------------- */
+  --color-ai-blue-strong: var(--color-brand-blue); /* same value as brand blue; single source */
+  --color-ai-yellow-strong: #ffd80e;
+  --color-ai-purple-strong: #993ee0;
+  --color-ai-red-strong: #ff4242;
+  --color-ai-green-strong: #4ee04b;
+
+  /* ---- Education / info tint ------------------------------------------ */
+  --color-background-education: #f5f9ff;
+
+  /* ---- Background ----------------------------------------------------- */
+  --color-background-primary: var(--background-primary);
+  --color-background-secondary: var(--background-secondary);
+  --color-background-tertiary: var(--background-tertiary);
+  --color-background-accent: var(--background-accent);
+  --color-background-attention: var(--background-attention);
+  --color-background-success: var(--background-success);
+  --color-background-confirmation: var(--background-success);
+  --color-background-information: var(--background-accent);
+  --color-background-disabled: var(--background-disabled);
+  --color-background-inverse: var(--background-inverse);
+  --color-background-strong: var(--neutral-800);   /* dark chip / inverse fill */
+  --color-background-faint: rgba(0, 0, 0, 0.05);
+
+  /* ---- Foreground ----------------------------------------------------- */
+  --color-foreground-primary: var(--foreground-primary);
+  --color-foreground-secondary: var(--foreground-secondary);
+  --color-foreground-accent: var(--foreground-accent);
+  --color-foreground-attention: var(--foreground-attention);
+  --color-foreground-success: var(--foreground-success);
+  --color-foreground-disabled: var(--foreground-disabled);
+  --color-foreground-on-accent: var(--foreground-on-accent);
+  --color-foreground-on-attention: var(--foreground-on-attention);
+  --color-foreground-on-success: var(--neutral-0);
+  --color-foreground-on-strong: var(--neutral-0);   /* light text on dark chip */
+  --color-foreground-on-inverse: var(--foreground-on-inverse);
+  --color-foreground-link-visited: var(--pink-700);
+
+  /* ---- Border --------------------------------------------------------- */
+  --color-border-accent: var(--border-accent);
+  --color-border-on-accent: var(--neutral-0);
+  --color-border-attention: var(--border-attention);
+  --color-border-on-attention: var(--neutral-0);
+  --color-border-success: var(--kiwi-600);
+  --color-border-medium: var(--neutral-500);   /* #8f8f8f — inputs, tertiary button outline (confirmed from file) */
+  --color-border-strong: var(--border-strong);
+  --color-border-subtle: var(--border-primary);
+  --color-border-disabled: var(--border-disabled);
+  --color-border-inverse: var(--neutral-0);
+
+  /* ---- State layers (skin uses translucent overlays) ------------------ */
+  --state-layer-hover: rgba(0, 0, 0, 0.08);
+  --state-layer-focus: rgba(0, 0, 0, 0.12);
+  --state-layer-pressed: rgba(0, 0, 0, 0.16);
+  --color-state-focus-stroke: #005fcc;
+  --color-state-accent-hover: #2854d9;
+  --color-state-accent-active: #254fd2;
+
+  /* ---- Data-viz (charts) --------------------------------------------- */
+  --color-data-viz-chart-primary: var(--blue-500);
+  --color-data-viz-chart-secondary: var(--blue-700);
+  --color-data-viz-trend-positive: var(--kiwi-600);
+  --color-data-viz-trend-negative: var(--red-600);
+  --color-data-viz-grid: var(--neutral-200);
+
+  /* ---- Canonical shadow tokens (confirmed from file) ------------------- */
+  --shadow-subtle: 0 4px 12px rgba(0, 0, 0, 0.07);           /* dropdowns, popovers, menus */
+  --shadow-strong: 0 2px 7px rgba(0, 0, 0, 0.15), 0 5px 17px rgba(0, 0, 0, 0.20); /* dialogs, sheets, panels */
+
+  /* ---- Button radius / heights (from _button-mixins.scss) ------------- */
+  --btn-height-small: 32px;
+  --btn-height-regular: 40px;
+  --btn-height-large: 48px;
+
+  /* ---- Radius scale (evo-core.scss) ----------------------------------- */
+  --border-radius-50: 8px;
+  --border-radius-100: 16px;
+  --border-radius-150: 24px;
+
+  /* ---- Spacing / dimension scale referenced by skin component CSS ----- */
+  --spacing-25: 2px;
+  --spacing-50: 4px;
+  --spacing-75: 6px;
+  --spacing-100: 8px;
+  --spacing-150: 12px;
+  --spacing-200: 16px;
+  --spacing-300: 24px;
+  --spacing-400: 32px;
+  --dimension-150: 12px;
+}

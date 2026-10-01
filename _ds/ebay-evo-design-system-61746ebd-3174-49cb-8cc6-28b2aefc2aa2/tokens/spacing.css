@@ -1,0 +1,71 @@
+/* ============================================================================
+   eBay Evo — Spacing, Radius, Borders, Shadow, Motion
+   Spacing scale is a 4px base (size-25=2 … size-1000=80) from the Dimension
+   collection. Radii: small 4 / medium 8 / large 16 / full (pill).
+   ============================================================================ */
+
+:root {
+  /* ---- Spacing (4px base) --------------------------------------------- */
+  --space-0: 0px;
+  --space-25: 2px;
+  --space-50: 4px;
+  --space-75: 6px;
+  --space-100: 8px;
+  --space-150: 12px;
+  --space-200: 16px;
+  --space-250: 20px;
+  --space-300: 24px;
+  --space-400: 32px;
+  --space-500: 40px;
+  --space-600: 48px;
+  --space-700: 56px;
+  --space-800: 64px;
+  --space-900: 72px;
+  --space-1000: 80px;
+
+  /* ---- Radius ---------------------------------------------------------
+     eBay Evo's signature: pill (fully rounded) buttons & inputs. */
+  --radius-none: 0px;
+  --radius-small: 4px;
+  --radius-medium: 8px;
+  --radius-large: 16px;
+  --radius-xlarge: 24px;
+  --radius-full: 999px;     /* pills, chips, avatars, buttons */
+  --radius-card: 16px;
+  --radius-input: 8px;
+  --radius-button: 999px;
+
+  /* ---- Border widths -------------------------------------------------- */
+  --border-width-subtle: 1px;
+  --border-width-medium: 1.5px;
+  --border-width-strong: 2px;
+
+  /* ---- Control heights (buttons, inputs) ------------------------------ */
+  --control-height-small: 32px;
+  --control-height-medium: 40px;
+  --control-height-large: 48px;
+
+  /* ---- Elevation / shadow ---------------------------------------------
+     eBay uses soft, low-spread ambient shadows. Cards are mostly flat with
+     a hairline border; elevation appears on menus, popovers, sheets. */
+  --shadow-100: 0 1px 2px rgba(0, 0, 0, 0.07);
+  --shadow-200: 0 2px 8px rgba(0, 0, 0, 0.10);
+  --shadow-300: 0 4px 16px rgba(0, 0, 0, 0.12);
+  --shadow-400: 0 8px 28px rgba(0, 0, 0, 0.15);
+  --shadow-focus: 0 0 0 2px var(--neutral-0), 0 0 0 4px var(--blue-500);
+
+  /* ---- Layout --------------------------------------------------------- */
+  --page-max-width: 1280px;
+  --page-margin: 24px;
+  --grid-gutter: 16px;
+
+  /* ---- Motion ---------------------------------------------------------
+     eBay motion is quick and functional: short eases, subtle fades, no bounce
+     on functional UI. Standard ease is a gentle ease-out. */
+  --motion-fast: 120ms; /* @kind other */
+  --motion-base: 200ms; /* @kind other */
+  --motion-slow: 320ms; /* @kind other */
+  --motion-ease: cubic-bezier(0.2, 0, 0, 1); /* @kind other */
+  --motion-ease-out: cubic-bezier(0, 0, 0.2, 1); /* @kind other */
+  --motion-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1); /* @kind other */
+}

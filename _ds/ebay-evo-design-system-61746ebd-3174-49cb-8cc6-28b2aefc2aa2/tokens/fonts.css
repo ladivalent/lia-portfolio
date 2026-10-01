@@ -1,0 +1,37 @@
+/* Market Sans — eBay's proprietary brand typeface (by Robert Slimbach / Adobe).
+   Used everywhere across eBay Evo. Two web optical sizes shipped: WebXL (display)
+   and WebS (small text). We expose the XL cut as the default family. */
+
+@font-face {
+  font-family: "Market Sans";
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url("/_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/assets/fonts/MarketSans-Regular.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Market Sans";
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  src: url("/_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/assets/fonts/MarketSans-Bold.woff2") format("woff2");
+}
+
+/* Optical size for small UI text (captions, ≤14px). Opt-in via
+   font-family: "Market Sans Small". */
+@font-face {
+  font-family: "Market Sans Small";
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url("/_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/assets/fonts/MarketSans-Regular-Small.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Market Sans Small";
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  src: url("/_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/assets/fonts/MarketSans-Bold-Small.woff2") format("woff2");
+}
