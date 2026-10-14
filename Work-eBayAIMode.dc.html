@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>eBay AI Mode in 2 Minutes</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/tokens/fonts.css">
+<style>
+html,body{margin:0;padding:0;background:#ffffff;color:#191919;font-family:'Market Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+img{max-width:100%}
+a{color:#0968F6;text-decoration:none}
+a:hover{color:#0654C4;text-decoration:underline}
+::selection{background:#0968F6;color:#fff}
+.btn-pri:hover{background:#0654C4 !important;color:#ffffff !important;text-decoration:none !important}
+.btn-sec:hover{background:#F5F9FF !important;text-decoration:none !important}
+@media (max-width:900px){
+.r-g4{grid-template-columns:repeat(2,minmax(0,1fr)) !important}
+.r-g3{grid-template-columns:minmax(0,1fr) !important}
+.r-hub{grid-template-columns:minmax(0,1fr) !important}
+.r-hide{display:none !important}
+.r-hubfig{height:auto !important}
+.r-hubfig img{height:auto !important}
+}
+@media (max-width:640px){
+.r-g{grid-template-columns:minmax(0,1fr) !important}
+.r-h1{font-size:40px !important}
+.r-h2{font-size:28px !important}
+.r-lead{font-size:20px !important}
+.r-pad{padding-top:48px !important;padding-bottom:48px !important}
+.r-hero{padding-top:32px !important;padding-bottom:48px !important}
+.r-top{margin-bottom:40px !important}
+.r-fig{padding:12px !important}
+.r-stat{font-size:28px !important}
+.r-shot{height:420px !important}
+}
+</style>
+</helmet>
+<dc-import name="SiteHeader" active="work" hint-size="100%,64px"></dc-import>
+<main id="main">
+
+<div id="top" style="min-height:calc(100vh - 64px);background:#ffffff">
+
+<!-- ============ HERO ============ -->
+<section data-screen-label="Hero" style="padding:0 24px">
+  <div class="r-hero" style="max-width:1040px;margin:0 auto;padding:56px 0 64px">
+    <div class="r-top" style="display:flex;align-items:center;justify-content:space-between;gap:12px 16px;margin-bottom:56px;flex-wrap:wrap">
+      <div style="font-size:15px;font-weight:700;color:#191919">eBay <span style="color:#707070;font-weight:400">·</span> Agentic commerce</div>
+      <div style="display:inline-flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#707070"><span style="background:#F5F9FF;border:1px solid #BFD6FB;color:#0049B8;border-radius:999px;padding:4px 10px;letter-spacing:.06em">2 minute read</span>Portfolio case study</div>
+    </div>
+    <h1 class="r-h1" style="margin:0 0 20px;font-size:64px;line-height:1.05;font-weight:700;letter-spacing:-0.02em;max-width:820px;text-wrap:balance">eBay AI Mode</h1>
+    <div class="r-lead" style="display:flex;align-items:center;gap:8px 12px;flex-wrap:wrap;margin:0 0 24px;font-size:24px;line-height:1.3">
+      <span style="color:#707070;text-decoration:line-through;text-decoration-thickness:2px">eBay needs an AI mode</span>
+      <span style="color:#707070">→</span>
+      <span style="font-weight:700;color:#0968F6">The agent does the hard work. You make the call.</span>
+    </div>
+    <p style="margin:0;font-size:19px;line-height:1.55;color:#191919;max-width:700px;text-wrap:pretty">eBay's best features, like Best Offer, auctions and one-of-a-kind listings, leave buyers and sellers doing a lot of checking on their own. I designed AI Mode, an agent that does the checking but never buys, bids or lists anything without the person's OK.</p>
+    <div class="r-g" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px 0;border-top:1px solid #E5E5E5;margin-top:36px;padding-top:20px">
+      <div style="display:flex;flex-direction:column;gap:6px;padding-right:24px">
+        <div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#707070">My role</div>
+        <div style="font-size:15px;line-height:1.45">Design lead [confirm title]</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:6px;padding-right:24px">
+        <div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#707070">Status</div>
+        <div style="font-size:15px;line-height:1.45">Working prototype with sample data · not shipped</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#707070">Timeline</div>
+        <div style="font-size:15px;line-height:1.45">September to October 2026</div>
+      </div>
+    </div>
+    <div class="r-g4" style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:32px">
+      <div style="border-top:3px solid #0968F6;background:#F7F7F7;border-radius:0 0 16px 16px;padding:16px 18px 18px">
+        <div class="r-stat" style="font-size:32px;font-weight:700;letter-spacing:-0.01em">12</div>
+        <div style="font-size:13px;color:#707070;line-height:1.45;margin-top:4px">ways to shop or sell, built end to end</div>
+      </div>
+      <div style="border-top:3px solid #0968F6;background:#F7F7F7;border-radius:0 0 16px 16px;padding:16px 18px 18px">
+        <div class="r-stat" style="font-size:32px;font-weight:700;letter-spacing:-0.01em">182</div>
+        <div style="font-size:13px;color:#707070;line-height:1.45;margin-top:4px">screens on desktop and iPhone</div>
+      </div>
+      <div style="border-top:3px solid #0968F6;background:#F7F7F7;border-radius:0 0 16px 16px;padding:16px 18px 18px">
+        <div class="r-stat" style="font-size:32px;font-weight:700;letter-spacing:-0.01em">17</div>
+        <div style="font-size:13px;color:#707070;line-height:1.45;margin-top:4px">new reusable design components</div>
+      </div>
+      <div style="border-top:3px solid #0968F6;background:#F7F7F7;border-radius:0 0 16px 16px;padding:16px 18px 18px">
+        <div class="r-stat" style="font-size:32px;font-weight:700;letter-spacing:-0.01em">0</div>
+        <div style="font-size:13px;color:#707070;line-height:1.45;margin-top:4px">money moves without the person's tap</div>
+      </div>
+    </div>
+    <div class="r-hub" style="display:grid;grid-template-columns:minmax(0,1fr) 250px;gap:16px;margin-top:32px">
+      <figure class="r-hubfig" style="margin:0;height:540px;border:1px solid #E5E5E5;border-radius:16px;overflow:hidden;background:#ffffff"><img src="work-images/ebay-ai-mode-start-desktop.png" alt="The AI Mode start page on desktop: Ask once. Your agent takes it from there, with a search box and 12 modes to pick from" style="display:block;width:100%;height:100%;object-fit:cover;object-position:top left"></figure>
+      <figure class="r-hide" style="margin:0;height:540px;border:1px solid #E5E5E5;border-radius:24px;overflow:hidden;background:#ffffff"><img src="work-images/ebay-ai-mode-start-iphone.png" alt="The same AI Mode start page on iPhone" style="display:block;width:100%;height:100%;object-fit:cover;object-position:top center"></figure>
+    </div>
+    <div style="margin-top:12px;font-size:13px;line-height:1.5;color:#707070">The AI Mode start page. Sample data throughout.</div>
+  </div>
+</section>
+
+<!-- ============ 01 PROBLEM ============ -->
+<section data-screen-label="The problem" style="padding:0 24px;border-top:1px solid #E5E5E5">
+  <div class="r-pad" style="max-width:1040px;margin:0 auto;padding:64px 0">
+    <div style="font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#707070;margin-bottom:12px">01 · The problem</div>
+    <h2 class="r-h2" style="margin:0 0 16px;font-size:34px;line-height:1.15;font-weight:700;letter-spacing:-0.01em;max-width:760px;text-wrap:balance">Lots of choice. Lots of checking.</h2>
+    <div class="r-g" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:8px">
+      <div style="border:1px solid #E5E5E5;border-radius:16px;padding:22px 24px">
+        <div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#0968F6;margin-bottom:8px">Buyers</div>
+        <p style="margin:0;font-size:15.5px;line-height:1.6;color:#363636;text-wrap:pretty">They know what they want, but get stuck at the last step. Is it the right one? Is the seller safe? What's the total? Would an offer work? So it sits on their watchlist.</p>
+      </div>
+      <div style="border:1px solid #E5E5E5;border-radius:16px;padding:22px 24px">
+        <div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#0968F6;margin-bottom:8px">Sellers</div>
+        <p style="margin:0;font-size:15.5px;line-height:1.6;color:#363636;text-wrap:pretty">Selling one item means a long form, a price with no guide, and low offers to answer one by one. It can feel like a second job.</p>
+      </div>
+    </div>
+    <div style="margin-top:16px;background:#191919;color:#ffffff;border-radius:16px;padding:22px 26px">
+      <div style="font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#A3A3A3;margin-bottom:6px">The question I set</div>
+      <div style="font-size:20px;line-height:1.45;font-weight:700;text-wrap:pretty">How can an agent do the hard work while the person keeps the final say?</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 02 WHAT I DID ============ -->
+<section data-screen-label="What I did" style="padding:0 24px;border-top:1px solid #E5E5E5">
+  <div class="r-pad" style="max-width:1040px;margin:0 auto;padding:64px 0">
+    <div style="font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#707070;margin-bottom:12px">02 · What I did</div>
+    <h2 class="r-h2" style="margin:0 0 24px;font-size:34px;line-height:1.15;font-weight:700;letter-spacing:-0.01em;max-width:760px;text-wrap:balance">Three moves.</h2>
+    <div class="r-g3" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px">
+      <div style="border:1px solid #E5E5E5;border-radius:16px;padding:22px 24px;display:flex;flex-direction:column;gap:10px">
+        <span style="display:inline-flex;width:32px;height:32px;border-radius:50%;background:#0968F6;color:#ffffff;align-items:center;justify-content:center;font-weight:700;font-size:14px">1</span>
+        <div style="font-size:17px;font-weight:700;line-height:1.3">Picked what only eBay can do</div>
+        <p style="margin:0;font-size:14.5px;line-height:1.6;color:#545454;text-wrap:pretty">I ranked 13 ideas by value to eBay and what no other store could copy. Deal hunter, built on Best Offer, came first. All 13 were for buyers, so I added selling.</p>
+      </div>
+      <div style="border:1px solid #E5E5E5;border-radius:16px;padding:22px 24px;display:flex;flex-direction:column;gap:10px">
+        <span style="display:inline-flex;width:32px;height:32px;border-radius:50%;background:#0968F6;color:#ffffff;align-items:center;justify-content:center;font-weight:700;font-size:14px">2</span>
+        <div style="font-size:17px;font-weight:700;line-height:1.3">Wrote one rule for when it acts</div>
+        <p style="margin:0;font-size:14.5px;line-height:1.6;color:#545454;text-wrap:pretty">Not sure? It asks. Easy to undo? It acts and shows Undo. Spends money or can't be undone? It shows a preview and waits for you to press and hold.</p>
+      </div>
+      <div style="border:1px solid #E5E5E5;border-radius:16px;padding:22px 24px;display:flex;flex-direction:column;gap:10px">
+        <span style="display:inline-flex;width:32px;height:32px;border-radius:50%;background:#0968F6;color:#ffffff;align-items:center;justify-content:center;font-weight:700;font-size:14px">3</span>
+        <div style="font-size:17px;font-weight:700;line-height:1.3">Raised the bar after a review</div>
+        <p style="margin:0;font-size:14.5px;line-height:1.6;color:#545454;text-wrap:pretty">A review found one tap could send offers to two sellers, so a shopper could owe $461 on a $250 budget. I rewrote the brief: every approval shows the full cost.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:32px">
+      <div style="font-size:15px;font-weight:700;margin-bottom:6px">Deal hunter, in two screens</div>
+      <p style="max-width:660px;margin:0 0 16px;font-size:14.5px;line-height:1.6;color:#545454;text-wrap:pretty">A shopper wants Air Jordan 4s in size 10.5 for under $180.</p>
+      <div class="r-g" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px">
+        <figure style="margin:0;display:flex;flex-direction:column;gap:8px">
+          <div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#707070">The agent finds the deal</div>
+          <div class="r-shot" style="height:480px;border:1px solid #E5E5E5;border-radius:12px;overflow:hidden;background:#ffffff"><img src="work-images/ebay-ai-mode-deal-found.png" alt="Here's the deal: what men's 10.5 sold for in 90 days, with a $172 offer marked as the most that keeps the total under $180" style="display:block;width:100%;height:100%;object-fit:cover;object-position:top center"></div>
+          <figcaption style="font-size:13.5px;line-height:1.5;color:#545454">Nothing fits the $180 budget, so it suggests a $172 offer on one pair, based on 90 days of sales.</figcaption>
+        </figure>
+        <figure style="margin:0;display:flex;flex-direction:column;gap:8px">
+          <div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#0968F6">You make the call</div>
+          <div class="r-shot" style="height:480px;border:1px solid #E5E5E5;border-radius:12px;overflow:hidden;background:#ffffff"><img src="work-images/ebay-ai-mode-offer-approval.png" alt="Your offer to the seller: $172, an estimated total of $179.09, when the offer expires, that it can't be taken back, and Hold to send" style="display:block;width:100%;height:100%;object-fit:cover;object-position:top center"></div>
+          <figcaption style="font-size:13.5px;line-height:1.5;color:#545454">It shows the total, when the offer expires, and that it can't be undone. Nothing sends until the shopper presses and holds.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 03 RESULT ============ -->
+<section data-screen-label="The result" style="padding:0 24px;border-top:1px solid #E5E5E5">
+  <div class="r-pad" style="max-width:1040px;margin:0 auto;padding:64px 0">
+    <div style="font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#707070;margin-bottom:12px">03 · The result</div>
+    <h2 class="r-h2" style="margin:0 0 16px;font-size:34px;line-height:1.15;font-weight:700;letter-spacing:-0.01em;max-width:760px;text-wrap:balance">12 modes, and every money move waited for a tap.</h2>
+    <p style="max-width:660px;margin:0;font-size:17px;line-height:1.65;text-wrap:pretty">The prototype runs from the eBay home page through 12 ways to buy or sell. The shopper approved 25 actions, and the agent never moved money on its own.</p>
+    <figure class="r-fig" style="margin:24px 0 0;background:#F7F7F7;border-radius:16px;padding:24px">
+      <img src="work-images/ebay-ai-mode-recap.png" alt="The recap screen: Twelve modes. Every money move waited for you. You approved 25 actions across 12 modes" style="display:block;width:100%;height:auto;border-radius:8px;background:#ffffff">
+      <figcaption style="margin-top:12px;font-size:13px;line-height:1.5;color:#707070">The last screen lists every action the shopper approved.</figcaption>
+    </figure>
+    <div class="r-g" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:16px">
+      <div style="border:1px solid #E5E5E5;border-radius:16px;padding:20px 24px">
+        <div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#707070;margin-bottom:6px">Said plainly</div>
+        <div style="font-size:15px;line-height:1.55">A concept with sample data. Not shipped, and not yet tested with shoppers.</div>
+      </div>
+      <div style="border:1.5px solid #288034;background:#F0FAF2;border-radius:16px;padding:20px 24px">
+        <div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#288034;margin-bottom:6px">What's next</div>
+        <div style="font-size:15px;line-height:1.55">Test it with 5 shoppers, check every agent claim against its proof, and run a first pilot in sneakers.</div>
+      </div>
+    </div>
+    <div style="margin-top:24px;background:#191919;color:#ffffff;border-radius:16px;padding:24px 28px;display:flex;flex-direction:column;gap:8px">
+      <div style="font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#A3A3A3">The lesson</div>
+      <div style="font-size:20px;font-weight:700;line-height:1.4;text-wrap:pretty">An agent earns trust one approved decision at a time. Decide what the person must approve first, then design the agent.</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px 16px;flex-wrap:wrap;margin-top:28px">
+      <sc-if value="{{ hasFull }}" hint-placeholder-val="{{ false }}"><a class="btn-pri" href="{{ fullCaseUrl }}" style="display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 24px;border-radius:999px;background:#0968F6;color:#ffffff;font-size:15px;font-weight:700;text-decoration:none">Read the full case study</a></sc-if>
+      <sc-if value="{{ hasProto }}" hint-placeholder-val="{{ true }}">
+        <a class="btn-sec" href="{{ prototypeUrl }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 22px;border-radius:999px;border:1.5px solid #0968F6;color:#0968F6;font-size:15px;font-weight:700;text-decoration:none">Open the prototype</a>
+      </sc-if>
+      <span style="font-size:15px;line-height:1.5"><b>Lia DiValentin</b> · <a href="mailto:ladivalent@gmail.com">ladivalent@gmail.com</a></span>
+    </div>
+  </div>
+</section>
+
+</div>
+</main>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"fullCaseUrl":{"editor":"text","default":"","tsType":"string","section":"Links"},"prototypeUrl":{"editor":"text","default":"https://claude.ai/artifact/VyNwswguAvE5YxmB1gSajy","tsType":"string","section":"Links"},"$preview":{"width":1440,"height":4240}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const url = String(this.props.prototypeUrl ?? "https://claude.ai/artifact/VyNwswguAvE5YxmB1gSajy").trim();
+    const full = String(this.props.fullCaseUrl ?? "").trim();
+    return { prototypeUrl: url, hasProto: !!url && url !== "#" , fullCaseUrl: full, hasFull: !!full };
+  }
+}
+</script>
+</body>
+</html>
