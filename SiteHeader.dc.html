@@ -25,7 +25,7 @@
     <nav aria-label="Primary" style="display:flex;align-items:center;gap:4px;flex-wrap:wrap;justify-content:flex-end">
       <a href="Home.dc.html" aria-current="{{ homeCur }}" style="display:inline-flex;align-items:center;height:44px;padding:0 12px;font-size:15px;color:{{ homeColor }};text-decoration:none;border-bottom:2px solid {{ homeLine }};border-top:2px solid transparent" style-hover="color:#0968F6">Home</a>
       <a href="Process.dc.html" aria-current="{{ processCur }}" style="display:inline-flex;align-items:center;height:44px;padding:0 12px;font-size:15px;color:{{ processColor }};text-decoration:none;border-bottom:2px solid {{ processLine }};border-top:2px solid transparent" style-hover="color:#0968F6">Process</a>
-      <div style="position:relative" onMouseEnter="{{ openWork }}" onMouseLeave="{{ closeWork }}">
+      <div data-workmenu="1" style="position:relative">
         <button type="button" onClick="{{ toggleWork }}" onKeyDown="{{ onWorkKey }}" aria-haspopup="menu" aria-expanded="{{ workOpen }}" style="display:inline-flex;align-items:center;gap:6px;height:44px;padding:0 12px;font-size:15px;font-family:inherit;color:{{ workColor }};background:none;border:0;border-bottom:2px solid {{ workLine }};border-top:2px solid transparent;cursor:pointer" style-hover="color:#0968F6">Work <span aria-hidden="true" style="font-size:11px">▾</span></button>
         <sc-if value="{{ workOpen }}" hint-placeholder-val="{{ false }}">
           <div style="position:absolute;top:100%;right:0;padding-top:8px;z-index:60">
@@ -53,6 +53,22 @@
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1200,&quot;height&quot;:64},&quot;active&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;home&quot;,&quot;options&quot;:[&quot;home&quot;,&quot;process&quot;,&quot;work&quot;,&quot;resume&quot;,&quot;contact&quot;],&quot;tsType&quot;:&quot;string&quot;}}">
 class Component extends DCLogic {
   state = { workOpen: false };
+  componentDidMount() {
+    // Close the Work menu when clicking anywhere outside it, or on Esc.
+    this._outside = (e) => {
+      if (!this.state.workOpen) return;
+      const path = e.composedPath ? e.composedPath() : [];
+      const inside = path.some((n) => n && n.getAttribute && n.getAttribute("data-workmenu") === "1");
+      if (!inside) this.setState({ workOpen: false });
+    };
+    this._esc = (e) => { if (e.key === "Escape" && this.state.workOpen) this.setState({ workOpen: false }); };
+    document.addEventListener("pointerdown", this._outside, true);
+    document.addEventListener("keydown", this._esc);
+  }
+  componentWillUnmount() {
+    document.removeEventListener("pointerdown", this._outside, true);
+    document.removeEventListener("keydown", this._esc);
+  }
   renderVals() {
     const a = this.props.active ?? "home";
     const v = {};
@@ -65,14 +81,13 @@ class Component extends DCLogic {
     return {
       ...v,
       workOpen: this.state.workOpen,
-      openWork: () => { clearTimeout(this._closeT); this._hoverAt = Date.now(); this.setState({ workOpen: true }); },
-      closeWork: () => { clearTimeout(this._closeT); this._closeT = setTimeout(() => this.setState({ workOpen: false }), 350); },
-      toggleWork: () => this.setState(s => ({ workOpen: (Date.now() - (this._hoverAt || 0) < 800) ? true : !s.workOpen })),
+      toggleWork: () => this.setState(s => ({ workOpen: !s.workOpen })),
       onWorkKey: (e) => {
-        if (e.key === "ArrowDown" || e.key === "Enter" || e.key === " ") {
+        if (e.key === "ArrowDown") {
           e.preventDefault();
+          const wrap = e.currentTarget.parentElement;
           this.setState({ workOpen: true }, () => {
-            const first = e.currentTarget.parentElement.querySelector('[role="menuitem"]');
+            const first = wrap.querySelector('[role="menuitem"]');
             first && first.focus();
           });
         }
