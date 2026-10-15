@@ -28,7 +28,8 @@
       <div style="position:relative" onMouseEnter="{{ openWork }}" onMouseLeave="{{ closeWork }}">
         <button type="button" onClick="{{ toggleWork }}" onKeyDown="{{ onWorkKey }}" aria-haspopup="menu" aria-expanded="{{ workOpen }}" style="display:inline-flex;align-items:center;gap:6px;height:44px;padding:0 12px;font-size:15px;font-family:inherit;color:{{ workColor }};background:none;border:0;border-bottom:2px solid {{ workLine }};border-top:2px solid transparent;cursor:pointer" style-hover="color:#0968F6">Work <span aria-hidden="true" style="font-size:11px">▾</span></button>
         <sc-if value="{{ workOpen }}" hint-placeholder-val="{{ false }}">
-          <div role="menu" onKeyDown="{{ onMenuKey }}" style="position:absolute;top:52px;right:0;min-width:300px;max-height:calc(100vh - 80px);overflow:auto;background:#fff;border:1px solid #E5E5E5;border-radius:12px;padding:8px;box-shadow:0 8px 24px rgba(0,0,0,.08);display:flex;flex-direction:column;gap:2px">
+          <div style="position:absolute;top:100%;right:0;padding-top:8px;z-index:60">
+          <div role="menu" onKeyDown="{{ onMenuKey }}" style="position:relative;min-width:300px;max-height:calc(100vh - 80px);overflow:auto;background:#fff;border:1px solid #E5E5E5;border-radius:12px;padding:8px;box-shadow:0 8px 24px rgba(0,0,0,.08);display:flex;flex-direction:column;gap:2px">
             <div aria-hidden="true" style="padding:4px 12px 4px;font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#8F8F8F">Projects</div>
             <a role="menuitem" href="Work-AllProjects.dc.html" style="display:flex;flex-direction:column;gap:2px;padding:10px 12px;border-radius:8px;color:#191919;text-decoration:none" style-hover="background:#F5F9FF;color:#191919" style-focus="background:#F5F9FF;outline:2px solid #0968F6"><span style="font-size:15px;font-weight:700">All projects</span><span style="font-size:13px;color:#707070">eBay · Walmart · The Home Depot · TASB · U.S. Army</span></a>
             <a role="menuitem" href="Work-eBayAIMode.dc.html" style="display:flex;flex-direction:column;gap:2px;padding:10px 12px;border-radius:8px;color:#191919;text-decoration:none" style-hover="background:#F5F9FF;color:#191919" style-focus="background:#F5F9FF;outline:2px solid #0968F6"><span style="font-size:15px;font-weight:700">eBay AI Mode</span><span style="font-size:13px;color:#707070">Search redesign · agentic commerce</span></a>
@@ -39,6 +40,8 @@
             <a role="menuitem" href="Work-LocalPickup.dc.html" style="display:flex;flex-direction:column;gap:2px;padding:10px 12px;border-radius:8px;color:#191919;text-decoration:none" style-hover="background:#F5F9FF;color:#191919" style-focus="background:#F5F9FF;outline:2px solid #0968F6"><span style="font-size:15px;font-weight:700">Local Pickup</span><span style="font-size:13px;color:#707070">Agentic Local Pickup · eBay</span></a>
             <a role="menuitem" href="Work-Current.dc.html" style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 12px;border-radius:8px;color:#191919;text-decoration:none" style-hover="background:#F5F9FF;color:#191919" style-focus="background:#F5F9FF;outline:2px solid #0968F6"><span style="display:flex;flex-direction:column;gap:2px"><span style="font-size:15px;font-weight:700">Current Work</span><span style="font-size:13px;color:#707070">Sneak peek · by request</span></span><span style="display:inline-flex;color:#707070"><x-import component-from-global-scope="EBayEvoDesignSystem_61746e.Icon" name="Lock16" size="16" hint-size="16px,16px"></x-import></span></a>
           </div>
+          </div>
+        
         </sc-if>
       </div>
       <a href="Resume.dc.html" aria-current="{{ resumeCur }}" style="display:inline-flex;align-items:center;height:44px;padding:0 12px;font-size:15px;color:{{ resumeColor }};text-decoration:none;border-bottom:2px solid {{ resumeLine }};border-top:2px solid transparent" style-hover="color:#0968F6">Résumé</a>
@@ -62,9 +65,9 @@ class Component extends DCLogic {
     return {
       ...v,
       workOpen: this.state.workOpen,
-      openWork: () => this.setState({ workOpen: true }),
-      closeWork: () => this.setState({ workOpen: false }),
-      toggleWork: () => this.setState(s => ({ workOpen: !s.workOpen })),
+      openWork: () => { clearTimeout(this._closeT); this._hoverAt = Date.now(); this.setState({ workOpen: true }); },
+      closeWork: () => { clearTimeout(this._closeT); this._closeT = setTimeout(() => this.setState({ workOpen: false }), 350); },
+      toggleWork: () => this.setState(s => ({ workOpen: (Date.now() - (this._hoverAt || 0) < 800) ? true : !s.workOpen })),
       onWorkKey: (e) => {
         if (e.key === "ArrowDown" || e.key === "Enter" || e.key === " ") {
           e.preventDefault();
