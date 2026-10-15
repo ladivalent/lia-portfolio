@@ -148,10 +148,10 @@ a:hover{color:#8F3A00;text-decoration:underline}
 </div>
 </main>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props='{"fullCaseUrl":{"editor":"text","default":"","tsType":"string","section":"Links"},"$preview":{"width":1440,"height":2600}}'>
+<script type="text/x-dc" data-dc-script data-props='{"fullCaseUrl":{"editor":"text","default":"Work-HomeDepot-CaseStudy.dc.html","tsType":"string","section":"Links"},"$preview":{"width":1440,"height":2600}}'>
 class Component extends DCLogic {
   renderVals() {
-    const full = String(this.props.fullCaseUrl ?? "").trim();
+    const full = String(this.props.fullCaseUrl ?? "Work-HomeDepot-CaseStudy.dc.html").trim();
     return { fullCaseUrl: full, hasFull: !!full };
   }
 }

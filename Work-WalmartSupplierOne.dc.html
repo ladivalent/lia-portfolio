@@ -202,12 +202,12 @@ a:hover{color:#0654C4;text-decoration:underline}
 </div>
 </main>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props='{"fullCaseUrl":{"editor":"text","default":"","tsType":"string","section":"Links"},"prototypeUrl":{"editor":"text","default":"https://www.figma.com/proto/MRYcojSB4uK2Xia0TnC1ID/Supplier-Hub_One-Collab-Session--Copy-?page-id=504%3A370325&amp;type=design&amp;node-id=1363-427902&amp;viewport=30%2C-1386%2C0.5&amp;t=r7vxaw96JRKGJ7jl-8&amp;scaling=scale-down&amp;starting-point-node-id=1363%3A427902&amp;show-proto-sidebar=1&amp;hide-ui=1","tsType":"string","section":"Links"},"$preview":{"width":1440,"height":4100}}'>
+<script type="text/x-dc" data-dc-script data-props='{"fullCaseUrl":{"editor":"text","default":"Work-WalmartSupplierOne-CaseStudy.dc.html","tsType":"string","section":"Links"},"prototypeUrl":{"editor":"text","default":"https://www.figma.com/proto/MRYcojSB4uK2Xia0TnC1ID/Supplier-Hub_One-Collab-Session--Copy-?page-id=504%3A370325&amp;type=design&amp;node-id=1363-427902&amp;viewport=30%2C-1386%2C0.5&amp;t=r7vxaw96JRKGJ7jl-8&amp;scaling=scale-down&amp;starting-point-node-id=1363%3A427902&amp;show-proto-sidebar=1&amp;hide-ui=1","tsType":"string","section":"Links"},"$preview":{"width":1440,"height":4100}}'>
 class Component extends DCLogic {
   renderVals() {
     const fallback = "https://www.figma.com/proto/MRYcojSB4uK2Xia0TnC1ID/Supplier-Hub_One-Collab-Session--Copy-?page-id=504%3A370325&type=design&node-id=1363-427902&viewport=30%2C-1386%2C0.5&t=r7vxaw96JRKGJ7jl-8&scaling=scale-down&starting-point-node-id=1363%3A427902&show-proto-sidebar=1&hide-ui=1";
     const url = String(this.props.prototypeUrl ?? fallback).trim();
-    const full = String(this.props.fullCaseUrl ?? "").trim();
+    const full = String(this.props.fullCaseUrl ?? "Work-WalmartSupplierOne-CaseStudy.dc.html").trim();
     return { prototypeUrl: url, hasProto: !!url && url !== "#" , fullCaseUrl: full, hasFull: !!full };
   }
 }

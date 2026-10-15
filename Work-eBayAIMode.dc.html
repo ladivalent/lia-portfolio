@@ -201,11 +201,11 @@ a:hover{color:#0654C4;text-decoration:underline}
 </div>
 </main>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props='{"fullCaseUrl":{"editor":"text","default":"","tsType":"string","section":"Links"},"prototypeUrl":{"editor":"text","default":"https://claude.ai/artifact/VyNwswguAvE5YxmB1gSajy","tsType":"string","section":"Links"},"$preview":{"width":1440,"height":4240}}'>
+<script type="text/x-dc" data-dc-script data-props='{"fullCaseUrl":{"editor":"text","default":"Work-eBayAIMode-CaseStudy.dc.html","tsType":"string","section":"Links"},"prototypeUrl":{"editor":"text","default":"https://claude.ai/artifact/VyNwswguAvE5YxmB1gSajy","tsType":"string","section":"Links"},"$preview":{"width":1440,"height":4240}}'>
 class Component extends DCLogic {
   renderVals() {
     const url = String(this.props.prototypeUrl ?? "https://claude.ai/artifact/VyNwswguAvE5YxmB1gSajy").trim();
-    const full = String(this.props.fullCaseUrl ?? "").trim();
+    const full = String(this.props.fullCaseUrl ?? "Work-eBayAIMode-CaseStudy.dc.html").trim();
     return { prototypeUrl: url, hasProto: !!url && url !== "#" , fullCaseUrl: full, hasFull: !!full };
   }
 }
