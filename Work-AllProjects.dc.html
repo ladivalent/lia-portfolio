@@ -20,7 +20,19 @@ a:hover{color:#0848A8;text-decoration:underline}
 .btn-pri:hover{background:#363636 !important;color:#ffffff !important;text-decoration:none !important}
 .btn-sec:hover{background:#F2F2F2 !important;text-decoration:none !important}
 .chip:hover{border-color:#191919 !important;text-decoration:none !important}
+.proj-nav{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.94);-webkit-backdrop-filter:saturate(1.4) blur(10px);backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid transparent;transition:border-color .2s,box-shadow .2s}
+.proj-nav.stuck{border-bottom-color:#E5E5E5;box-shadow:0 4px 16px rgba(0,0,0,.04)}
+.proj-nav-in{max-width:860px;margin:0 auto;padding:12px 24px;display:flex;justify-content:center;gap:8px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.proj-nav-in::-webkit-scrollbar{display:none}
+.chip{flex:none;display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border:1.5px solid #D6D6D6;border-radius:999px;color:#191919;font-size:14px;font-weight:700;text-decoration:none;background:#ffffff;white-space:nowrap;transition:background .15s,color .15s,border-color .15s}
+.chip.on{background:#191919;border-color:#191919;color:#ffffff}
+.chip.on:hover{color:#ffffff}
+.chip:focus-visible{outline:2px solid #0968F6;outline-offset:2px}
+section[id]{scroll-margin-top:72px}
 @media (max-width:760px){
+.proj-nav-in{justify-content:flex-start;padding:10px 16px}
+.chip{min-height:40px;padding:0 16px}
+section[id]{scroll-margin-top:64px}
 .r-g4{grid-template-columns:repeat(2,minmax(0,1fr)) !important}
 .r-g2col{grid-template-columns:minmax(0,1fr) !important}
 .r-shot{height:380px !important}
@@ -43,23 +55,24 @@ a:hover{color:#0848A8;text-decoration:underline}
 <!-- ============ HEADER ============ -->
 
 
+<section data-screen-label="Header" style="padding:0 24px">
+  <div style="max-width:860px;margin:0 auto;padding:56px 0 16px;text-align:center">
+    <div style="font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#707070">Portfolio · 5 projects</div>
+  </div>
+</section>
+<nav class="proj-nav" aria-label="Projects">
+  <div class="proj-nav-in">
+      <a class="chip" href="#ebay" data-chip="ebay">eBay</a>
+      <a class="chip" href="#walmart" data-chip="walmart">Walmart</a>
+      <a class="chip" href="#homedepot" data-chip="homedepot">The Home Depot</a>
+      <a class="chip" href="#tasb" data-chip="tasb">TASB</a>
+      <a class="chip" href="#army" data-chip="army">U.S. Army</a>
+  </div>
+</nav>
+
 <!-- ============ 01 EBAY ============ -->
 <section id="ebay" data-screen-label="eBay" style="padding:0 24px;border-top:1px solid #E5E5E5;background:#ffffff">
-  <section data-screen-label="Header" style="padding: 0 24px; height: 190px">
-  <div class="r-pad" style="max-width:860px;margin:0 auto;padding:88px 0 72px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:18px">
-    <div style="font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#707070">Portfolio · 5 projects</div>
-    
-    
-    
-    <nav aria-label="Projects" style="display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:10px">
-        <a class="chip" href="#ebay" style="display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border:1.5px solid #D6D6D6;border-radius:999px;color:#191919;font-size:14px;font-weight:700;text-decoration:none;background:#ffffff">eBay</a>
-        <a class="chip" href="#walmart" style="display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border:1.5px solid #D6D6D6;border-radius:999px;color:#191919;font-size:14px;font-weight:700;text-decoration:none;background:#ffffff">Walmart</a>
-        <a class="chip" href="#homedepot" style="display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border:1.5px solid #D6D6D6;border-radius:999px;color:#191919;font-size:14px;font-weight:700;text-decoration:none;background:#ffffff">The Home Depot</a>
-        <a class="chip" href="#tasb" style="display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border:1.5px solid #D6D6D6;border-radius:999px;color:#191919;font-size:14px;font-weight:700;text-decoration:none;background:#ffffff">TASB</a>
-        <a class="chip" href="#army" style="display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border:1.5px solid #D6D6D6;border-radius:999px;color:#191919;font-size:14px;font-weight:700;text-decoration:none;background:#ffffff">U.S. Army</a>
-    </nav>
-  </div>
-</section><div class="r-pad" style="max-width:860px;margin:0 auto;padding:88px 0">
+<div class="r-pad" style="max-width:860px;margin:0 auto;padding:88px 0">
     <div style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px">
       <div style="font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#707070">01 of 05</div>
       <div style="display:flex;align-items:center;justify-content:center;min-height:88px"><img src="work-images/logo-ebay.png" alt="eBay logo" style="display:block;height:56px;width:auto;max-width:100%;object-fit:contain"></div>
@@ -267,11 +280,13 @@ a:hover{color:#0848A8;text-decoration:underline}
       <figcaption style="margin-top:12px;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#A3A3A3">Design lesson</figcaption>
     </figure>
       <div style="display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:28px">
+        <sc-if value="{{ tasbCase.has }}" hint-placeholder-val="{{ true }}"><a class="btn-pri" href="{{ tasbCase.url }}" style="display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 22px;border-radius:999px;background:#191919;color:#ffffff;font-size:14px;font-weight:700;text-decoration:none">Read the case study</a></sc-if>
+        <sc-if value="{{ tasbCase.slot }}" hint-placeholder-val="{{ false }}"><span style="display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 20px;border-radius:999px;border:1.5px dashed #A3A3A3;color:#707070;font-size:14px;font-weight:700;box-sizing:border-box">[Case study link · paste it in Tweaks]</span></sc-if>
         <sc-if value="{{ tasbProto.has }}" hint-placeholder-val="{{ true }}">
           <a class="btn-sec" href="{{ tasbProto.url }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 20px;border-radius:999px;border:1.5px solid #191919;color:#191919;font-size:14px;font-weight:700;text-decoration:none;box-sizing:border-box">Visit the site<svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><path d="M14 4h6v6"></path><path d="M20 4 10 14"></path><path d="M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"></path></svg></a>
         </sc-if>
         <sc-if value="{{ tasbProto.slot }}" hint-placeholder-val="{{ false }}">
-          <span style="display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 20px;border-radius:999px;border:1.5px dashed #A3A3A3;color:#707070;font-size:14px;font-weight:700;box-sizing:border-box">[Prototype link · paste it in Tweaks]</span>
+          <span style="display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 20px;border-radius:999px;border:1.5px dashed #A3A3A3;color:#707070;font-size:14px;font-weight:700;box-sizing:border-box">[Site link · paste it in Tweaks]</span>
         </sc-if>
       </div>
   </div>
@@ -315,11 +330,13 @@ a:hover{color:#0848A8;text-decoration:underline}
       <figcaption style="margin-top:12px;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#A3A3A3">Design lesson</figcaption>
     </figure>
       <div style="display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:28px">
+        <sc-if value="{{ armyCase.has }}" hint-placeholder-val="{{ true }}"><a class="btn-pri" href="{{ armyCase.url }}" style="display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 22px;border-radius:999px;background:#191919;color:#ffffff;font-size:14px;font-weight:700;text-decoration:none">Read the case study</a></sc-if>
+        <sc-if value="{{ armyCase.slot }}" hint-placeholder-val="{{ false }}"><span style="display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 20px;border-radius:999px;border:1.5px dashed #A3A3A3;color:#707070;font-size:14px;font-weight:700;box-sizing:border-box">[Case study link · paste it in Tweaks]</span></sc-if>
         <sc-if value="{{ armyProto.has }}" hint-placeholder-val="{{ true }}">
-          <a class="btn-sec" href="{{ armyProto.url }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 20px;border-radius:999px;border:1.5px solid #191919;color:#191919;font-size:14px;font-weight:700;text-decoration:none;box-sizing:border-box">View the prototype<svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><path d="M14 4h6v6"></path><path d="M20 4 10 14"></path><path d="M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"></path></svg></a>
+          <a class="btn-sec" href="{{ armyProto.url }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 20px;border-radius:999px;border:1.5px solid #191919;color:#191919;font-size:14px;font-weight:700;text-decoration:none;box-sizing:border-box">Visit the site<svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><path d="M14 4h6v6"></path><path d="M20 4 10 14"></path><path d="M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"></path></svg></a>
         </sc-if>
         <sc-if value="{{ armyProto.slot }}" hint-placeholder-val="{{ false }}">
-          <span style="display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 20px;border-radius:999px;border:1.5px dashed #A3A3A3;color:#707070;font-size:14px;font-weight:700;box-sizing:border-box">[Prototype link · paste it in Tweaks]</span>
+          <span style="display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 20px;border-radius:999px;border:1.5px dashed #A3A3A3;color:#707070;font-size:14px;font-weight:700;box-sizing:border-box">[Site link · paste it in Tweaks]</span>
         </sc-if>
       </div>
   </div>
@@ -340,10 +357,40 @@ a:hover{color:#0848A8;text-decoration:underline}
 </div>
 </main>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props='{"ebayCaseStudy": {"editor": "text", "default": "Work-eBayAIMode-CaseStudy.dc.html", "tsType": "string", "section": "Case study links"}, "walmartCaseStudy": {"editor": "text", "default": "Work-WalmartSupplierOne-CaseStudy.dc.html", "tsType": "string", "section": "Case study links"}, "homeDepotCaseStudy": {"editor": "text", "default": "Work-HomeDepot-CaseStudy.dc.html", "tsType": "string", "section": "Case study links"}, "ebayPrototype": {"editor": "text", "default": "https://claude.ai/artifact/VyNwswguAvE5YxmB1gSajy", "tsType": "string", "section": "Prototype links"}, "walmartPrototype": {"editor": "text", "default": "https://www.figma.com/design/vznMlkqYnXFZ2tRNI34mX2/S1-LD-Subsystem-Presentation?node-id=4001-37583&amp;t=7tUXdnvCoykSyutK-1", "tsType": "string", "section": "Prototype links"}, "homeDepotPrototype": {"editor": "text", "default": "https://vimeo.com/667535643", "tsType": "string", "section": "Prototype links"}, "tasbPrototype": {"editor": "text", "default": "https://www.tasb.org/search?query=inside+rm", "tsType": "string", "section": "Prototype links"}, "armyPrototype": {"editor": "text", "default": "", "tsType": "string", "section": "Prototype links"}, "showLinkSlots": {"editor": "boolean", "default": false, "tsType": "boolean", "section": "Display"}, "$preview": {"width": 1440, "height": 10100}}'>
+<script type="text/x-dc" data-dc-script data-props='{"ebayCaseStudy": {"editor": "text", "default": "Work-eBayAIMode-CaseStudy.dc.html", "tsType": "string", "section": "Case study links"}, "walmartCaseStudy": {"editor": "text", "default": "Work-WalmartSupplierOne-CaseStudy.dc.html", "tsType": "string", "section": "Case study links"}, "homeDepotCaseStudy": {"editor": "text", "default": "Work-HomeDepot-CaseStudy.dc.html", "tsType": "string", "section": "Case study links"}, "tasbCaseStudy": {"editor": "text", "default": "", "tsType": "string", "section": "Case study links"}, "armyCaseStudy": {"editor": "text", "default": "", "tsType": "string", "section": "Case study links"}, "ebayPrototype": {"editor": "text", "default": "https://claude.ai/artifact/VyNwswguAvE5YxmB1gSajy", "tsType": "string", "section": "Prototype links"}, "walmartPrototype": {"editor": "text", "default": "https://www.figma.com/design/vznMlkqYnXFZ2tRNI34mX2/S1-LD-Subsystem-Presentation?node-id=4001-37583&amp;t=7tUXdnvCoykSyutK-1", "tsType": "string", "section": "Prototype links"}, "homeDepotPrototype": {"editor": "text", "default": "https://vimeo.com/667535643", "tsType": "string", "section": "Prototype links"}, "tasbPrototype": {"editor": "text", "default": "https://www.tasb.org/search?query=inside+rm", "tsType": "string", "section": "Site links"}, "armyPrototype": {"editor": "text", "default": "", "tsType": "string", "section": "Site links"}, "showLinkSlots": {"editor": "boolean", "default": false, "tsType": "boolean", "section": "Display"}, "$preview": {"width": 1440, "height": 10100}}'>
 class Component extends DCLogic {
+  componentDidMount() {
+    const ids = ["ebay", "walmart", "homedepot", "tasb", "army"];
+    let last = null;
+    this._onScroll = () => {
+      const nav = document.querySelector(".proj-nav");
+      if (!nav) return;
+      const navBottom = nav.getBoundingClientRect().bottom;
+      nav.classList.toggle("stuck", nav.getBoundingClientRect().top <= 0.5 && window.scrollY > 0);
+      let cur = null;
+      for (const id of ids) {
+        const s = document.getElementById(id);
+        if (s && s.getBoundingClientRect().top <= navBottom + 40) cur = id;
+      }
+      if (cur === last) return;
+      last = cur;
+      nav.querySelectorAll(".chip").forEach((c) => {
+        const on = c.getAttribute("data-chip") === cur;
+        c.classList.toggle("on", on);
+        if (on) { c.setAttribute("aria-current", "true"); const row = c.parentElement; row.scrollTo({ left: c.offsetLeft - (row.clientWidth - c.offsetWidth) / 2, behavior: "smooth" }); }
+        else c.removeAttribute("aria-current");
+      });
+    };
+    window.addEventListener("scroll", this._onScroll, { passive: true });
+    window.addEventListener("resize", this._onScroll);
+    setTimeout(this._onScroll, 100);
+  }
+  componentWillUnmount() {
+    window.removeEventListener("scroll", this._onScroll);
+    window.removeEventListener("resize", this._onScroll);
+  }
   renderVals() {
-    const defaults = { ebayCaseStudy: "Work-eBayAIMode-CaseStudy.dc.html", walmartCaseStudy: "Work-WalmartSupplierOne-CaseStudy.dc.html", homeDepotCaseStudy: "Work-HomeDepot-CaseStudy.dc.html", ebayPrototype: "https://claude.ai/artifact/VyNwswguAvE5YxmB1gSajy", walmartPrototype: "https://www.figma.com/design/vznMlkqYnXFZ2tRNI34mX2/S1-LD-Subsystem-Presentation?node-id=4001-37583&t=7tUXdnvCoykSyutK-1", homeDepotPrototype: "https://vimeo.com/667535643", tasbPrototype: "https://www.tasb.org/search?query=inside+rm", armyPrototype: "" };
+    const defaults = { ebayCaseStudy: "Work-eBayAIMode-CaseStudy.dc.html", walmartCaseStudy: "Work-WalmartSupplierOne-CaseStudy.dc.html", homeDepotCaseStudy: "Work-HomeDepot-CaseStudy.dc.html", tasbCaseStudy: "", armyCaseStudy: "", ebayPrototype: "https://claude.ai/artifact/VyNwswguAvE5YxmB1gSajy", walmartPrototype: "https://www.figma.com/design/vznMlkqYnXFZ2tRNI34mX2/S1-LD-Subsystem-Presentation?node-id=4001-37583&t=7tUXdnvCoykSyutK-1", homeDepotPrototype: "https://vimeo.com/667535643", tasbPrototype: "https://www.tasb.org/search?query=inside+rm", armyPrototype: "" };
     const showSlots = this.props.showLinkSlots ?? false;
     const link = (key) => {
       const url = String(this.props[key] ?? defaults[key] ?? "").trim();
@@ -358,7 +405,9 @@ class Component extends DCLogic {
       armyProto: link("armyPrototype"),
       ebayCase: link("ebayCaseStudy"),
       walmartCase: link("walmartCaseStudy"),
-      homeDepotCase: link("homeDepotCaseStudy")
+      homeDepotCase: link("homeDepotCaseStudy"),
+      tasbCase: link("tasbCaseStudy"),
+      armyCase: link("armyCaseStudy")
     };
   }
 }
