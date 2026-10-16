@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Shared · step rail</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ds/ebayevodesignsystem-61746e/tokens.css">
+<link rel="stylesheet" href="ds/ebayevodesignsystem-61746e/components/bundle.css">
+<script src="ds/ebayevodesignsystem-61746e/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0;font-family:"Market Sans", system-ui, -apple-system, sans-serif;color:#191919}
+button{font-family:inherit}
+.pr-dot{display:inline-flex;align-items:center;justify-content:center;flex:none;height:20px;padding:0 2px;border:none;background:transparent;cursor:pointer}
+.pr-dot span{display:block;height:8px;border-radius:999px;transition:width 160ms,background 160ms}
+.pr-btn{display:inline-flex;align-items:center;justify-content:center;height:40px;padding:0 20px;border-radius:999px;font-size:14px;line-height:20px;font-weight:700;cursor:pointer}
+.pr-btn:disabled{opacity:.4;cursor:default}
+@media (max-width:720px){.pr-rail{flex-wrap:wrap;gap:12px 16px!important;padding:12px 16px!important}.pr-text{flex-basis:100%}.pr-ctl{width:100%;justify-content:space-between}}
+</style>
+</helmet>
+<div class="pr-rail" style="display:flex;align-items:center;justify-content:space-between;gap:24px;width:100%;box-sizing:border-box;padding:16px 24px;background:#fff;border-bottom:1px solid #e5e5e5"><div class="pr-text" style="display:flex;flex-direction:column;gap:2px;min-width:0;flex:1"><span style="font-size:12px;line-height:16px;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;color:#0968f6">{{eyebrow}}</span><h2 style="margin:0;font-size:20px;line-height:28px;font-weight:700">{{title}}</h2><p style="margin:0;font-size:14px;line-height:20px;color:#707070">{{desc}}</p></div><div class="pr-ctl" style="display:flex;align-items:center;gap:16px;flex:none"><div role="group" aria-label="Steps" style="display:flex;align-items:center;gap:2px"><sc-for list="{{dots}}" as="d" hint-placeholder-count="6"><button type="button" class="pr-dot" aria-label="{{d.aria}}" aria-current="{{d.current}}" onClick="{{d.pick}}"><span style="width:{{d.w}};background:{{d.bg}}"></span></button></sc-for></div><button type="button" class="pr-btn" onClick="{{back}}" disabled="{{backOff}}" style="border:1px solid #0968f6;background:#fff;color:#0968f6">Back</button><button type="button" class="pr-btn" onClick="{{next}}" style="border:1px solid #0968f6;background:#0968f6;color:#fff">{{nextLabel}}</button></div></div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"eyebrow": {"editor": null}, "title": {"editor": null}, "desc": {"editor": null}, "dots": {"editor": null}, "back": {"editor": null}, "next": {"editor": null}, "backOff": {"editor": null}, "nextLabel": {"editor": null}, "$preview": {"width": 1440, "height": 112}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const p = this.props;
+    const dots = p.dots ?? [0, 1, 2, 3, 4, 5].map((i) => ({ aria: 'Step ' + (i + 1), current: i === 1 ? 'step' : 'false', w: i === 1 ? '24px' : '8px', bg: i === 1 ? '#0968f6' : '#c7c7c7', pick: () => {} }));
+    return { eyebrow: p.eyebrow ?? 'Step 2 of 6 · Deal hunter · Desktop', title: p.title ?? 'Hunting',
+      desc: p.desc ?? 'It checks off its steps, folds them into the trace and shows the deal in place.',
+      dots, back: p.back ?? (() => {}), next: p.next ?? (() => {}), backOff: p.backOff ?? false, nextLabel: p.nextLabel ?? 'Next step' };
+  }
+}
+</script>
+</body>
+</html>

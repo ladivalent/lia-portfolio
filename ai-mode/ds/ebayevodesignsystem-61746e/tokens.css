@@ -1,0 +1,2403 @@
+/* eBay Evo Design System — generated from tokens.json */
+:root, [data-theme="light"] {
+  --ai-solid-blue-strong: rgb(9,104,246); /* AI accent, blue strong (#0968F6): generative-AI marks and gradients. */
+  --ai-solid-blue-subtle: rgb(240,246,254); /* AI accent, blue subtle: the faint fill behind AI surfaces. */
+  --ai-solid-green-strong: rgb(78,224,75); /* AI accent, green strong: one stop of the AI gradient. */
+  --ai-solid-green-subtle: rgb(241,253,241); /* AI accent, green subtle. */
+  --ai-solid-purple-strong: rgb(153,62,224); /* AI accent, purple strong (#993EE0): AI surfaces lean purple; the AI sparkle and labels. */
+  --ai-solid-purple-subtle: rgb(249,243,253); /* AI accent, purple subtle: the fill behind AI labels and AI cards. */
+  --ai-solid-red-strong: rgb(255,66,66); /* AI accent, red strong: one stop of the AI gradient. */
+  --ai-solid-red-subtle: rgb(255,244,244); /* AI accent, red subtle. */
+  --ai-solid-yellow-strong: rgb(255,216,14); /* AI accent, yellow strong: one stop of the AI gradient. */
+  --avatar-background-2: var(--blue-300); /* Blue avatar fill (blue 300). */
+  --avatar-foreground-2: var(--blue-700); /* Variant of `avatar-foreground` from another Figma variable collection (Light #002A69, Root Dark #002A69). Prefer `avatar-foreground` unless you are matching that collection. */
+  --avatar-foreground: var(--color-avocado-700); /* Avatar initials colour (avocado 700), paired with the avocado avatar fill. */
+  --avocado-100: rgb(253,254,246); /* Avocado (yellow-green) 100 (#FDFEF6): lightest tint: quiet fills and page washes. Prefer the semantic and expressive tokens in product UI; use the ramp for charts, illustration and expressive surfaces. */
+  --avocado-200-2: rgb(248,252,222); /* Same values as `avocado-200`, carried as a second copy from another Figma variable collection; semantic and expressive aliases point at one copy or the other. Use `avocado-200`. */
+  --avocado-200: rgb(248,252,222); /* Avocado (yellow-green) 200 (#F8FCDE): tint: badge, chip and notice fills; the text colour on this hue's dark-theme expressive fill. Prefer the semantic and expressive tokens in product UI; use the ramp for charts, illustration and expressive surfaces. */
+  --avocado-300: rgb(233,245,160); /* Avocado (yellow-green) 300 (#E9F5A0): light tone: illustration and chart fills. Prefer the semantic and expressive tokens in product UI; use the ramp for charts, illustration and expressive surfaces. */
+  --avocado-400-2: rgb(227,241,60); /* Same values as `avocado-400`, carried as a second copy from another Figma variable collection; semantic and expressive aliases point at one copy or the other. Use `avocado-400`. */
+  --avocado-400: rgb(227,241,60); /* Avocado 400: the default expressive theme fill in Light (`expressive-theme-background`), promo banners. Used by `PromoBanner`. */
+  --avocado-500-2: rgb(193,215,55); /* Same values as `avocado-500`, carried as a second copy from another Figma variable collection; semantic and expressive aliases point at one copy or the other. Use `avocado-500`. */
+  --avocado-500: rgb(193,215,55); /* Avocado (yellow-green) 500 (#C1D737): mid tone: the expressive fill at the Root Medium level. Prefer the semantic and expressive tokens in product UI; use the ramp for charts, illustration and expressive surfaces. */
+  --avocado-600: rgb(104,119,13); /* Avocado (yellow-green) 600 (#68770D): strong tone: this hue as text or an icon on white. Prefer the semantic and expressive tokens in product UI; use the ramp for charts, illustration and expressive surfaces. */
+  --avocado-700-2: rgb(78,78,12); /* Same values as `avocado-700`, carried as a second copy from another Figma variable collection; semantic and expressive aliases point at one copy or the other. Use `avocado-700`. */
+  --avocado-700-3: rgb(78,78,12); /* Same values as `avocado-700`, carried as a second copy from another Figma variable collection; semantic and expressive aliases point at one copy or the other. Use `avocado-700`. */
+  --avocado-700: rgb(78,78,12); /* Avocado (yellow-green) 700 (#4E4E0C): dark tone: the expressive fill in Root Dark, and text on this hue's tints. Prefer the semantic and expressive tokens in product UI; use the ramp for charts, illustration and expressive surfaces. */
+  --avocado-800: rgb(40,35,6); /* Avocado (yellow-green) 800 (#282306): darkest tone: text on this hue's Light expressive fill. Prefer the semantic and expressive tokens in product UI; use the ramp for charts, illustration and expressive surfaces. */
+  --avocado-background: var(--avocado-400-2); /* Avocado expressive fill, themed: 400 in Light, 700 in Root Dark, 500 at Root Medium. Pair with `avocado-foreground`; for banners, promo tiles and expressive cards. */
+  --avocado-foreground: var(--avocado-700-3); /* Text and icons on `avocado-background`, themed with it (dark on the Light fill, light on the Root Dark fill). */
+  --background-accent: var(--blue-500); /* Accent fill: primary buttons, selected segments, active indicators. blue 500 in Light, blue 400 in Root Dark; text on it is white. */
+  --background-education: var(--blue-100); /* Education notice fill (blue 100 in Light, indigo 800 in Root Dark). */
+  --background-expressive: var(--expressive-background-3); /* The expressive surface fill (the avocado expressive theme by default). */
+  --background-hud: rgb(34, 34, 34); /* Heads-up surfaces: tooltips and dark overlays (#222222 in both themes); text on it is white. Used by `Tooltip`. */
+  --background-image-matte-2: var(--core-neutral-0); /* Matte behind product images: white in both themes, so photos keep their own background. */
+  --background-image-opacity: rgba(255,255,255,0.65); /* Translucent scrim over images (white 65% in Light, black 65% in Root Dark). */
+  --background-lime: var(--color-core-lime-400); /* Lime marketing fill; pair with `foreground-lime`. */
+  --background-on-image: rgba(255,255,255,0.9); /* On-image controls: the translucent white watch and close buttons over product photos (black 90% in Root Dark). */
+  --background-primary-2: rgb(44,44,44); /* #2C2C2C, a dark ground from the Figma file's own documentation frames. */
+  --background-primary-3: var(--core-neutral-0); /* Primary ground: white in Light, black in Root Dark. Cards, sheets and the page. Used by `ListingAuditCard`. */
+  --background-primary-6: var(--color-core-neutral-100); /* Primary ground through the evo-web neutrals: white in Light, black in Root Dark. */
+  --background-secondary-2: var(--core-neutral-1); /* Secondary fill: #F7F7F7 in Light, #191919 in Root Dark. */
+  --background-secondary-3: var(--core-neutral-1); /* Secondary fill (same values as `background-secondary-2`). */
+  --background-secondary-5: var(--color-core-neutral-200); /* Secondary fill through the evo-web neutrals: #F7F7F7 in Light, #191919 in Root Dark. */
+  --background-success: var(--kiwi-600); /* Success fill: kiwi 600 in Light, kiwi 500 in Root Dark; text on it is white. */
+  --background-tertiary-2: var(--color-core-neutral-250); /* Tertiary fill: #F0F0F0 in Light, #363636 in Root Dark; hover on secondary fills. */
+  --background: var(--color-green-300); /* The ground of the current colour mode (green 300 by default); the file's colour modes restyle it. */
+  --backgrounds-primary-2: rgb(255,255,255); /* Variant of `backgrounds-primary` from another Figma variable collection (Light #FFFFFF, Root Dark #000000). Prefer `backgrounds-primary` unless you are matching that collection. */
+  --backgrounds-primary: rgb(255,255,255); /* iOS system colour (#FFFFFF in Light) from the OS chrome frames of the source file: status bars, keyboards and system controls in phone mockups. Not eBay product UI. */
+  --bg-bg-default: var(--bg-default-default); /* Figma file chrome (#2C2C2C in Light): the editor-style colours of the source file's annotation and documentation frames. Not eBay product UI; don't use it in product surfaces. */
+  --bg-bg-menu: var(--bg-menu-default); /* Figma file chrome (#1E1E1E in Light): the editor-style colours of the source file's annotation and documentation frames. Not eBay product UI; don't use it in product surfaces. */
+  --bg-bg-secondary: var(--bg-default-secondary); /* Figma file chrome (#F5F5F5 in Light): the editor-style colours of the source file's annotation and documentation frames. Not eBay product UI; don't use it in product surfaces. */
+  --bg-bg-selected: var(--bg-selected-default); /* Figma file chrome (#E5F4FF in Light): the editor-style colours of the source file's annotation and documentation frames. Not eBay product UI; don't use it in product surfaces. */
+  --bg-default-default: var(--grey-800); /* Figma file chrome (#2C2C2C in Light): the editor-style colours of the source file's annotation and documentation frames. Not eBay product UI; don't use it in product surfaces. */
+  --bg-default-secondary: var(--grey-100); /* Figma file chrome (#F5F5F5 in Light): the editor-style colours of the source file's annotation and documentation frames. Not eBay product UI; don't use it in product surfaces. */
+  --bg-inverse-default: var(--grey-800); /* Figma file chrome (#2C2C2C in Light): the editor-style colours of the source file's annotation and documentation frames. Not eBay product UI; don't use it in product surfaces. */
+  --bg-menu-default: var(--grey-900); /* Figma file chrome (#1E1E1E in Light): the editor-style colours of the source file's annotation and documentation frames. Not eBay product UI; don't use it in product surfaces. */
+  --bg-menu-selected: var(--blue-500-3); /* Figma file chrome (#0D99FF in Light): the editor-style colours of the source file's annotation and documentation frames. Not eBay product UI; don't use it in product surfaces. */
+  --bg-primarybase: rgb(255,255,255); /* Figma file chrome (#FFFFFF in Light): the editor-style colours of the source file's annotation and documentation frames. Not eBay product UI; don't use it in product surfaces. */
+  --bg-selected-default: var(--blue-200-2); /* Figma file chrome (#E5F4FF in Light): the editor-style colours of the source file's annotation and documentation frames. Not eBay product UI; don't use it in product surfaces. */
+  --black-3: rgba(0,0,0,0.3); /* Black 30% (same as `black-400`). */
+  --black-400: rgba(0,0,0,0.3); /* Black 30%: tertiary and disabled icons (`icon-default-tertiary`, `icon-disabled-default`). */
+  --black-500: rgba(0,0,0,0.5); /* Black 50%: secondary icons (`icon-default-secondary`). */
+  --black-800: rgba(0,0,0,0.9); /* Black 90%: default icons (`icon-default-default`). */
+  --black-8: rgba(0,0,0,0.8); /* Black 80%: secondary text in the file's iOS frames. */
+  --black: rgb(0,0,0); /* Black. Pure black text belongs to the file's iOS frames; eBay text is `color-core-neutral-800`. */
+  --blue-100-2: rgb(245,249,255); /* Same values as `blue-100`, carried as a second copy from another Figma variable collection; semantic and expressive aliases point at one copy or the other. Use `blue-100`. */
+  --blue-100: rgb(245, 249, 255); /* Faint blue wash: AI and agent surfaces, selected rows, the composer's approval tint. Used by `AIChatBubble`, `AIModeCheckoutPanel`, `AgenticComposer`, `Avatar` and 20 more. */
+  --blue-200-2: rgb(229,244,255); /* Variant of `blue-200` from another Figma variable collection (Light #E5F4FF, Root Dark #CFE9FC). Prefer `blue-200` unless you are matching that collection. */
+  --blue-200-3: rgb(212,229,254); /* Same values as `blue-200`, carried as a second copy from another Figma variable collection; semantic and expressive aliases point at one copy or the other. Use `blue-200`. */
+  --blue-200: rgb(212, 229, 254); /* Blue 200 (#D4E5FE): tint: badge, chip and notice fills; the text colour on this hue's dark-theme expressive fill. Prefer the semantic and expressive tokens in product UI; use the ramp for charts, illustration and expressive surfaces. */
+  --blue-300-2: rgb(132,180,251); /* Same values as `blue-300`, carried as a second copy from another Figma variable collection; semantic and expressive aliases point at one copy or the other. Use `blue-300`. */
+  --blue-300: rgb(132, 180, 251); /* Blue 300 (#84B4FB): light tone: illustration and chart fills. Prefer the semantic and expressive tokens in product UI; use the ramp for charts, illustration and expressive surfaces. Used by `DynamicSizeChart`, `FitAgentBanner`, `ModelPicker`, `PersonalSizeFilter` and 1 more. */
+  --blue-400-2: rgb(77,147,252); /* Same values as `blue-400`, carried as a second copy from another Figma variable collection; semantic and expressive aliases point at one copy or the other. Use `blue-400`. */
+  --blue-400-3: rgb(128,202,255); /* Variant of `blue-400` from another Figma variable collection (Light #80CAFF, Root Dark #7CC4F8). Prefer `blue-400` unless you are matching that collection. */
+  --blue-400-4: rgb(77,147,252); /* Same values as `blue-400`, carried as a second copy from another Figma variable collection; semantic and expressive aliases point at one copy or the other. Use `blue-400`. */
+  --blue-400: rgb(77, 147, 252); /* Blue 400: the accent in Root Dark (`background-accent`, `foreground-accent`), and the Light expressive blue fill. Also the chart and banner blue. Used by `Banner`, `LoyaltyBanner`, `MultiCTABanner`. */
+  --blue-500-2: rgb(9,104,246); /* Same values as `blue-500`, carried as a second copy from another Figma variable collection; semantic and expressive aliases point at one copy or the other. Use `blue-500`. */
+  --blue-500-3: rgb(13,153,255); /* Variant of `blue-500` from another Figma variable collection (Light #0D99FF, Root Dark #0C8CE9). Prefer `blue-500` unless you are matching that collection. */
+  --blue-500-4: rgb(9,104,246); /* Same values as `blue-500`, carried as a second copy from another Figma variable collection; semantic and expressive aliases point at one copy or the other. Use `blue-500`. */
+  --blue-500: rgb(9, 104, 246); /* eBay blue, the one ubiquitous accent: links, primary buttons, focus rings and selected states. Reach it through `background-accent`, `foreground-accent` and `border-accent`, not directly. Used by `AlertNotice`, `AreaChart`, `BarChart`, `BarClusterChart` and 22 more. */
+  --blue-600-2: rgb(0,73,184); /* Variant of `blue-600` from another Figma variable collection (Light #0049B8, Root Dark #0049B8). Prefer `blue-600` unless you are matching that collection. */
+  --blue-600: rgb(0, 73, 184); /* Blue 600: blue text and icons that need more weight than blue 500, pressed accent states, the brand icon colour (`icon-brand-default`). Used by `Avatar`, `Badge`, `PromoBanner`, `Tabs`. */
+  --blue-650: rgb(0,58,165); /* Legal and fine-print link blue (`foreground-link-legal` in Light). */
+  --blue-700-2: rgb(0,42,105); /* Same values as `blue-700`, carried as a second copy from another Figma variable collection; semantic and expressive aliases point at one copy or the other. Use `blue-700`. */
+  --blue-700: rgb(0, 42, 105); /* Blue 700 (#002A69): dark tone: the expressive fill in Root Dark, and text on this hue's tints. Prefer the semantic and expressive tokens in product UI; use the ramp for charts, illustration and expressive surfaces. Used by `BarClusterChart`, `PersonalSizeFilter`, `StackedBarChart`, `VisualFitSearch`. */
+  --blue-800-2: rgb(25,19,58); /* Same values as `blue-800`, carried as a second copy from another Figma variable collection; semantic and expressive aliases point at one copy or the other. Use `blue-800`. */
+  --blue-800: rgb(25, 19, 58); /* Blue 800 (#19133A): darkest tone: text on this hue's Light expressive fill. Prefer the semantic and expressive tokens in product UI; use the ramp for charts, illustration and expressive surfaces. */
+  --blue-background: var(--blue-400-4); /* Blue expressive fill, themed: 400 in Light, 700 in Root Dark, 500 at Root Medium. Pair with `blue-foreground`; for banners, promo tiles and expressive cards. */
+  --blue-foreground: var(--blue-800-2); /* Text and icons on `blue-background`, themed with it (dark on the Light fill, light on the Root Dark fill). */
+  --blue: rgb(24,160,251); /* Figma file chrome (#18A0FB in Light): the editor-style colours of the source file's annotation and documentation frames. Not eBay product UI; don't use it in product surfaces. */
+  --border-accent-2: var(--core-blue-4); /* Variant of `border-accent` from another Figma variable collection (Light #3665F3, Root Dark #659EFF). Prefer `border-accent` unless you are matching that collection. */
+  --border-accent-3: var(--blue-500); /* Same values as `border-accent`, carried as a second copy from another Figma variable collection; semantic and expressive aliases point at one copy or the other. Use `border-accent`. */
+  --border-accent-4: var(--blue-500-2); /* Same values as `border-accent`, carried as a second copy from another Figma variable collection; semantic and expressive aliases point at one copy or the other. Use `border-accent`. */
+  --border-accent: var(--blue-500); /* Accent border: focus rings, selected cards and inputs. blue 500 in Light, blue 400 in Root Dark. */
+  --border-border-default: var(--border-default-default); /* Figma file chrome (#E6E6E6 in Light): the editor-style colours of the source file's annotation and documentation frames. Not eBay product UI; don't use it in product surfaces. */
+  --border-border-selected: var(--border-selected-default); /* Figma file chrome (#0D99FF in Light): the editor-style colours of the source file's annotation and documentation frames. Not eBay product UI; don't use it in product surfaces. */
+  --border-border-strong: var(--border-default-strong); /* Figma file chrome (#2C2C2C in Light): the editor-style colours of the source file's annotation and documentation frames. Not eBay product UI; don't use it in product surfaces. */
+  --border-component-set: rgb(151,71,255); /* Figma file chrome (#9747FF in Light): the editor-style colours of the source file's annotation and documentation frames. Not eBay product UI; don't use it in product surfaces. */
+  --border-default-2: var(--core-neutral-4); /* Same values as `border-default`, carried as a second copy from another Figma variable collection; semantic and expressive aliases point at one copy or the other. Use `border-default`. */
+  --border-default-default: var(--grey-200); /* Figma file chrome (#E6E6E6 in Light): the editor-style colours of the source file's annotation and documentation frames. Not eBay product UI; don't use it in product surfaces. */
+  --border-default-strong: var(--grey-800); /* Figma file chrome (#2C2C2C in Light): the editor-style colours of the source file's annotation and documentation frames. Not eBay product UI; don't use it in product surfaces. */
+  --border-default: var(--core-neutral-4); /* Control border: inputs, checkboxes, outlined chips. #8F8F8F in Light, #707070 in Root Dark; 1.5px (`border-width-medium`) on inputs. */
+  --border-medium-3: var(--color-core-neutral-500); /* Medium border through the evo-web neutrals: #8F8F8F in Light, #707070 in Root Dark. */
+  --border-menu-default: var(--grey-700); /* Figma file chrome (#383838 in Light): the editor-style colours of the source file's annotation and documentation frames. Not eBay product UI; don't use it in product surfaces. */
+  --border-selected-default: var(--blue-500-3); /* Figma file chrome (#0D99FF in Light): the editor-style colours of the source file's annotation and documentation frames. Not eBay product UI; don't use it in product surfaces. */
+  --border-subtle-3: var(--color-core-neutral-300); /* Hairline border: cards, list rows and dividers. #E5E5E5 in Light, #363636 in Root Dark; 1px. Used by `ListingAuditCard`. */
+  --border-success: var(--kiwi-600-2); /* Success border (kiwi 600 in Light, kiwi 500 in Root Dark). */
+  --brand-2: var(--blue-500-4); /* Brand blue (blue 500) in both themes. */
+  --brand-4: var(--green-500-3); /* Brand green (green 500) in both themes. */
+  --color-avocado-100: var(--avocado-100); /* evo-web's name for Avocado 100 (`avocado-100`), kept so unmodified evo-web CSS written against `--color-*` resolves against this palette. */
+  --color-avocado-200: var(--avocado-200-2); /* evo-web's name for Avocado 200 (`avocado-200-2`), kept so unmodified evo-web CSS written against `--color-*` resolves against this palette. */
+  --color-avocado-300: var(--avocado-300); /* evo-web's name for Avocado 300 (`avocado-300`), kept so unmodified evo-web CSS written against `--color-*` resolves against this palette. */
+  --color-avocado-400: var(--avocado-400-2); /* evo-web's name for Avocado 400 (`avocado-400-2`), kept so unmodified evo-web CSS written against `--color-*` resolves against this palette. */
+  --color-avocado-600: var(--avocado-600); /* evo-web's name for Avocado 600 (`avocado-600`), kept so unmodified evo-web CSS written against `--color-*` resolves against this palette. */
+  --color-avocado-700: var(--avocado-700-3); /* evo-web's name for Avocado 700 (`avocado-700-3`), kept so unmodified evo-web CSS written against `--color-*` resolves against this palette. */
+  --color-avocado-800: var(--avocado-800); /* evo-web's name for Avocado 800 (`avocado-800`), kept so unmodified evo-web CSS written against `--color-*` resolves against this palette. */
+  --color-blue-100: var(--blue-100-2); /* evo-web's name for Blue 100 (`blue-100-2`), kept so unmodified evo-web CSS written against `--color-*` resolves against this palette. */
+  --color-blue-200: var(--blue-200-3); /* evo-web's name for Blue 200 (`blue-200-3`), kept so unmodified evo-web CSS written against `--color-*` resolves against this palette. */
+  --color-blue-300: var(--blue-300-2); /* evo-web's name for Blue 300 (`blue-300-2`), kept so unmodified evo-web CSS written against `--color-*` resolves against this palette. */
+  --color-blue-400: var(--blue-400-4); /* evo-web's name for Blue 400 (`blue-400-4`), kept so unmodified evo-web CSS written against `--color-*` resolves against this palette. */
+  --color-blue-500: var(--blue-500); /* evo-web's name for Blue 500 (`blue-500`), kept so unmodified evo-web CSS written against `--color-*` resolves against this palette. Used by `AgentIntroScreen`. */
+  --color-blue-600: var(--blue-600-2); /* evo-web's name for Blue 600 (`blue-600-2`), kept so unmodified evo-web CSS written against `--color-*` resolves against this palette. */
+  --color-blue-650: var(--blue-650); /* evo-web's name for Blue 650 (`blue-650`), kept so unmodified evo-web CSS written against `--color-*` resolves against this palette. */
+  --color-blue-700: var(--blue-700); /* evo-web's name for Blue 700 (`blue-700`), kept so unmodified evo-web CSS written against `--color-*` resolves against this palette. */
+  --color-blue-800: var(--blue-800-2); /* evo-web's name for Blue 800 (`blue-800-2`), kept so unmodified evo-web CSS written against `--color-*` resolves against this palette. */
+  --color-coral-100: var(--coral-100); /* evo-web's name for Coral 100 (`coral-100`), kept so unmodified evo-web CSS written against `--color-*` resolves against this palette. */
+  --color-coral-200: var(--coral-200-2); /* evo-web's name for Coral 200 (`coral-200-2`), kept so unmodified evo-web CSS written against `--color-*` resolves against this palette. */
+  --color-coral-300: var(--coral-300); /* evo-web's name for Coral 300 (`coral-300`), kept so unmodified evo-web CSS written against `--color-*` resolves against this palette. */
+  --color-coral-400: var(--coral-400-2); /* evo-web's name for Coral 400 (`coral-400-2`), kept so unmodified evo-web CSS written against `--color-*` resolves against this palette. */
+  --color-coral-500: var(--coral-500-2); /* evo-web's name for Coral 500 (`coral-500-2`), kept so unmodified evo-web CSS written against `--color-*` resolves against this palette. */
+  --color-coral-600: var(--coral-600); /* evo-web's name for Coral 600 (`coral-600`), kept so unmodified evo-web CSS written against `--color-*` resolves against this palette. */
+  --color-coral-700: var(--coral-700-2); /* evo-web's name for Coral 700 (`coral-700-2`), kept so unmodified evo-web CSS written against `--color-*` resolves against this palette. */
+  --color-coral-800: var(--coral-800-2); /* evo-web's name for Coral 800 (`coral-800-2`), kept so unmodified evo-web CSS written against `--color-*` resolves against this palette. */
+  --color-core-lime-400: rgb(172,207,2); /* Lime fill (#ACCF02) for `background-lime`, a marketing accent. */
+  --color-core-lime-700: rgb(54,79,3); /* Dark lime (#364F03), text on the lime fill (`foreground-lime`). */
+  --color-core-neutral-100: rgb(255,255,255); /* evo-web neutral. White: the page and card ground (`background-primary`). */
+  --color-core-neutral-200: rgb(247,247,247); /* evo-web neutral. #F7F7F7: secondary fills, sunken sections, the ground behind cards and inputs. */
+  --color-core-neutral-250: rgb(240,240,240); /* evo-web neutral. #F0F0F0: pressed and hovered fills on `color-core-neutral-200`. */
+  --color-core-neutral-300: rgb(229,229,229); /* evo-web neutral. #E5E5E5: hairline borders on cards and list rows (1px, `border-width-subtle`). */
+  --color-core-neutral-500: rgb(143,143,143); /* evo-web neutral. #8F8F8F: control borders (inputs, checkboxes, outlined chips) and disabled text. Contrast: 3.2:1 on white, 3.0:1 on `color-core-neutral-200` (below 4.5:1 for body text: large text, icons and marks only). */
+  --color-core-neutral-600: rgb(112,112,112); /* evo-web neutral. #707070: secondary text, captions and metadata. Contrast: 5.0:1 on white, 4.6:1 on `color-core-neutral-200`. */
+  --color-core-neutral-700: rgb(54,54,54); /* evo-web neutral. #363636: dark surfaces and secondary text in Root Dark. */
+  --color-core-neutral-800: rgb(25,25,25); /* evo-web neutral. #191919: primary text, and the fill of selected chips. Contrast: 17.6:1 on white, 16.4:1 on `color-core-neutral-200`. */
+  --color-core-neutral-900: rgb(0,0,0); /* evo-web neutral. Black: the Root Dark ground. */
+  --color-dijon-100: var(--dijon-100); /* evo-web's name for Dijon 100 (`dijon-100`), kept so unmodified evo-web CSS written against `--color-*` resolves against this palette. */
+  --color-dijon-200: var(--dijon-200-2); /* evo-web's name for Dijon 200 (`dijon-200-2`), kept so unmodified evo-web CSS written against `--color-*` resolves against this palette. */
+  --color-dijon-300: var(--dijon-300); /* evo-web's name for Dijon 300 (`dijon-300`), kept so unmodified evo-web CSS written against `--color-*` resolves against this palette. */
+  --color-dijon-400: var(--dijon-400-2); /* evo-web's name for Dijon 400 (`dijon-400-2`), kept so unmodified evo-web CSS written against `--color-*` resolves against this palette. */
+  --color-dijon-500: var(--dijon-500-2); /* evo-web's name for Dijon 500 (`dijon-500-2`), kept so unmodified evo-web CSS written against `--color-*` resolves against this palette. */
+  --color-dijon-600: var(--dijon-600); /* evo-web's name for Dijon 600 (`dijon-600`), kept so unmodified evo-web CSS written against `--color-*` resolves against this palette. */
+  --color-dijon-700: var(--dijon-700-3); /* evo-web's name for Dijon 700 (`dijon-700-3`), kept so unmodified evo-web CSS written against `--color-*` resolves against this palette. Used by `DualConfidence`. */
+  --color-dijon-800: var(--dijon-800); /* evo-web's name for Dijon 800 (`dijon-800`), kept so unmodified evo-web CSS written against `--color-*` resolves against this palette. */
+  --color-green-100: var(--green-100); /* evo-web's name for Green 100 (`green-100`), kept so unmodified evo-web CSS written against `--color-*` resolves against this palette. */
+  --color-green-200: var(--green-200-2); /* evo-web's name for Green 200 (`green-200-2`), kept so unmodified evo-web CSS written against `--color-*` resolves against this palette. */
+  --color-green-300: var(--green-300-2); /* evo-web's name for Green 300 (`green-300-2`), kept so unmodified evo-web CSS written against `--color-*` resolves against this palette. */
+  --color-green-400: var(--green-400-3); /* evo-web's name for Green 400 (`green-400-3`), kept so unmodified evo-web CSS written against `--color-*` resolves against this palette. */
+  --color-green-500: var(--green-500-3); /* evo-web's name for Green 500 (`green-500-3`), kept so unmodified evo-web CSS written against `--color-*` resolves against this palette. */
+  --color-green-600: var(--green-600-2); /* evo-web's name for Green 600 (`green-600-2`), kept so unmodified evo-web CSS written against `--color-*` resolves against this palette. */
+  --color-green-700: var(--green-700-2); /* evo-web's name for Green 700 (`green-700-2`), kept so unmodified evo-web CSS written against `--color-*` resolves against this palette. */
+  --color-green-800: var(--green-800); /* evo-web's name for Green 800 (`green-800`), kept so unmodified evo-web CSS written against `--color-*` resolves against this palette. */
+  --color-indigo-100: var(--indigo-100); /* evo-web's name for Indigo 100 (`indigo-100`), kept so unmodified evo-web CSS written against `--color-*` resolves against this palette. */
+  --color-indigo-200: var(--indigo-200-2); /* evo-web's name for Indigo 200 (`indigo-200-2`), kept so unmodified evo-web CSS written against `--color-*` resolves against this palette. */
+  --color-indigo-300: var(--indigo-300); /* evo-web's name for Indigo 300 (`indigo-300`), kept so unmodified evo-web CSS written against `--color-*` resolves against this palette. */
+  --color-indigo-400: var(--indigo-400-2); /* evo-web's name for Indigo 400 (`indigo-400-2`), kept so unmodified evo-web CSS written against `--color-*` resolves against this palette. */
+  --color-indigo-500: var(--indigo-500-2); /* evo-web's name for Indigo 500 (`indigo-500-2`), kept so unmodified evo-web CSS written against `--color-*` resolves against this palette. */
+  --color-indigo-600: var(--indigo-600); /* evo-web's name for Indigo 600 (`indigo-600`), kept so unmodified evo-web CSS written against `--color-*` resolves against this palette. */
+  --color-indigo-700: var(--indigo-700-2); /* evo-web's name for Indigo 700 (`indigo-700-2`), kept so unmodified evo-web CSS written against `--color-*` resolves against this palette. */
+  --color-indigo-800: var(--indigo-800-2); /* evo-web's name for Indigo 800 (`indigo-800-2`), kept so unmodified evo-web CSS written against `--color-*` resolves against this palette. */
+  --color-jade-100: var(--jade-100); /* evo-web's name for Jade 100 (`jade-100`), kept so unmodified evo-web CSS written against `--color-*` resolves against this palette. */
+  --color-jade-200: var(--jade-200-2); /* evo-web's name for Jade 200 (`jade-200-2`), kept so unmodified evo-web CSS written against `--color-*` resolves against this palette. */
+  --color-jade-300: var(--jade-300); /* evo-web's name for Jade 300 (`jade-300`), kept so unmodified evo-web CSS written against `--color-*` resolves against this palette. */
+  --color-jade-400: var(--jade-400-2); /* evo-web's name for Jade 400 (`jade-400-2`), kept so unmodified evo-web CSS written against `--color-*` resolves against this palette. */
+  --color-jade-500: var(--jade-500-2); /* evo-web's name for Jade 500 (`jade-500-2`), kept so unmodified evo-web CSS written against `--color-*` resolves against this palette. */
+  --color-jade-600: var(--jade-600); /* evo-web's name for Jade 600 (`jade-600`), kept so unmodified evo-web CSS written against `--color-*` resolves against this palette. */
+  --color-jade-700: var(--jade-700-2); /* evo-web's name for Jade 700 (`jade-700-2`), kept so unmodified evo-web CSS written against `--color-*` resolves against this palette. */
+  --color-jade-800: var(--jade-800-2); /* evo-web's name for Jade 800 (`jade-800-2`), kept so unmodified evo-web CSS written against `--color-*` resolves against this palette. */
+  --color-kiwi-100: var(--kiwi-100); /* evo-web's name for Kiwi 100 (`kiwi-100`), kept so unmodified evo-web CSS written against `--color-*` resolves against this palette. */
+  --color-kiwi-200: var(--kiwi-200-2); /* evo-web's name for Kiwi 200 (`kiwi-200-2`), kept so unmodified evo-web CSS written against `--color-*` resolves against this palette. */
+  --color-kiwi-300: var(--kiwi-300); /* evo-web's name for Kiwi 300 (`kiwi-300`), kept so unmodified evo-web CSS written against `--color-*` resolves against this palette. */
+  --color-kiwi-400: var(--kiwi-200); /* evo-web's name for Kiwi 400 (`kiwi-200`), kept so unmodified evo-web CSS written against `--color-*` resolves against this palette. */
+  --color-kiwi-500: var(--kiwi-500-2); /* evo-web's name for Kiwi 500 (`kiwi-500-2`), kept so unmodified evo-web CSS written against `--color-*` resolves against this palette. */
+  --color-kiwi-600: var(--kiwi-600); /* evo-web's name for Kiwi 600 (`kiwi-600`), kept so unmodified evo-web CSS written against `--color-*` resolves against this palette. Used by `CartItem`. */
+  --color-kiwi-700: var(--kiwi-700); /* evo-web's name for Kiwi 700 (`kiwi-700`), kept so unmodified evo-web CSS written against `--color-*` resolves against this palette. */
+  --color-kiwi-800: var(--kiwi-800-2); /* evo-web's name for Kiwi 800 (`kiwi-800-2`), kept so unmodified evo-web CSS written against `--color-*` resolves against this palette. */
+  --color-lilac-100: var(--lilac-100-2); /* evo-web's name for Lilac 100 (`lilac-100-2`), kept so unmodified evo-web CSS written against `--color-*` resolves against this palette. */
+  --color-lilac-200: var(--lilac-200-2); /* evo-web's name for Lilac 200 (`lilac-200-2`), kept so unmodified evo-web CSS written against `--color-*` resolves against this palette. */
+  --color-lilac-300: var(--lilac-300-2); /* evo-web's name for Lilac 300 (`lilac-300-2`), kept so unmodified evo-web CSS written against `--color-*` resolves against this palette. */
+  --color-lilac-400: var(--lilac-400-2); /* evo-web's name for Lilac 400 (`lilac-400-2`), kept so unmodified evo-web CSS written against `--color-*` resolves against this palette. */
+  --color-lilac-500: var(--lilac-500-2); /* evo-web's name for Lilac 500 (`lilac-500-2`), kept so unmodified evo-web CSS written against `--color-*` resolves against this palette. */
+  --color-lilac-600: var(--lilac-600); /* evo-web's name for Lilac 600 (`lilac-600`), kept so unmodified evo-web CSS written against `--color-*` resolves against this palette. */
+  --color-lilac-700: var(--lilac-700-2); /* evo-web's name for Lilac 700 (`lilac-700-2`), kept so unmodified evo-web CSS written against `--color-*` resolves against this palette. */
+  --color-lilac-800: var(--lilac-800-2); /* evo-web's name for Lilac 800 (`lilac-800-2`), kept so unmodified evo-web CSS written against `--color-*` resolves against this palette. */
+  --color-marigold-100: var(--marigold-100); /* evo-web's name for Marigold 100 (`marigold-100`), kept so unmodified evo-web CSS written against `--color-*` resolves against this palette. */
+  --color-marigold-200: var(--marigold-200-2); /* evo-web's name for Marigold 200 (`marigold-200-2`), kept so unmodified evo-web CSS written against `--color-*` resolves against this palette. */
+  --color-marigold-300: var(--marigold-300); /* evo-web's name for Marigold 300 (`marigold-300`), kept so unmodified evo-web CSS written against `--color-*` resolves against this palette. */
+  --color-marigold-400: var(--marigold-400-2); /* evo-web's name for Marigold 400 (`marigold-400-2`), kept so unmodified evo-web CSS written against `--color-*` resolves against this palette. */
+  --color-marigold-500: var(--marigold-500-2); /* evo-web's name for Marigold 500 (`marigold-500-2`), kept so unmodified evo-web CSS written against `--color-*` resolves against this palette. Used by `DualConfidence`. */
+  --color-marigold-600: var(--marigold-600); /* evo-web's name for Marigold 600 (`marigold-600`), kept so unmodified evo-web CSS written against `--color-*` resolves against this palette. */
+  --color-yellow-400: var(--marigold-400); /* evo-web's name for the yellow expressive fill; points at marigold 400. */
+  --colors-blue: rgb(0,122,255); /* iOS system colour (#007AFF in Light) from the OS chrome frames of the source file: status bars, keyboards and system controls in phone mockups. Not eBay product UI. */
+  --colors-indigo: rgb(97,85,245); /* iOS system colour (#6155F5 in Light) from the OS chrome frames of the source file: status bars, keyboards and system controls in phone mockups. Not eBay product UI. */
+  --component-fill: rgb(245,245,245); /* Figma file chrome (#F5F5F5 in Light): the editor-style colours of the source file's annotation and documentation frames. Not eBay product UI; don't use it in product surfaces. */
+  --component-stroke: var(--colors-indigo); /* Figma file chrome (#6155F5 in Light): the editor-style colours of the source file's annotation and documentation frames. Not eBay product UI; don't use it in product surfaces. */
+  --components-segmented-control-bg: var(--grays-white); /* iOS system colour (#FFFFFF in Light) from the OS chrome frames of the source file: status bars, keyboards and system controls in phone mockups. Not eBay product UI. */
+  --components-segmented-control-stroke: rgba(0,0,0,0.04); /* iOS system colour (#000000 in Light) from the OS chrome frames of the source file: status bars, keyboards and system controls in phone mockups. Not eBay product UI. */
+  --controls-switch-rail: rgb(128,128,128); /* iOS system colour (#808080 in Light) from the OS chrome frames of the source file: status bars, keyboards and system controls in phone mockups. Not eBay product UI. */
+  --coral-100: rgb(255,247,245); /* Coral (orange-red) 100 (#FFF7F5): lightest tint: quiet fills and page washes. Prefer the semantic and expressive tokens in product UI; use the ramp for charts, illustration and expressive surfaces. */
+  --coral-200-2: rgb(255,225,215); /* Same values as `coral-200`, carried as a second copy from another Figma variable collection; semantic and expressive aliases point at one copy or the other. Use `coral-200`. */
+  --coral-200: rgb(255,225,215); /* Coral (orange-red) 200 (#FFE1D7): tint: badge, chip and notice fills; the text colour on this hue's dark-theme expressive fill. Prefer the semantic and expressive tokens in product UI; use the ramp for charts, illustration and expressive surfaces. */
+  --coral-300: rgb(255,167,138); /* Coral (orange-red) 300 (#FFA78A): light tone: illustration and chart fills. Prefer the semantic and expressive tokens in product UI; use the ramp for charts, illustration and expressive surfaces. */
+  --coral-400-2: rgb(255,106,56); /* Same values as `coral-400`, carried as a second copy from another Figma variable collection; semantic and expressive aliases point at one copy or the other. Use `coral-400`. */
+  --coral-400: rgb(255,106,56); /* Coral (orange-red) 400 (#FF6A38): the expressive fill in the Light theme (`coral-background`). Prefer the semantic and expressive tokens in product UI; use the ramp for charts, illustration and expressive surfaces. */
+  --coral-500-2: rgb(243,81,27); /* Same values as `coral-500`, carried as a second copy from another Figma variable collection; semantic and expressive aliases point at one copy or the other. Use `coral-500`. */
+  --coral-500: rgb(243,81,27); /* Coral (orange-red) 500 (#F3511B): mid tone: the expressive fill at the Root Medium level. Prefer the semantic and expressive tokens in product UI; use the ramp for charts, illustration and expressive surfaces. */
+  --coral-600: rgb(208,55,6); /* Coral (orange-red) 600 (#D03706): strong tone: this hue as text or an icon on white. Prefer the semantic and expressive tokens in product UI; use the ramp for charts, illustration and expressive surfaces. */
+  --coral-700-2: rgb(94,29,8); /* Same values as `coral-700`, carried as a second copy from another Figma variable collection; semantic and expressive aliases point at one copy or the other. Use `coral-700`. */
+  --coral-700: rgb(94,29,8); /* Coral (orange-red) 700 (#5E1D08): dark tone: the expressive fill in Root Dark, and text on this hue's tints. Prefer the semantic and expressive tokens in product UI; use the ramp for charts, illustration and expressive surfaces. */
+  --coral-800-2: rgb(47,14,4); /* Same values as `coral-800`, carried as a second copy from another Figma variable collection; semantic and expressive aliases point at one copy or the other. Use `coral-800`. */
+  --coral-800: rgb(47,14,4); /* Coral (orange-red) 800 (#2F0E04): darkest tone: text on this hue's Light expressive fill. Prefer the semantic and expressive tokens in product UI; use the ramp for charts, illustration and expressive surfaces. */
+  --coral-background: var(--coral-400-2); /* Coral expressive fill, themed: 400 in Light, 700 in Root Dark, 500 at Root Medium. Pair with `coral-foreground`; for banners, promo tiles and expressive cards. */
+  --coral-foreground: var(--coral-800-2); /* Text and icons on `coral-background`, themed with it (dark on the Light fill, light on the Root Dark fill). */
+  --core-blue-3: rgb(101,158,255); /* Figma core blue (#659EFF), the older eBay blue that `border-accent-2` still points at. Use `blue-500` for new work. */
+  --core-blue-4: rgb(54,101,243); /* Figma core blue (#3665F3), the older eBay blue that `border-accent-2` still points at. Use `blue-500` for new work. */
+  --core-neutral-0: rgb(255,255,255); /* Figma core neutral, white: page and card ground. The evo-web names (`color-core-neutral-*`) carry the same values. */
+  --core-neutral-1-2: rgb(247,247,247); /* Same values as `core-neutral-1`, carried as a second copy from another Figma variable collection; semantic and expressive aliases point at one copy or the other. Use `core-neutral-1`. */
+  --core-neutral-1-3: rgb(255,255,255); /* Variant of `core-neutral-1` from another Figma variable collection (Light #FFFFFF, Root Dark #FFFFFF). Prefer `core-neutral-1` unless you are matching that collection. */
+  --core-neutral-1: rgb(247,247,247); /* Figma core neutral, #F7F7F7: secondary fills. The evo-web names (`color-core-neutral-*`) carry the same values. */
+  --core-neutral-4-2: rgb(143,143,143); /* Same values as `core-neutral-4`, carried as a second copy from another Figma variable collection; semantic and expressive aliases point at one copy or the other. Use `core-neutral-4`. */
+  --core-neutral-4-3: rgb(143,143,143); /* Same values as `core-neutral-4`, carried as a second copy from another Figma variable collection; semantic and expressive aliases point at one copy or the other. Use `core-neutral-4`. */
+  --core-neutral-4: rgb(143,143,143); /* Figma core neutral, #8F8F8F: control borders (`border-default`). The evo-web names (`color-core-neutral-*`) carry the same values. */
+  --core-neutral-5-2: rgb(112,112,112); /* Same values as `core-neutral-5`, carried as a second copy from another Figma variable collection; semantic and expressive aliases point at one copy or the other. Use `core-neutral-5`. */
+  --core-neutral-5-3: rgb(112,112,112); /* Same values as `core-neutral-5`, carried as a second copy from another Figma variable collection; semantic and expressive aliases point at one copy or the other. Use `core-neutral-5`. */
+  --core-neutral-5: rgb(112,112,112); /* Figma core neutral, #707070: secondary text. The evo-web names (`color-core-neutral-*`) carry the same values. */
+  --core-neutral-7-2: rgb(25,25,25); /* Same values as `core-neutral-7`, carried as a second copy from another Figma variable collection; semantic and expressive aliases point at one copy or the other. Use `core-neutral-7`. */
+  --core-neutral-7: rgb(25,25,25); /* Figma core neutral, #191919: primary text. The evo-web names (`color-core-neutral-*`) carry the same values. */
+  --core-neutral-8: rgb(0,0,0); /* Figma core neutral, black: the Root Dark ground. The evo-web names (`color-core-neutral-*`) carry the same values. */
+  --core-neutral-900: rgb(0,0,0); /* Figma core neutral, black: the Root Dark ground. The evo-web names (`color-core-neutral-*`) carry the same values. */
+  --dijon-100: rgb(255,253,245); /* Dijon (mustard yellow) 100 (#FFFDF5): lightest tint: quiet fills and page washes. Prefer the semantic and expressive tokens in product UI; use the ramp for charts, illustration and expressive surfaces. */
+  --dijon-200-2: rgb(252,249,222); /* Same values as `dijon-200`, carried as a second copy from another Figma variable collection; semantic and expressive aliases point at one copy or the other. Use `dijon-200`. */
+  --dijon-200: rgb(252,249,222); /* Dijon (mustard yellow) 200 (#FCF9DE): tint: badge, chip and notice fills; the text colour on this hue's dark-theme expressive fill. Prefer the semantic and expressive tokens in product UI; use the ramp for charts, illustration and expressive surfaces. */
+  --dijon-300: rgb(250,239,138); /* Dijon (mustard yellow) 300 (#FAEF8A): light tone: illustration and chart fills. Prefer the semantic and expressive tokens in product UI; use the ramp for charts, illustration and expressive surfaces. */
+  --dijon-400-2: rgb(246,224,22); /* Same values as `dijon-400`, carried as a second copy from another Figma variable collection; semantic and expressive aliases point at one copy or the other. Use `dijon-400`. */
+  --dijon-400: rgb(246,224,22); /* Dijon (mustard yellow) 400 (#F6E016): the expressive fill in the Light theme (`dijon-background`). Prefer the semantic and expressive tokens in product UI; use the ramp for charts, illustration and expressive surfaces. */
+  --dijon-500-2: rgb(232,210,12); /* Same values as `dijon-500`, carried as a second copy from another Figma variable collection; semantic and expressive aliases point at one copy or the other. Use `dijon-500`. */
+  --dijon-500: rgb(232,210,12); /* Dijon (mustard yellow) 500 (#E8D20C): mid tone: the expressive fill at the Root Medium level. Prefer the semantic and expressive tokens in product UI; use the ramp for charts, illustration and expressive surfaces. */
+  --dijon-600: rgb(118,111,40); /* Dijon (mustard yellow) 600 (#766F28): strong tone: this hue as text or an icon on white. Prefer the semantic and expressive tokens in product UI; use the ramp for charts, illustration and expressive surfaces. */
+  --dijon-700-2: rgb(82,69,0); /* Same values as `dijon-700`, carried as a second copy from another Figma variable collection; semantic and expressive aliases point at one copy or the other. Use `dijon-700`. */
+  --dijon-700-3: rgb(82,69,0); /* Same values as `dijon-700`, carried as a second copy from another Figma variable collection; semantic and expressive aliases point at one copy or the other. Use `dijon-700`. */
+  --dijon-700: rgb(82,69,0); /* Dijon (mustard yellow) 700 (#524500): dark tone: the expressive fill in Root Dark, and text on this hue's tints. Prefer the semantic and expressive tokens in product UI; use the ramp for charts, illustration and expressive surfaces. */
+  --dijon-800: rgb(46,36,0); /* Dijon (mustard yellow) 800 (#2E2400): darkest tone: text on this hue's Light expressive fill. Prefer the semantic and expressive tokens in product UI; use the ramp for charts, illustration and expressive surfaces. */
+  --dijon-background: var(--dijon-400-2); /* Dijon expressive fill, themed: 400 in Light, 700 in Root Dark, 500 at Root Medium. Pair with `dijon-foreground`; for banners, promo tiles and expressive cards. */
+  --dijon-foreground: var(--dijon-700-3); /* Text and icons on `dijon-background`, themed with it (dark on the Light fill, light on the Root Dark fill). */
+  --expressive-background-2: var(--color-avocado-400); /* Same values as `expressive-background`, carried as a second copy from another Figma variable collection; semantic and expressive aliases point at one copy or the other. Use `expressive-background`. */
+  --expressive-background-3: var(--avocado-background); /* Same values as `expressive-background`, carried as a second copy from another Figma variable collection; semantic and expressive aliases point at one copy or the other. Use `expressive-background`. */
+  --expressive-background: var(--expressive-background-2); /* The expressive theme's fill (avocado by default). */
+  --expressive-foreground-2: var(--color-avocado-700); /* Same values as `expressive-foreground`, carried as a second copy from another Figma variable collection; semantic and expressive aliases point at one copy or the other. Use `expressive-foreground`. */
+  --expressive-foreground-3: var(--avocado-foreground); /* Same values as `expressive-foreground`, carried as a second copy from another Figma variable collection; semantic and expressive aliases point at one copy or the other. Use `expressive-foreground`. */
+  --expressive-foreground: var(--expressive-foreground-2); /* Text on the expressive theme's fill. */
+  --expressive-level-background-avocado: var(--avocado-400); /* Avocado expressive level fill (400 Light, 700 Root Dark, 500 Root Medium). Same role as `expressive-level-avocado-background`, which the evo-web names spell the other way round. Pair with the matching expressive-level foreground. */
+  --expressive-level-background-blue: var(--blue-400); /* Blue expressive level fill (400 Light, 700 Root Dark, 500 Root Medium). Same role as `expressive-level-blue-background`, which the evo-web names spell the other way round. Pair with the matching expressive-level foreground. */
+  --expressive-level-background-coral: var(--coral-400); /* Coral expressive level fill (400 Light, 700 Root Dark, 500 Root Medium). Same role as `expressive-level-coral-background`, which the evo-web names spell the other way round. Pair with the matching expressive-level foreground. */
+  --expressive-level-background-dijon: var(--dijon-400); /* Dijon expressive level fill (400 Light, 700 Root Dark, 500 Root Medium). Same role as `expressive-level-dijon-background`, which the evo-web names spell the other way round. Pair with the matching expressive-level foreground. */
+  --expressive-level-background-green: var(--green-300); /* Green expressive level fill (400 Light, 700 Root Dark, 500 Root Medium). Same role as `expressive-level-green-background`, which the evo-web names spell the other way round. Pair with the matching expressive-level foreground. */
+  --expressive-level-background-indigo: var(--indigo-400); /* Indigo expressive level fill (400 Light, 700 Root Dark, 500 Root Medium). Same role as `expressive-level-indigo-background`, which the evo-web names spell the other way round. Pair with the matching expressive-level foreground. */
+  --expressive-level-background-jade: var(--jade-400); /* Jade expressive level fill (400 Light, 700 Root Dark, 500 Root Medium). Same role as `expressive-level-jade-background`, which the evo-web names spell the other way round. Pair with the matching expressive-level foreground. */
+  --expressive-level-background-kiwi: var(--kiwi-400); /* Kiwi expressive level fill (400 Light, 700 Root Dark, 500 Root Medium). Same role as `expressive-level-kiwi-background`, which the evo-web names spell the other way round. Pair with the matching expressive-level foreground. */
+  --expressive-level-background-lilac: var(--lilac-400); /* Lilac expressive level fill (400 Light, 700 Root Dark, 500 Root Medium). Same role as `expressive-level-lilac-background`, which the evo-web names spell the other way round. Pair with the matching expressive-level foreground. */
+  --expressive-level-background-marigold: var(--marigold-400); /* Marigold expressive level fill (400 Light, 700 Root Dark, 500 Root Medium). Same role as `expressive-level-marigold-background`, which the evo-web names spell the other way round. Pair with the matching expressive-level foreground. */
+  --expressive-level-blue-background: var(--color-blue-400); /* Blue expressive level fill (400 Light, 700 Root Dark, 500 Root Medium). Same role as `expressive-level-background-blue`, which the evo-web names spell the other way round. Pair with the matching expressive-level foreground. */
+  --expressive-level-blue-foreground: var(--color-blue-800); /* Text and icons on the blue expressive level fill, themed with it. */
+  --expressive-level-coral-background: var(--color-coral-400); /* Coral expressive level fill (400 Light, 700 Root Dark, 500 Root Medium). Same role as `expressive-level-background-coral`, which the evo-web names spell the other way round. Pair with the matching expressive-level foreground. */
+  --expressive-level-coral-foreground: var(--color-coral-800); /* Text and icons on the coral expressive level fill, themed with it. */
+  --expressive-level-dijon-background: var(--color-dijon-400); /* Dijon expressive level fill (400 Light, 700 Root Dark, 500 Root Medium). Same role as `expressive-level-background-dijon`, which the evo-web names spell the other way round. Pair with the matching expressive-level foreground. */
+  --expressive-level-dijon-foreground: var(--color-dijon-700); /* Text and icons on the dijon expressive level fill, themed with it. */
+  --expressive-level-foreground-avocado: var(--avocado-700); /* Text and icons on the avocado expressive level fill, themed with it. */
+  --expressive-level-foreground-blue: var(--blue-800); /* Text and icons on the blue expressive level fill, themed with it. */
+  --expressive-level-foreground-coral: var(--coral-800); /* Text and icons on the coral expressive level fill, themed with it. */
+  --expressive-level-foreground-dijon: var(--dijon-700); /* Text and icons on the dijon expressive level fill, themed with it. */
+  --expressive-level-foreground-green: var(--green-700); /* Text and icons on the green expressive level fill, themed with it. */
+  --expressive-level-foreground-indigo: var(--indigo-800); /* Text and icons on the indigo expressive level fill, themed with it. */
+  --expressive-level-foreground-jade: var(--jade-800); /* Text and icons on the jade expressive level fill, themed with it. */
+  --expressive-level-foreground-kiwi: var(--kiwi-700); /* Text and icons on the kiwi expressive level fill, themed with it. */
+  --expressive-level-foreground-lilac: var(--lilac-800); /* Text and icons on the lilac expressive level fill, themed with it. */
+  --expressive-level-foreground-marigold: var(--marigold-200); /* Text and icons on the marigold expressive level fill, themed with it. */
+  --expressive-level-green-background: var(--color-green-400); /* Green expressive level fill (400 Light, 700 Root Dark, 500 Root Medium). Same role as `expressive-level-background-green`, which the evo-web names spell the other way round. Pair with the matching expressive-level foreground. */
+  --expressive-level-green-foreground: var(--color-green-700); /* Text and icons on the green expressive level fill, themed with it. */
+  --expressive-level-indigo-background: var(--color-indigo-400); /* Indigo expressive level fill (400 Light, 700 Root Dark, 500 Root Medium). Same role as `expressive-level-background-indigo`, which the evo-web names spell the other way round. Pair with the matching expressive-level foreground. */
+  --expressive-level-indigo-foreground: var(--color-indigo-800); /* Text and icons on the indigo expressive level fill, themed with it. */
+  --expressive-level-jade-background: var(--color-jade-400); /* Jade expressive level fill (400 Light, 700 Root Dark, 500 Root Medium). Same role as `expressive-level-background-jade`, which the evo-web names spell the other way round. Pair with the matching expressive-level foreground. */
+  --expressive-level-jade-foreground: var(--color-jade-800); /* Text and icons on the jade expressive level fill, themed with it. */
+  --expressive-level-kiwi-background: var(--color-kiwi-400); /* Kiwi expressive level fill (400 Light, 700 Root Dark, 500 Root Medium). Same role as `expressive-level-background-kiwi`, which the evo-web names spell the other way round. Pair with the matching expressive-level foreground. */
+  --expressive-level-kiwi-foreground: var(--color-kiwi-700); /* Text and icons on the kiwi expressive level fill, themed with it. */
+  --expressive-level-lilac-background: var(--color-lilac-400); /* Lilac expressive level fill (400 Light, 700 Root Dark, 500 Root Medium). Same role as `expressive-level-background-lilac`, which the evo-web names spell the other way round. Pair with the matching expressive-level foreground. */
+  --expressive-level-lilac-foreground: var(--color-lilac-800); /* Text and icons on the lilac expressive level fill, themed with it. */
+  --expressive-level-marigold-background: var(--color-marigold-400); /* Marigold expressive level fill (400 Light, 700 Root Dark, 500 Root Medium). Same role as `expressive-level-background-marigold`, which the evo-web names spell the other way round. Pair with the matching expressive-level foreground. */
+  --expressive-level-marigold-foreground: var(--color-marigold-200); /* Text and icons on the marigold expressive level fill, themed with it. */
+  --expressive-level-yellow-background: var(--color-yellow-400); /* Yellow expressive level fill (marigold 400 through `color-yellow-400`). */
+  --expressive-theme-background: var(--expressive-level-background-avocado); /* The expressive theme's level fill; avocado by default. */
+  --expressive-theme-foreground: var(--expressive-level-foreground-avocado); /* Text on `expressive-theme-background`. */
+  --fills-tertiary: rgba(118,118,128,0.12); /* iOS system colour (#767680 in Light) from the OS chrome frames of the source file: status bars, keyboards and system controls in phone mockups. Not eBay product UI. */
+  --foreground-accent-2: var(--blue-500); /* Same values as `foreground-accent`, carried as a second copy from another Figma variable collection; semantic and expressive aliases point at one copy or the other. Use `foreground-accent`. */
+  --foreground-accent: var(--blue-500); /* Accent text: links, text buttons, selected labels. blue 500 in Light, blue 400 in Root Dark. Contrast: 4.9:1 on white, 4.5:1 on `color-core-neutral-200`; 6.9:1 on black in Root Dark. Used by `SectionHeader`. */
+  --foreground-component: rgb(203,170,249); /* #CBAAF9, the Figma file's component-label purple. Documentation frames only. */
+  --foreground-expressive: var(--expressive-foreground-3); /* Text on `background-expressive`. */
+  --foreground-inverse-primary: var(--black); /* Black, for text on an inverse (light) ground in Root Dark. */
+  --foreground-inverse-secondary: var(--black-8); /* Black 80%, secondary text on an inverse ground. */
+  --foreground-lime: var(--color-core-lime-700); /* Text on `background-lime`. */
+  --foreground-link-legal: var(--blue-650); /* Legal and fine-print links: blue 650 in Light, blue 400 in Root Dark. Contrast: 9.8:1 on white, 9.1:1 on `color-core-neutral-200`; 6.9:1 on black in Root Dark. */
+  --foreground-primary-5: var(--black); /* Black, a primary text copy from the file's iOS frames. Use `foreground-primary-6`. Contrast: 21.0:1 on white, 19.6:1 on `color-core-neutral-200`. */
+  --foreground-primary-6: var(--color-core-neutral-800); /* Primary text: #191919 in Light, #F7F7F7 in Root Dark. Contrast: 17.6:1 on white, 16.4:1 on `color-core-neutral-200`; 19.6:1 on black in Root Dark. Used by `ListingAuditCard`. */
+  --foreground-secondary-2: var(--core-neutral-5); /* Secondary text: #707070 in Light, #8F8F8F in Root Dark. Contrast: 5.0:1 on white, 4.6:1 on `color-core-neutral-200`; 6.5:1 on black in Root Dark. Used by `ListingAuditCard`. */
+  --foreground-secondary-3: var(--black-8); /* Black 80%, a secondary text copy from the file's iOS frames. Use `foreground-secondary-6`. */
+  --foreground-secondary-6: var(--color-core-neutral-600); /* Secondary text through the evo-web neutrals: #707070 in Light, #8F8F8F in Root Dark. Contrast: 5.0:1 on white, 4.6:1 on `color-core-neutral-200`; 6.5:1 on black in Root Dark. */
+  --foreground-success-2: var(--kiwi-600); /* Same values as `foreground-success`, carried as a second copy from another Figma variable collection; semantic and expressive aliases point at one copy or the other. Use `foreground-success`. */
+  --foreground-success: var(--kiwi-600); /* Success text and icons: kiwi 600 in Light, kiwi 500 in Root Dark. Contrast: 5.0:1 on white, 4.6:1 on `color-core-neutral-200`; 8.9:1 on black in Root Dark. */
+  --foreground-tertiary-3: var(--color-core-neutral-500); /* Tertiary text and placeholders: #8F8F8F in Light, #707070 in Root Dark. Contrast: 3.2:1 on white, 3.0:1 on `color-core-neutral-200`; 4.2:1 on black in Root Dark (below 4.5:1 for body text: large text, icons and marks only). */
+  --foreground: var(--color-green-700); /* Text on `background`, the current colour mode's pair (green 700 by default). */
+  --fullscreen-default-icon-secondary: var(--icon-default-secondary); /* Figma file chrome (#000000 in Light): the editor-style colours of the source file's annotation and documentation frames. Not eBay product UI; don't use it in product surfaces. */
+  --grays-black: rgb(0,0,0); /* iOS system colour (#000000 in Light) from the OS chrome frames of the source file: status bars, keyboards and system controls in phone mockups. Not eBay product UI. */
+  --grays-gray2: rgb(174,174,178); /* iOS system colour (#AEAEB2 in Light) from the OS chrome frames of the source file: status bars, keyboards and system controls in phone mockups. Not eBay product UI. */
+  --grays-gray: rgb(142,142,147); /* iOS system colour (#8E8E93 in Light) from the OS chrome frames of the source file: status bars, keyboards and system controls in phone mockups. Not eBay product UI. */
+  --grays-white: rgb(255,255,255); /* iOS system colour (#FFFFFF in Light) from the OS chrome frames of the source file: status bars, keyboards and system controls in phone mockups. Not eBay product UI. */
+  --green-100: rgb(251,254,246); /* Faint green wash behind confirmed assumptions and capability notes in the agentic components. Used by `AIModeCheckoutPanel`, `AssumptionBanner`, `CapabilityBoundary`, `FilterBar` and 5 more. */
+  --green-200-2: rgb(240,252,225); /* Same values as `green-200`, carried as a second copy from another Figma variable collection; semantic and expressive aliases point at one copy or the other. Use `green-200`. */
+  --green-200: rgb(240,252,225); /* Green 200 (#F0FCE1): tint: badge, chip and notice fills; the text colour on this hue's dark-theme expressive fill. Prefer the semantic and expressive tokens in product UI; use the ramp for charts, illustration and expressive surfaces. */
+  --green-300-2: rgb(213,246,170); /* Same values as `green-300`, carried as a second copy from another Figma variable collection; semantic and expressive aliases point at one copy or the other. Use `green-300`. */
+  --green-300: rgb(213,246,170); /* Green 300 (#D5F6AA): light tone: illustration and chart fills. Prefer the semantic and expressive tokens in product UI; use the ramp for charts, illustration and expressive surfaces. */
+  --green-400-2: rgb(133,224,163); /* Variant of `green-400` from another Figma variable collection (Light #85E0A3, Root Dark #79D297). Prefer `green-400` unless you are matching that collection. */
+  --green-400-3: rgb(170,237,86); /* Same values as `green-400`, carried as a second copy from another Figma variable collection; semantic and expressive aliases point at one copy or the other. Use `green-400`. */
+  --green-400: rgb(170,237,86); /* Green 400 (#AAED56): the expressive fill in the Light theme (`green-background`). Prefer the semantic and expressive tokens in product UI; use the ramp for charts, illustration and expressive surfaces. */
+  --green-500-2: rgb(20,174,92); /* Variant of `green-500` from another Figma variable collection (Light #14AE5C, Root Dark #198F51). Prefer `green-500` unless you are matching that collection. */
+  --green-500-3: rgb(146,200,33); /* Same values as `green-500`, carried as a second copy from another Figma variable collection; semantic and expressive aliases point at one copy or the other. Use `green-500`. */
+  --green-500: rgb(146,200,33); /* Fit and size-match green in the Fit & Sizing components. Used by `PersonalSizeFilter`, `VisualFitSearch`. */
+  --green-600-2: rgb(80,125,23); /* Variant of `green-600` from another Figma variable collection (Light #507D17, Root Dark #507D17). Prefer `green-600` unless you are matching that collection. */
+  --green-600: rgb(0,153,81); /* AI Mode and agentic confirmation green: approved and done states in the agentic components. Used by `AIModeCheckoutPanel`, `AIModeDetailRail`, `AgentApprovalCard`, `AgentNudge` and 29 more. */
+  --green-700-2: rgb(52,81,16); /* Same values as `green-700`, carried as a second copy from another Figma variable collection; semantic and expressive aliases point at one copy or the other. Use `green-700`. */
+  --green-700: rgb(52,81,16); /* Dark green: text on green tints in the Fit & Sizing and conversational components. Used by `DynamicSizeChart`, `MeasurementCapture`, `MidFlowRepair`, `PartialFailureSummary`. */
+  --green-800: rgb(28,45,6); /* Darkest green: text on the fit filter's green fill. Used by `FilterBar`, `TranslationTrace`. */
+  --green-background: var(--green-400-3); /* Green expressive fill, themed: 400 in Light, 700 in Root Dark, 500 at Root Medium. Pair with `green-foreground`; for banners, promo tiles and expressive cards. */
+  --green-foreground: var(--green-700-2); /* Text and icons on `green-background`, themed with it (dark on the Light fill, light on the Root Dark fill). */
+  --grey-100: rgb(245,245,245); /* Figma file chrome (#F5F5F5 in Light): the editor-style colours of the source file's annotation and documentation frames. Not eBay product UI; don't use it in product surfaces. */
+  --grey-200: rgb(230,230,230); /* Figma file chrome (#E6E6E6 in Light): the editor-style colours of the source file's annotation and documentation frames. Not eBay product UI; don't use it in product surfaces. */
+  --grey-600: rgb(68,68,68); /* Figma file chrome (#444444 in Light): the editor-style colours of the source file's annotation and documentation frames. Not eBay product UI; don't use it in product surfaces. */
+  --grey-700: rgb(56,56,56); /* Figma file chrome (#383838 in Light): the editor-style colours of the source file's annotation and documentation frames. Not eBay product UI; don't use it in product surfaces. */
+  --grey-800: rgb(44,44,44); /* Figma file chrome (#2C2C2C in Light): the editor-style colours of the source file's annotation and documentation frames. Not eBay product UI; don't use it in product surfaces. */
+  --grey-900: rgb(30,30,30); /* Figma file chrome (#1E1E1E in Light): the editor-style colours of the source file's annotation and documentation frames. Not eBay product UI; don't use it in product surfaces. */
+  --icon-brand-default: var(--blue-600); /* Figma file chrome (#0049B8 in Light): the editor-style colours of the source file's annotation and documentation frames. Not eBay product UI; don't use it in product surfaces. */
+  --icon-default-default: var(--black-800); /* Figma file chrome (#000000 in Light): the editor-style colours of the source file's annotation and documentation frames. Not eBay product UI; don't use it in product surfaces. */
+  --icon-default-secondary: var(--black-500); /* Figma file chrome (#000000 in Light): the editor-style colours of the source file's annotation and documentation frames. Not eBay product UI; don't use it in product surfaces. */
+  --icon-default-tertiary: var(--black-400); /* Figma file chrome (#000000 in Light): the editor-style colours of the source file's annotation and documentation frames. Not eBay product UI; don't use it in product surfaces. */
+  --icon-disabled-default: var(--black-400); /* Figma file chrome (#000000 in Light): the editor-style colours of the source file's annotation and documentation frames. Not eBay product UI; don't use it in product surfaces. */
+  --icon-icon-brand: var(--icon-brand-default); /* Figma file chrome (#0049B8 in Light): the editor-style colours of the source file's annotation and documentation frames. Not eBay product UI; don't use it in product surfaces. */
+  --icon-icon-default: var(--icon-default-default); /* Figma file chrome (#000000 in Light): the editor-style colours of the source file's annotation and documentation frames. Not eBay product UI; don't use it in product surfaces. */
+  --icon-icon-secondary: var(--icon-default-secondary); /* Figma file chrome (#000000 in Light): the editor-style colours of the source file's annotation and documentation frames. Not eBay product UI; don't use it in product surfaces. */
+  --icon-icon-tertiary: var(--icon-default-tertiary); /* Figma file chrome (#000000 in Light): the editor-style colours of the source file's annotation and documentation frames. Not eBay product UI; don't use it in product surfaces. */
+  --indigo-100: rgb(245,251,255); /* Indigo (cyan-blue) 100 (#F5FBFF): lightest tint: quiet fills and page washes. Prefer the semantic and expressive tokens in product UI; use the ramp for charts, illustration and expressive surfaces. */
+  --indigo-200-2: rgb(211,239,254); /* Same values as `indigo-200`, carried as a second copy from another Figma variable collection; semantic and expressive aliases point at one copy or the other. Use `indigo-200`. */
+  --indigo-200: rgb(211,239,254); /* Indigo (cyan-blue) 200 (#D3EFFE): tint: badge, chip and notice fills; the text colour on this hue's dark-theme expressive fill. Prefer the semantic and expressive tokens in product UI; use the ramp for charts, illustration and expressive surfaces. */
+  --indigo-300: rgb(128,208,253); /* Indigo (cyan-blue) 300 (#80D0FD): light tone: illustration and chart fills. Prefer the semantic and expressive tokens in product UI; use the ramp for charts, illustration and expressive surfaces. */
+  --indigo-400-2: rgb(10,167,255); /* Same values as `indigo-400`, carried as a second copy from another Figma variable collection; semantic and expressive aliases point at one copy or the other. Use `indigo-400`. */
+  --indigo-400: rgb(10,167,255); /* Indigo (cyan-blue) 400 (#0AA7FF): the expressive fill in the Light theme (`indigo-background`). Prefer the semantic and expressive tokens in product UI; use the ramp for charts, illustration and expressive surfaces. */
+  --indigo-500-2: rgb(0,153,240); /* Same values as `indigo-500`, carried as a second copy from another Figma variable collection; semantic and expressive aliases point at one copy or the other. Use `indigo-500`. */
+  --indigo-500: rgb(0,153,240); /* Indigo (cyan-blue) 500 (#0099F0): mid tone: the expressive fill at the Root Medium level. Prefer the semantic and expressive tokens in product UI; use the ramp for charts, illustration and expressive surfaces. */
+  --indigo-600: rgb(3,100,171); /* Indigo (cyan-blue) 600 (#0364AB): strong tone: this hue as text or an icon on white. Prefer the semantic and expressive tokens in product UI; use the ramp for charts, illustration and expressive surfaces. */
+  --indigo-700-2: rgb(0,60,102); /* Same values as `indigo-700`, carried as a second copy from another Figma variable collection; semantic and expressive aliases point at one copy or the other. Use `indigo-700`. */
+  --indigo-700: rgb(0,60,102); /* Indigo (cyan-blue) 700 (#003C66): dark tone: the expressive fill in Root Dark, and text on this hue's tints. Prefer the semantic and expressive tokens in product UI; use the ramp for charts, illustration and expressive surfaces. */
+  --indigo-800-2: rgb(1,25,61); /* Same values as `indigo-800`, carried as a second copy from another Figma variable collection; semantic and expressive aliases point at one copy or the other. Use `indigo-800`. */
+  --indigo-800: rgb(1,25,61); /* Indigo (cyan-blue) 800 (#01193D): darkest tone: text on this hue's Light expressive fill. Prefer the semantic and expressive tokens in product UI; use the ramp for charts, illustration and expressive surfaces. */
+  --indigo-background: var(--indigo-400-2); /* Indigo expressive fill, themed: 400 in Light, 700 in Root Dark, 500 at Root Medium. Pair with `indigo-foreground`; for banners, promo tiles and expressive cards. */
+  --indigo-foreground: var(--indigo-800-2); /* Text and icons on `indigo-background`, themed with it (dark on the Light fill, light on the Root Dark fill). */
+  --interaction-outline: rgba(0,0,0,0.1); /* Figma file chrome (#000000 in Light): the editor-style colours of the source file's annotation and documentation frames. Not eBay product UI; don't use it in product surfaces. */
+  --interaction-selection-primary: var(--blue); /* Figma file chrome (#18A0FB in Light): the editor-style colours of the source file's annotation and documentation frames. Not eBay product UI; don't use it in product surfaces. */
+  --interaction-selection-secondary: rgb(218,235,247); /* Figma file chrome (#DAEBF7 in Light): the editor-style colours of the source file's annotation and documentation frames. Not eBay product UI; don't use it in product surfaces. */
+  --interaction-text-highlight: rgba(24,145,251,0.3); /* Figma file chrome (#1891FB in Light): the editor-style colours of the source file's annotation and documentation frames. Not eBay product UI; don't use it in product surfaces. */
+  --jade-100: rgb(247,253,253); /* Jade (teal-green) 100 (#F7FDFD): lightest tint: quiet fills and page washes. Prefer the semantic and expressive tokens in product UI; use the ramp for charts, illustration and expressive surfaces. */
+  --jade-200-2: rgb(216,248,238); /* Same values as `jade-200`, carried as a second copy from another Figma variable collection; semantic and expressive aliases point at one copy or the other. Use `jade-200`. */
+  --jade-200: rgb(216,248,238); /* Jade (teal-green) 200 (#D8F8EE): tint: badge, chip and notice fills; the text colour on this hue's dark-theme expressive fill. Prefer the semantic and expressive tokens in product UI; use the ramp for charts, illustration and expressive surfaces. */
+  --jade-300: rgb(143,234,206); /* Jade (teal-green) 300 (#8FEACE): light tone: illustration and chart fills. Prefer the semantic and expressive tokens in product UI; use the ramp for charts, illustration and expressive surfaces. */
+  --jade-400-2: rgb(30,212,158); /* Same values as `jade-400`, carried as a second copy from another Figma variable collection; semantic and expressive aliases point at one copy or the other. Use `jade-400`. */
+  --jade-400: rgb(30,212,158); /* Jade (teal-green) 400 (#1ED49E): the expressive fill in the Light theme (`jade-background`). Prefer the semantic and expressive tokens in product UI; use the ramp for charts, illustration and expressive surfaces. */
+  --jade-500-2: rgb(23,194,143); /* Same values as `jade-500`, carried as a second copy from another Figma variable collection; semantic and expressive aliases point at one copy or the other. Use `jade-500`. */
+  --jade-500: rgb(23,194,143); /* Jade (teal-green) 500 (#17C28F): mid tone: the expressive fill at the Root Medium level. Prefer the semantic and expressive tokens in product UI; use the ramp for charts, illustration and expressive surfaces. */
+  --jade-600: rgb(15,128,94); /* Jade (teal-green) 600 (#0F805E): strong tone: this hue as text or an icon on white. Prefer the semantic and expressive tokens in product UI; use the ramp for charts, illustration and expressive surfaces. */
+  --jade-700-2: rgb(5,87,67); /* Same values as `jade-700`, carried as a second copy from another Figma variable collection; semantic and expressive aliases point at one copy or the other. Use `jade-700`. */
+  --jade-700: rgb(5,87,67); /* Jade (teal-green) 700 (#055743): dark tone: the expressive fill in Root Dark, and text on this hue's tints. Prefer the semantic and expressive tokens in product UI; use the ramp for charts, illustration and expressive surfaces. */
+  --jade-800-2: rgb(0,43,32); /* Same values as `jade-800`, carried as a second copy from another Figma variable collection; semantic and expressive aliases point at one copy or the other. Use `jade-800`. */
+  --jade-800: rgb(0,43,32); /* Jade (teal-green) 800 (#002B20): darkest tone: text on this hue's Light expressive fill. Prefer the semantic and expressive tokens in product UI; use the ramp for charts, illustration and expressive surfaces. */
+  --jade-background: var(--jade-400-2); /* Jade expressive fill, themed: 400 in Light, 700 in Root Dark, 500 at Root Medium. Pair with `jade-foreground`; for banners, promo tiles and expressive cards. */
+  --jade-foreground: var(--jade-800-2); /* Text and icons on `jade-background`, themed with it (dark on the Light fill, light on the Root Dark fill). */
+  --kiwi-100: rgb(241, 253, 241); /* Success tint: positive badge and notice fills. Used by `Badge`. */
+  --kiwi-200-2: rgb(224,250,224); /* Variant of `kiwi-200` from another Figma variable collection (Light #E0FAE0, Root Dark #E0FAE0). Prefer `kiwi-200` unless you are matching that collection. */
+  --kiwi-200: rgb(206, 245, 206); /* Kiwi (green) 200 (#CEF5CE): tint: badge, chip and notice fills; the text colour on this hue's dark-theme expressive fill. Prefer the semantic and expressive tokens in product UI; use the ramp for charts, illustration and expressive surfaces. */
+  --kiwi-300: rgb(166,240,165); /* Kiwi (green) 300 (#A6F0A5): light tone: illustration and chart fills. Prefer the semantic and expressive tokens in product UI; use the ramp for charts, illustration and expressive surfaces. */
+  --kiwi-400-2: rgb(76,225,96); /* Same values as `kiwi-400`, carried as a second copy from another Figma variable collection; semantic and expressive aliases point at one copy or the other. Use `kiwi-400`. */
+  --kiwi-400: rgb(76,225,96); /* Kiwi (green) 400 (#4CE160): the expressive fill in the Light theme (`kiwi-background`). Prefer the semantic and expressive tokens in product UI; use the ramp for charts, illustration and expressive surfaces. */
+  --kiwi-500-2: rgb(60,193,78); /* Same values as `kiwi-500`, carried as a second copy from another Figma variable collection; semantic and expressive aliases point at one copy or the other. Use `kiwi-500`. */
+  --kiwi-500: rgb(60, 193, 78); /* Success green in Root Dark (`foreground-success`). */
+  --kiwi-600-2: rgb(40,128,52); /* Same values as `kiwi-600`, carried as a second copy from another Figma variable collection; semantic and expressive aliases point at one copy or the other. Use `kiwi-600`. */
+  --kiwi-600: rgb(40, 128, 52); /* Success green: success text and icons (`foreground-success`) and success fills (`background-success`) in Light. Used by `AlertNotice`, `DualConfidence`, `Metric`, `ProgressStepper` and 2 more. */
+  --kiwi-700-2: rgb(27,86,26); /* Same values as `kiwi-700`, carried as a second copy from another Figma variable collection; semantic and expressive aliases point at one copy or the other. Use `kiwi-700`. */
+  --kiwi-700-3: rgb(27,86,26); /* Same values as `kiwi-700`, carried as a second copy from another Figma variable collection; semantic and expressive aliases point at one copy or the other. Use `kiwi-700`. */
+  --kiwi-700: rgb(27, 86, 26); /* Dark success green: text on kiwi tints (success badges). Used by `Badge`. */
+  --kiwi-800-2: rgb(12,49,13); /* Same values as `kiwi-800`, carried as a second copy from another Figma variable collection; semantic and expressive aliases point at one copy or the other. Use `kiwi-800`. */
+  --kiwi-800: rgb(12,49,13); /* Kiwi (green) 800 (#0C310D): darkest tone: text on this hue's Light expressive fill. Prefer the semantic and expressive tokens in product UI; use the ramp for charts, illustration and expressive surfaces. */
+  --kiwi-background: var(--kiwi-400-2); /* Kiwi expressive fill, themed: 400 in Light, 700 in Root Dark, 500 at Root Medium. Pair with `kiwi-foreground`; for banners, promo tiles and expressive cards. */
+  --kiwi-foreground: var(--kiwi-700-3); /* Text and icons on `kiwi-background`, themed with it (dark on the Light fill, light on the Root Dark fill). */
+  --labels-primary-2: rgb(0,0,0); /* Variant of `labels-primary` from another Figma variable collection (Light #000000, Root Dark #FFFFFF). Prefer `labels-primary` unless you are matching that collection. */
+  --labels-primary-3: rgb(0,0,0); /* Variant of `labels-primary` from another Figma variable collection (Light #000000, Root Dark #FFFFFF). Prefer `labels-primary` unless you are matching that collection. */
+  --labels-primary: rgb(0,0,0); /* iOS system colour (#000000 in Light) from the OS chrome frames of the source file: status bars, keyboards and system controls in phone mockups. Not eBay product UI. */
+  --labels-secondary: rgba(60,60,67,0.6); /* iOS system colour (#3C3C43 in Light) from the OS chrome frames of the source file: status bars, keyboards and system controls in phone mockups. Not eBay product UI. */
+  --labels-tertiary: rgba(60,60,67,0.3); /* iOS system colour (#3C3C43 in Light) from the OS chrome frames of the source file: status bars, keyboards and system controls in phone mockups. Not eBay product UI. */
+  --lilac-100-2: rgb(250,245,254); /* Same values as `lilac-100`, carried as a second copy from another Figma variable collection; semantic and expressive aliases point at one copy or the other. Use `lilac-100`. */
+  --lilac-100: rgb(250,245,254); /* Lilac (purple) 100 (#FAF5FE): lightest tint: quiet fills and page washes. Prefer the semantic and expressive tokens in product UI; use the ramp for charts, illustration and expressive surfaces. */
+  --lilac-200-2: rgb(239,221,253); /* Same values as `lilac-200`, carried as a second copy from another Figma variable collection; semantic and expressive aliases point at one copy or the other. Use `lilac-200`. */
+  --lilac-200: rgb(239,221,253); /* Lilac (purple) 200 (#EFDDFD): tint: badge, chip and notice fills; the text colour on this hue's dark-theme expressive fill. Prefer the semantic and expressive tokens in product UI; use the ramp for charts, illustration and expressive surfaces. */
+  --lilac-300-2: rgb(204,158,240); /* Same values as `lilac-300`, carried as a second copy from another Figma variable collection; semantic and expressive aliases point at one copy or the other. Use `lilac-300`. */
+  --lilac-300: rgb(204,158,240); /* Lilac (purple) 300 (#CC9EF0): light tone: illustration and chart fills. Prefer the semantic and expressive tokens in product UI; use the ramp for charts, illustration and expressive surfaces. */
+  --lilac-400-2: rgb(181,107,240); /* Same values as `lilac-400`, carried as a second copy from another Figma variable collection; semantic and expressive aliases point at one copy or the other. Use `lilac-400`. */
+  --lilac-400: rgb(181,107,240); /* Lilac (purple) 400 (#B56BF0): the expressive fill in the Light theme (`lilac-background`). Prefer the semantic and expressive tokens in product UI; use the ramp for charts, illustration and expressive surfaces. */
+  --lilac-500-2: rgb(137,53,203); /* Same values as `lilac-500`, carried as a second copy from another Figma variable collection; semantic and expressive aliases point at one copy or the other. Use `lilac-500`. */
+  --lilac-500: rgb(137,53,203); /* Lilac (purple) 500 (#8935CB): mid tone: the expressive fill at the Root Medium level. Prefer the semantic and expressive tokens in product UI; use the ramp for charts, illustration and expressive surfaces. */
+  --lilac-600: rgb(99,31,153); /* Lilac (purple) 600 (#631F99): strong tone: this hue as text or an icon on white. Prefer the semantic and expressive tokens in product UI; use the ramp for charts, illustration and expressive surfaces. */
+  --lilac-700-2: rgb(62,19,95); /* Same values as `lilac-700`, carried as a second copy from another Figma variable collection; semantic and expressive aliases point at one copy or the other. Use `lilac-700`. */
+  --lilac-700: rgb(62,19,95); /* Lilac (purple) 700 (#3E135F): dark tone: the expressive fill in Root Dark, and text on this hue's tints. Prefer the semantic and expressive tokens in product UI; use the ramp for charts, illustration and expressive surfaces. */
+  --lilac-800-2: rgb(47,4,30); /* Same values as `lilac-800`, carried as a second copy from another Figma variable collection; semantic and expressive aliases point at one copy or the other. Use `lilac-800`. */
+  --lilac-800: rgb(47,4,30); /* Lilac (purple) 800 (#2F041E): darkest tone: text on this hue's Light expressive fill. Prefer the semantic and expressive tokens in product UI; use the ramp for charts, illustration and expressive surfaces. */
+  --lilac-background: var(--lilac-400-2); /* Lilac expressive fill, themed: 400 in Light, 700 in Root Dark, 500 at Root Medium. Pair with `lilac-foreground`; for banners, promo tiles and expressive cards. */
+  --lilac-foreground: var(--lilac-800-2); /* Text and icons on `lilac-background`, themed with it (dark on the Light fill, light on the Root Dark fill). */
+  --loading-on-primary-state-1: rgb(237,237,237); /* Skeleton shimmer on the primary ground (#EDEDED Light, #2D2D2D Root Dark). */
+  --loading-on-primary-state-2: rgb(237,237,237); /* Second skeleton shimmer frame on the primary ground. */
+  --loading-on-secondary-state-1: rgb(228,228,228); /* Skeleton shimmer on secondary fills (#E4E4E4 Light, #353535 Root Dark). */
+  --loading-on-secondary-state-2: rgb(228,228,228); /* Second skeleton shimmer frame on secondary fills. */
+  --logo-blue-2: var(--blue-500); /* Variant of `logo-blue` from another Figma variable collection (Light #0968F6, Root Dark #0968F6). Prefer `logo-blue` unless you are matching that collection. */
+  --logo-blue: rgb(0,120,252); /* The logo's b. `EBayLogo` paints with it; never recolour the colourful logo. Used by `EBayLogo`. */
+  --logo-green-2: var(--green-500); /* Variant of `logo-green` from another Figma variable collection (Light #92C821, Root Dark #92C821). Prefer `logo-green` unless you are matching that collection. */
+  --logo-green: rgb(134,184,23); /* The logo's y. `EBayLogo` paints with it; never recolour the colourful logo. Used by `EBayLogo`. */
+  --logo-red: rgb(240,52,59); /* The logo's e. `EBayLogo` paints with it; never recolour the colourful logo, on any ground. Used by `EBayLogo`. */
+  --logo-yellow: rgb(232,165,2); /* The logo's a. `EBayLogo` paints with it; never recolour the colourful logo. Used by `EBayLogo`. */
+  --marigold-100: rgb(255, 251, 245); /* Warning tint: the fill behind attention-level previews and tool-call warnings. Used by `DryRunPreview`, `ToolCallCard`. */
+  --marigold-200-2: rgb(255,240,211); /* Same values as `marigold-200`, carried as a second copy from another Figma variable collection; semantic and expressive aliases point at one copy or the other. Use `marigold-200`. */
+  --marigold-200: rgb(255, 240, 211); /* Warning tint: warning badge fills. Used by `Badge`. */
+  --marigold-300: rgb(255,212,128); /* Marigold (amber) 300 (#FFD480): light tone: illustration and chart fills. Prefer the semantic and expressive tokens in product UI; use the ramp for charts, illustration and expressive surfaces. */
+  --marigold-400-2: rgb(255,168,0); /* Variant of `marigold-400` from another Figma variable collection (Light #FFA800, Root Dark #FFA800). Prefer `marigold-400` unless you are matching that collection. */
+  --marigold-400: rgb(255, 189, 20); /* Rating-star amber (`Rating`), and the Light expressive marigold fill. Used by `Rating`. */
+  --marigold-500-2: rgb(233,154,2); /* Same values as `marigold-500`, carried as a second copy from another Figma variable collection; semantic and expressive aliases point at one copy or the other. Use `marigold-500`. */
+  --marigold-500: rgb(233,154,2); /* Marigold (amber) 500 (#E99A02): mid tone: the expressive fill at the Root Medium level. Prefer the semantic and expressive tokens in product UI; use the ramp for charts, illustration and expressive surfaces. */
+  --marigold-600: rgb(176, 119, 0); /* Warning amber: warning icons and the warning notice accent. Too light for body text on white; pair it with an icon or a word. Used by `AlertNotice`, `CitationChip`, `ProgressTracker`. */
+  --marigold-700-2: rgb(86,47,1); /* Marigold 700 (#562F01): text on marigold tints and the Root Dark marigold expressive fill. A second-collection copy; the first copy, `marigold-700`, and the rest of the ramp past it did not come across in the migration. */
+  --shadow-subtle: 0 4px 12px rgba(0, 0, 0, 0.07); /* Soft ambient lift for floating cards (approval cards, composer). */
+  --shadow-strong: 0 2px 7px rgba(0, 0, 0, 0.15), 0 5px 17px rgba(0, 0, 0, 0.20); /* Two-layer lift for surfaces floating over busy content. */
+  --shadow-100: 0 1px 2px rgba(0, 0, 0, 0.07); /* Elevation 1, the lightest: resting floating chips and hovered rows. Resting cards stay flat with a hairline instead. */
+  --shadow-200: 0 2px 8px rgba(0, 0, 0, 0.10); /* Elevation 2: the elevated card variant (no border) and dropdown menus. */
+  --shadow-300: 0 4px 16px rgba(0, 0, 0, 0.12); /* Elevation 3: popovers, snackbars and sheets. */
+  --shadow-400: 0 8px 28px rgba(0, 0, 0, 0.15); /* Elevation 4, the strongest: modals and dialogs. */
+  --shadow-focus: 0 0 0 2px rgb(255, 255, 255), 0 0 0 4px rgb(9, 104, 246); /* The focus ring: a 2px white gap then a 2px blue 500 ring, legible on white and on fills. */
+}
+[data-theme="root-dark"] {
+  --ai-solid-blue-strong: rgb(9,104,246);
+  --ai-solid-blue-subtle: rgb(17,44,49);
+  --ai-solid-green-strong: rgb(78,224,75);
+  --ai-solid-green-subtle: rgb(17,38,17);
+  --ai-solid-purple-strong: rgb(153,62,224);
+  --ai-solid-purple-subtle: rgb(32,23,47);
+  --ai-solid-red-strong: rgb(255,66,66);
+  --ai-solid-red-subtle: rgb(50,25,25);
+  --ai-solid-yellow-strong: rgb(255,216,14);
+  --avatar-background-2: var(--blue-300);
+  --avatar-foreground-2: var(--blue-700);
+  --avatar-foreground: var(--color-avocado-700);
+  --avocado-background: var(--avocado-700-3);
+  --avocado-foreground: var(--avocado-200-2);
+  --background-accent: var(--blue-400-4);
+  --background-education: var(--indigo-800-2);
+  --background-expressive: var(--expressive-background-3);
+  --background-hud: rgb(34,34,34);
+  --background-image-matte-2: var(--core-neutral-0);
+  --background-image-opacity: rgba(0,0,0,0.65);
+  --background-lime: var(--color-core-lime-400);
+  --background-on-image: rgba(0,0,0,0.9);
+  --background-primary-3: var(--core-neutral-8);
+  --background-primary-6: var(--color-core-neutral-900);
+  --background-secondary-2: var(--core-neutral-7);
+  --background-secondary-3: var(--core-neutral-7);
+  --background-secondary-5: var(--color-core-neutral-800);
+  --background-success: var(--kiwi-500-2);
+  --background-tertiary-2: var(--color-core-neutral-700);
+  --background: var(--color-green-300);
+  --backgrounds-primary-2: rgb(0,0,0);
+  --backgrounds-primary: rgb(36,36,38);
+  --bg-bg-default: var(--bg-default-default);
+  --bg-bg-menu: var(--bg-menu-default);
+  --bg-bg-secondary: var(--bg-default-secondary);
+  --bg-bg-selected: var(--bg-selected-default);
+  --bg-default-default: var(--grey-800);
+  --bg-default-secondary: var(--grey-700);
+  --bg-inverse-default: var(--grey-800);
+  --bg-menu-default: var(--grey-900);
+  --bg-menu-selected: var(--blue-500-3);
+  --bg-selected-default: var(--blue-200-2);
+  --black-400: rgba(0,0,0,0.3);
+  --black-500: rgba(0,0,0,0.5);
+  --black-800: rgba(0,0,0,0.9);
+  --blue-200-2: rgb(207,233,252);
+  --blue-400-3: rgb(124,196,248);
+  --blue-500-3: rgb(12,140,233);
+  --blue-600: rgb(10,109,194);
+  --blue-background: var(--blue-700-2);
+  --blue-foreground: var(--blue-200-3);
+  --border-accent-2: var(--core-blue-3);
+  --border-accent-3: var(--blue-400);
+  --border-accent-4: var(--blue-400-2);
+  --border-accent: var(--blue-400-4);
+  --border-border-default: var(--border-default-default);
+  --border-border-selected: var(--border-selected-default);
+  --border-border-strong: var(--border-default-strong);
+  --border-component-set: rgb(151,71,255);
+  --border-default-2: var(--core-neutral-5);
+  --border-default-default: var(--grey-600);
+  --border-default-strong: var(--grey-800);
+  --border-default: var(--core-neutral-5);
+  --border-medium-3: var(--color-core-neutral-600);
+  --border-menu-default: var(--grey-700);
+  --border-selected-default: var(--blue-500-3);
+  --border-subtle-3: var(--color-core-neutral-700);
+  --border-success: var(--kiwi-500-2);
+  --brand-2: var(--blue-500-4);
+  --brand-4: var(--green-500-3);
+  --color-avocado-100: var(--avocado-100);
+  --color-avocado-200: var(--avocado-200-2);
+  --color-avocado-300: var(--avocado-300);
+  --color-avocado-400: var(--avocado-400-2);
+  --color-avocado-600: var(--avocado-600);
+  --color-avocado-700: var(--avocado-700-3);
+  --color-avocado-800: var(--avocado-800);
+  --color-blue-100: var(--blue-100-2);
+  --color-blue-200: var(--blue-200-3);
+  --color-blue-300: var(--blue-300-2);
+  --color-blue-400: var(--blue-400-4);
+  --color-blue-500: var(--blue-500);
+  --color-blue-600: var(--blue-600-2);
+  --color-blue-650: var(--blue-650);
+  --color-blue-700: var(--blue-700);
+  --color-blue-800: var(--blue-800-2);
+  --color-coral-100: var(--coral-100);
+  --color-coral-200: var(--coral-200-2);
+  --color-coral-300: var(--coral-300);
+  --color-coral-400: var(--coral-400-2);
+  --color-coral-500: var(--coral-500-2);
+  --color-coral-600: var(--coral-600);
+  --color-coral-700: var(--coral-700-2);
+  --color-coral-800: var(--coral-800-2);
+  --color-dijon-100: var(--dijon-100);
+  --color-dijon-200: var(--dijon-200-2);
+  --color-dijon-300: var(--dijon-300);
+  --color-dijon-400: var(--dijon-400-2);
+  --color-dijon-500: var(--dijon-500-2);
+  --color-dijon-600: var(--dijon-600);
+  --color-dijon-700: var(--dijon-700-3);
+  --color-dijon-800: var(--dijon-800);
+  --color-green-100: var(--green-100);
+  --color-green-200: var(--green-200-2);
+  --color-green-300: var(--green-300-2);
+  --color-green-400: var(--green-400-3);
+  --color-green-500: var(--green-500-3);
+  --color-green-600: var(--green-600-2);
+  --color-green-700: var(--green-700-2);
+  --color-green-800: var(--green-800);
+  --color-indigo-100: var(--indigo-100);
+  --color-indigo-200: var(--indigo-200-2);
+  --color-indigo-300: var(--indigo-300);
+  --color-indigo-400: var(--indigo-400-2);
+  --color-indigo-500: var(--indigo-500-2);
+  --color-indigo-600: var(--indigo-600);
+  --color-indigo-700: var(--indigo-700-2);
+  --color-indigo-800: var(--indigo-800-2);
+  --color-jade-100: var(--jade-100);
+  --color-jade-200: var(--jade-200-2);
+  --color-jade-300: var(--jade-300);
+  --color-jade-400: var(--jade-400-2);
+  --color-jade-500: var(--jade-500-2);
+  --color-jade-600: var(--jade-600);
+  --color-jade-700: var(--jade-700-2);
+  --color-jade-800: var(--jade-800-2);
+  --color-kiwi-100: var(--kiwi-100);
+  --color-kiwi-200: var(--kiwi-200-2);
+  --color-kiwi-300: var(--kiwi-300);
+  --color-kiwi-400: var(--kiwi-200);
+  --color-kiwi-500: var(--kiwi-500-2);
+  --color-kiwi-600: var(--kiwi-600);
+  --color-kiwi-700: var(--kiwi-700);
+  --color-kiwi-800: var(--kiwi-800-2);
+  --color-lilac-100: var(--lilac-100-2);
+  --color-lilac-200: var(--lilac-200-2);
+  --color-lilac-300: var(--lilac-300-2);
+  --color-lilac-400: var(--lilac-400-2);
+  --color-lilac-500: var(--lilac-500-2);
+  --color-lilac-600: var(--lilac-600);
+  --color-lilac-700: var(--lilac-700-2);
+  --color-lilac-800: var(--lilac-800-2);
+  --color-marigold-100: var(--marigold-100);
+  --color-marigold-200: var(--marigold-200-2);
+  --color-marigold-300: var(--marigold-300);
+  --color-marigold-400: var(--marigold-400-2);
+  --color-marigold-500: var(--marigold-500-2);
+  --color-marigold-600: var(--marigold-600);
+  --color-yellow-400: var(--marigold-400);
+  --colors-indigo: rgb(167,170,255);
+  --component-stroke: var(--colors-indigo);
+  --components-segmented-control-bg: var(--grays-white);
+  --controls-switch-rail: rgb(128,128,128);
+  --coral-background: var(--coral-700-2);
+  --coral-foreground: var(--coral-200-2);
+  --core-blue-3: rgb(101,158,255);
+  --core-blue-4: rgb(54,101,243);
+  --core-neutral-0: rgb(255,255,255);
+  --core-neutral-1-2: rgb(247,247,247);
+  --core-neutral-1: rgb(247,247,247);
+  --core-neutral-4-2: rgb(143,143,143);
+  --core-neutral-4-3: rgb(143,143,143);
+  --core-neutral-4: rgb(143,143,143);
+  --core-neutral-5-2: rgb(112,112,112);
+  --core-neutral-5-3: rgb(112,112,112);
+  --core-neutral-5: rgb(112,112,112);
+  --core-neutral-7-2: rgb(25,25,25);
+  --core-neutral-7: rgb(25,25,25);
+  --core-neutral-8: rgb(0,0,0);
+  --dijon-background: var(--dijon-700-3);
+  --dijon-foreground: var(--dijon-200-2);
+  --expressive-background-2: var(--color-avocado-700);
+  --expressive-background-3: var(--avocado-background);
+  --expressive-background: var(--expressive-background-2);
+  --expressive-foreground-2: var(--color-avocado-200);
+  --expressive-foreground-3: var(--avocado-foreground);
+  --expressive-foreground: var(--expressive-foreground-2);
+  --expressive-level-background-avocado: var(--avocado-700-2);
+  --expressive-level-background-blue: var(--blue-700);
+  --expressive-level-background-coral: var(--coral-700);
+  --expressive-level-background-dijon: var(--dijon-700-2);
+  --expressive-level-background-green: var(--green-700);
+  --expressive-level-background-indigo: var(--indigo-700);
+  --expressive-level-background-jade: var(--jade-700);
+  --expressive-level-background-kiwi: var(--kiwi-700-2);
+  --expressive-level-background-lilac: var(--lilac-700);
+  --expressive-level-background-marigold: var(--marigold-700-2);
+  --expressive-level-blue-background: var(--color-blue-700);
+  --expressive-level-blue-foreground: var(--color-blue-200);
+  --expressive-level-coral-background: var(--color-coral-700);
+  --expressive-level-coral-foreground: var(--color-coral-200);
+  --expressive-level-dijon-background: var(--color-dijon-700);
+  --expressive-level-dijon-foreground: var(--color-dijon-200);
+  --expressive-level-foreground-avocado: var(--avocado-200);
+  --expressive-level-foreground-blue: var(--blue-200);
+  --expressive-level-foreground-coral: var(--coral-200);
+  --expressive-level-foreground-dijon: var(--dijon-200);
+  --expressive-level-foreground-green: var(--green-200);
+  --expressive-level-foreground-indigo: var(--indigo-200);
+  --expressive-level-foreground-jade: var(--jade-200);
+  --expressive-level-foreground-kiwi: var(--kiwi-200);
+  --expressive-level-foreground-lilac: var(--lilac-200);
+  --expressive-level-foreground-marigold: var(--marigold-200);
+  --expressive-level-green-background: var(--color-green-700);
+  --expressive-level-green-foreground: var(--color-green-200);
+  --expressive-level-indigo-background: var(--color-indigo-700);
+  --expressive-level-indigo-foreground: var(--color-indigo-200);
+  --expressive-level-jade-background: var(--color-jade-700);
+  --expressive-level-jade-foreground: var(--color-jade-200);
+  --expressive-level-kiwi-background: var(--color-kiwi-700);
+  --expressive-level-kiwi-foreground: var(--color-kiwi-200);
+  --expressive-level-lilac-background: var(--color-lilac-700);
+  --expressive-level-lilac-foreground: var(--color-lilac-200);
+  --expressive-level-marigold-background: var(--color-marigold-400);
+  --expressive-level-marigold-foreground: var(--color-marigold-200);
+  --expressive-level-yellow-background: var(--color-yellow-400);
+  --expressive-theme-background: var(--expressive-level-background-avocado);
+  --expressive-theme-foreground: var(--expressive-level-foreground-avocado);
+  --foreground-accent-2: var(--blue-400);
+  --foreground-accent: var(--blue-400-4);
+  --foreground-expressive: var(--expressive-foreground-3);
+  --foreground-inverse-primary: var(--black);
+  --foreground-inverse-secondary: var(--black-8);
+  --foreground-lime: var(--color-core-lime-700);
+  --foreground-link-legal: var(--blue-400-4);
+  --foreground-primary-5: var(--black);
+  --foreground-primary-6: var(--color-core-neutral-200);
+  --foreground-secondary-2: var(--core-neutral-4);
+  --foreground-secondary-3: var(--black-8);
+  --foreground-secondary-6: var(--color-core-neutral-500);
+  --foreground-success-2: var(--kiwi-500);
+  --foreground-success: var(--kiwi-500-2);
+  --foreground-tertiary-3: var(--color-core-neutral-600);
+  --foreground: var(--color-green-700);
+  --fullscreen-default-icon-secondary: var(--icon-default-secondary);
+  --green-400-2: rgb(121,210,151);
+  --green-500-2: rgb(25,143,81);
+  --green-600: rgb(7,131,72);
+  --green-background: var(--green-700-2);
+  --green-foreground: var(--green-200-2);
+  --grey-100: rgb(245,245,245);
+  --grey-200: rgb(230,230,230);
+  --grey-600: rgb(68,68,68);
+  --grey-700: rgb(56,56,56);
+  --grey-800: rgb(44,44,44);
+  --grey-900: rgb(30,30,30);
+  --icon-brand-default: var(--blue-600);
+  --icon-default-default: var(--black-800);
+  --icon-default-secondary: var(--black-500);
+  --icon-default-tertiary: var(--black-400);
+  --icon-disabled-default: var(--black-400);
+  --icon-icon-brand: var(--icon-brand-default);
+  --icon-icon-default: var(--icon-default-default);
+  --icon-icon-secondary: var(--icon-default-secondary);
+  --icon-icon-tertiary: var(--icon-default-tertiary);
+  --indigo-background: var(--indigo-700-2);
+  --indigo-foreground: var(--indigo-200-2);
+  --interaction-outline: rgba(255,255,255,0.1);
+  --interaction-selection-primary: rgb(68,138,227);
+  --interaction-selection-secondary: rgb(78,88,118);
+  --interaction-text-highlight: rgba(24,145,251,0.3);
+  --jade-background: var(--jade-700-2);
+  --jade-foreground: var(--jade-200-2);
+  --kiwi-background: var(--kiwi-700-3);
+  --kiwi-foreground: var(--kiwi-200-2);
+  --labels-primary-2: rgb(255,255,255);
+  --labels-primary-3: rgb(255,255,255);
+  --labels-secondary: rgba(235,235,245,0.7);
+  --lilac-background: var(--lilac-700-2);
+  --lilac-foreground: var(--lilac-200-2);
+  --loading-on-primary-state-1: rgb(45,45,45);
+  --loading-on-primary-state-2: rgb(45,45,45);
+  --loading-on-secondary-state-1: rgb(53,53,53);
+  --loading-on-secondary-state-2: rgb(53,53,53);
+  --logo-blue-2: var(--blue-500);
+  --logo-green-2: var(--green-500);
+}
+[data-theme="root-medium"] {
+  --avatar-background-2: var(--blue-300);
+  --avatar-foreground-2: var(--blue-700);
+  --avatar-foreground: var(--color-avocado-700);
+  --avocado-background: var(--avocado-500-2);
+  --avocado-foreground: var(--avocado-700-3);
+  --background-accent: var(--blue-500);
+  --background-education: var(--blue-100);
+  --background-expressive: var(--expressive-background-3);
+  --background-image-matte-2: var(--core-neutral-0);
+  --background-lime: var(--color-core-lime-400);
+  --background-primary-3: var(--core-neutral-0);
+  --background-primary-6: var(--color-core-neutral-100);
+  --background-secondary-2: var(--core-neutral-1);
+  --background-secondary-3: var(--core-neutral-1);
+  --background-secondary-5: var(--color-core-neutral-200);
+  --background-success: var(--kiwi-600);
+  --background-tertiary-2: var(--color-core-neutral-250);
+  --background: var(--color-green-300);
+  --bg-bg-default: var(--bg-default-default);
+  --bg-bg-menu: var(--bg-menu-default);
+  --bg-bg-secondary: var(--bg-default-secondary);
+  --bg-bg-selected: var(--bg-selected-default);
+  --bg-default-default: var(--grey-800);
+  --bg-default-secondary: var(--grey-100);
+  --bg-inverse-default: var(--grey-800);
+  --bg-menu-default: var(--grey-900);
+  --bg-menu-selected: var(--blue-500-3);
+  --bg-selected-default: var(--blue-200-2);
+  --blue-background: var(--blue-500-4);
+  --blue-foreground: var(--blue-100-2);
+  --border-accent-2: var(--core-blue-4);
+  --border-accent-3: var(--blue-500);
+  --border-accent-4: var(--blue-500-2);
+  --border-accent: var(--blue-500);
+  --border-border-default: var(--border-default-default);
+  --border-border-selected: var(--border-selected-default);
+  --border-border-strong: var(--border-default-strong);
+  --border-default-2: var(--core-neutral-4);
+  --border-default-default: var(--grey-200);
+  --border-default-strong: var(--grey-800);
+  --border-default: var(--core-neutral-4);
+  --border-medium-3: var(--color-core-neutral-500);
+  --border-menu-default: var(--grey-700);
+  --border-selected-default: var(--blue-500-3);
+  --border-subtle-3: var(--color-core-neutral-300);
+  --border-success: var(--kiwi-600-2);
+  --brand-2: var(--blue-500-4);
+  --brand-4: var(--green-500-3);
+  --color-avocado-100: var(--avocado-100);
+  --color-avocado-200: var(--avocado-200-2);
+  --color-avocado-300: var(--avocado-300);
+  --color-avocado-400: var(--avocado-400-2);
+  --color-avocado-600: var(--avocado-600);
+  --color-avocado-700: var(--avocado-700-3);
+  --color-avocado-800: var(--avocado-800);
+  --color-blue-100: var(--blue-100-2);
+  --color-blue-200: var(--blue-200-3);
+  --color-blue-300: var(--blue-300-2);
+  --color-blue-400: var(--blue-400-4);
+  --color-blue-500: var(--blue-500);
+  --color-blue-600: var(--blue-600-2);
+  --color-blue-650: var(--blue-650);
+  --color-blue-700: var(--blue-700);
+  --color-blue-800: var(--blue-800-2);
+  --color-coral-100: var(--coral-100);
+  --color-coral-200: var(--coral-200-2);
+  --color-coral-300: var(--coral-300);
+  --color-coral-400: var(--coral-400-2);
+  --color-coral-500: var(--coral-500-2);
+  --color-coral-600: var(--coral-600);
+  --color-coral-700: var(--coral-700-2);
+  --color-coral-800: var(--coral-800-2);
+  --color-dijon-100: var(--dijon-100);
+  --color-dijon-200: var(--dijon-200-2);
+  --color-dijon-300: var(--dijon-300);
+  --color-dijon-400: var(--dijon-400-2);
+  --color-dijon-500: var(--dijon-500-2);
+  --color-dijon-600: var(--dijon-600);
+  --color-dijon-700: var(--dijon-700-3);
+  --color-dijon-800: var(--dijon-800);
+  --color-green-100: var(--green-100);
+  --color-green-200: var(--green-200-2);
+  --color-green-300: var(--green-300-2);
+  --color-green-400: var(--green-400-3);
+  --color-green-500: var(--green-500-3);
+  --color-green-600: var(--green-600-2);
+  --color-green-700: var(--green-700-2);
+  --color-green-800: var(--green-800);
+  --color-indigo-100: var(--indigo-100);
+  --color-indigo-200: var(--indigo-200-2);
+  --color-indigo-300: var(--indigo-300);
+  --color-indigo-400: var(--indigo-400-2);
+  --color-indigo-500: var(--indigo-500-2);
+  --color-indigo-600: var(--indigo-600);
+  --color-indigo-700: var(--indigo-700-2);
+  --color-indigo-800: var(--indigo-800-2);
+  --color-jade-100: var(--jade-100);
+  --color-jade-200: var(--jade-200-2);
+  --color-jade-300: var(--jade-300);
+  --color-jade-400: var(--jade-400-2);
+  --color-jade-500: var(--jade-500-2);
+  --color-jade-600: var(--jade-600);
+  --color-jade-700: var(--jade-700-2);
+  --color-jade-800: var(--jade-800-2);
+  --color-kiwi-100: var(--kiwi-100);
+  --color-kiwi-200: var(--kiwi-200-2);
+  --color-kiwi-300: var(--kiwi-300);
+  --color-kiwi-400: var(--kiwi-200);
+  --color-kiwi-500: var(--kiwi-500-2);
+  --color-kiwi-600: var(--kiwi-600);
+  --color-kiwi-700: var(--kiwi-700);
+  --color-kiwi-800: var(--kiwi-800-2);
+  --color-lilac-100: var(--lilac-100-2);
+  --color-lilac-200: var(--lilac-200-2);
+  --color-lilac-300: var(--lilac-300-2);
+  --color-lilac-400: var(--lilac-400-2);
+  --color-lilac-500: var(--lilac-500-2);
+  --color-lilac-600: var(--lilac-600);
+  --color-lilac-700: var(--lilac-700-2);
+  --color-lilac-800: var(--lilac-800-2);
+  --color-marigold-100: var(--marigold-100);
+  --color-marigold-200: var(--marigold-200-2);
+  --color-marigold-300: var(--marigold-300);
+  --color-marigold-400: var(--marigold-400-2);
+  --color-marigold-500: var(--marigold-500-2);
+  --color-marigold-600: var(--marigold-600);
+  --color-yellow-400: var(--marigold-400);
+  --component-stroke: var(--colors-indigo);
+  --components-segmented-control-bg: var(--grays-white);
+  --coral-background: var(--coral-500-2);
+  --coral-foreground: var(--coral-800-2);
+  --dijon-background: var(--dijon-500-2);
+  --dijon-foreground: var(--dijon-700-3);
+  --expressive-background-2: var(--color-avocado-400);
+  --expressive-background-3: var(--avocado-background);
+  --expressive-background: var(--expressive-background-2);
+  --expressive-foreground-2: var(--color-avocado-700);
+  --expressive-foreground-3: var(--avocado-foreground);
+  --expressive-foreground: var(--expressive-foreground-2);
+  --expressive-level-background-avocado: var(--avocado-500);
+  --expressive-level-background-blue: var(--blue-500);
+  --expressive-level-background-coral: var(--coral-500);
+  --expressive-level-background-dijon: var(--dijon-500);
+  --expressive-level-background-green: var(--green-400);
+  --expressive-level-background-indigo: var(--indigo-500);
+  --expressive-level-background-jade: var(--jade-500);
+  --expressive-level-background-kiwi: var(--kiwi-500);
+  --expressive-level-background-lilac: var(--lilac-500);
+  --expressive-level-background-marigold: var(--marigold-500);
+  --expressive-level-blue-background: var(--color-blue-500);
+  --expressive-level-blue-foreground: var(--color-blue-100);
+  --expressive-level-coral-background: var(--color-coral-500);
+  --expressive-level-coral-foreground: var(--color-coral-800);
+  --expressive-level-dijon-background: var(--color-dijon-500);
+  --expressive-level-dijon-foreground: var(--color-dijon-700);
+  --expressive-level-foreground-avocado: var(--avocado-700);
+  --expressive-level-foreground-blue: var(--blue-100);
+  --expressive-level-foreground-coral: var(--coral-800);
+  --expressive-level-foreground-dijon: var(--dijon-700);
+  --expressive-level-foreground-green: var(--green-700);
+  --expressive-level-foreground-indigo: var(--indigo-800);
+  --expressive-level-foreground-jade: var(--jade-800);
+  --expressive-level-foreground-kiwi: var(--kiwi-800);
+  --expressive-level-foreground-lilac: var(--lilac-100);
+  --expressive-level-foreground-marigold: var(--marigold-200);
+  --expressive-level-green-background: var(--color-green-500);
+  --expressive-level-green-foreground: var(--color-green-700);
+  --expressive-level-indigo-background: var(--color-indigo-500);
+  --expressive-level-indigo-foreground: var(--color-indigo-800);
+  --expressive-level-jade-background: var(--color-jade-500);
+  --expressive-level-jade-foreground: var(--color-jade-800);
+  --expressive-level-kiwi-background: var(--color-kiwi-500);
+  --expressive-level-kiwi-foreground: var(--color-kiwi-800);
+  --expressive-level-lilac-background: var(--color-lilac-500);
+  --expressive-level-lilac-foreground: var(--color-lilac-100);
+  --expressive-level-marigold-background: var(--color-marigold-500);
+  --expressive-level-marigold-foreground: var(--color-marigold-200);
+  --expressive-level-yellow-background: var(--color-yellow-400);
+  --expressive-theme-background: var(--expressive-level-background-avocado);
+  --expressive-theme-foreground: var(--expressive-level-foreground-avocado);
+  --foreground-accent-2: var(--blue-500);
+  --foreground-accent: var(--blue-500);
+  --foreground-expressive: var(--expressive-foreground-3);
+  --foreground-inverse-primary: var(--black);
+  --foreground-inverse-secondary: var(--black-8);
+  --foreground-lime: var(--color-core-lime-700);
+  --foreground-link-legal: var(--blue-650);
+  --foreground-primary-5: var(--black);
+  --foreground-primary-6: var(--color-core-neutral-800);
+  --foreground-secondary-2: var(--core-neutral-5);
+  --foreground-secondary-3: var(--black-8);
+  --foreground-secondary-6: var(--color-core-neutral-600);
+  --foreground-success-2: var(--kiwi-600);
+  --foreground-success: var(--kiwi-600);
+  --foreground-tertiary-3: var(--color-core-neutral-500);
+  --foreground: var(--color-green-700);
+  --fullscreen-default-icon-secondary: var(--icon-default-secondary);
+  --green-background: var(--green-500-3);
+  --green-foreground: var(--green-700-2);
+  --icon-brand-default: var(--blue-600);
+  --icon-default-default: var(--black-800);
+  --icon-default-secondary: var(--black-500);
+  --icon-default-tertiary: var(--black-400);
+  --icon-disabled-default: var(--black-400);
+  --icon-icon-brand: var(--icon-brand-default);
+  --icon-icon-default: var(--icon-default-default);
+  --icon-icon-secondary: var(--icon-default-secondary);
+  --icon-icon-tertiary: var(--icon-default-tertiary);
+  --indigo-background: var(--indigo-500-2);
+  --indigo-foreground: var(--indigo-800-2);
+  --interaction-selection-primary: var(--blue);
+  --jade-background: var(--jade-500-2);
+  --jade-foreground: var(--jade-800-2);
+  --kiwi-background: var(--kiwi-500-2);
+  --kiwi-foreground: var(--kiwi-800-2);
+  --lilac-background: var(--lilac-500-2);
+  --lilac-foreground: var(--lilac-100-2);
+  --logo-blue-2: var(--blue-500);
+  --logo-green-2: var(--green-500);
+}
+[data-theme="root-small"] {
+  --avatar-background-2: var(--blue-300);
+  --avatar-foreground-2: var(--blue-700);
+  --avatar-foreground: var(--color-avocado-700);
+  --avocado-background: var(--avocado-400-2);
+  --avocado-foreground: var(--avocado-700-3);
+  --background-accent: var(--blue-500);
+  --background-education: var(--blue-100);
+  --background-expressive: var(--expressive-background-3);
+  --background-image-matte-2: var(--core-neutral-0);
+  --background-lime: var(--color-core-lime-400);
+  --background-primary-3: var(--core-neutral-0);
+  --background-primary-6: var(--color-core-neutral-100);
+  --background-secondary-2: var(--core-neutral-1);
+  --background-secondary-3: var(--core-neutral-1);
+  --background-secondary-5: var(--color-core-neutral-200);
+  --background-success: var(--kiwi-600);
+  --background-tertiary-2: var(--color-core-neutral-250);
+  --background: var(--color-green-300);
+  --bg-bg-default: var(--bg-default-default);
+  --bg-bg-menu: var(--bg-menu-default);
+  --bg-bg-secondary: var(--bg-default-secondary);
+  --bg-bg-selected: var(--bg-selected-default);
+  --bg-default-default: var(--grey-800);
+  --bg-default-secondary: var(--grey-100);
+  --bg-inverse-default: var(--grey-800);
+  --bg-menu-default: var(--grey-900);
+  --bg-menu-selected: var(--blue-500-3);
+  --bg-selected-default: var(--blue-200-2);
+  --blue-background: var(--blue-400-4);
+  --blue-foreground: var(--blue-800-2);
+  --border-accent-2: var(--core-blue-4);
+  --border-accent-3: var(--blue-500);
+  --border-accent-4: var(--blue-500-2);
+  --border-accent: var(--blue-500);
+  --border-border-default: var(--border-default-default);
+  --border-border-selected: var(--border-selected-default);
+  --border-border-strong: var(--border-default-strong);
+  --border-default-2: var(--core-neutral-4);
+  --border-default-default: var(--grey-200);
+  --border-default-strong: var(--grey-800);
+  --border-default: var(--core-neutral-4);
+  --border-medium-3: var(--color-core-neutral-500);
+  --border-menu-default: var(--grey-700);
+  --border-selected-default: var(--blue-500-3);
+  --border-subtle-3: var(--color-core-neutral-300);
+  --border-success: var(--kiwi-600-2);
+  --brand-2: var(--blue-500-4);
+  --brand-4: var(--green-500-3);
+  --color-avocado-100: var(--avocado-100);
+  --color-avocado-200: var(--avocado-200-2);
+  --color-avocado-300: var(--avocado-300);
+  --color-avocado-400: var(--avocado-400-2);
+  --color-avocado-600: var(--avocado-600);
+  --color-avocado-700: var(--avocado-700-3);
+  --color-avocado-800: var(--avocado-800);
+  --color-blue-100: var(--blue-100-2);
+  --color-blue-200: var(--blue-200-3);
+  --color-blue-300: var(--blue-300-2);
+  --color-blue-400: var(--blue-400-4);
+  --color-blue-500: var(--blue-500);
+  --color-blue-600: var(--blue-600-2);
+  --color-blue-650: var(--blue-650);
+  --color-blue-700: var(--blue-700);
+  --color-blue-800: var(--blue-800-2);
+  --color-coral-100: var(--coral-100);
+  --color-coral-200: var(--coral-200-2);
+  --color-coral-300: var(--coral-300);
+  --color-coral-400: var(--coral-400-2);
+  --color-coral-500: var(--coral-500-2);
+  --color-coral-600: var(--coral-600);
+  --color-coral-700: var(--coral-700-2);
+  --color-coral-800: var(--coral-800-2);
+  --color-dijon-100: var(--dijon-100);
+  --color-dijon-200: var(--dijon-200-2);
+  --color-dijon-300: var(--dijon-300);
+  --color-dijon-400: var(--dijon-400-2);
+  --color-dijon-500: var(--dijon-500-2);
+  --color-dijon-600: var(--dijon-600);
+  --color-dijon-700: var(--dijon-700-3);
+  --color-dijon-800: var(--dijon-800);
+  --color-green-100: var(--green-100);
+  --color-green-200: var(--green-200-2);
+  --color-green-300: var(--green-300-2);
+  --color-green-400: var(--green-400-3);
+  --color-green-500: var(--green-500-3);
+  --color-green-600: var(--green-600-2);
+  --color-green-700: var(--green-700-2);
+  --color-green-800: var(--green-800);
+  --color-indigo-100: var(--indigo-100);
+  --color-indigo-200: var(--indigo-200-2);
+  --color-indigo-300: var(--indigo-300);
+  --color-indigo-400: var(--indigo-400-2);
+  --color-indigo-500: var(--indigo-500-2);
+  --color-indigo-600: var(--indigo-600);
+  --color-indigo-700: var(--indigo-700-2);
+  --color-indigo-800: var(--indigo-800-2);
+  --color-jade-100: var(--jade-100);
+  --color-jade-200: var(--jade-200-2);
+  --color-jade-300: var(--jade-300);
+  --color-jade-400: var(--jade-400-2);
+  --color-jade-500: var(--jade-500-2);
+  --color-jade-600: var(--jade-600);
+  --color-jade-700: var(--jade-700-2);
+  --color-jade-800: var(--jade-800-2);
+  --color-kiwi-100: var(--kiwi-100);
+  --color-kiwi-200: var(--kiwi-200-2);
+  --color-kiwi-300: var(--kiwi-300);
+  --color-kiwi-400: var(--kiwi-200);
+  --color-kiwi-500: var(--kiwi-500-2);
+  --color-kiwi-600: var(--kiwi-600);
+  --color-kiwi-700: var(--kiwi-700);
+  --color-kiwi-800: var(--kiwi-800-2);
+  --color-lilac-100: var(--lilac-100-2);
+  --color-lilac-200: var(--lilac-200-2);
+  --color-lilac-300: var(--lilac-300-2);
+  --color-lilac-400: var(--lilac-400-2);
+  --color-lilac-500: var(--lilac-500-2);
+  --color-lilac-600: var(--lilac-600);
+  --color-lilac-700: var(--lilac-700-2);
+  --color-lilac-800: var(--lilac-800-2);
+  --color-marigold-100: var(--marigold-100);
+  --color-marigold-200: var(--marigold-200-2);
+  --color-marigold-300: var(--marigold-300);
+  --color-marigold-400: var(--marigold-400-2);
+  --color-marigold-500: var(--marigold-500-2);
+  --color-marigold-600: var(--marigold-600);
+  --color-yellow-400: var(--marigold-400);
+  --component-stroke: var(--colors-indigo);
+  --components-segmented-control-bg: var(--grays-white);
+  --coral-background: var(--coral-400-2);
+  --coral-foreground: var(--coral-800-2);
+  --dijon-background: var(--dijon-400-2);
+  --dijon-foreground: var(--dijon-700-3);
+  --expressive-background-2: var(--color-avocado-400);
+  --expressive-background-3: var(--avocado-background);
+  --expressive-background: var(--expressive-background-2);
+  --expressive-foreground-2: var(--color-avocado-700);
+  --expressive-foreground-3: var(--avocado-foreground);
+  --expressive-foreground: var(--expressive-foreground-2);
+  --expressive-level-background-avocado: var(--avocado-400);
+  --expressive-level-background-blue: var(--blue-400);
+  --expressive-level-background-coral: var(--coral-400);
+  --expressive-level-background-dijon: var(--dijon-400);
+  --expressive-level-background-green: var(--green-300);
+  --expressive-level-background-indigo: var(--indigo-400);
+  --expressive-level-background-jade: var(--jade-400);
+  --expressive-level-background-kiwi: var(--kiwi-400);
+  --expressive-level-background-lilac: var(--lilac-400);
+  --expressive-level-background-marigold: var(--marigold-400);
+  --expressive-level-blue-background: var(--color-blue-400);
+  --expressive-level-blue-foreground: var(--color-blue-800);
+  --expressive-level-coral-background: var(--color-coral-400);
+  --expressive-level-coral-foreground: var(--color-coral-800);
+  --expressive-level-dijon-background: var(--color-dijon-400);
+  --expressive-level-dijon-foreground: var(--color-dijon-700);
+  --expressive-level-foreground-avocado: var(--avocado-700);
+  --expressive-level-foreground-blue: var(--blue-800);
+  --expressive-level-foreground-coral: var(--coral-800);
+  --expressive-level-foreground-dijon: var(--dijon-700);
+  --expressive-level-foreground-green: var(--green-700);
+  --expressive-level-foreground-indigo: var(--indigo-800);
+  --expressive-level-foreground-jade: var(--jade-800);
+  --expressive-level-foreground-kiwi: var(--kiwi-700);
+  --expressive-level-foreground-lilac: var(--lilac-800);
+  --expressive-level-foreground-marigold: var(--marigold-200);
+  --expressive-level-green-background: var(--color-green-400);
+  --expressive-level-green-foreground: var(--color-green-700);
+  --expressive-level-indigo-background: var(--color-indigo-400);
+  --expressive-level-indigo-foreground: var(--color-indigo-800);
+  --expressive-level-jade-background: var(--color-jade-400);
+  --expressive-level-jade-foreground: var(--color-jade-800);
+  --expressive-level-kiwi-background: var(--color-kiwi-400);
+  --expressive-level-kiwi-foreground: var(--color-kiwi-700);
+  --expressive-level-lilac-background: var(--color-lilac-400);
+  --expressive-level-lilac-foreground: var(--color-lilac-800);
+  --expressive-level-marigold-background: var(--color-marigold-400);
+  --expressive-level-marigold-foreground: var(--color-marigold-200);
+  --expressive-level-yellow-background: var(--color-yellow-400);
+  --expressive-theme-background: var(--expressive-level-background-avocado);
+  --expressive-theme-foreground: var(--expressive-level-foreground-avocado);
+  --foreground-accent-2: var(--blue-500);
+  --foreground-accent: var(--blue-500);
+  --foreground-expressive: var(--expressive-foreground-3);
+  --foreground-inverse-primary: var(--black);
+  --foreground-inverse-secondary: var(--black-8);
+  --foreground-lime: var(--color-core-lime-700);
+  --foreground-link-legal: var(--blue-650);
+  --foreground-primary-5: var(--black);
+  --foreground-primary-6: var(--color-core-neutral-800);
+  --foreground-secondary-2: var(--core-neutral-5);
+  --foreground-secondary-3: var(--black-8);
+  --foreground-secondary-6: var(--color-core-neutral-600);
+  --foreground-success-2: var(--kiwi-600);
+  --foreground-success: var(--kiwi-600);
+  --foreground-tertiary-3: var(--color-core-neutral-500);
+  --foreground: var(--color-green-700);
+  --fullscreen-default-icon-secondary: var(--icon-default-secondary);
+  --green-background: var(--green-400-3);
+  --green-foreground: var(--green-700-2);
+  --icon-brand-default: var(--blue-600);
+  --icon-default-default: var(--black-800);
+  --icon-default-secondary: var(--black-500);
+  --icon-default-tertiary: var(--black-400);
+  --icon-disabled-default: var(--black-400);
+  --icon-icon-brand: var(--icon-brand-default);
+  --icon-icon-default: var(--icon-default-default);
+  --icon-icon-secondary: var(--icon-default-secondary);
+  --icon-icon-tertiary: var(--icon-default-tertiary);
+  --indigo-background: var(--indigo-400-2);
+  --indigo-foreground: var(--indigo-800-2);
+  --interaction-selection-primary: var(--blue);
+  --jade-background: var(--jade-400-2);
+  --jade-foreground: var(--jade-800-2);
+  --kiwi-background: var(--kiwi-400-2);
+  --kiwi-foreground: var(--kiwi-700-3);
+  --lilac-background: var(--lilac-400-2);
+  --lilac-foreground: var(--lilac-800-2);
+  --logo-blue-2: var(--blue-500);
+  --logo-green-2: var(--green-500);
+}
+[data-theme="root-relaxed"] {
+  --avatar-background-2: var(--blue-300);
+  --avatar-foreground-2: var(--blue-700);
+  --avatar-foreground: var(--color-avocado-700);
+  --avocado-background: var(--avocado-400-2);
+  --avocado-foreground: var(--avocado-700-3);
+  --background-accent: var(--blue-500);
+  --background-education: var(--blue-100);
+  --background-expressive: var(--expressive-background-3);
+  --background-image-matte-2: var(--core-neutral-0);
+  --background-lime: var(--color-core-lime-400);
+  --background-primary-3: var(--core-neutral-0);
+  --background-primary-6: var(--color-core-neutral-100);
+  --background-secondary-2: var(--core-neutral-1);
+  --background-secondary-3: var(--core-neutral-1);
+  --background-secondary-5: var(--color-core-neutral-200);
+  --background-success: var(--kiwi-600);
+  --background-tertiary-2: var(--color-core-neutral-250);
+  --background: var(--color-green-300);
+  --bg-bg-default: var(--bg-default-default);
+  --bg-bg-menu: var(--bg-menu-default);
+  --bg-bg-secondary: var(--bg-default-secondary);
+  --bg-bg-selected: var(--bg-selected-default);
+  --bg-default-default: var(--grey-800);
+  --bg-default-secondary: var(--grey-100);
+  --bg-inverse-default: var(--grey-800);
+  --bg-menu-default: var(--grey-900);
+  --bg-menu-selected: var(--blue-500-3);
+  --bg-selected-default: var(--blue-200-2);
+  --blue-background: var(--blue-400-4);
+  --blue-foreground: var(--blue-800-2);
+  --border-accent-2: var(--core-blue-4);
+  --border-accent-3: var(--blue-500);
+  --border-accent-4: var(--blue-500-2);
+  --border-accent: var(--blue-500);
+  --border-border-default: var(--border-default-default);
+  --border-border-selected: var(--border-selected-default);
+  --border-border-strong: var(--border-default-strong);
+  --border-default-2: var(--core-neutral-4);
+  --border-default-default: var(--grey-200);
+  --border-default-strong: var(--grey-800);
+  --border-default: var(--core-neutral-4);
+  --border-medium-3: var(--color-core-neutral-500);
+  --border-menu-default: var(--grey-700);
+  --border-selected-default: var(--blue-500-3);
+  --border-subtle-3: var(--color-core-neutral-300);
+  --border-success: var(--kiwi-600-2);
+  --brand-2: var(--blue-500-4);
+  --brand-4: var(--green-500-3);
+  --color-avocado-100: var(--avocado-100);
+  --color-avocado-200: var(--avocado-200-2);
+  --color-avocado-300: var(--avocado-300);
+  --color-avocado-400: var(--avocado-400-2);
+  --color-avocado-600: var(--avocado-600);
+  --color-avocado-700: var(--avocado-700-3);
+  --color-avocado-800: var(--avocado-800);
+  --color-blue-100: var(--blue-100-2);
+  --color-blue-200: var(--blue-200-3);
+  --color-blue-300: var(--blue-300-2);
+  --color-blue-400: var(--blue-400-4);
+  --color-blue-500: var(--blue-500);
+  --color-blue-600: var(--blue-600-2);
+  --color-blue-650: var(--blue-650);
+  --color-blue-700: var(--blue-700);
+  --color-blue-800: var(--blue-800-2);
+  --color-coral-100: var(--coral-100);
+  --color-coral-200: var(--coral-200-2);
+  --color-coral-300: var(--coral-300);
+  --color-coral-400: var(--coral-400-2);
+  --color-coral-500: var(--coral-500-2);
+  --color-coral-600: var(--coral-600);
+  --color-coral-700: var(--coral-700-2);
+  --color-coral-800: var(--coral-800-2);
+  --color-dijon-100: var(--dijon-100);
+  --color-dijon-200: var(--dijon-200-2);
+  --color-dijon-300: var(--dijon-300);
+  --color-dijon-400: var(--dijon-400-2);
+  --color-dijon-500: var(--dijon-500-2);
+  --color-dijon-600: var(--dijon-600);
+  --color-dijon-700: var(--dijon-700-3);
+  --color-dijon-800: var(--dijon-800);
+  --color-green-100: var(--green-100);
+  --color-green-200: var(--green-200-2);
+  --color-green-300: var(--green-300-2);
+  --color-green-400: var(--green-400-3);
+  --color-green-500: var(--green-500-3);
+  --color-green-600: var(--green-600-2);
+  --color-green-700: var(--green-700-2);
+  --color-green-800: var(--green-800);
+  --color-indigo-100: var(--indigo-100);
+  --color-indigo-200: var(--indigo-200-2);
+  --color-indigo-300: var(--indigo-300);
+  --color-indigo-400: var(--indigo-400-2);
+  --color-indigo-500: var(--indigo-500-2);
+  --color-indigo-600: var(--indigo-600);
+  --color-indigo-700: var(--indigo-700-2);
+  --color-indigo-800: var(--indigo-800-2);
+  --color-jade-100: var(--jade-100);
+  --color-jade-200: var(--jade-200-2);
+  --color-jade-300: var(--jade-300);
+  --color-jade-400: var(--jade-400-2);
+  --color-jade-500: var(--jade-500-2);
+  --color-jade-600: var(--jade-600);
+  --color-jade-700: var(--jade-700-2);
+  --color-jade-800: var(--jade-800-2);
+  --color-kiwi-100: var(--kiwi-100);
+  --color-kiwi-200: var(--kiwi-200-2);
+  --color-kiwi-300: var(--kiwi-300);
+  --color-kiwi-400: var(--kiwi-200);
+  --color-kiwi-500: var(--kiwi-500-2);
+  --color-kiwi-600: var(--kiwi-600);
+  --color-kiwi-700: var(--kiwi-700);
+  --color-kiwi-800: var(--kiwi-800-2);
+  --color-lilac-100: var(--lilac-100-2);
+  --color-lilac-200: var(--lilac-200-2);
+  --color-lilac-300: var(--lilac-300-2);
+  --color-lilac-400: var(--lilac-400-2);
+  --color-lilac-500: var(--lilac-500-2);
+  --color-lilac-600: var(--lilac-600);
+  --color-lilac-700: var(--lilac-700-2);
+  --color-lilac-800: var(--lilac-800-2);
+  --color-marigold-100: var(--marigold-100);
+  --color-marigold-200: var(--marigold-200-2);
+  --color-marigold-300: var(--marigold-300);
+  --color-marigold-400: var(--marigold-400-2);
+  --color-marigold-500: var(--marigold-500-2);
+  --color-marigold-600: var(--marigold-600);
+  --color-yellow-400: var(--marigold-400);
+  --component-stroke: var(--colors-indigo);
+  --components-segmented-control-bg: var(--grays-white);
+  --coral-background: var(--coral-400-2);
+  --coral-foreground: var(--coral-800-2);
+  --dijon-background: var(--dijon-400-2);
+  --dijon-foreground: var(--dijon-700-3);
+  --expressive-background-2: var(--color-avocado-400);
+  --expressive-background-3: var(--avocado-background);
+  --expressive-background: var(--expressive-background-2);
+  --expressive-foreground-2: var(--color-avocado-700);
+  --expressive-foreground-3: var(--avocado-foreground);
+  --expressive-foreground: var(--expressive-foreground-2);
+  --expressive-level-background-avocado: var(--avocado-400);
+  --expressive-level-background-blue: var(--blue-400);
+  --expressive-level-background-coral: var(--coral-400);
+  --expressive-level-background-dijon: var(--dijon-400);
+  --expressive-level-background-green: var(--green-300);
+  --expressive-level-background-indigo: var(--indigo-400);
+  --expressive-level-background-jade: var(--jade-400);
+  --expressive-level-background-kiwi: var(--kiwi-400);
+  --expressive-level-background-lilac: var(--lilac-400);
+  --expressive-level-background-marigold: var(--marigold-400);
+  --expressive-level-blue-background: var(--color-blue-400);
+  --expressive-level-blue-foreground: var(--color-blue-800);
+  --expressive-level-coral-background: var(--color-coral-400);
+  --expressive-level-coral-foreground: var(--color-coral-800);
+  --expressive-level-dijon-background: var(--color-dijon-400);
+  --expressive-level-dijon-foreground: var(--color-dijon-700);
+  --expressive-level-foreground-avocado: var(--avocado-700);
+  --expressive-level-foreground-blue: var(--blue-800);
+  --expressive-level-foreground-coral: var(--coral-800);
+  --expressive-level-foreground-dijon: var(--dijon-700);
+  --expressive-level-foreground-green: var(--green-700);
+  --expressive-level-foreground-indigo: var(--indigo-800);
+  --expressive-level-foreground-jade: var(--jade-800);
+  --expressive-level-foreground-kiwi: var(--kiwi-700);
+  --expressive-level-foreground-lilac: var(--lilac-800);
+  --expressive-level-foreground-marigold: var(--marigold-200);
+  --expressive-level-green-background: var(--color-green-400);
+  --expressive-level-green-foreground: var(--color-green-700);
+  --expressive-level-indigo-background: var(--color-indigo-400);
+  --expressive-level-indigo-foreground: var(--color-indigo-800);
+  --expressive-level-jade-background: var(--color-jade-400);
+  --expressive-level-jade-foreground: var(--color-jade-800);
+  --expressive-level-kiwi-background: var(--color-kiwi-400);
+  --expressive-level-kiwi-foreground: var(--color-kiwi-700);
+  --expressive-level-lilac-background: var(--color-lilac-400);
+  --expressive-level-lilac-foreground: var(--color-lilac-800);
+  --expressive-level-marigold-background: var(--color-marigold-400);
+  --expressive-level-marigold-foreground: var(--color-marigold-200);
+  --expressive-level-yellow-background: var(--color-yellow-400);
+  --expressive-theme-background: var(--expressive-level-background-avocado);
+  --expressive-theme-foreground: var(--expressive-level-foreground-avocado);
+  --foreground-accent-2: var(--blue-500);
+  --foreground-accent: var(--blue-500);
+  --foreground-expressive: var(--expressive-foreground-3);
+  --foreground-inverse-primary: var(--black);
+  --foreground-inverse-secondary: var(--black-8);
+  --foreground-lime: var(--color-core-lime-700);
+  --foreground-link-legal: var(--blue-650);
+  --foreground-primary-5: var(--black);
+  --foreground-primary-6: var(--color-core-neutral-800);
+  --foreground-secondary-2: var(--core-neutral-5);
+  --foreground-secondary-3: var(--black-8);
+  --foreground-secondary-6: var(--color-core-neutral-600);
+  --foreground-success-2: var(--kiwi-600);
+  --foreground-success: var(--kiwi-600);
+  --foreground-tertiary-3: var(--color-core-neutral-500);
+  --foreground: var(--color-green-700);
+  --fullscreen-default-icon-secondary: var(--icon-default-secondary);
+  --green-background: var(--green-400-3);
+  --green-foreground: var(--green-700-2);
+  --icon-brand-default: var(--blue-600);
+  --icon-default-default: var(--black-800);
+  --icon-default-secondary: var(--black-500);
+  --icon-default-tertiary: var(--black-400);
+  --icon-disabled-default: var(--black-400);
+  --icon-icon-brand: var(--icon-brand-default);
+  --icon-icon-default: var(--icon-default-default);
+  --icon-icon-secondary: var(--icon-default-secondary);
+  --icon-icon-tertiary: var(--icon-default-tertiary);
+  --indigo-background: var(--indigo-400-2);
+  --indigo-foreground: var(--indigo-800-2);
+  --interaction-selection-primary: var(--blue);
+  --jade-background: var(--jade-400-2);
+  --jade-foreground: var(--jade-800-2);
+  --kiwi-background: var(--kiwi-400-2);
+  --kiwi-foreground: var(--kiwi-700-3);
+  --lilac-background: var(--lilac-400-2);
+  --lilac-foreground: var(--lilac-800-2);
+  --logo-blue-2: var(--blue-500);
+  --logo-green-2: var(--green-500);
+}
+[data-theme="root-compact"] {
+  --avatar-background-2: var(--blue-300);
+  --avatar-foreground-2: var(--blue-700);
+  --avatar-foreground: var(--color-avocado-700);
+  --avocado-background: var(--avocado-400-2);
+  --avocado-foreground: var(--avocado-700-3);
+  --background-accent: var(--blue-500);
+  --background-education: var(--blue-100);
+  --background-expressive: var(--expressive-background-3);
+  --background-image-matte-2: var(--core-neutral-0);
+  --background-lime: var(--color-core-lime-400);
+  --background-primary-3: var(--core-neutral-0);
+  --background-primary-6: var(--color-core-neutral-100);
+  --background-secondary-2: var(--core-neutral-1);
+  --background-secondary-3: var(--core-neutral-1);
+  --background-secondary-5: var(--color-core-neutral-200);
+  --background-success: var(--kiwi-600);
+  --background-tertiary-2: var(--color-core-neutral-250);
+  --background: var(--color-green-300);
+  --bg-bg-default: var(--bg-default-default);
+  --bg-bg-menu: var(--bg-menu-default);
+  --bg-bg-secondary: var(--bg-default-secondary);
+  --bg-bg-selected: var(--bg-selected-default);
+  --bg-default-default: var(--grey-800);
+  --bg-default-secondary: var(--grey-100);
+  --bg-inverse-default: var(--grey-800);
+  --bg-menu-default: var(--grey-900);
+  --bg-menu-selected: var(--blue-500-3);
+  --bg-selected-default: var(--blue-200-2);
+  --blue-background: var(--blue-400-4);
+  --blue-foreground: var(--blue-800-2);
+  --border-accent-2: var(--core-blue-4);
+  --border-accent-3: var(--blue-500);
+  --border-accent-4: var(--blue-500-2);
+  --border-accent: var(--blue-500);
+  --border-border-default: var(--border-default-default);
+  --border-border-selected: var(--border-selected-default);
+  --border-border-strong: var(--border-default-strong);
+  --border-default-2: var(--core-neutral-4);
+  --border-default-default: var(--grey-200);
+  --border-default-strong: var(--grey-800);
+  --border-default: var(--core-neutral-4);
+  --border-medium-3: var(--color-core-neutral-500);
+  --border-menu-default: var(--grey-700);
+  --border-selected-default: var(--blue-500-3);
+  --border-subtle-3: var(--color-core-neutral-300);
+  --border-success: var(--kiwi-600-2);
+  --brand-2: var(--blue-500-4);
+  --brand-4: var(--green-500-3);
+  --color-avocado-100: var(--avocado-100);
+  --color-avocado-200: var(--avocado-200-2);
+  --color-avocado-300: var(--avocado-300);
+  --color-avocado-400: var(--avocado-400-2);
+  --color-avocado-600: var(--avocado-600);
+  --color-avocado-700: var(--avocado-700-3);
+  --color-avocado-800: var(--avocado-800);
+  --color-blue-100: var(--blue-100-2);
+  --color-blue-200: var(--blue-200-3);
+  --color-blue-300: var(--blue-300-2);
+  --color-blue-400: var(--blue-400-4);
+  --color-blue-500: var(--blue-500);
+  --color-blue-600: var(--blue-600-2);
+  --color-blue-650: var(--blue-650);
+  --color-blue-700: var(--blue-700);
+  --color-blue-800: var(--blue-800-2);
+  --color-coral-100: var(--coral-100);
+  --color-coral-200: var(--coral-200-2);
+  --color-coral-300: var(--coral-300);
+  --color-coral-400: var(--coral-400-2);
+  --color-coral-500: var(--coral-500-2);
+  --color-coral-600: var(--coral-600);
+  --color-coral-700: var(--coral-700-2);
+  --color-coral-800: var(--coral-800-2);
+  --color-dijon-100: var(--dijon-100);
+  --color-dijon-200: var(--dijon-200-2);
+  --color-dijon-300: var(--dijon-300);
+  --color-dijon-400: var(--dijon-400-2);
+  --color-dijon-500: var(--dijon-500-2);
+  --color-dijon-600: var(--dijon-600);
+  --color-dijon-700: var(--dijon-700-3);
+  --color-dijon-800: var(--dijon-800);
+  --color-green-100: var(--green-100);
+  --color-green-200: var(--green-200-2);
+  --color-green-300: var(--green-300-2);
+  --color-green-400: var(--green-400-3);
+  --color-green-500: var(--green-500-3);
+  --color-green-600: var(--green-600-2);
+  --color-green-700: var(--green-700-2);
+  --color-green-800: var(--green-800);
+  --color-indigo-100: var(--indigo-100);
+  --color-indigo-200: var(--indigo-200-2);
+  --color-indigo-300: var(--indigo-300);
+  --color-indigo-400: var(--indigo-400-2);
+  --color-indigo-500: var(--indigo-500-2);
+  --color-indigo-600: var(--indigo-600);
+  --color-indigo-700: var(--indigo-700-2);
+  --color-indigo-800: var(--indigo-800-2);
+  --color-jade-100: var(--jade-100);
+  --color-jade-200: var(--jade-200-2);
+  --color-jade-300: var(--jade-300);
+  --color-jade-400: var(--jade-400-2);
+  --color-jade-500: var(--jade-500-2);
+  --color-jade-600: var(--jade-600);
+  --color-jade-700: var(--jade-700-2);
+  --color-jade-800: var(--jade-800-2);
+  --color-kiwi-100: var(--kiwi-100);
+  --color-kiwi-200: var(--kiwi-200-2);
+  --color-kiwi-300: var(--kiwi-300);
+  --color-kiwi-400: var(--kiwi-200);
+  --color-kiwi-500: var(--kiwi-500-2);
+  --color-kiwi-600: var(--kiwi-600);
+  --color-kiwi-700: var(--kiwi-700);
+  --color-kiwi-800: var(--kiwi-800-2);
+  --color-lilac-100: var(--lilac-100-2);
+  --color-lilac-200: var(--lilac-200-2);
+  --color-lilac-300: var(--lilac-300-2);
+  --color-lilac-400: var(--lilac-400-2);
+  --color-lilac-500: var(--lilac-500-2);
+  --color-lilac-600: var(--lilac-600);
+  --color-lilac-700: var(--lilac-700-2);
+  --color-lilac-800: var(--lilac-800-2);
+  --color-marigold-100: var(--marigold-100);
+  --color-marigold-200: var(--marigold-200-2);
+  --color-marigold-300: var(--marigold-300);
+  --color-marigold-400: var(--marigold-400-2);
+  --color-marigold-500: var(--marigold-500-2);
+  --color-marigold-600: var(--marigold-600);
+  --color-yellow-400: var(--marigold-400);
+  --component-stroke: var(--colors-indigo);
+  --components-segmented-control-bg: var(--grays-white);
+  --coral-background: var(--coral-400-2);
+  --coral-foreground: var(--coral-800-2);
+  --dijon-background: var(--dijon-400-2);
+  --dijon-foreground: var(--dijon-700-3);
+  --expressive-background-2: var(--color-avocado-400);
+  --expressive-background-3: var(--avocado-background);
+  --expressive-background: var(--expressive-background-2);
+  --expressive-foreground-2: var(--color-avocado-700);
+  --expressive-foreground-3: var(--avocado-foreground);
+  --expressive-foreground: var(--expressive-foreground-2);
+  --expressive-level-background-avocado: var(--avocado-400);
+  --expressive-level-background-blue: var(--blue-400);
+  --expressive-level-background-coral: var(--coral-400);
+  --expressive-level-background-dijon: var(--dijon-400);
+  --expressive-level-background-green: var(--green-300);
+  --expressive-level-background-indigo: var(--indigo-400);
+  --expressive-level-background-jade: var(--jade-400);
+  --expressive-level-background-kiwi: var(--kiwi-400);
+  --expressive-level-background-lilac: var(--lilac-400);
+  --expressive-level-background-marigold: var(--marigold-400);
+  --expressive-level-blue-background: var(--color-blue-400);
+  --expressive-level-blue-foreground: var(--color-blue-800);
+  --expressive-level-coral-background: var(--color-coral-400);
+  --expressive-level-coral-foreground: var(--color-coral-800);
+  --expressive-level-dijon-background: var(--color-dijon-400);
+  --expressive-level-dijon-foreground: var(--color-dijon-700);
+  --expressive-level-foreground-avocado: var(--avocado-700);
+  --expressive-level-foreground-blue: var(--blue-800);
+  --expressive-level-foreground-coral: var(--coral-800);
+  --expressive-level-foreground-dijon: var(--dijon-700);
+  --expressive-level-foreground-green: var(--green-700);
+  --expressive-level-foreground-indigo: var(--indigo-800);
+  --expressive-level-foreground-jade: var(--jade-800);
+  --expressive-level-foreground-kiwi: var(--kiwi-700);
+  --expressive-level-foreground-lilac: var(--lilac-800);
+  --expressive-level-foreground-marigold: var(--marigold-200);
+  --expressive-level-green-background: var(--color-green-400);
+  --expressive-level-green-foreground: var(--color-green-700);
+  --expressive-level-indigo-background: var(--color-indigo-400);
+  --expressive-level-indigo-foreground: var(--color-indigo-800);
+  --expressive-level-jade-background: var(--color-jade-400);
+  --expressive-level-jade-foreground: var(--color-jade-800);
+  --expressive-level-kiwi-background: var(--color-kiwi-400);
+  --expressive-level-kiwi-foreground: var(--color-kiwi-700);
+  --expressive-level-lilac-background: var(--color-lilac-400);
+  --expressive-level-lilac-foreground: var(--color-lilac-800);
+  --expressive-level-marigold-background: var(--color-marigold-400);
+  --expressive-level-marigold-foreground: var(--color-marigold-200);
+  --expressive-level-yellow-background: var(--color-yellow-400);
+  --expressive-theme-background: var(--expressive-level-background-avocado);
+  --expressive-theme-foreground: var(--expressive-level-foreground-avocado);
+  --foreground-accent-2: var(--blue-500);
+  --foreground-accent: var(--blue-500);
+  --foreground-expressive: var(--expressive-foreground-3);
+  --foreground-inverse-primary: var(--black);
+  --foreground-inverse-secondary: var(--black-8);
+  --foreground-lime: var(--color-core-lime-700);
+  --foreground-link-legal: var(--blue-650);
+  --foreground-primary-5: var(--black);
+  --foreground-primary-6: var(--color-core-neutral-800);
+  --foreground-secondary-2: var(--core-neutral-5);
+  --foreground-secondary-3: var(--black-8);
+  --foreground-secondary-6: var(--color-core-neutral-600);
+  --foreground-success-2: var(--kiwi-600);
+  --foreground-success: var(--kiwi-600);
+  --foreground-tertiary-3: var(--color-core-neutral-500);
+  --foreground: var(--color-green-700);
+  --fullscreen-default-icon-secondary: var(--icon-default-secondary);
+  --green-background: var(--green-400-3);
+  --green-foreground: var(--green-700-2);
+  --icon-brand-default: var(--blue-600);
+  --icon-default-default: var(--black-800);
+  --icon-default-secondary: var(--black-500);
+  --icon-default-tertiary: var(--black-400);
+  --icon-disabled-default: var(--black-400);
+  --icon-icon-brand: var(--icon-brand-default);
+  --icon-icon-default: var(--icon-default-default);
+  --icon-icon-secondary: var(--icon-default-secondary);
+  --icon-icon-tertiary: var(--icon-default-tertiary);
+  --indigo-background: var(--indigo-400-2);
+  --indigo-foreground: var(--indigo-800-2);
+  --interaction-selection-primary: var(--blue);
+  --jade-background: var(--jade-400-2);
+  --jade-foreground: var(--jade-800-2);
+  --kiwi-background: var(--kiwi-400-2);
+  --kiwi-foreground: var(--kiwi-700-3);
+  --lilac-background: var(--lilac-400-2);
+  --lilac-foreground: var(--lilac-800-2);
+  --logo-blue-2: var(--blue-500);
+  --logo-green-2: var(--green-500);
+}
+[data-theme="root-teal-3"] {
+  --avatar-background-2: var(--blue-300);
+  --avatar-foreground-2: var(--blue-700);
+  --avatar-foreground: var(--color-avocado-700);
+  --avocado-background: var(--avocado-400-2);
+  --avocado-foreground: var(--avocado-700-3);
+  --background-accent: var(--blue-500);
+  --background-education: var(--blue-100);
+  --background-expressive: var(--expressive-background-3);
+  --background-image-matte-2: var(--core-neutral-0);
+  --background-lime: var(--color-core-lime-400);
+  --background-primary-3: var(--core-neutral-0);
+  --background-primary-6: var(--color-core-neutral-100);
+  --background-secondary-2: var(--core-neutral-1);
+  --background-secondary-3: var(--core-neutral-1);
+  --background-secondary-5: var(--color-core-neutral-200);
+  --background-success: var(--kiwi-600);
+  --background-tertiary-2: var(--color-core-neutral-250);
+  --background: var(--color-green-300);
+  --bg-bg-default: var(--bg-default-default);
+  --bg-bg-menu: var(--bg-menu-default);
+  --bg-bg-secondary: var(--bg-default-secondary);
+  --bg-bg-selected: var(--bg-selected-default);
+  --bg-default-default: var(--grey-800);
+  --bg-default-secondary: var(--grey-100);
+  --bg-inverse-default: var(--grey-800);
+  --bg-menu-default: var(--grey-900);
+  --bg-menu-selected: var(--blue-500-3);
+  --bg-selected-default: var(--blue-200-2);
+  --blue-background: var(--blue-400-4);
+  --blue-foreground: var(--blue-800-2);
+  --border-accent-2: var(--core-blue-4);
+  --border-accent-3: var(--blue-500);
+  --border-accent-4: var(--blue-500-2);
+  --border-accent: var(--blue-500);
+  --border-border-default: var(--border-default-default);
+  --border-border-selected: var(--border-selected-default);
+  --border-border-strong: var(--border-default-strong);
+  --border-default-2: var(--core-neutral-4);
+  --border-default-default: var(--grey-200);
+  --border-default-strong: var(--grey-800);
+  --border-default: var(--core-neutral-4);
+  --border-medium-3: var(--color-core-neutral-500);
+  --border-menu-default: var(--grey-700);
+  --border-selected-default: var(--blue-500-3);
+  --border-subtle-3: var(--color-core-neutral-300);
+  --border-success: var(--kiwi-600-2);
+  --brand-2: var(--blue-500-4);
+  --brand-4: var(--green-500-3);
+  --color-avocado-100: var(--avocado-100);
+  --color-avocado-200: var(--avocado-200-2);
+  --color-avocado-300: var(--avocado-300);
+  --color-avocado-400: var(--avocado-400-2);
+  --color-avocado-600: var(--avocado-600);
+  --color-avocado-700: var(--avocado-700-3);
+  --color-avocado-800: var(--avocado-800);
+  --color-blue-100: var(--blue-100-2);
+  --color-blue-200: var(--blue-200-3);
+  --color-blue-300: var(--blue-300-2);
+  --color-blue-400: var(--blue-400-4);
+  --color-blue-500: var(--blue-500);
+  --color-blue-600: var(--blue-600-2);
+  --color-blue-650: var(--blue-650);
+  --color-blue-700: var(--blue-700);
+  --color-blue-800: var(--blue-800-2);
+  --color-coral-100: var(--coral-100);
+  --color-coral-200: var(--coral-200-2);
+  --color-coral-300: var(--coral-300);
+  --color-coral-400: var(--coral-400-2);
+  --color-coral-500: var(--coral-500-2);
+  --color-coral-600: var(--coral-600);
+  --color-coral-700: var(--coral-700-2);
+  --color-coral-800: var(--coral-800-2);
+  --color-dijon-100: var(--dijon-100);
+  --color-dijon-200: var(--dijon-200-2);
+  --color-dijon-300: var(--dijon-300);
+  --color-dijon-400: var(--dijon-400-2);
+  --color-dijon-500: var(--dijon-500-2);
+  --color-dijon-600: var(--dijon-600);
+  --color-dijon-700: var(--dijon-700-3);
+  --color-dijon-800: var(--dijon-800);
+  --color-green-100: var(--green-100);
+  --color-green-200: var(--green-200-2);
+  --color-green-300: var(--green-300-2);
+  --color-green-400: var(--green-400-3);
+  --color-green-500: var(--green-500-3);
+  --color-green-600: var(--green-600-2);
+  --color-green-700: var(--green-700-2);
+  --color-green-800: var(--green-800);
+  --color-indigo-100: var(--indigo-100);
+  --color-indigo-200: var(--indigo-200-2);
+  --color-indigo-300: var(--indigo-300);
+  --color-indigo-400: var(--indigo-400-2);
+  --color-indigo-500: var(--indigo-500-2);
+  --color-indigo-600: var(--indigo-600);
+  --color-indigo-700: var(--indigo-700-2);
+  --color-indigo-800: var(--indigo-800-2);
+  --color-jade-100: var(--jade-100);
+  --color-jade-200: var(--jade-200-2);
+  --color-jade-300: var(--jade-300);
+  --color-jade-400: var(--jade-400-2);
+  --color-jade-500: var(--jade-500-2);
+  --color-jade-600: var(--jade-600);
+  --color-jade-700: var(--jade-700-2);
+  --color-jade-800: var(--jade-800-2);
+  --color-kiwi-100: var(--kiwi-100);
+  --color-kiwi-200: var(--kiwi-200-2);
+  --color-kiwi-300: var(--kiwi-300);
+  --color-kiwi-400: var(--kiwi-200);
+  --color-kiwi-500: var(--kiwi-500-2);
+  --color-kiwi-600: var(--kiwi-600);
+  --color-kiwi-700: var(--kiwi-700);
+  --color-kiwi-800: var(--kiwi-800-2);
+  --color-lilac-100: var(--lilac-100-2);
+  --color-lilac-200: var(--lilac-200-2);
+  --color-lilac-300: var(--lilac-300-2);
+  --color-lilac-400: var(--lilac-400-2);
+  --color-lilac-500: var(--lilac-500-2);
+  --color-lilac-600: var(--lilac-600);
+  --color-lilac-700: var(--lilac-700-2);
+  --color-lilac-800: var(--lilac-800-2);
+  --color-marigold-100: var(--marigold-100);
+  --color-marigold-200: var(--marigold-200-2);
+  --color-marigold-300: var(--marigold-300);
+  --color-marigold-400: var(--marigold-400-2);
+  --color-marigold-500: var(--marigold-500-2);
+  --color-marigold-600: var(--marigold-600);
+  --color-yellow-400: var(--marigold-400);
+  --component-stroke: var(--colors-indigo);
+  --components-segmented-control-bg: var(--grays-white);
+  --coral-background: var(--coral-400-2);
+  --coral-foreground: var(--coral-800-2);
+  --dijon-background: var(--dijon-400-2);
+  --dijon-foreground: var(--dijon-700-3);
+  --expressive-background-2: var(--color-avocado-400);
+  --expressive-background-3: var(--avocado-background);
+  --expressive-background: var(--expressive-background-2);
+  --expressive-foreground-2: var(--color-avocado-700);
+  --expressive-foreground-3: var(--avocado-foreground);
+  --expressive-foreground: var(--expressive-foreground-2);
+  --expressive-level-background-avocado: var(--avocado-400);
+  --expressive-level-background-blue: var(--blue-400);
+  --expressive-level-background-coral: var(--coral-400);
+  --expressive-level-background-dijon: var(--dijon-400);
+  --expressive-level-background-green: var(--green-300);
+  --expressive-level-background-indigo: var(--indigo-400);
+  --expressive-level-background-jade: var(--jade-400);
+  --expressive-level-background-kiwi: var(--kiwi-400);
+  --expressive-level-background-lilac: var(--lilac-400);
+  --expressive-level-background-marigold: var(--marigold-400);
+  --expressive-level-blue-background: var(--color-blue-400);
+  --expressive-level-blue-foreground: var(--color-blue-800);
+  --expressive-level-coral-background: var(--color-coral-400);
+  --expressive-level-coral-foreground: var(--color-coral-800);
+  --expressive-level-dijon-background: var(--color-dijon-400);
+  --expressive-level-dijon-foreground: var(--color-dijon-700);
+  --expressive-level-foreground-avocado: var(--avocado-700);
+  --expressive-level-foreground-blue: var(--blue-800);
+  --expressive-level-foreground-coral: var(--coral-800);
+  --expressive-level-foreground-dijon: var(--dijon-700);
+  --expressive-level-foreground-green: var(--green-700);
+  --expressive-level-foreground-indigo: var(--indigo-800);
+  --expressive-level-foreground-jade: var(--jade-800);
+  --expressive-level-foreground-kiwi: var(--kiwi-700);
+  --expressive-level-foreground-lilac: var(--lilac-800);
+  --expressive-level-foreground-marigold: var(--marigold-200);
+  --expressive-level-green-background: var(--color-green-400);
+  --expressive-level-green-foreground: var(--color-green-700);
+  --expressive-level-indigo-background: var(--color-indigo-400);
+  --expressive-level-indigo-foreground: var(--color-indigo-800);
+  --expressive-level-jade-background: var(--color-jade-400);
+  --expressive-level-jade-foreground: var(--color-jade-800);
+  --expressive-level-kiwi-background: var(--color-kiwi-400);
+  --expressive-level-kiwi-foreground: var(--color-kiwi-700);
+  --expressive-level-lilac-background: var(--color-lilac-400);
+  --expressive-level-lilac-foreground: var(--color-lilac-800);
+  --expressive-level-marigold-background: var(--color-marigold-400);
+  --expressive-level-marigold-foreground: var(--color-marigold-200);
+  --expressive-level-yellow-background: var(--color-yellow-400);
+  --expressive-theme-background: var(--expressive-level-background-avocado);
+  --expressive-theme-foreground: var(--expressive-level-foreground-avocado);
+  --foreground-accent-2: var(--blue-500);
+  --foreground-accent: var(--blue-500);
+  --foreground-expressive: var(--expressive-foreground-3);
+  --foreground-inverse-primary: var(--black);
+  --foreground-inverse-secondary: var(--black-8);
+  --foreground-lime: var(--color-core-lime-700);
+  --foreground-link-legal: var(--blue-650);
+  --foreground-primary-5: var(--black);
+  --foreground-primary-6: var(--color-core-neutral-800);
+  --foreground-secondary-2: var(--core-neutral-5);
+  --foreground-secondary-3: var(--black-8);
+  --foreground-secondary-6: var(--color-core-neutral-600);
+  --foreground-success-2: var(--kiwi-600);
+  --foreground-success: var(--kiwi-600);
+  --foreground-tertiary-3: var(--color-core-neutral-500);
+  --foreground: var(--color-green-700);
+  --fullscreen-default-icon-secondary: var(--icon-default-secondary);
+  --green-background: var(--green-400-3);
+  --green-foreground: var(--green-700-2);
+  --icon-brand-default: var(--blue-600);
+  --icon-default-default: var(--black-800);
+  --icon-default-secondary: var(--black-500);
+  --icon-default-tertiary: var(--black-400);
+  --icon-disabled-default: var(--black-400);
+  --icon-icon-brand: var(--icon-brand-default);
+  --icon-icon-default: var(--icon-default-default);
+  --icon-icon-secondary: var(--icon-default-secondary);
+  --icon-icon-tertiary: var(--icon-default-tertiary);
+  --indigo-background: var(--indigo-400-2);
+  --indigo-foreground: var(--indigo-800-2);
+  --interaction-selection-primary: var(--blue);
+  --jade-background: var(--jade-400-2);
+  --jade-foreground: var(--jade-800-2);
+  --kiwi-background: var(--kiwi-400-2);
+  --kiwi-foreground: var(--kiwi-700-3);
+  --lilac-background: var(--lilac-400-2);
+  --lilac-foreground: var(--lilac-800-2);
+  --logo-blue-2: var(--blue-500);
+  --logo-green-2: var(--green-500);
+}
+[data-theme="root-green-3"] {
+  --avatar-background-2: var(--blue-300);
+  --avatar-foreground-2: var(--blue-700);
+  --avatar-foreground: var(--color-avocado-700);
+  --avocado-background: var(--avocado-400-2);
+  --avocado-foreground: var(--avocado-700-3);
+  --background-accent: var(--blue-500);
+  --background-education: var(--blue-100);
+  --background-expressive: var(--expressive-background-3);
+  --background-image-matte-2: var(--core-neutral-0);
+  --background-lime: var(--color-core-lime-400);
+  --background-primary-3: var(--core-neutral-0);
+  --background-primary-6: var(--color-core-neutral-100);
+  --background-secondary-2: var(--core-neutral-1);
+  --background-secondary-3: var(--core-neutral-1);
+  --background-secondary-5: var(--color-core-neutral-200);
+  --background-success: var(--kiwi-600);
+  --background-tertiary-2: var(--color-core-neutral-250);
+  --background: var(--color-green-300);
+  --bg-bg-default: var(--bg-default-default);
+  --bg-bg-menu: var(--bg-menu-default);
+  --bg-bg-secondary: var(--bg-default-secondary);
+  --bg-bg-selected: var(--bg-selected-default);
+  --bg-default-default: var(--grey-800);
+  --bg-default-secondary: var(--grey-100);
+  --bg-inverse-default: var(--grey-800);
+  --bg-menu-default: var(--grey-900);
+  --bg-menu-selected: var(--blue-500-3);
+  --bg-selected-default: var(--blue-200-2);
+  --blue-background: var(--blue-400-4);
+  --blue-foreground: var(--blue-800-2);
+  --border-accent-2: var(--core-blue-4);
+  --border-accent-3: var(--blue-500);
+  --border-accent-4: var(--blue-500-2);
+  --border-accent: var(--blue-500);
+  --border-border-default: var(--border-default-default);
+  --border-border-selected: var(--border-selected-default);
+  --border-border-strong: var(--border-default-strong);
+  --border-default-2: var(--core-neutral-4);
+  --border-default-default: var(--grey-200);
+  --border-default-strong: var(--grey-800);
+  --border-default: var(--core-neutral-4);
+  --border-medium-3: var(--color-core-neutral-500);
+  --border-menu-default: var(--grey-700);
+  --border-selected-default: var(--blue-500-3);
+  --border-subtle-3: var(--color-core-neutral-300);
+  --border-success: var(--kiwi-600-2);
+  --brand-2: var(--blue-500-4);
+  --brand-4: var(--green-500-3);
+  --color-avocado-100: var(--avocado-100);
+  --color-avocado-200: var(--avocado-200-2);
+  --color-avocado-300: var(--avocado-300);
+  --color-avocado-400: var(--avocado-400-2);
+  --color-avocado-600: var(--avocado-600);
+  --color-avocado-700: var(--avocado-700-3);
+  --color-avocado-800: var(--avocado-800);
+  --color-blue-100: var(--blue-100-2);
+  --color-blue-200: var(--blue-200-3);
+  --color-blue-300: var(--blue-300-2);
+  --color-blue-400: var(--blue-400-4);
+  --color-blue-500: var(--blue-500);
+  --color-blue-600: var(--blue-600-2);
+  --color-blue-650: var(--blue-650);
+  --color-blue-700: var(--blue-700);
+  --color-blue-800: var(--blue-800-2);
+  --color-coral-100: var(--coral-100);
+  --color-coral-200: var(--coral-200-2);
+  --color-coral-300: var(--coral-300);
+  --color-coral-400: var(--coral-400-2);
+  --color-coral-500: var(--coral-500-2);
+  --color-coral-600: var(--coral-600);
+  --color-coral-700: var(--coral-700-2);
+  --color-coral-800: var(--coral-800-2);
+  --color-dijon-100: var(--dijon-100);
+  --color-dijon-200: var(--dijon-200-2);
+  --color-dijon-300: var(--dijon-300);
+  --color-dijon-400: var(--dijon-400-2);
+  --color-dijon-500: var(--dijon-500-2);
+  --color-dijon-600: var(--dijon-600);
+  --color-dijon-700: var(--dijon-700-3);
+  --color-dijon-800: var(--dijon-800);
+  --color-green-100: var(--green-100);
+  --color-green-200: var(--green-200-2);
+  --color-green-300: var(--green-300-2);
+  --color-green-400: var(--green-400-3);
+  --color-green-500: var(--green-500-3);
+  --color-green-600: var(--green-600-2);
+  --color-green-700: var(--green-700-2);
+  --color-green-800: var(--green-800);
+  --color-indigo-100: var(--indigo-100);
+  --color-indigo-200: var(--indigo-200-2);
+  --color-indigo-300: var(--indigo-300);
+  --color-indigo-400: var(--indigo-400-2);
+  --color-indigo-500: var(--indigo-500-2);
+  --color-indigo-600: var(--indigo-600);
+  --color-indigo-700: var(--indigo-700-2);
+  --color-indigo-800: var(--indigo-800-2);
+  --color-jade-100: var(--jade-100);
+  --color-jade-200: var(--jade-200-2);
+  --color-jade-300: var(--jade-300);
+  --color-jade-400: var(--jade-400-2);
+  --color-jade-500: var(--jade-500-2);
+  --color-jade-600: var(--jade-600);
+  --color-jade-700: var(--jade-700-2);
+  --color-jade-800: var(--jade-800-2);
+  --color-kiwi-100: var(--kiwi-100);
+  --color-kiwi-200: var(--kiwi-200-2);
+  --color-kiwi-300: var(--kiwi-300);
+  --color-kiwi-400: var(--kiwi-200);
+  --color-kiwi-500: var(--kiwi-500-2);
+  --color-kiwi-600: var(--kiwi-600);
+  --color-kiwi-700: var(--kiwi-700);
+  --color-kiwi-800: var(--kiwi-800-2);
+  --color-lilac-100: var(--lilac-100-2);
+  --color-lilac-200: var(--lilac-200-2);
+  --color-lilac-300: var(--lilac-300-2);
+  --color-lilac-400: var(--lilac-400-2);
+  --color-lilac-500: var(--lilac-500-2);
+  --color-lilac-600: var(--lilac-600);
+  --color-lilac-700: var(--lilac-700-2);
+  --color-lilac-800: var(--lilac-800-2);
+  --color-marigold-100: var(--marigold-100);
+  --color-marigold-200: var(--marigold-200-2);
+  --color-marigold-300: var(--marigold-300);
+  --color-marigold-400: var(--marigold-400-2);
+  --color-marigold-500: var(--marigold-500-2);
+  --color-marigold-600: var(--marigold-600);
+  --color-yellow-400: var(--marigold-400);
+  --component-stroke: var(--colors-indigo);
+  --components-segmented-control-bg: var(--grays-white);
+  --coral-background: var(--coral-400-2);
+  --coral-foreground: var(--coral-800-2);
+  --dijon-background: var(--dijon-400-2);
+  --dijon-foreground: var(--dijon-700-3);
+  --expressive-background-2: var(--color-avocado-400);
+  --expressive-background-3: var(--avocado-background);
+  --expressive-background: var(--expressive-background-2);
+  --expressive-foreground-2: var(--color-avocado-700);
+  --expressive-foreground-3: var(--avocado-foreground);
+  --expressive-foreground: var(--expressive-foreground-2);
+  --expressive-level-background-avocado: var(--avocado-400);
+  --expressive-level-background-blue: var(--blue-400);
+  --expressive-level-background-coral: var(--coral-400);
+  --expressive-level-background-dijon: var(--dijon-400);
+  --expressive-level-background-green: var(--green-300);
+  --expressive-level-background-indigo: var(--indigo-400);
+  --expressive-level-background-jade: var(--jade-400);
+  --expressive-level-background-kiwi: var(--kiwi-400);
+  --expressive-level-background-lilac: var(--lilac-400);
+  --expressive-level-background-marigold: var(--marigold-400);
+  --expressive-level-blue-background: var(--color-blue-400);
+  --expressive-level-blue-foreground: var(--color-blue-800);
+  --expressive-level-coral-background: var(--color-coral-400);
+  --expressive-level-coral-foreground: var(--color-coral-800);
+  --expressive-level-dijon-background: var(--color-dijon-400);
+  --expressive-level-dijon-foreground: var(--color-dijon-700);
+  --expressive-level-foreground-avocado: var(--avocado-700);
+  --expressive-level-foreground-blue: var(--blue-800);
+  --expressive-level-foreground-coral: var(--coral-800);
+  --expressive-level-foreground-dijon: var(--dijon-700);
+  --expressive-level-foreground-green: var(--green-700);
+  --expressive-level-foreground-indigo: var(--indigo-800);
+  --expressive-level-foreground-jade: var(--jade-800);
+  --expressive-level-foreground-kiwi: var(--kiwi-700);
+  --expressive-level-foreground-lilac: var(--lilac-800);
+  --expressive-level-foreground-marigold: var(--marigold-200);
+  --expressive-level-green-background: var(--color-green-400);
+  --expressive-level-green-foreground: var(--color-green-700);
+  --expressive-level-indigo-background: var(--color-indigo-400);
+  --expressive-level-indigo-foreground: var(--color-indigo-800);
+  --expressive-level-jade-background: var(--color-jade-400);
+  --expressive-level-jade-foreground: var(--color-jade-800);
+  --expressive-level-kiwi-background: var(--color-kiwi-400);
+  --expressive-level-kiwi-foreground: var(--color-kiwi-700);
+  --expressive-level-lilac-background: var(--color-lilac-400);
+  --expressive-level-lilac-foreground: var(--color-lilac-800);
+  --expressive-level-marigold-background: var(--color-marigold-400);
+  --expressive-level-marigold-foreground: var(--color-marigold-200);
+  --expressive-level-yellow-background: var(--color-yellow-400);
+  --expressive-theme-background: var(--expressive-level-background-avocado);
+  --expressive-theme-foreground: var(--expressive-level-foreground-avocado);
+  --foreground-accent-2: var(--blue-500);
+  --foreground-accent: var(--blue-500);
+  --foreground-expressive: var(--expressive-foreground-3);
+  --foreground-inverse-primary: var(--black);
+  --foreground-inverse-secondary: var(--black-8);
+  --foreground-lime: var(--color-core-lime-700);
+  --foreground-link-legal: var(--blue-650);
+  --foreground-primary-5: var(--black);
+  --foreground-primary-6: var(--color-core-neutral-800);
+  --foreground-secondary-2: var(--core-neutral-5);
+  --foreground-secondary-3: var(--black-8);
+  --foreground-secondary-6: var(--color-core-neutral-600);
+  --foreground-success-2: var(--kiwi-600);
+  --foreground-success: var(--kiwi-600);
+  --foreground-tertiary-3: var(--color-core-neutral-500);
+  --foreground: var(--color-green-700);
+  --fullscreen-default-icon-secondary: var(--icon-default-secondary);
+  --green-background: var(--green-400-3);
+  --green-foreground: var(--green-700-2);
+  --icon-brand-default: var(--blue-600);
+  --icon-default-default: var(--black-800);
+  --icon-default-secondary: var(--black-500);
+  --icon-default-tertiary: var(--black-400);
+  --icon-disabled-default: var(--black-400);
+  --icon-icon-brand: var(--icon-brand-default);
+  --icon-icon-default: var(--icon-default-default);
+  --icon-icon-secondary: var(--icon-default-secondary);
+  --icon-icon-tertiary: var(--icon-default-tertiary);
+  --indigo-background: var(--indigo-400-2);
+  --indigo-foreground: var(--indigo-800-2);
+  --interaction-selection-primary: var(--blue);
+  --jade-background: var(--jade-400-2);
+  --jade-foreground: var(--jade-800-2);
+  --kiwi-background: var(--kiwi-400-2);
+  --kiwi-foreground: var(--kiwi-700-3);
+  --lilac-background: var(--lilac-400-2);
+  --lilac-foreground: var(--lilac-800-2);
+  --logo-blue-2: var(--blue-500);
+  --logo-green-2: var(--green-500);
+}
+:root {
+  --body-large-size: 16px; /* The font size of the `body-large` type style; set text with the style, not this token. */
+  --border-width-medium: 1.5px; /* 1.5px: input borders and secondary-button outlines. */
+  --border-width-strong: 2px; /* 2px: focus outlines and selected-card borders. */
+  --border-width-subtle: 1px; /* 1px: hairlines on cards, rows and dividers. */
+  --gap-none-2: 0; /* Zero, from the source file's spacing collections (gap, padding and spacer resets). Kept for components and pages that name it. */
+  --gap-none-3: 0; /* Zero, from the source file's spacing collections (gap, padding and spacer resets). Kept for components and pages that name it. */
+  --gap-none: 0; /* Zero, from the source file's spacing collections (gap, padding and spacer resets). Kept for components and pages that name it. */
+  --grid-gutter: 16px; /* 16px column gutter of the page grid. */
+  --headline-large-tracking: 0; /* Zero tracking, filed under spacing by the export; the type styles carry tracking. Kept for pages that name it. */
+  --letter-spacing-none: 0; /* Zero tracking, filed under spacing by the export; the type styles carry tracking. Kept for pages that name it. */
+  --padding-none-2: 0; /* Zero, from the source file's spacing collections (gap, padding and spacer resets). Kept for components and pages that name it. */
+  --padding-none: 0; /* Zero, from the source file's spacing collections (gap, padding and spacer resets). Kept for components and pages that name it. */
+  --page-grid-gutter-2: 8px; /* 8px gutter of the compact page grid (dense tiles and phone grids). Same as `page-grid-gutter`. */
+  --page-grid-gutter: 8px; /* 8px gutter of the compact page grid (dense tiles and phone grids). */
+  --size-0: 0; /* Zero, from the source file's spacing collections (gap, padding and spacer resets). Kept for components and pages that name it. */
+  --spacers-spacer-0-2: 0; /* Zero, from the source file's spacing collections (gap, padding and spacer resets). Kept for components and pages that name it. */
+  --spacers-spacer-0: 0; /* Zero, from the source file's spacing collections (gap, padding and spacer resets). Kept for components and pages that name it. */
+  --spacing-0-2: 0; /* Zero, from the source file's spacing collections (gap, padding and spacer resets). Kept for components and pages that name it. */
+  --spacing-0: 0; /* Zero, from the source file's spacing collections (gap, padding and spacer resets). Kept for components and pages that name it. */
+  --spacing-100: 8px; /* 8px: gaps between related controls; small component padding. Component padding clusters at 8, 12, 16, 20 and 24. */
+  --spacing-150: 12px; /* 12px: chip and compact-card padding; list-row gaps. Component padding clusters at 8, 12, 16, 20 and 24. */
+  --spacing-200: 16px; /* 16px: card padding, the phone page margin, grid gutters. Component padding clusters at 8, 12, 16, 20 and 24. */
+  --spacing-25: 2px; /* 2px: hairline gaps, icon-to-badge offsets. Component padding clusters at 8, 12, 16, 20 and 24. */
+  --spacing-300: 24px; /* 24px: section gaps, large card padding, the tablet page margin. Component padding clusters at 8, 12, 16, 20 and 24. */
+  --spacing-400: 32px; /* 32px: gaps between page sections. Component padding clusters at 8, 12, 16, 20 and 24. */
+  --spacing-50: 4px; /* 4px, the base unit of the 4px grid: tight gaps inside chips and badges. Component padding clusters at 8, 12, 16, 20 and 24. */
+  --spacing-75: 6px; /* 6px: gaps between an icon and its label. Component padding clusters at 8, 12, 16, 20 and 24. */
+  --spacing-divider-vertical-padding: 0; /* Zero, from the source file's spacing collections (gap, padding and spacer resets). Kept for components and pages that name it. */
+  --title-large-tracking: 0; /* Zero tracking, filed under spacing by the export; the type styles carry tracking. Kept for pages that name it. */
+  --btn-height-small: 32px; /* 32px: small buttons (`Button size="small"`) and compact chips. */
+  --btn-height-regular: 40px; /* 40px: the default button height. */
+  --btn-height-large: 48px; /* 48px: large buttons and phone primary actions (meets the 44px touch target). */
+  --dimension-150: 12px; /* 12px, a Figma dimension primitive (same as `spacing-150`). */
+  --display-1-size: 46px; /* The font size of the `display-1` type style; set text with the style, not this token. */
+  --display-1-line: 52px; /* The line height of the `display-1` type style; set text with the style, not this token. */
+  --display-2-size: 36px; /* The font size of the `display-2` type style; set text with the style, not this token. */
+  --display-2-line: 46px; /* The line height of the `display-2` type style; set text with the style, not this token. */
+  --display-3-size: 30px; /* The font size of the `display-3` type style; set text with the style, not this token. */
+  --display-3-line: 40px; /* The line height of the `display-3` type style; set text with the style, not this token. */
+  --headline-1-size: 32px; /* The font size of the `headline-1` type style; set text with the style, not this token. */
+  --headline-1-line: 40px; /* The line height of the `headline-1` type style; set text with the style, not this token. */
+  --headline-2-size: 30px; /* The font size of the `headline-2` type style; set text with the style, not this token. */
+  --headline-2-line: 40px; /* The line height of the `headline-2` type style; set text with the style, not this token. */
+  --title-1-size: 24px; /* The font size of the `title-1` type style; set text with the style, not this token. */
+  --title-1-line: 32px; /* The line height of the `title-1` type style; set text with the style, not this token. */
+  --title-2-size: 20px; /* The font size of the `title-2` type style; set text with the style, not this token. */
+  --title-2-line: 28px; /* The line height of the `title-2` type style; set text with the style, not this token. */
+  --title-3-size: 16px; /* The font size of the `title-3` type style; set text with the style, not this token. */
+  --title-3-line: 24px; /* The line height of the `title-3` type style; set text with the style, not this token. */
+  --subtitle-1-size: 20px; /* The font size of the `subtitle-1` type style; set text with the style, not this token. */
+  --subtitle-1-line: 28px; /* The line height of the `subtitle-1` type style; set text with the style, not this token. */
+  --subtitle-2-size: 16px; /* The font size of the `subtitle-2` type style; set text with the style, not this token. */
+  --subtitle-2-line: 24px; /* The line height of the `subtitle-2` type style; set text with the style, not this token. */
+  --body-large-line: 24px; /* The line height of the `body-large` type style; set text with the style, not this token. */
+  --body-size: 14px; /* The font size of the `body` type style; set text with the style, not this token. */
+  --body-line: 20px; /* The line height of the `body` type style; set text with the style, not this token. */
+  --body-small-size: 12px; /* The font size of the `body-small` type style; set text with the style, not this token. */
+  --body-small-line: 16px; /* The line height of the `body-small` type style; set text with the style, not this token. */
+  --caption-size: 12px; /* The font size of the `caption` type style; set text with the style, not this token. */
+  --caption-line: 16px; /* The line height of the `caption` type style; set text with the style, not this token. */
+  --images-examples-radius: 16px; /* 16px: example imagery in the source file's documentation. */
+  --images-hero-radius: 16px; /* 16px: hero imagery. */
+  --radius-button: 999px; /* Fully rounded (999px): every button, the Evo signature. */
+  --radius-full: 999px; /* Pill and circle: chips, segmented controls, avatars, toggles. */
+  --radius-image-large: 16px; /* 16px: large product images. */
+  --radius-image-small: 8px; /* 8px: thumbnails. */
+  --radius-input: 8px; /* 8px: text inputs and selects. */
+  --radius-large: 16px; /* 16px: cards, sheets and large surfaces. */
+  --radius-medium: 8px; /* 8px: inputs, small cards, image thumbnails. */
+  --radius-none-2: 0; /* Square corners, a copy from another Figma collection. Use `radius-none`. */
+  --radius-none-3: 0; /* Square corners, a copy from another Figma collection. Use `radius-none`. */
+  --radius-none-4: 0; /* Square corners, a copy from another Figma collection. Use `radius-none`. */
+  --radius-none-5: 0; /* Square corners, a copy from another Figma collection. Use `radius-none`. */
+  --radius-none: 0px; /* Square corners: full-bleed images and edge-to-edge sheets. */
+  --radius-popover: 16px; /* 16px: popovers, menus and dialogs. */
+  --radius-small: 4px; /* 4px: small tags and badges. */
+  --border-radius-50: 8px; /* 8px, evo-web's name (`--border-radius-50`). */
+  --border-radius-100: 16px; /* 16px, evo-web's name (`--border-radius-100`). */
+  --border-radius-150: 24px; /* 24px, evo-web's name (`--border-radius-150`). */
+  --radius-xlarge: 24px; /* 24px: bottom sheets and hero cards. */
+  --radius-card: 16px; /* 16px: cards and tiles. */
+  --motion-fast: 120ms; /* 120ms: hovers, presses and small state changes. */
+  --motion-base: 200ms; /* 200ms: most transitions (menus, chips, fades). */
+  --motion-slow: 320ms; /* 320ms: sheets, dialogs and larger movement. */
+  --motion-ease: cubic-bezier(0.2, 0, 0, 1); /* The standard ease, a gentle ease-out; no bounce on functional UI. */
+  --motion-ease-out: cubic-bezier(0, 0, 0.2, 1); /* Ease-out for entering elements. */
+  --motion-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1); /* Ease-in-out for elements that move across the screen. */
+  --body-large-tracking: 0; /* Tracking of the `body-large` type style. */
+  --display-1-tracking: -0.02em; /* Tracking of the `display-1` type style (display and headline sizes tighten slightly). */
+  --display-2-tracking: -0.02em; /* Tracking of the `display-2` type style (display and headline sizes tighten slightly). */
+  --display-3-tracking: -0.02em; /* Tracking of the `display-3` type style (display and headline sizes tighten slightly). */
+  --headline-1-tracking: -0.01em; /* Tracking of the `headline-1` type style (display and headline sizes tighten slightly). */
+  --headline-2-tracking: -0.01em; /* Tracking of the `headline-2` type style (display and headline sizes tighten slightly). */
+  --title-1-tracking: 0; /* Tracking of the `title-1` type style. */
+  --title-2-tracking: 0; /* Tracking of the `title-2` type style. */
+  --title-3-tracking: 0; /* Tracking of the `title-3` type style. */
+  --subtitle-1-tracking: 0; /* Tracking of the `subtitle-1` type style. */
+  --subtitle-2-tracking: 0; /* Tracking of the `subtitle-2` type style. */
+  --body-tracking: 0; /* Tracking of the `body` type style. */
+  --body-small-tracking: 0; /* Tracking of the `body-small` type style. */
+  --caption-tracking: 0; /* Tracking of the `caption` type style. */
+  --caption-small-tracking: 0.05em; /* Tracking of the `caption-small` type style. */
+  --signal-1-tracking: 0.05em; /* Tracking of the `signal-1` type style. */
+  --signal-2-tracking: 0.05em; /* Tracking of the `signal-2` type style. */
+  --body-large-weight: 400; /* Weight of the `body-large` type style. Market Sans ships only 400 and 700. */
+  --font-weight-medium: 700; /* 700: there is no medium cut, so medium emphasis jumps to Bold. */
+  --font-weight-regular: 400; /* 400, Market Sans Regular: body text. */
+  --font-weight-bold: 700; /* 700, Market Sans Bold: titles and emphasis. */
+  --display-1-weight: 700; /* Weight of the `display-1` type style. Market Sans ships only 400 and 700. */
+  --display-2-weight: 700; /* Weight of the `display-2` type style. Market Sans ships only 400 and 700. */
+  --display-3-weight: 700; /* Weight of the `display-3` type style. Market Sans ships only 400 and 700. */
+  --headline-1-weight: 700; /* Weight of the `headline-1` type style. Market Sans ships only 400 and 700. */
+  --headline-2-weight: 700; /* Weight of the `headline-2` type style. Market Sans ships only 400 and 700. */
+  --title-1-weight: 700; /* Weight of the `title-1` type style. Market Sans ships only 400 and 700. */
+  --title-2-weight: 700; /* Weight of the `title-2` type style. Market Sans ships only 400 and 700. */
+  --title-3-weight: 700; /* Weight of the `title-3` type style. Market Sans ships only 400 and 700. */
+  --subtitle-1-weight: 400; /* Weight of the `subtitle-1` type style. Market Sans ships only 400 and 700. */
+  --subtitle-2-weight: 400; /* Weight of the `subtitle-2` type style. Market Sans ships only 400 and 700. */
+  --body-weight: 400; /* Weight of the `body` type style. Market Sans ships only 400 and 700. */
+  --body-small-weight: 400; /* Weight of the `body-small` type style. Market Sans ships only 400 and 700. */
+  --caption-weight: 400; /* Weight of the `caption` type style. Market Sans ships only 400 and 700. */
+  --caption-small-weight: 700; /* Weight of the `caption-small` type style. Market Sans ships only 400 and 700. */
+  --signal-1-weight: 400; /* Weight of the `signal-1` type style. Market Sans ships only 400 and 700. */
+  --signal-2-weight: 700; /* Weight of the `signal-2` type style. Market Sans ships only 400 and 700. */
+  --body-medium-fontsize-2: 11; /* An 11px text style value from the source file's system frames (Inter, weights 450 to 700). Not a Market Sans style; kept for pages that name it. */
+  --body-medium-fontsize-3: 11; /* An 11px text style value from the source file's system frames (Inter, weights 450 to 700). Not a Market Sans style; kept for pages that name it. */
+  --body-medium-fontsize: 11; /* An 11px text style value from the source file's system frames (Inter, weights 450 to 700). Not a Market Sans style; kept for pages that name it. */
+  --body-medium-fontweight-2: 450; /* An 11px text style value from the source file's system frames (Inter, weights 450 to 700). Not a Market Sans style; kept for pages that name it. */
+  --body-medium-fontweight-3: 450; /* An 11px text style value from the source file's system frames (Inter, weights 450 to 700). Not a Market Sans style; kept for pages that name it. */
+  --body-medium-fontweight: 700; /* An 11px text style value from the source file's system frames (Inter, weights 450 to 700). Not a Market Sans style; kept for pages that name it. */
+  --body-medium-strong-fontsize: 11; /* An 11px text style value from the source file's system frames (Inter, weights 450 to 700). Not a Market Sans style; kept for pages that name it. */
+  --body-medium-strong-fontweight: 550; /* An 11px text style value from the source file's system frames (Inter, weights 450 to 700). Not a Market Sans style; kept for pages that name it. */
+  --border-strong-3: 2; /* 2: the strong border width as a unitless number (see `border-width-strong`). */
+  --core-100: 8; /* Unitless Figma dimension primitive (8): the numbers the spacing tokens resolve from. Use the spacing tokens in CSS. */
+  --core-150: 12; /* Unitless Figma dimension primitive (12): the numbers the spacing tokens resolve from. Use the spacing tokens in CSS. */
+  --core-200: 16; /* Unitless Figma dimension primitive (16): the numbers the spacing tokens resolve from. Use the spacing tokens in CSS. */
+  --core-250: 20; /* Unitless Figma dimension primitive (20): the numbers the spacing tokens resolve from. Use the spacing tokens in CSS. */
+  --core-300: 24; /* Unitless Figma dimension primitive (24): the numbers the spacing tokens resolve from. Use the spacing tokens in CSS. */
+  --core-75: 6; /* Unitless Figma dimension primitive (6): the numbers the spacing tokens resolve from. Use the spacing tokens in CSS. */
+  --dimension-core-100-2: 8; /* Unitless Figma dimension primitive (8): the numbers the spacing tokens resolve from. Use the spacing tokens in CSS. */
+  --dimension-core-100-3: 8; /* Unitless Figma dimension primitive (8): the numbers the spacing tokens resolve from. Use the spacing tokens in CSS. */
+  --dimension-core-100: 8; /* Unitless Figma dimension primitive (8): the numbers the spacing tokens resolve from. Use the spacing tokens in CSS. */
+  --dimension-core-150-2: 12; /* Unitless Figma dimension primitive (12): the numbers the spacing tokens resolve from. Use the spacing tokens in CSS. */
+  --dimension-core-150: 12; /* Unitless Figma dimension primitive (12): the numbers the spacing tokens resolve from. Use the spacing tokens in CSS. */
+  --dimension-core-200: 16; /* Unitless Figma dimension primitive (16): the numbers the spacing tokens resolve from. Use the spacing tokens in CSS. */
+  --dimension-core-25: 2; /* Unitless Figma dimension primitive (2): the numbers the spacing tokens resolve from. Use the spacing tokens in CSS. */
+  --dimension-core-300: 24; /* Unitless Figma dimension primitive (24): the numbers the spacing tokens resolve from. Use the spacing tokens in CSS. */
+  --dimension-core-50: 4; /* Unitless Figma dimension primitive (4): the numbers the spacing tokens resolve from. Use the spacing tokens in CSS. */
+  --dimension-core-600: 48; /* Unitless Figma dimension primitive (48): the numbers the spacing tokens resolve from. Use the spacing tokens in CSS. */
+  --dimension-core-75: 6; /* Unitless Figma dimension primitive (6): the numbers the spacing tokens resolve from. Use the spacing tokens in CSS. */
+  --dimension-core-zero-2: 0; /* Unitless Figma dimension primitive (0): the numbers the spacing tokens resolve from. Use the spacing tokens in CSS. */
+  --dimension-core-zero: 0; /* Unitless Figma dimension primitive (0): the numbers the spacing tokens resolve from. Use the spacing tokens in CSS. */
+  --font-weight-heavy: 550; /* A variable-font weight (550) from the source file's system frames. Market Sans has no such cut. */
+  --font-weight-medium-2: 450; /* A variable-font weight (450) from the source file's system frames. Market Sans has no such cut. */
+  --font-weight-medium-3: 450; /* A variable-font weight (450) from the source file's system frames. Market Sans has no such cut. */
+  --interactive-disabled: 32; /* Disabled state layer opacity, in percent (32). */
+  --interactive-hover: 90; /* Hover state opacity, in percent (90). */
+  --section-footer: 16; /* 16: spacing above a section footer. */
+  --state-layer-disabled: 32; /* Disabled state layer opacity, in percent (32). */
+  --opacity-hover: 0.08; /* 0.08: the state-layer wash on hover. Hover and press are translucent washes over the base, never a colour swap. */
+  --opacity-disabled: 0.4; /* 0.4: disabled controls. */
+  --color-neutral-100-rgb: 255, 255, 255; /* RGB channels of neutral 100, for `rgba(var(--color-neutral-100-rgb), a)` washes. */
+  --color-neutral-200-rgb: 247, 247, 247; /* RGB channels of neutral 200, for `rgba(var(--color-neutral-200-rgb), a)` washes. */
+  --color-neutral-800-rgb: 25, 25, 25; /* RGB channels of neutral 800, for `rgba(var(--color-neutral-800-rgb), a)` washes. */
+  --color-neutral-900-rgb: 0, 0, 0; /* RGB channels of neutral 900, for `rgba(var(--color-neutral-900-rgb), a)` washes. */
+  --ds-container-xs: 340px; /* 340px cap: narrow forms and single cards. */
+  --ds-container-sm: 460px; /* 460px cap: dialogs and short forms. */
+  --ds-container-md: 560px; /* 560px cap: sheets and medium panels. */
+  --ds-container-lg: 660px; /* 660px cap: reading columns. */
+  --ds-container-xl: 780px; /* 780px cap: the conversation column and wide panels. */
+  --ds-container-2xl: 900px; /* 900px cap: the widest content column. */
+  --ds-margin-sm: 16px; /* 16px page margin on phones. */
+  --ds-margin-md: 24px; /* 24px page margin on tablets. */
+  --ds-margin-lg: 32px; /* 32px page margin on desktop. */
+  --font-brand: "Market Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-brand-small: "Market Sans Small", "Market Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  --font-mono: "SF Mono", ui-monospace, Menlo, Consolas, monospace;
+  --text-display-1: 700 46px/52px var(--font-brand); /* Marketing hero headline. One per page. */
+  --text-display-2: 700 36px/46px var(--font-brand); /* Secondary marketing headline. */
+  --text-display-3: 700 30px/40px var(--font-brand); /* Smallest display size; section openers on marketing pages. */
+  --text-headline-1: 700 32px/40px var(--font-brand); /* Page headline in product surfaces. */
+  --text-headline-2: 700 30px/40px var(--font-brand); /* Secondary page headline. */
+  --text-title-1: 700 24px/32px var(--font-brand); /* Section title; card and panel headers. */
+  --text-title-2: 700 20px/28px var(--font-brand); /* Sub-section title. */
+  --text-title-3: 700 16px/24px var(--font-brand); /* Smallest title; list group headers, dialog titles. */
+  --text-subtitle-1: 400 20px/28px var(--font-brand); /* Regular-weight lead paragraph under a title. */
+  --text-subtitle-2: 400 16px/24px var(--font-brand); /* Short regular-weight supporting line. */
+  --text-body-large: 400 16px/24px var(--font-brand); /* Long-form reading copy. */
+  --text-body: 400 14px/20px var(--font-brand); /* Default UI text: controls, list rows, card copy. */
+  --text-body-small: 400 12px/16px var(--font-brand); /* Dense UI text and secondary card copy. */
+  --text-caption: 400 12px/16px var(--font-brand); /* Helper text, timestamps, metadata. */
+  --text-caption-small: 700 10px/12px var(--font-brand); /* Legal lines and micro-labels. Bold with open tracking. */
+  --text-signal-1: 400 14px/20px var(--font-brand); /* Status and eyebrow text with open tracking. */
+  --text-signal-2: 700 10px/12px var(--font-brand); /* Smallest status label: badges, signal chips. */
+}
+.display-1 {
+  font-family: var(--font-brand);
+  font-size: 46px;
+  line-height: 52px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+.display-2 {
+  font-family: var(--font-brand);
+  font-size: 36px;
+  line-height: 46px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+.display-3 {
+  font-family: var(--font-brand);
+  font-size: 30px;
+  line-height: 40px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+.headline-1 {
+  font-family: var(--font-brand);
+  font-size: 32px;
+  line-height: 40px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.headline-2 {
+  font-family: var(--font-brand);
+  font-size: 30px;
+  line-height: 40px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.title-1 {
+  font-family: var(--font-brand);
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+.title-2 {
+  font-family: var(--font-brand);
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+.title-3 {
+  font-family: var(--font-brand);
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+.subtitle-1 {
+  font-family: var(--font-brand);
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.subtitle-2 {
+  font-family: var(--font-brand);
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.body-large {
+  font-family: var(--font-brand);
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.body {
+  font-family: var(--font-brand);
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.body-small {
+  font-family: var(--font-brand);
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.caption {
+  font-family: var(--font-brand);
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.caption-small {
+  font-family: var(--font-brand);
+  font-size: 10px;
+  line-height: 12px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+.signal-1 {
+  font-family: var(--font-brand);
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+}
+.signal-2 {
+  font-family: var(--font-brand);
+  font-size: 10px;
+  line-height: 12px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+@font-face {
+  font-family: "Market Sans";
+  src: url("fonts/MarketSans-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Market Sans";
+  src: url("fonts/MarketSans-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Market Sans Small";
+  src: url("fonts/MarketSans-Regular-Small.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Market Sans Small";
+  src: url("fonts/MarketSans-Bold-Small.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
