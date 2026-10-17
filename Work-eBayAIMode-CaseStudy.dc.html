@@ -56,7 +56,7 @@ a:hover{color:#0654C4;text-decoration:underline}
     <div class="r-g" style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px 0;border-top:1px solid #E5E5E5;margin-top:56px;padding-top:24px">
       <div style="display:flex;flex-direction:column;gap:6px;padding-right:24px">
         <div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#707070">My role</div>
-        <div style="font-size:15px;line-height:1.45">Design lead [confirm title] · problem framing, prioritization, trust system, prototype</div>
+        <div style="font-size:15px;line-height:1.45">Design lead (directed) · problem framing, prioritization, trust system, prototype</div>
       </div>
       <div style="display:flex;flex-direction:column;gap:6px;padding-right:24px">
         <div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#707070">Status</div>
@@ -81,7 +81,7 @@ a:hover{color:#0654C4;text-decoration:underline}
         <div style="font-size:13px;color:#707070;line-height:1.45;margin-top:4px">prototype screens, 91 on desktop and 91 on iOS</div>
       </div>
       <div style="border-top:3px solid #0968F6;background:#F7F7F7;border-radius:0 0 16px 16px;padding:18px 20px 20px">
-        <div style="font-size:34px;font-weight:700;letter-spacing:-0.01em">17</div>
+        <div style="font-size:34px;font-weight:700;letter-spacing:-0.01em">20</div>
         <div style="font-size:13px;color:#707070;line-height:1.45;margin-top:4px">new component families in the Evo design system</div>
       </div>
       <div style="border-top:3px solid #0968F6;background:#F7F7F7;border-radius:0 0 16px 16px;padding:18px 20px 20px">
@@ -432,12 +432,26 @@ a:hover{color:#0654C4;text-decoration:underline}
       <div style="font-size:15px;font-weight:700;margin-bottom:6px">Two platforms, one product</div>
       <p style="max-width:660px;margin:0 0 16px;font-size:14px;line-height:1.6;color:#707070;text-wrap:pretty">Every stage was built for desktop at 1440 and iOS at 393. Each flow's spec has a stage-by-stage table of what changes between them, instead of “make it responsive.”</p>
       <div class="r-g2" style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px">
-        <sc-for list="{{ phones }}" as="p" hint-placeholder-count="5">
           <figure style="margin:0;display:flex;flex-direction:column;gap:8px">
-            <div style="border:1px solid #E5E5E5;border-radius:24px;overflow:hidden;background:#ffffff;aspect-ratio:393/852"><img src="{{ p.src }}" alt="{{ p.alt }}" style="display:block;width:100%;height:100%;object-fit:cover"></div>
-            <figcaption style="font-size:12.5px;line-height:1.45;color:#707070;text-align:center">{{ p.cap }}</figcaption>
+            <div style="border:1px solid #E5E5E5;border-radius:24px;overflow:hidden;background:#ffffff;aspect-ratio:393/852"><img src="work-images/ebay-cs-93e37596.png" alt="iOS Deal hunter: review your offer, with the estimated total and Hold to send $172.00 offer" style="display:block;width:100%;height:100%;object-fit:cover"></div>
+            <figcaption style="font-size:12.5px;line-height:1.45;color:#707070;text-align:center">Deal hunter · review the offer</figcaption>
           </figure>
-        </sc-for>
+          <figure style="margin:0;display:flex;flex-direction:column;gap:8px">
+            <div style="border:1px solid #E5E5E5;border-radius:24px;overflow:hidden;background:#ffffff;aspect-ratio:393/852"><img src="work-images/ebay-cs-5573b703.png" alt="iOS Selling: a $200 offer, a drafted $229 counter, and Hold to counter $229.00" style="display:block;width:100%;height:100%;object-fit:cover"></div>
+            <figcaption style="font-size:12.5px;line-height:1.45;color:#707070;text-align:center">Selling · counter inside the line</figcaption>
+          </figure>
+          <figure style="margin:0;display:flex;flex-direction:column;gap:8px">
+            <div style="border:1px solid #E5E5E5;border-radius:24px;overflow:hidden;background:#ffffff;aspect-ratio:393/852"><img src="work-images/ebay-cs-1d1b2a5b.png" alt="iOS Fits my car: this kit won't fit your CR-V, this one does" style="display:block;width:100%;height:100%;object-fit:cover"></div>
+            <figcaption style="font-size:12.5px;line-height:1.45;color:#707070;text-align:center">Fits my car · the catch</figcaption>
+          </figure>
+          <figure style="margin:0;display:flex;flex-direction:column;gap:8px">
+            <div style="border:1px solid #E5E5E5;border-radius:24px;overflow:hidden;background:#ffffff;aspect-ratio:393/852"><img src="work-images/ebay-cs-7753ea26.png" alt="iOS Style scout: the seller's tape measure, and I'm less sure about jacket A now" style="display:block;width:100%;height:100%;object-fit:cover"></div>
+            <figcaption style="font-size:12.5px;line-height:1.45;color:#707070;text-align:center">Style scout · less sure</figcaption>
+          </figure>
+          <figure style="margin:0;display:flex;flex-direction:column;gap:8px">
+            <div style="border:1px solid #E5E5E5;border-radius:24px;overflow:hidden;background:#ffffff;aspect-ratio:393/852"><img src="work-images/ebay-cs-db8d6dbb.png" alt="iOS Smart cart: cart updated with the 3 changes you approved, with Undo" style="display:block;width:100%;height:100%;object-fit:cover"></div>
+            <figcaption style="font-size:12.5px;line-height:1.45;color:#707070;text-align:center">Smart cart · the receipt</figcaption>
+          </figure>
       </div>
     </div>
   </div>
@@ -481,11 +495,57 @@ a:hover{color:#0654C4;text-decoration:underline}
       <div class="r-g" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px">
         <figure style="margin:0;display:flex;flex-direction:column;gap:8px">
           <div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#707070">{{ modeActive.leftLabel }}</div>
-          <div class="r-fig" style="height:520px;border:1px solid #E5E5E5;border-radius:12px;overflow:hidden;background:#ffffff"><img src="{{ modeActive.leftSrc }}" alt="{{ modeActive.leftAlt }}" style="display:block;width:100%;height:100%;object-fit:cover;object-position:top center"></div>
+          <sc-if value="{{ modeIs.deal }}" hint-placeholder-val="{{ true }}">
+            <div class="r-fig" style="height:520px;border:1px solid #E5E5E5;border-radius:12px;overflow:hidden;background:#ffffff"><img src="work-images/ebay-ai-mode-deal-found.png" alt="Here's the deal: what men's 10.5 sold for in 90 days, with your max of $172 marked, and the best way under $180" style="display:block;width:100%;height:100%;object-fit:cover;object-position:top center"></div>
+          </sc-if>
+          <sc-if value="{{ modeIs.sell }}" hint-placeholder-val="{{ false }}">
+            <div class="r-fig" style="height:520px;border:1px solid #E5E5E5;border-radius:12px;overflow:hidden;background:#ffffff"><img src="work-images/ebay-cs-1756f9ce.png" alt="Listing draft with photos, a title, condition confirmed by you, and item specifics each tagged with a source such as Photo 5 or Model specs" style="display:block;width:100%;height:100%;object-fit:cover;object-position:top center"></div>
+          </sc-if>
+          <sc-if value="{{ modeIs.fit }}" hint-placeholder-val="{{ false }}">
+            <div class="r-fig" style="height:520px;border:1px solid #E5E5E5;border-radius:12px;overflow:hidden;background:#ffffff"><img src="work-images/ebay-cs-d6d5b569.png" alt="This kit won't fit your CR-V. This one does. The asked-about kit is marked Doesn't fit your CR-V next to the pick that fits, with sources for each fact" style="display:block;width:100%;height:100%;object-fit:cover;object-position:top center"></div>
+          </sc-if>
+          <sc-if value="{{ modeIs.style }}" hint-placeholder-val="{{ false }}">
+            <div class="r-fig" style="height:520px;border:1px solid #E5E5E5;border-radius:12px;overflow:hidden;background:#ffffff"><img src="work-images/ebay-cs-92576c64.png" alt="The closest look isn't the closest fit: jacket A looks most like the photo, jacket B measures like your J.Crew M, each with separate confidence" style="display:block;width:100%;height:100%;object-fit:cover;object-position:top center"></div>
+          </sc-if>
+          <sc-if value="{{ modeIs.auction }}" hint-placeholder-val="{{ false }}">
+            <div class="r-fig" style="height:520px;border:1px solid #E5E5E5;border-radius:12px;overflow:hidden;background:#ffffff"><img src="work-images/ebay-cs-5b5d1cc9.png" alt="Here's how I'll guard your $300: a hard limit meter, recent sales against your max, and what I'll do and never do" style="display:block;width:100%;height:100%;object-fit:cover;object-position:top center"></div>
+          </sc-if>
+          <sc-if value="{{ modeIs.cart }}" hint-placeholder-val="{{ false }}">
+            <div class="r-fig" style="height:520px;border:1px solid #E5E5E5;border-radius:12px;overflow:hidden;background:#ffffff"><img src="work-images/ebay-cs-34f841ee.png" alt="Same 4 items, $53.87 less, all by Thursday, with three checkable changes: switch sellers, buy the cable from another seller, apply a coupon" style="display:block;width:100%;height:100%;object-fit:cover;object-position:top center"></div>
+          </sc-if>
+          <sc-if value="{{ modeIs.near }}" hint-placeholder-val="{{ false }}">
+            <div class="r-fig" style="height:520px;border:1px solid #E5E5E5;border-radius:12px;overflow:hidden;background:#ffffff"><img src="work-images/ebay-cs-8068d4d5.png" alt="6 PS5s you can pick up today, with a pick, a drafted message to the seller, and a map that shows areas, not addresses" style="display:block;width:100%;height:100%;object-fit:cover;object-position:top center"></div>
+          </sc-if>
+          <sc-if value="{{ modeIs.auto }}" hint-placeholder-val="{{ false }}">
+            <div class="r-fig" style="height:520px;border:1px solid #E5E5E5;border-radius:12px;overflow:hidden;background:#ffffff"><img src="work-images/ebay-cs-373e2c85.png" alt="Auto picked Results: 6 picks for Air Jordan 4 in a list, with the size chip from saved sizes and a link to hunt for a deal instead" style="display:block;width:100%;height:100%;object-fit:cover;object-position:top center"></div>
+          </sc-if>
         </figure>
         <figure style="margin:0;display:flex;flex-direction:column;gap:8px">
           <div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#0968F6">{{ modeActive.rightLabel }}</div>
-          <div class="r-fig" style="height:520px;border:1px solid #E5E5E5;border-radius:12px;overflow:hidden;background:#ffffff"><img src="{{ modeActive.rightSrc }}" alt="{{ modeActive.rightAlt }}" style="display:block;width:100%;height:100%;object-fit:cover;object-position:top center"></div>
+          <sc-if value="{{ modeIs.deal }}" hint-placeholder-val="{{ true }}">
+            <div class="r-fig" style="height:520px;border:1px solid #E5E5E5;border-radius:12px;overflow:hidden;background:#ffffff"><img src="work-images/ebay-ai-mode-offer-approval.png" alt="Your offer to kicks_by_kara: $172 item price, $179.09 estimated total, the drafted message, what happens when you send, and Hold to send" style="display:block;width:100%;height:100%;object-fit:cover;object-position:top center"></div>
+          </sc-if>
+          <sc-if value="{{ modeIs.sell }}" hint-placeholder-val="{{ false }}">
+            <div class="r-fig" style="height:520px;border:1px solid #E5E5E5;border-radius:12px;overflow:hidden;background:#ffffff"><img src="work-images/ebay-cs-3ca2cf63.png" alt="A $200 offer would leave about $163.53, so the agent drafted a $229 counter, shown against the $180 line with Hold to counter" style="display:block;width:100%;height:100%;object-fit:cover;object-position:top center"></div>
+          </sc-if>
+          <sc-if value="{{ modeIs.fit }}" hint-placeholder-val="{{ false }}">
+            <div class="r-fig" style="height:520px;border:1px solid #E5E5E5;border-radius:12px;overflow:hidden;background:#ffffff"><img src="work-images/ebay-cs-eec2f244.png" alt="The kit listing: Fits your 2019 Honda CR-V EX, checked against eBay fitment data, with Guaranteed Fit terms" style="display:block;width:100%;height:100%;object-fit:cover;object-position:top center"></div>
+          </sc-if>
+          <sc-if value="{{ modeIs.style }}" hint-placeholder-val="{{ false }}">
+            <div class="r-fig" style="height:520px;border:1px solid #E5E5E5;border-radius:12px;overflow:hidden;background:#ffffff"><img src="work-images/ebay-cs-8f1ecfa8.png" alt="After the seller measures the shoulder, I'm less sure about jacket A now, with fit confidence lowered from Medium to Low" style="display:block;width:100%;height:100%;object-fit:cover;object-position:top center"></div>
+          </sc-if>
+          <sc-if value="{{ modeIs.auction }}" hint-placeholder-val="{{ false }}">
+            <div class="r-fig" style="height:520px;border:1px solid #E5E5E5;border-radius:12px;overflow:hidden;background:#ffffff"><img src="work-images/ebay-cs-84d66ceb.png" alt="During the live auction the shopper asks to raise the max to $300, and the agent answers I won't raise your max to $300, showing it could cost $339.69 delivered" style="display:block;width:100%;height:100%;object-fit:cover;object-position:top center"></div>
+          </sc-if>
+          <sc-if value="{{ modeIs.cart }}" hint-placeholder-val="{{ false }}">
+            <div class="r-fig" style="height:520px;border:1px solid #E5E5E5;border-radius:12px;overflow:hidden;background:#ffffff"><img src="work-images/ebay-cs-cd62e44a.png" alt="Shopping cart updated with the 3 changes you approved, with Undo for 10 seconds and each changed item marked Updated by AI Mode" style="display:block;width:100%;height:100%;object-fit:cover;object-position:top center"></div>
+          </sc-if>
+          <sc-if value="{{ modeIs.near }}" hint-placeholder-val="{{ false }}">
+            <div class="r-fig" style="height:520px;border:1px solid #E5E5E5;border-radius:12px;overflow:hidden;background:#ffffff"><img src="work-images/ebay-cs-7db484c7.png" alt="Pickup pass with a QR code and the exact meeting spot, shown after payment" style="display:block;width:100%;height:100%;object-fit:cover;object-position:top center"></div>
+          </sc-if>
+          <sc-if value="{{ modeIs.auto }}" hint-placeholder-val="{{ false }}">
+            <div class="r-fig" style="height:520px;border:1px solid #E5E5E5;border-radius:12px;overflow:hidden;background:#ffffff"><img src="work-images/ebay-cs-ca9444d2.png" alt="The same 6 picks in a grid view with preference chips" style="display:block;width:100%;height:100%;object-fit:cover;object-position:top center"></div>
+          </sc-if>
         </figure>
       </div>
       <div class="r-g" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px">
@@ -767,7 +827,8 @@ class Component extends DCLogic {
       phones: phones,
       runOrder: runOrder,
       modeTabs: m.tabs,
-      modeActive: m.active
+      modeActive: m.active,
+      modeIs: Object.fromEntries(m.tabs.map((x) => [x.id, x.selected]))
     };
   }
 }

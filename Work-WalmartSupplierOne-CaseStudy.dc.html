@@ -380,26 +380,56 @@ a:hover{color:#0654c8;text-decoration:underline}
       <div class="r-g" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px">
         <figure style="margin:0;display:flex;flex-direction:column;gap:8px">
           <div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#707070">{{ redesignActive.beforeLabel }}</div>
-          <sc-if value="{{ redesignActive.beforeCover }}" hint-placeholder-val="{{ true }}">
-            <div style="height:340px;border:1px solid #E5E5E5;border-radius:12px;overflow:hidden;background:#ffffff"><img src="{{ redesignActive.beforeSrc }}" alt="{{ redesignActive.beforeAlt }}" style="display:block;width:100%;height:100%;object-fit:cover;object-position:top left"></div>
+          <sc-if value="{{ jobIs.onboarding }}" hint-placeholder-val="{{ true }}">
+            <div style="height:340px;border:1px solid #E5E5E5;border-radius:12px;overflow:hidden;background:#ffffff"><img src="work-images/walmart-cs-ac458e78.png" alt="Old onboarding page with a grid of required tasks and a progress bar" style="display:block;width:100%;height:100%;object-fit:cover;object-position:top left"></div>
           </sc-if>
-          <sc-if value="{{ redesignActive.beforeContain }}" hint-placeholder-val="{{ false }}">
-            <div style="height:340px;border:1px solid #E5E5E5;border-radius:12px;overflow:hidden;background:#F7F7F7;padding:10px;box-sizing:border-box"><img src="{{ redesignActive.beforeSrc }}" alt="{{ redesignActive.beforeAlt }}" style="display:block;width:100%;height:100%;object-fit:contain;object-position:center"></div>
+          <sc-if value="{{ jobIs.orders }}" hint-placeholder-val="{{ false }}">
+            <div style="height:340px;border:1px solid #E5E5E5;border-radius:12px;overflow:hidden;background:#ffffff"><img src="work-images/walmart-cs-ba40f961.png" alt="Old Supplier Center order management, with a dropdown to pick one distribution facility at a time" style="display:block;width:100%;height:100%;object-fit:cover;object-position:top left"></div>
           </sc-if>
-          <sc-if value="{{ redesignActive.noBefore }}" hint-placeholder-val="{{ false }}">
-            <div style="height:340px;border:1.5px dashed #C7C7C7;border-radius:12px;background:#F7F7F7;display:flex;align-items:center;justify-content:center;font-size:14px;color:#707070">[Before screenshot]</div>
+          <sc-if value="{{ jobIs.payments }}" hint-placeholder-val="{{ false }}">
+            <div style="height:340px;border:1px solid #E5E5E5;border-radius:12px;overflow:hidden;background:#F7F7F7;padding:10px;box-sizing:border-box"><img src="work-images/walmart-cs-601ef279.png" alt="Old DSV Payment History page with one distribution center and a report date to download" style="display:block;width:100%;height:100%;object-fit:contain;object-position:center"></div>
+          </sc-if>
+          <sc-if value="{{ jobIs.items }}" hint-placeholder-val="{{ false }}">
+            <div style="height:340px;border:1px solid #E5E5E5;border-radius:12px;overflow:hidden;background:#F7F7F7;padding:10px;box-sizing:border-box"><img src="work-images/walmart-cs-1fa01539.png" alt="Old Maintenance Hub with separate tiles for content, imagery, supply chain, cost and DSV inventory" style="display:block;width:100%;height:100%;object-fit:contain;object-position:center"></div>
+          </sc-if>
+          <sc-if value="{{ jobIs.performance }}" hint-placeholder-val="{{ false }}">
+            <div style="height:340px;border:1px solid #E5E5E5;border-radius:12px;overflow:hidden;background:#F7F7F7;padding:10px;box-sizing:border-box"><img src="work-images/walmart-cs-e996b60a.png" alt="Old Return Trends report with summary numbers, a bar chart, a pie chart and a long table" style="display:block;width:100%;height:100%;object-fit:contain;object-position:center"></div>
+          </sc-if>
+          <sc-if value="{{ jobIs.apis }}" hint-placeholder-val="{{ false }}">
+            <div style="height:340px;border:1px solid #E5E5E5;border-radius:12px;overflow:hidden;background:#F7F7F7;padding:10px;box-sizing:border-box"><img src="work-images/walmart-cs-d608f516.png" alt="Walmart Developer Portal landing page with partner types" style="display:block;width:100%;height:100%;object-fit:contain;object-position:center"></div>
+          </sc-if>
+          <sc-if value="{{ jobIs.chatbot }}" hint-placeholder-val="{{ false }}">
+            <div style="height:340px;border:1px solid #E5E5E5;border-radius:12px;overflow:hidden;background:#ffffff"><img src="work-images/walmart-cs-d717eea4.png" alt="Supplier One home page with the chat button in the bottom corner" style="display:block;width:100%;height:100%;object-fit:cover;object-position:top left"></div>
+          </sc-if>
+          <sc-if value="{{ jobIs.messaging }}" hint-placeholder-val="{{ false }}">
+            <div style="height:340px;border:1px solid #E5E5E5;border-radius:12px;overflow:hidden;background:#F7F7F7;padding:10px;box-sizing:border-box"><img src="work-images/walmart-cs-ee0def9c.png" alt="Old onboarding page with an action-required pop-up asking to re-upload a W-9 tax form" style="display:block;width:100%;height:100%;object-fit:contain;object-position:center"></div>
           </sc-if>
         </figure>
         <figure style="margin:0;display:flex;flex-direction:column;gap:8px">
           <div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#0968F6">After · Supplier One</div>
-          <sc-if value="{{ redesignActive.afterCover }}" hint-placeholder-val="{{ true }}">
-            <div style="height:340px;border:1px solid #E5E5E5;border-radius:12px;overflow:hidden;background:#ffffff"><img src="{{ redesignActive.afterSrc }}" alt="{{ redesignActive.afterAlt }}" style="display:block;width:100%;height:100%;object-fit:cover;object-position:top left"></div>
+          <sc-if value="{{ jobIs.onboarding }}" hint-placeholder-val="{{ true }}">
+            <div style="height:340px;border:1px solid #E5E5E5;border-radius:12px;overflow:hidden;background:#ffffff"><img src="work-images/walmart-cs-1a5d92bd.png" alt="Supplier One onboarding with tasks in any order, time estimates, and a help panel beside them" style="display:block;width:100%;height:100%;object-fit:cover;object-position:top left"></div>
           </sc-if>
-          <sc-if value="{{ redesignActive.afterContain }}" hint-placeholder-val="{{ false }}">
-            <div style="height:340px;border:1px solid #E5E5E5;border-radius:12px;overflow:hidden;background:#F7F7F7;padding:10px;box-sizing:border-box"><img src="{{ redesignActive.afterSrc }}" alt="{{ redesignActive.afterAlt }}" style="display:block;width:100%;height:100%;object-fit:contain;object-position:center"></div>
+          <sc-if value="{{ jobIs.orders }}" hint-placeholder-val="{{ false }}">
+            <div style="height:340px;border:1px solid #E5E5E5;border-radius:12px;overflow:hidden;background:#ffffff"><img src="work-images/walmart-cs-2867dc33.png" alt="Supplier One drop ship orders page with one search field and quick filters for past due, ship today and new orders" style="display:block;width:100%;height:100%;object-fit:cover;object-position:top left"></div>
           </sc-if>
-          <sc-if value="{{ redesignActive.noAfter }}" hint-placeholder-val="{{ false }}">
-            <div style="height:340px;border:1.5px dashed #C7C7C7;border-radius:12px;background:#F7F7F7;display:flex;align-items:center;justify-content:center;font-size:14px;color:#707070">[After screenshot]</div>
+          <sc-if value="{{ jobIs.payments }}" hint-placeholder-val="{{ false }}">
+            <div style="height:340px;border:1px solid #E5E5E5;border-radius:12px;overflow:hidden;background:#F7F7F7;padding:10px;box-sizing:border-box"><img src="work-images/walmart-cs-8c071005.png" alt="Supplier One deductions table with purchase order search, filters and download all" style="display:block;width:100%;height:100%;object-fit:contain;object-position:center"></div>
+          </sc-if>
+          <sc-if value="{{ jobIs.items }}" hint-placeholder-val="{{ false }}">
+            <div style="height:340px;border:1px solid #E5E5E5;border-radius:12px;overflow:hidden;background:#F7F7F7;padding:10px;box-sizing:border-box"><img src="work-images/walmart-cs-8c497fed.png" alt="Supplier One Setup page with pre-setup submissions and cards to set up item proposals, items, shippers and multibox" style="display:block;width:100%;height:100%;object-fit:contain;object-position:center"></div>
+          </sc-if>
+          <sc-if value="{{ jobIs.performance }}" hint-placeholder-val="{{ false }}">
+            <div style="height:340px;border:1px solid #E5E5E5;border-radius:12px;overflow:hidden;background:#ffffff"><img src="work-images/walmart-cs-5f8482ba.png" alt="Supplier One Returns and Claims Scorecard with returns, claims and allowances" style="display:block;width:100%;height:100%;object-fit:cover;object-position:top left"></div>
+          </sc-if>
+          <sc-if value="{{ jobIs.apis }}" hint-placeholder-val="{{ false }}">
+            <div style="height:340px;border:1px solid #E5E5E5;border-radius:12px;overflow:hidden;background:#ffffff"><img src="work-images/walmart-cs-88f02b0f.png" alt="Supplier One app store with integration partners and category filters" style="display:block;width:100%;height:100%;object-fit:cover;object-position:top left"></div>
+          </sc-if>
+          <sc-if value="{{ jobIs.chatbot }}" hint-placeholder-val="{{ false }}">
+            <div style="height:340px;border:1px solid #E5E5E5;border-radius:12px;overflow:hidden;background:#F7F7F7;padding:10px;box-sizing:border-box"><img src="work-images/walmart-cs-667788ac.png" alt="Supplier One chat with quick paths for items, orders, integration, payment and tickets" style="display:block;width:100%;height:100%;object-fit:contain;object-position:center"></div>
+          </sc-if>
+          <sc-if value="{{ jobIs.messaging }}" hint-placeholder-val="{{ false }}">
+            <div style="height:340px;border:1px solid #E5E5E5;border-radius:12px;overflow:hidden;background:#F7F7F7;padding:10px;box-sizing:border-box"><img src="work-images/walmart-cs-71540278.png" alt="Supplier One messages inbox with search, sort, filters and a conversation thread" style="display:block;width:100%;height:100%;object-fit:contain;object-position:center"></div>
           </sc-if>
         </figure>
       </div>
@@ -678,6 +708,7 @@ class Component extends DCLogic {
     return {
       redesignTabs: redesignTabs,
       redesignActive: redesignActive,
+      jobIs: Object.fromEntries(jobs.map((x) => [x.id, x.id === tab])),
       showSignals: this.props.showSignals ?? true,
       prototypeUrl: url,
       hasProto: !!(url && url !== "#"),
