@@ -386,11 +386,11 @@ a:hover{color:#8F3A00;text-decoration:underline}
       <div class="r-g" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px">
         <figure style="margin:0;display:flex;flex-direction:column;gap:8px">
           <div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#707070">Blue sky</div>
-          <div style="height:400px;border:1px solid #E5E5E5;border-radius:12px;overflow:hidden;background:#ffffff"><img src="{{ tradeActive.beforeSrc }}" alt="{{ tradeActive.beforeAlt }}" style="display:block;width:100%;height:100%;object-fit:cover;object-position:top left"></div>
+          <div style="height:400px;border:1px solid #E5E5E5;border-radius:12px;overflow:hidden;background:#ffffff"><sc-if value="{{ tradeIs.criteria }}" hint-placeholder-val="{{ true }}"><img src="work-images/homedepot-workflow-blue-sky.png" alt="Blue sky Create New Workflow form with four criteria checkboxes" style="display:block;width:100%;height:100%;object-fit:cover;object-position:top left"></sc-if><sc-if value="{{ tradeIs.edits }}" hint-placeholder-val="{{ false }}"><img src="work-images/homedepot-cs-b294f65e.png" alt="Blue sky order request details with editable quantities, remove links and add a comment on each item" style="display:block;width:100%;height:100%;object-fit:cover;object-position:top left"></sc-if><sc-if value="{{ tradeIs.table }}" hint-placeholder-val="{{ false }}"><img src="work-images/homedepot-cs-97cff8b4.png" alt="Blue sky requests table with checkboxes, bulk approve and reject buttons and row popovers" style="display:block;width:100%;height:100%;object-fit:cover;object-position:top left"></sc-if></div>
         </figure>
         <figure style="margin:0;display:flex;flex-direction:column;gap:8px">
           <div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#B84A00">MVP</div>
-          <div style="height:400px;border:1px solid #E5E5E5;border-radius:12px;overflow:hidden;background:#ffffff"><img src="{{ tradeActive.afterSrc }}" alt="{{ tradeActive.afterAlt }}" style="display:block;width:100%;height:100%;object-fit:cover;object-position:top left"></div>
+          <div style="height:400px;border:1px solid #E5E5E5;border-radius:12px;overflow:hidden;background:#ffffff"><sc-if value="{{ tradeIs.criteria }}" hint-placeholder-val="{{ true }}"><img src="work-images/homedepot-workflow-mvp.png" alt="MVP Create New Workflow form with review on all orders or a single spend limit" style="display:block;width:100%;height:100%;object-fit:cover;object-position:top left"></sc-if><sc-if value="{{ tradeIs.edits }}" hint-placeholder-val="{{ false }}"><img src="work-images/homedepot-cs-99c2b791.png" alt="MVP order request details with a comment thread from the requester and an add comment link" style="display:block;width:100%;height:100%;object-fit:cover;object-position:top left"></sc-if><sc-if value="{{ tradeIs.table }}" hint-placeholder-val="{{ false }}"><img src="work-images/homedepot-cs-e58e6b84.png" alt="MVP My Requests table with pending, approved and rejected status and an actions menu on each row" style="display:block;width:100%;height:100%;object-fit:cover;object-position:top left"></sc-if></div>
         </figure>
       </div>
       <div class="r-g" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px">
@@ -452,11 +452,11 @@ a:hover{color:#8F3A00;text-decoration:underline}
       <div class="r-g" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px">
         <figure style="margin:0;display:flex;flex-direction:column;gap:8px">
           <div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#707070">Sketch</div>
-          <div style="height:340px;border:1px solid #E5E5E5;border-radius:12px;overflow:hidden;background:#ffffff"><img src="{{ expActive.beforeSrc }}" alt="{{ expActive.beforeAlt }}" style="display:block;width:100%;height:100%;object-fit:cover;object-position:top left"></div>
+          <div style="height:340px;border:1px solid #E5E5E5;border-radius:12px;overflow:hidden;background:#ffffff"><sc-if value="{{ expIs.setup }}" hint-placeholder-val="{{ true }}"><img src="work-images/homedepot-cs-9753e1ef.png" alt="Self Service Set Up sketch and whiteboard wireframes" style="display:block;width:100%;height:100%;object-fit:cover;object-position:top left"></sc-if><sc-if value="{{ expIs.request }}" hint-placeholder-val="{{ false }}"><img src="work-images/homedepot-cs-fa44b682.png" alt="Order Dashboard sketch with requester and approver dashboards" style="display:block;width:100%;height:100%;object-fit:cover;object-position:top left"></sc-if><sc-if value="{{ expIs.approve }}" hint-placeholder-val="{{ false }}"><img src="work-images/homedepot-cs-6f152a32.png" alt="Order Request Details sketch and whiteboard wireframes" style="display:block;width:100%;height:100%;object-fit:cover;object-position:top left"></sc-if><sc-if value="{{ expIs.notify }}" hint-placeholder-val="{{ false }}"><img src="work-images/homedepot-cs-9db8151d.png" alt="Communications sketch with notification and validation messaging wireframes" style="display:block;width:100%;height:100%;object-fit:cover;object-position:top left"></sc-if></div>
         </figure>
         <figure style="margin:0;display:flex;flex-direction:column;gap:8px">
           <div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#B84A00">Final design</div>
-          <div style="height:340px;border:1px solid #E5E5E5;border-radius:12px;overflow:hidden;background:#ffffff"><img src="{{ expActive.afterSrc }}" alt="{{ expActive.afterAlt }}" style="display:block;width:100%;height:100%;object-fit:cover;object-position:top left"></div>
+          <div style="height:340px;border:1px solid #E5E5E5;border-radius:12px;overflow:hidden;background:#ffffff"><sc-if value="{{ expIs.setup }}" hint-placeholder-val="{{ true }}"><img src="work-images/homedepot-cs-a5e6c88b.png" alt="Final Create New Workflow form with four steps and design notes" style="display:block;width:100%;height:100%;object-fit:cover;object-position:top left"></sc-if><sc-if value="{{ expIs.request }}" hint-placeholder-val="{{ false }}"><img src="work-images/homedepot-cs-456a511b.png" alt="Final My Requests dashboard with a submitted for review banner and request statuses" style="display:block;width:100%;height:100%;object-fit:cover;object-position:top left"></sc-if><sc-if value="{{ expIs.approve }}" hint-placeholder-val="{{ false }}"><img src="work-images/homedepot-cs-d7b3250e.png" alt="Final Order Requests dashboard for approvers with approve and reject in each row" style="display:block;width:100%;height:100%;object-fit:cover;object-position:top left"></sc-if><sc-if value="{{ expIs.notify }}" hint-placeholder-val="{{ false }}"><img src="work-images/homedepot-cs-1d3a2ddb.png" alt="Final approver notifications by email, text message and homepage" style="display:block;width:100%;height:100%;object-fit:cover;object-position:top left"></sc-if></div>
         </figure>
       </div>
       <div class="r-g" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px">
@@ -695,7 +695,9 @@ class Component extends DCLogic {
       tradeTabs: t.tabs,
       tradeActive: t.active,
       expTabs: e.tabs,
-      expActive: e.active
+      expActive: e.active,
+      tradeIs: Object.fromEntries(trades.map((x) => [x.id, x.id === t.active.id])),
+      expIs: Object.fromEntries(steps.map((x) => [x.id, x.id === e.active.id]))
     };
   }
 }
