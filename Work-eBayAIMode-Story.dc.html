@@ -157,9 +157,7 @@ a:hover{color:#0654C4;text-decoration:underline}
 
     <div style="display:flex;align-items:center;gap:12px 16px;flex-wrap:wrap;margin-top:32px">
       <sc-if value="{{ hasFull }}" hint-placeholder-val="{{ true }}"><a class="btn-pri" href="{{ fullCaseUrl }}" style="display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 24px;border-radius:999px;background:#0968F6;color:#ffffff;font-size:15px;font-weight:700;text-decoration:none">Read the full case study</a></sc-if>
-      <sc-if value="{{ hasProto }}" hint-placeholder-val="{{ true }}">
-        <a class="btn-sec" href="{{ prototypeUrl }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 22px;border-radius:999px;border:1.5px solid #0968F6;color:#0968F6;font-size:15px;font-weight:700;text-decoration:none">Open the prototype</a>
-      </sc-if>
+      <span style="display:inline-block;line-height:44px;font-size:15px;color:#707070">For the full prototype, please <a href="mailto:ladivalent@gmail.com?subject=AI%20Mode%20prototype%20access" style="font-weight:700">request access</a>.</span>
       <span style="font-size:15px;line-height:1.5"><b>Lia DiValentin</b> · <a href="mailto:ladivalent@gmail.com">ladivalent@gmail.com</a></span>
     </div>
   </div>
@@ -168,12 +166,11 @@ a:hover{color:#0654C4;text-decoration:underline}
 </div>
 </main>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props='{"fullCaseUrl":{"editor":"text","default":"Work-eBayAIMode-FromSize-CaseStudy.dc.html","tsType":"string","section":"Links"},"prototypeUrl":{"editor":"text","default":"https://claude.ai/artifact/VyNwswguAvE5YxmB1gSajy","tsType":"string","section":"Links"},"$preview":{"width":1440,"height":2700}}'>
+<script type="text/x-dc" data-dc-script data-props='{"fullCaseUrl":{"editor":"text","default":"Work-eBayAIMode-FromSize-CaseStudy.dc.html","tsType":"string","section":"Links"},"$preview":{"width":1440,"height":2700}}'>
 class Component extends DCLogic {
   renderVals() {
-    const url = String(this.props.prototypeUrl ?? "https://claude.ai/artifact/VyNwswguAvE5YxmB1gSajy").trim();
     const full = String(this.props.fullCaseUrl ?? "Work-eBayAIMode-FromSize-CaseStudy.dc.html").trim();
-    return { prototypeUrl: url, hasProto: !!url && url !== "#", fullCaseUrl: full, hasFull: !!full };
+    return { fullCaseUrl: full, hasFull: !!full };
   }
 }
 </script>

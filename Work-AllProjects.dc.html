@@ -124,12 +124,7 @@ section[id]{scroll-margin-top:64px}
     </figure>
       <div style="display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:28px">
         <sc-if value="{{ ebayCase.has }}" hint-placeholder-val="{{ false }}"><a class="btn-pri" href="{{ ebayCase.url }}" style="display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 22px;border-radius:999px;background:#191919;color:#ffffff;font-size:14px;font-weight:700;text-decoration:none">Read the case study</a></sc-if>
-        <sc-if value="{{ ebayProto.has }}" hint-placeholder-val="{{ true }}">
-          <a class="btn-sec" href="{{ ebayProto.url }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 20px;border-radius:999px;border:1.5px solid #191919;color:#191919;font-size:14px;font-weight:700;text-decoration:none;box-sizing:border-box">View the prototype<svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><path d="M14 4h6v6"></path><path d="M20 4 10 14"></path><path d="M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"></path></svg></a>
-        </sc-if>
-        <sc-if value="{{ ebayProto.slot }}" hint-placeholder-val="{{ false }}">
-          <span style="display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 20px;border-radius:999px;border:1.5px dashed #A3A3A3;color:#707070;font-size:14px;font-weight:700;box-sizing:border-box">[Prototype link · paste it in Tweaks]</span>
-        </sc-if>
+        <span style="display:inline-block;line-height:44px;font-size:14px;color:#707070">For the full prototype, please <a href="mailto:ladivalent@gmail.com?subject=AI%20Mode%20prototype%20access" style="color:#191919;font-weight:700">request access</a>.</span>
       </div>
   </div>
 </section>
@@ -357,7 +352,7 @@ section[id]{scroll-margin-top:64px}
 </div>
 </main>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props='{"ebayCaseStudy": {"editor": "text", "default": "Work-eBayAIMode-Story.dc.html", "tsType": "string", "section": "Case study links"}, "walmartCaseStudy": {"editor": "text", "default": "Work-WalmartSupplierOne-CaseStudy.dc.html", "tsType": "string", "section": "Case study links"}, "homeDepotCaseStudy": {"editor": "text", "default": "Work-HomeDepot-CaseStudy.dc.html", "tsType": "string", "section": "Case study links"}, "tasbCaseStudy": {"editor": "text", "default": "Work-TASB-CaseStudy.dc.html", "tsType": "string", "section": "Case study links"}, "armyCaseStudy": {"editor": "text", "default": "", "tsType": "string", "section": "Case study links"}, "ebayPrototype": {"editor": "text", "default": "https://claude.ai/artifact/VyNwswguAvE5YxmB1gSajy", "tsType": "string", "section": "Prototype links"}, "walmartPrototype": {"editor": "text", "default": "https://www.figma.com/design/vznMlkqYnXFZ2tRNI34mX2/S1-LD-Subsystem-Presentation?node-id=4001-37583&amp;t=7tUXdnvCoykSyutK-1", "tsType": "string", "section": "Prototype links"}, "homeDepotPrototype": {"editor": "text", "default": "https://vimeo.com/667535643", "tsType": "string", "section": "Prototype links"}, "tasbPrototype": {"editor": "text", "default": "https://www.tasb.org/search?query=inside+rm", "tsType": "string", "section": "Site links"}, "armyPrototype": {"editor": "text", "default": "", "tsType": "string", "section": "Site links"}, "showLinkSlots": {"editor": "boolean", "default": false, "tsType": "boolean", "section": "Display"}, "$preview": {"width": 1440, "height": 10100}}'>
+<script type="text/x-dc" data-dc-script data-props='{"ebayCaseStudy": {"editor": "text", "default": "Work-eBayAIMode-Story.dc.html", "tsType": "string", "section": "Case study links"}, "walmartCaseStudy": {"editor": "text", "default": "Work-WalmartSupplierOne-CaseStudy.dc.html", "tsType": "string", "section": "Case study links"}, "homeDepotCaseStudy": {"editor": "text", "default": "Work-HomeDepot-CaseStudy.dc.html", "tsType": "string", "section": "Case study links"}, "tasbCaseStudy": {"editor": "text", "default": "Work-TASB-CaseStudy.dc.html", "tsType": "string", "section": "Case study links"}, "armyCaseStudy": {"editor": "text", "default": "", "tsType": "string", "section": "Case study links"}, "walmartPrototype": {"editor": "text", "default": "https://www.figma.com/design/vznMlkqYnXFZ2tRNI34mX2/S1-LD-Subsystem-Presentation?node-id=4001-37583&amp;t=7tUXdnvCoykSyutK-1", "tsType": "string", "section": "Prototype links"}, "homeDepotPrototype": {"editor": "text", "default": "https://vimeo.com/667535643", "tsType": "string", "section": "Prototype links"}, "tasbPrototype": {"editor": "text", "default": "https://www.tasb.org/search?query=inside+rm", "tsType": "string", "section": "Site links"}, "armyPrototype": {"editor": "text", "default": "", "tsType": "string", "section": "Site links"}, "showLinkSlots": {"editor": "boolean", "default": false, "tsType": "boolean", "section": "Display"}, "$preview": {"width": 1440, "height": 10100}}'>
 class Component extends DCLogic {
   componentDidMount() {
     const ids = ["ebay", "walmart", "homedepot", "tasb", "army"];
@@ -390,7 +385,7 @@ class Component extends DCLogic {
     window.removeEventListener("resize", this._onScroll);
   }
   renderVals() {
-    const defaults = { ebayCaseStudy: "Work-eBayAIMode-Story.dc.html", walmartCaseStudy: "Work-WalmartSupplierOne-CaseStudy.dc.html", homeDepotCaseStudy: "Work-HomeDepot-CaseStudy.dc.html", tasbCaseStudy: "Work-TASB-CaseStudy.dc.html", armyCaseStudy: "", ebayPrototype: "https://claude.ai/artifact/VyNwswguAvE5YxmB1gSajy", walmartPrototype: "https://www.figma.com/design/vznMlkqYnXFZ2tRNI34mX2/S1-LD-Subsystem-Presentation?node-id=4001-37583&t=7tUXdnvCoykSyutK-1", homeDepotPrototype: "https://vimeo.com/667535643", tasbPrototype: "https://www.tasb.org/search?query=inside+rm", armyPrototype: "" };
+    const defaults = { ebayCaseStudy: "Work-eBayAIMode-Story.dc.html", walmartCaseStudy: "Work-WalmartSupplierOne-CaseStudy.dc.html", homeDepotCaseStudy: "Work-HomeDepot-CaseStudy.dc.html", tasbCaseStudy: "Work-TASB-CaseStudy.dc.html", armyCaseStudy: "", walmartPrototype: "https://www.figma.com/design/vznMlkqYnXFZ2tRNI34mX2/S1-LD-Subsystem-Presentation?node-id=4001-37583&t=7tUXdnvCoykSyutK-1", homeDepotPrototype: "https://vimeo.com/667535643", tasbPrototype: "https://www.tasb.org/search?query=inside+rm", armyPrototype: "" };
     const showSlots = this.props.showLinkSlots ?? false;
     const link = (key) => {
       const url = String(this.props[key] ?? defaults[key] ?? "").trim();
@@ -398,7 +393,6 @@ class Component extends DCLogic {
       return { url: url, has: has, slot: !has && showSlots };
     };
     return {
-      ebayProto: link("ebayPrototype"),
       walmartProto: link("walmartPrototype"),
       homeDepotProto: link("homeDepotPrototype"),
       tasbProto: link("tasbPrototype"),
