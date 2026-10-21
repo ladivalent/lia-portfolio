@@ -22,10 +22,7 @@
       .sh-row{height:auto !important;flex-wrap:wrap !important;gap:0 !important;padding:12px 16px 0 !important}
       .sh-name{flex:1 0 100%;line-height:24px}
       .sh-nav{flex:1 0 100%;flex-wrap:nowrap !important;justify-content:space-between !important;gap:0 !important;margin:0 -8px;width:calc(100% + 16px)}
-      .sh-nav > a,.sh-nav button{padding:0 8px !important;white-space:nowrap}
-      .sh-work{position:static !important}
-      .sh-menu{left:16px !important;right:16px !important}
-      .sh-menu > [role="menu"]{min-width:0 !important}
+      .sh-nav > a{padding:0 8px !important;white-space:nowrap}
     }
   </style>
 </helmet>
@@ -36,25 +33,7 @@
     <nav class="sh-nav" aria-label="Primary" style="display:flex;align-items:center;gap:4px;flex-wrap:wrap;justify-content:flex-end">
       <a href="Home.dc.html" aria-current="{{ homeCur }}" style="display:inline-flex;align-items:center;height:44px;padding:0 12px;font-size:15px;color:{{ homeColor }};text-decoration:none;border-bottom:2px solid {{ homeLine }};border-top:2px solid transparent" style-hover="color:#0968F6">Home</a>
       <a href="Process.dc.html" aria-current="{{ processCur }}" style="display:inline-flex;align-items:center;height:44px;padding:0 12px;font-size:15px;color:{{ processColor }};text-decoration:none;border-bottom:2px solid {{ processLine }};border-top:2px solid transparent" style-hover="color:#0968F6">Process</a>
-      <div class="sh-work" data-workmenu="1" style="position:relative">
-        <button type="button" onClick="{{ toggleWork }}" onKeyDown="{{ onWorkKey }}" aria-haspopup="menu" aria-expanded="{{ workOpen }}" style="display:inline-flex;align-items:center;gap:6px;height:44px;padding:0 12px;font-size:15px;font-family:inherit;color:{{ workColor }};background:none;border:0;border-bottom:2px solid {{ workLine }};border-top:2px solid transparent;cursor:pointer" style-hover="color:#0968F6">Work <span aria-hidden="true" style="font-size:11px">▾</span></button>
-        <sc-if value="{{ workOpen }}" hint-placeholder-val="{{ false }}">
-          <div class="sh-menu" style="position:absolute;top:100%;right:0;padding-top:8px;z-index:60">
-          <div role="menu" onKeyDown="{{ onMenuKey }}" style="position:relative;min-width:300px;max-height:calc(100vh - 80px);overflow:auto;background:#fff;border:1px solid #E5E5E5;border-radius:12px;padding:8px;box-shadow:0 8px 24px rgba(0,0,0,.08);display:flex;flex-direction:column;gap:2px">
-            <div aria-hidden="true" style="padding:4px 12px 4px;font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#8F8F8F">Projects</div>
-            <a role="menuitem" href="Work-AllProjects.dc.html" style="display:flex;flex-direction:column;gap:2px;padding:10px 12px;border-radius:8px;color:#191919;text-decoration:none" style-hover="background:#F5F9FF;color:#191919" style-focus="background:#F5F9FF;outline:2px solid #0968F6"><span style="font-size:15px;font-weight:700">All projects</span><span style="font-size:13px;color:#707070">eBay · Walmart · The Home Depot · TASB · U.S. Army</span></a>
-            <a role="menuitem" href="Work-eBayAIMode.dc.html" style="display:flex;flex-direction:column;gap:2px;padding:10px 12px;border-radius:8px;color:#191919;text-decoration:none" style-hover="background:#F5F9FF;color:#191919" style-focus="background:#F5F9FF;outline:2px solid #0968F6"><span style="font-size:15px;font-weight:700">eBay AI Mode</span><span style="font-size:13px;color:#707070">Search redesign · agentic commerce</span></a>
-            <a role="menuitem" href="Work-WalmartSupplierOne.dc.html" style="display:flex;flex-direction:column;gap:2px;padding:10px 12px;border-radius:8px;color:#191919;text-decoration:none" style-hover="background:#F5F9FF;color:#191919" style-focus="background:#F5F9FF;outline:2px solid #0968F6"><span style="font-size:15px;font-weight:700">Walmart Supplier One</span><span style="font-size:13px;color:#707070">100+ apps → one supplier platform</span></a>
-            <a role="menuitem" href="Work-HomeDepot.dc.html" style="display:flex;flex-direction:column;gap:2px;padding:10px 12px;border-radius:8px;color:#191919;text-decoration:none" style-hover="background:#F5F9FF;color:#191919" style-focus="background:#F5F9FF;outline:2px solid #0968F6"><span style="font-size:15px;font-weight:700">The Home Depot</span><span style="font-size:13px;color:#707070">Purchase approvals for Pros</span></a>
-            <div aria-hidden="true" style="padding:12px 12px 4px;font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#8F8F8F">In progress</div>
-            <a role="menuitem" href="Work-SizePersonalization.dc.html" style="display:flex;flex-direction:column;gap:2px;padding:10px 12px;border-radius:8px;color:#191919;text-decoration:none" style-hover="background:#F5F9FF;color:#191919" style-focus="background:#F5F9FF;outline:2px solid #0968F6"><span style="font-size:15px;font-weight:700">Size Personalization</span><span style="font-size:13px;color:#707070">AI Size Intelligence · eBay</span></a>
-            <a role="menuitem" href="Work-LocalPickup.dc.html" style="display:flex;flex-direction:column;gap:2px;padding:10px 12px;border-radius:8px;color:#191919;text-decoration:none" style-hover="background:#F5F9FF;color:#191919" style-focus="background:#F5F9FF;outline:2px solid #0968F6"><span style="font-size:15px;font-weight:700">Local Pickup</span><span style="font-size:13px;color:#707070">Agentic Local Pickup · eBay</span></a>
-            <a role="menuitem" href="Work-Current.dc.html" style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 12px;border-radius:8px;color:#191919;text-decoration:none" style-hover="background:#F5F9FF;color:#191919" style-focus="background:#F5F9FF;outline:2px solid #0968F6"><span style="display:flex;flex-direction:column;gap:2px"><span style="font-size:15px;font-weight:700">Current Work</span><span style="font-size:13px;color:#707070">Sneak peek · by request</span></span><span style="display:inline-flex;color:#707070"><x-import component-from-global-scope="EBayEvoDesignSystem_61746e.Icon" name="Lock16" size="16" hint-size="16px,16px"></x-import></span></a>
-          </div>
-          </div>
-        
-        </sc-if>
-      </div>
+      <a href="Work-AllProjects.dc.html" aria-current="{{ workCur }}" style="display:inline-flex;align-items:center;height:44px;padding:0 12px;font-size:15px;color:{{ workColor }};text-decoration:none;border-bottom:2px solid {{ workLine }};border-top:2px solid transparent" style-hover="color:#0968F6">Work</a>
       <a href="Resume.dc.html" aria-current="{{ resumeCur }}" style="display:inline-flex;align-items:center;height:44px;padding:0 12px;font-size:15px;color:{{ resumeColor }};text-decoration:none;border-bottom:2px solid {{ resumeLine }};border-top:2px solid transparent" style-hover="color:#0968F6">Résumé</a>
       <a href="Contact.dc.html" aria-current="{{ contactCur }}" style="display:inline-flex;align-items:center;height:44px;padding:0 12px;font-size:15px;color:{{ contactColor }};text-decoration:none;border-bottom:2px solid {{ contactLine }};border-top:2px solid transparent" style-hover="color:#0968F6">Contact</a>
     </nav>
@@ -63,23 +42,6 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1200,&quot;height&quot;:64},&quot;active&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;home&quot;,&quot;options&quot;:[&quot;home&quot;,&quot;process&quot;,&quot;work&quot;,&quot;resume&quot;,&quot;contact&quot;],&quot;tsType&quot;:&quot;string&quot;}}">
 class Component extends DCLogic {
-  state = { workOpen: false };
-  componentDidMount() {
-    // Close the Work menu when clicking anywhere outside it, or on Esc.
-    this._outside = (e) => {
-      if (!this.state.workOpen) return;
-      const path = e.composedPath ? e.composedPath() : [];
-      const inside = path.some((n) => n && n.getAttribute && n.getAttribute("data-workmenu") === "1");
-      if (!inside) this.setState({ workOpen: false });
-    };
-    this._esc = (e) => { if (e.key === "Escape" && this.state.workOpen) this.setState({ workOpen: false }); };
-    document.addEventListener("pointerdown", this._outside, true);
-    document.addEventListener("keydown", this._esc);
-  }
-  componentWillUnmount() {
-    document.removeEventListener("pointerdown", this._outside, true);
-    document.removeEventListener("keydown", this._esc);
-  }
   renderVals() {
     const a = this.props.active ?? "home";
     const v = {};
@@ -89,29 +51,7 @@ class Component extends DCLogic {
       v[r + "Line"] = on ? "#191919" : "transparent";
       v[r + "Cur"] = on ? "page" : undefined;
     }
-    return {
-      ...v,
-      workOpen: this.state.workOpen,
-      toggleWork: () => this.setState(s => ({ workOpen: !s.workOpen })),
-      onWorkKey: (e) => {
-        if (e.key === "ArrowDown") {
-          e.preventDefault();
-          const wrap = e.currentTarget.parentElement;
-          this.setState({ workOpen: true }, () => {
-            const first = wrap.querySelector('[role="menuitem"]');
-            first && first.focus();
-          });
-        }
-        if (e.key === "Escape") this.setState({ workOpen: false });
-      },
-      onMenuKey: (e) => {
-        const items = [...e.currentTarget.querySelectorAll('[role="menuitem"]')];
-        const i = items.indexOf(document.activeElement);
-        if (e.key === "ArrowDown") { e.preventDefault(); items[(i + 1) % items.length].focus(); }
-        if (e.key === "ArrowUp") { e.preventDefault(); items[(i - 1 + items.length) % items.length].focus(); }
-        if (e.key === "Escape") { this.setState({ workOpen: false }); e.currentTarget.parentElement.querySelector("button").focus(); }
-      },
-    };
+    return v;
   }
 }
 </script>
