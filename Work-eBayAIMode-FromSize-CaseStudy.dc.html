@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>eBay AI Mode Case Study · From Size to AI Mode</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/tokens/fonts.css">
+<style>
+html,body{margin:0;padding:0;background:#ffffff;color:#191919;font-family:'Market Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+img{max-width:100%}
+a{color:#0968F6;text-decoration:none}
+a:hover{color:#0654C4;text-decoration:underline}
+::selection{background:#0968F6;color:#fff}
+.btn-pri:hover{background:#0654C4 !important;color:#ffffff !important;text-decoration:none !important}
+.btn-sec:hover{background:#EEF5FF !important;text-decoration:none !important}
+@media (max-width:760px){
+.r-g{grid-template-columns:minmax(0,1fr) !important}
+.r-g2{grid-template-columns:repeat(2,minmax(0,1fr)) !important}
+.r-h1{font-size:44px !important}
+.r-h2{font-size:30px !important}
+.r-pad{padding-top:64px !important;padding-bottom:64px !important}
+.r-hide{display:none !important}
+.r-fig{height:300px !important}
+.r-col{flex-direction:column !important;align-items:stretch !important}
+}
+</style>
+</helmet>
+<dc-import name="SiteHeader" active="work" hint-size="100%,64px"></dc-import>
+<main id="main">
+
+<div id="top" style="min-height:calc(100vh - 64px);background:#ffffff">
+
+<!-- ============ HERO ============ -->
+<section data-screen-label="Hero" style="padding:0 24px">
+  <div style="max-width:1040px;margin:0 auto;padding:56px 0 72px">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:64px;flex-wrap:wrap">
+      <div style="font-size:15px;font-weight:700;color:#191919">eBay <span style="color:#707070;font-weight:400">·</span> Core Search to AI Mode</div>
+      <div style="font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#707070">Portfolio case study</div>
+    </div>
+    <h1 class="r-h1" style="margin:0 0 20px;font-size:64px;line-height:1.05;font-weight:700;letter-spacing:-0.02em;max-width:820px;text-wrap:balance">eBay AI Mode</h1>
+    <div style="display:flex;align-items:center;gap:8px 12px;flex-wrap:wrap;margin:0 0 24px;font-size:24px;line-height:1.3">
+      <span style="color:#707070;text-decoration:line-through;text-decoration-thickness:2px">Redesign search</span>
+      <span style="color:#707070">→</span>
+      <span style="font-weight:700;color:#0968F6">Two small signals became an agent that asks first</span>
+    </div>
+    <p style="margin:0;font-size:19px;line-height:1.55;color:#191919;max-width:700px;text-wrap:pretty">We set out to redesign search, and it ended somewhere bigger. Shoppers kept typing a size or the words “near me,” and search treated both as noise. I led the work that turned those two signals into one confidence rule, verified seller data and a 12-team personalization effort. That foundation became AI Mode: an agent that acts when it's sure, asks once when it isn't, and never moves money on its own.</p>
+    <div style="display:flex;align-items:center;gap:16px 20px;margin:28px 0 0;flex-wrap:wrap">
+      <a class="btn-pri" href="#examples" style="display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 24px;border-radius:999px;background:#0968F6;color:#ffffff;font-size:15px;font-weight:700;text-decoration:none">See the worked examples</a>
+      <sc-if value="{{ hasProto }}" hint-placeholder-val="{{ true }}">
+        <a class="btn-sec" href="{{ prototypeUrl }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 22px;border-radius:999px;border:1.5px solid #0968F6;color:#0968F6;font-size:15px;font-weight:700;text-decoration:none">Open the prototype</a>
+      </sc-if>
+      <span style="font-size:14px;color:#707070">A 6 minute scroll · the signal, the spine, the system, then AI Mode</span>
+    </div>
+    <div class="r-g" style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px 0;border-top:1px solid #E5E5E5;margin-top:56px;padding-top:24px">
+      <div style="display:flex;flex-direction:column;gap:6px;padding-right:24px">
+        <div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#707070">My role</div>
+        <div style="font-size:15px;line-height:1.45">Design lead · led search, preferences and the Evo design system track</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:6px;padding-right:24px">
+        <div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#707070">The team</div>
+        <div style="font-size:15px;line-height:1.45">12 teams across selling, the buyer journey, AI, ads and global</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:6px;padding-right:24px">
+        <div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#707070">Timeline</div>
+        <div style="font-size:15px;line-height:1.45">A 9 month search initiative, then the AI Mode prototype</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#707070">Status</div>
+        <div style="font-size:15px;line-height:1.45">Size and local shipped in search · AI Mode is a concept prototype with sample data</div>
+      </div>
+    </div>
+    <div class="r-g" style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:40px">
+      <div style="border-top:3px solid #0968F6;background:#F7F7F7;border-radius:0 0 16px 16px;padding:18px 20px 20px">
+        <div style="font-size:34px;font-weight:700;letter-spacing:-0.01em">2</div>
+        <div style="font-size:13px;color:#707070;line-height:1.45;margin-top:4px">query signals search treated as noise: a size, and “near me”</div>
+      </div>
+      <div style="border-top:3px solid #0968F6;background:#F7F7F7;border-radius:0 0 16px 16px;padding:18px 20px 20px">
+        <div style="font-size:34px;font-weight:700;letter-spacing:-0.01em">1</div>
+        <div style="font-size:13px;color:#707070;line-height:1.45;margin-top:4px">confidence rule: act when sure, ask once when unsure</div>
+      </div>
+      <div style="border-top:3px solid #0968F6;background:#F7F7F7;border-radius:0 0 16px 16px;padding:18px 20px 20px">
+        <div style="font-size:34px;font-weight:700;letter-spacing:-0.01em">12</div>
+        <div style="font-size:13px;color:#707070;line-height:1.45;margin-top:4px">teams aligned on one preference model</div>
+      </div>
+      <div style="border-top:3px solid #0968F6;background:#F7F7F7;border-radius:0 0 16px 16px;padding:18px 20px 20px">
+        <div style="font-size:34px;font-weight:700;letter-spacing:-0.01em">12</div>
+        <div style="font-size:13px;color:#707070;line-height:1.45;margin-top:4px">AI Mode modes built on the same rule</div>
+      </div>
+    </div>
+    <div class="r-g" style="display:grid;grid-template-columns:minmax(0,1fr) 40px minmax(0,1fr);gap:16px;margin-top:40px;align-items:center">
+      <figure style="margin:0;display:flex;flex-direction:column;gap:8px">
+        <div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#707070">Where it started · search</div>
+        <div class="r-fig" style="height:340px;border:1px solid #E5E5E5;border-radius:16px;overflow:hidden;background:#ffffff"><img src="work-images/ebay-ai-mode-size10-desktop.webp" alt="eBay search results for nike air max 90 size 10, with a bar that says size 10 matches two sizes, which do you wear, and Men's 10 and Women's 10 chips" style="display:block;width:100%;height:100%;object-fit:cover;object-position:top left"></div>
+      </figure>
+      <div class="r-hide" style="text-align:center;font-size:24px;color:#707070">→</div>
+      <figure style="margin:0;display:flex;flex-direction:column;gap:8px">
+        <div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#0968F6">Where it ended · AI Mode</div>
+        <div class="r-fig" style="height:340px;border:1px solid #E5E5E5;border-radius:16px;overflow:hidden;background:#ffffff"><img src="work-images/ebay-ai-mode-home-agent.webp" alt="The eBay home with AI Mode in the header and a panel that says shop and sell with an agent that asks first, next to 12 ways to use it" style="display:block;width:100%;height:100%;object-fit:cover;object-position:top center"></div>
+      </figure>
+    </div>
+    <div style="margin-top:12px;font-size:13px;line-height:1.5;color:#707070">Final comps from the size filter system and the AI Mode prototype. Listings and prices are sample data.</div>
+  </div>
+</section>
+
+<!-- ============ HOW I WORK ============ -->
+<section data-screen-label="How I work" style="padding:0 24px;border-top:1px solid #E5E5E5">
+  <div style="max-width:1040px;margin:0 auto;padding:56px 0">
+    <div style="font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#707070;margin-bottom:24px">Three rules I work by</div>
+    <div class="r-g" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px">
+      <div style="border:1px solid #E5E5E5;border-radius:16px;padding:24px 26px;display:flex;flex-direction:column;gap:10px">
+        <div style="font-size:14px;font-weight:700;color:#0968F6">01</div>
+        <div style="font-size:17px;font-weight:700;line-height:1.3">Treat a repeat as a signal.</div>
+        <p style="margin:0;font-size:14px;line-height:1.6;color:#707070;text-wrap:pretty">If the same “noise” shows up every year, it's a use case hiding in the data, not an edge case to smooth over.</p>
+      </div>
+      <div style="border:1px solid #E5E5E5;border-radius:16px;padding:24px 26px;display:flex;flex-direction:column;gap:10px">
+        <div style="font-size:14px;font-weight:700;color:#0968F6">02</div>
+        <div style="font-size:17px;font-weight:700;line-height:1.3">Fix it where the data starts.</div>
+        <p style="margin:0;font-size:14px;line-height:1.6;color:#707070;text-wrap:pretty">A clean buyer experience can't be bolted on at search time. It has to start at the listing, with the seller.</p>
+      </div>
+      <div style="border:1px solid #E5E5E5;border-radius:16px;padding:24px 26px;display:flex;flex-direction:column;gap:10px">
+        <div style="font-size:14px;font-weight:700;color:#0968F6">03</div>
+        <div style="font-size:17px;font-weight:700;line-height:1.3">Go deep, then make it simple.</div>
+        <p style="margin:0;font-size:14px;line-height:1.6;color:#707070;text-wrap:pretty">You go deep into the breadth of a problem before you can bring back something simple, like one chip that asks one question.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 01 WHERE IT STARTED ============ -->
+<section data-screen-label="Where it started" style="padding:0 24px;border-top:1px solid #E5E5E5">
+  <div class="r-pad" style="max-width:1040px;margin:0 auto;padding:88px 0">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:16px;flex-wrap:wrap">
+      <div style="font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#707070">01 · Where it started</div>
+      <sc-if value="{{ showSignals }}" hint-placeholder-val="{{ true }}">
+        <span style="display:inline-flex;align-items:center;gap:6px;font-size:12px;background:#F7F7F7;border:1px solid #E5E5E5;border-radius:999px;padding:5px 12px;color:#707070"><b style="color:#0968F6">Signal</b> Framing the brief</span>
+      </sc-if>
+    </div>
+    <h2 class="r-h2" style="margin:0 0 24px;font-size:38px;line-height:1.15;font-weight:700;letter-spacing:-0.01em;max-width:760px;text-wrap:balance">Small fixes, compounding effects.</h2>
+    <p style="max-width:660px;margin:0 0 32px;font-size:17px;line-height:1.65;text-wrap:pretty">The brief looked modest: take the traditional parts of search and give them a modern spin. I broke it into three levers, each a small shift with a long tail.</p>
+    <div class="r-g" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px">
+      <div style="border:1px solid #E5E5E5;border-radius:16px;padding:22px 24px;display:flex;flex-direction:column;gap:8px">
+        <span style="display:inline-flex;width:32px;height:32px;border-radius:50%;background:#191919;color:#ffffff;align-items:center;justify-content:center;font-weight:700;font-size:14px">1</span>
+        <div style="font-size:17px;font-weight:700;line-height:1.3">How it's organized</div>
+        <p style="margin:0;font-size:14.5px;line-height:1.6;color:#545454;text-wrap:pretty">Group results by what the shopper is deciding between, not by how the catalog is stored.</p>
+      </div>
+      <div style="border:1px solid #E5E5E5;border-radius:16px;padding:22px 24px;display:flex;flex-direction:column;gap:8px">
+        <span style="display:inline-flex;width:32px;height:32px;border-radius:50%;background:#191919;color:#ffffff;align-items:center;justify-content:center;font-weight:700;font-size:14px">2</span>
+        <div style="font-size:17px;font-weight:700;line-height:1.3">How it's laid out</div>
+        <p style="margin:0;font-size:14.5px;line-height:1.6;color:#545454;text-wrap:pretty">A page with rhythm: density for scanning, and room where a choice needs it.</p>
+      </div>
+      <div style="border:1px solid #E5E5E5;border-radius:16px;padding:22px 24px;display:flex;flex-direction:column;gap:8px">
+        <span style="display:inline-flex;width:32px;height:32px;border-radius:50%;background:#191919;color:#ffffff;align-items:center;justify-content:center;font-weight:700;font-size:14px">3</span>
+        <div style="font-size:17px;font-weight:700;line-height:1.3">How it's ranked</div>
+        <p style="margin:0;font-size:14.5px;line-height:1.6;color:#545454;text-wrap:pretty">Reward listings that earn trust, so the right match rises, not the loudest one.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 02 THE SIGNAL ============ -->
+<section data-screen-label="The signal" style="padding:0 24px;border-top:1px solid #E5E5E5">
+  <div class="r-pad" style="max-width:1040px;margin:0 auto;padding:88px 0">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:16px;flex-wrap:wrap">
+      <div style="font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#707070">02 · The signal</div>
+      <sc-if value="{{ showSignals }}" hint-placeholder-val="{{ true }}">
+        <span style="display:inline-flex;align-items:center;gap:6px;font-size:12px;background:#F7F7F7;border:1px solid #E5E5E5;border-radius:999px;padding:5px 12px;color:#707070"><b style="color:#0968F6">Signal</b> Reframing the problem</span>
+      </sc-if>
+    </div>
+    <h2 class="r-h2" style="margin:0 0 24px;font-size:38px;line-height:1.15;font-weight:700;letter-spacing:-0.01em;max-width:760px;text-wrap:balance">The glitch that wasn't a glitch.</h2>
+    <p style="max-width:660px;margin:0 0 32px;font-size:17px;line-height:1.65;text-wrap:pretty">Two kinds of queries kept spiking in the same places every year: shoppers typing a size, and shoppers typing “near me” or “pick up Saturday.” Search treated both as noise, because neither fit how results were organized. My read was different: if it keeps happening, there's a reason.</p>
+    <figure style="margin:0;background:#F7F7F7;border-radius:16px;padding:24px 28px">
+      <div style="display:flex;gap:24px;flex-wrap:wrap;font-size:13px;color:#545454;margin-bottom:12px">
+        <span style="display:inline-flex;align-items:center;gap:8px"><span style="width:28px;border-top:3px solid #0968F6"></span>Size queries</span>
+        <span style="display:inline-flex;align-items:center;gap:8px"><span style="width:28px;border-top:3px dashed #B58500"></span>Local-intent queries</span>
+      </div>
+      <svg viewBox="0 0 1000 200" width="100%" height="200" preserveAspectRatio="none" aria-label="Illustrative chart: size queries and local-intent queries both spike in the same months each year" style="display:block;width:100%;height:200px">
+        <line x1="0" y1="190" x2="1000" y2="190" stroke="#C7C7C7" stroke-width="1"></line>
+        <polyline fill="none" stroke="#0968F6" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" points="0,150 80,148 160,140 220,70 260,140 340,146 420,150 500,144 580,138 640,60 690,136 760,146 840,140 900,40 950,130 1000,140"></polyline>
+        <polyline fill="none" stroke="#B58500" stroke-width="3" stroke-dasharray="8 6" stroke-linejoin="round" stroke-linecap="round" points="0,170 80,168 160,164 240,166 320,120 360,164 440,168 520,160 560,96 600,162 680,166 760,164 820,110 860,164 940,168 1000,166"></polyline>
+      </svg>
+      <div style="display:flex;justify-content:space-between;font-size:12px;color:#707070;margin-top:6px"><span>Jan</span><span>Jun</span><span>Dec</span></div>
+      <figcaption style="margin-top:12px;font-size:13px;line-height:1.5;color:#707070">Illustrative. It shows the shape of the pattern, not measured volumes.</figcaption>
+    </figure>
+    <div class="r-g" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px">
+      <div style="border:1px solid #E5E5E5;border-radius:16px;padding:22px 24px;display:flex;flex-direction:column;gap:8px">
+        <div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#0968F6">Size</div>
+        <div style="font-size:30px;font-weight:700;letter-spacing:-0.01em">#1</div>
+        <div style="font-size:15px;line-height:1.55">Size and fit is the top reason online apparel gets returned, cited by 53% of apparel decision-makers.</div>
+        <div style="font-size:14px;line-height:1.6;color:#545454;text-wrap:pretty">Size went in as free text and came out as free text. The seller knew which 12 they meant. The platform didn't.</div>
+        <div style="font-size:12px;color:#707070">Coresight Research, 2023</div>
+      </div>
+      <div style="border:1px solid #E5E5E5;border-radius:16px;padding:22px 24px;display:flex;flex-direction:column;gap:8px">
+        <div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#B58500">Local intent</div>
+        <div style="font-size:30px;font-weight:700;letter-spacing:-0.01em">11%</div>
+        <div style="font-size:15px;line-height:1.55">of 500 traced searches with local words ended in a local pickup.</div>
+        <div style="font-size:14px;line-height:1.6;color:#545454;text-wrap:pretty">41% left for another app mid-search, 27% left at the shipping price, and 21% got stuck in filters.</div>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:14px;margin-top:16px;background:#F7F7F7;border-radius:12px;padding:16px 20px;font-size:15px;line-height:1.5"><span><b>Each spike was a use case hiding in the data.</b> Not an edge case to smooth over, but a door to a new mode of search.</span></div>
+  </div>
+</section>
+
+<!-- ============ 03 SIZE ============ -->
+<section id="examples" data-screen-label="Worked example: size" style="padding:0 24px;border-top:1px solid #E5E5E5">
+  <div class="r-pad" style="max-width:1040px;margin:0 auto;padding:88px 0">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:16px;flex-wrap:wrap">
+      <div style="font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#707070">03 · Worked example 1 · Size</div>
+      <sc-if value="{{ showSignals }}" hint-placeholder-val="{{ true }}">
+        <span style="display:inline-flex;align-items:center;gap:6px;font-size:12px;background:#F7F7F7;border:1px solid #E5E5E5;border-radius:999px;padding:5px 12px;color:#707070"><b style="color:#0968F6">Signal</b> Designing for ambiguity</span>
+      </sc-if>
+    </div>
+    <h2 class="r-h2" style="margin:0 0 24px;font-size:38px;line-height:1.15;font-weight:700;letter-spacing:-0.01em;max-width:760px;text-wrap:balance">Size 8 has eight meanings.</h2>
+    <p style="max-width:660px;margin:0 0 32px;font-size:17px;line-height:1.65;text-wrap:pretty">A shopper types one number. Before search can filter, it has to know the category, gender, fit and country behind it. Size isn't a value. It's a token that has to be read in context.</p>
+    <div class="r-col" style="display:flex;align-items:center;gap:28px;background:#F7F7F7;border-radius:16px;padding:28px">
+      <div style="flex:none;display:flex;flex-direction:column;align-items:center;gap:4px;min-width:120px">
+        <div style="font-size:72px;font-weight:700;line-height:1;letter-spacing:-0.02em">8</div>
+        <div style="font-size:13px;color:#707070">one input</div>
+      </div>
+      <div class="r-g2" style="flex:1;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px">
+        <div style="background:#ffffff;border:1px solid #E5E5E5;border-radius:12px;padding:12px 10px;text-align:center;font-size:14px;font-weight:700">US women's clothing</div>
+        <div style="background:#ffffff;border:1px solid #E5E5E5;border-radius:12px;padding:12px 10px;text-align:center;font-size:14px;font-weight:700">US men's shoe</div>
+        <div style="background:#ffffff;border:1px solid #E5E5E5;border-radius:12px;padding:12px 10px;text-align:center;font-size:14px;font-weight:700">UK apparel</div>
+        <div style="background:#ffffff;border:1px solid #E5E5E5;border-radius:12px;padding:12px 10px;text-align:center;font-size:14px;font-weight:700">EU 38, mapped</div>
+        <div style="background:#ffffff;border:1px solid #E5E5E5;border-radius:12px;padding:12px 10px;text-align:center;font-size:14px;font-weight:700">JP 24.5 cm shoe</div>
+        <div style="background:#ffffff;border:1px solid #E5E5E5;border-radius:12px;padding:12px 10px;text-align:center;font-size:14px;font-weight:700">Brand A ≠ Brand B</div>
+        <div style="background:#ffffff;border:1px solid #E5E5E5;border-radius:12px;padding:12px 10px;text-align:center;font-size:14px;font-weight:700">Narrow or wide fit</div>
+        <div style="background:#ffffff;border:1px solid #E5E5E5;border-radius:12px;padding:12px 10px;text-align:center;font-size:14px;font-weight:700">Kids or adult</div>
+      </div>
+    </div>
+
+    <div style="margin-top:40px">
+      <div style="font-size:15px;font-weight:700;margin-bottom:6px">So the response follows how sure the system is</div>
+      <p style="max-width:660px;margin:0 0 16px;font-size:14.5px;line-height:1.6;color:#545454;text-wrap:pretty">Free text keeps the number and drops the context that gives it meaning. We landed on three responses, calibrated to confidence.</p>
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <div class="r-g" style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr);gap:28px;border:1px solid #E5E5E5;border-radius:20px;padding:28px;align-items:center">
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#707070">Sure · 90% and up</div>
+            <div style="font-size:22px;font-weight:700;line-height:1.3">Act quietly.</div>
+            <p style="margin:0;font-size:15px;line-height:1.6;color:#545454;text-wrap:pretty">Apply the size and pin a receipt with a one-tap undo. Size 11 on Jordans applies men's 11, with women's 11 one tap away. EU 42 converts and includes US M8.5, US W10 and UK 7.5 listings.</p>
+          </div>
+          <figure style="margin:0;height:260px;border:1px solid #E5E5E5;border-radius:12px;overflow:hidden;background:#ffffff"><img src="work-images/ebay-ai-mode-jordan11-desktop.webp" alt="Search results for Jordan 1 low size 11 with US M 11 / W 12.5 applied and a note that most results are men's, so size 11 means men's 11, with a Use women's 11 chip" style="display:block;width:100%;height:100%;object-fit:cover;object-position:top left"></figure>
+        </div>
+        <div class="r-g" style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr);gap:28px;border:1.5px solid #0968F6;border-radius:20px;padding:28px;align-items:center">
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#0968F6">Unsure · 50 to 89%</div>
+            <div style="font-size:22px;font-weight:700;line-height:1.3">Ask once.</div>
+            <p style="margin:0;font-size:15px;line-height:1.6;color:#545454;text-wrap:pretty">Friendly chips with the translation printed on them, and the results stay visible behind the question. Size 10 on Air Max 90 asks: men's 10 or women's 10?</p>
+          </div>
+          <figure style="margin:0;height:260px;border:1px solid #E5E5E5;border-radius:12px;overflow:hidden;background:#ffffff"><img src="work-images/ebay-ai-mode-size10-desktop.webp" alt="Search results for nike air max 90 size 10 with a bar that says size 10 matches two sizes, which do you wear, and Men's 10 and Women's 10 chips, results still visible" style="display:block;width:100%;height:100%;object-fit:cover;object-position:top left"></figure>
+        </div>
+        <div style="border:1.5px dashed #C7C7C7;border-radius:20px;padding:24px 28px;display:flex;flex-direction:column;gap:8px">
+          <div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#707070">Weak signal · under 50%</div>
+          <div style="font-size:22px;font-weight:700;line-height:1.3">Educate, don't filter.</div>
+          <p style="margin:0;font-size:15px;line-height:1.6;color:#545454;max-width:760px;text-wrap:pretty">Show the full results with size guidance inline. Never guess a filter the shopper didn't give, so nothing they wanted gets hidden.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="r-g" style="display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr) minmax(0,1fr);gap:16px;margin-top:40px;align-items:center">
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="font-size:15px;font-weight:700">On mobile, the translation sits on the tile</div>
+        <p style="margin:0;font-size:14.5px;line-height:1.6;color:#545454;text-wrap:pretty">The size sheet puts men's and women's sizes that fit the same on one tile, so a shopper sees M 10 and W 11.5 together instead of doing the math.</p>
+      </div>
+      <figure style="margin:0;display:flex;flex-direction:column;gap:8px">
+        <div style="border:1px solid #E5E5E5;border-radius:24px;overflow:hidden;background:#ffffff;aspect-ratio:780/1688"><img src="work-images/ebay-ai-mode-size10-mobile.webp" alt="Mobile search results with the size 10 matches two sizes question and Men's 10 and Women's 10 chips" style="display:block;width:100%;height:100%;object-fit:cover"></div>
+        <figcaption style="font-size:12.5px;line-height:1.45;color:#707070;text-align:center">Results</figcaption>
+      </figure>
+      <figure style="margin:0;display:flex;flex-direction:column;gap:8px">
+        <div style="border:1px solid #E5E5E5;border-radius:24px;overflow:hidden;background:#ffffff;aspect-ratio:780/1688"><img src="work-images/ebay-ai-mode-size10-sheet.webp" alt="Mobile size sheet where each tile shows a men's and a women's size that fit the same" style="display:block;width:100%;height:100%;object-fit:cover"></div>
+        <figcaption style="font-size:12.5px;line-height:1.45;color:#707070;text-align:center">Size sheet</figcaption>
+      </figure>
+    </div>
+
+    <div style="margin-top:32px;background:#F7F7F7;border-radius:16px;padding:18px 24px;font-size:14px;line-height:1.6;color:#363636;max-width:900px;text-wrap:pretty"><b style="color:#191919">Set aside along the way:</b> a blocking modal (it slowed experts down), silent personalization (it tested as creepy), and “fix the data first” (a multi-year wait).</div>
+  </div>
+</section>
+
+<!-- ============ 04 LOCAL ============ -->
+<section data-screen-label="Worked example: local" style="padding:0 24px;border-top:1px solid #E5E5E5">
+  <div class="r-pad" style="max-width:1040px;margin:0 auto;padding:88px 0">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:16px;flex-wrap:wrap">
+      <div style="font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#707070">04 · Worked example 2 · Local intent</div>
+      <sc-if value="{{ showSignals }}" hint-placeholder-val="{{ true }}">
+        <span style="display:inline-flex;align-items:center;gap:6px;font-size:12px;background:#F7F7F7;border:1px solid #E5E5E5;border-radius:999px;padding:5px 12px;color:#707070"><b style="color:#0968F6">Signal</b> Exploration and tradeoffs</span>
+      </sc-if>
+    </div>
+    <h2 class="r-h2" style="margin:0 0 24px;font-size:38px;line-height:1.15;font-weight:700;letter-spacing:-0.01em;max-width:760px;text-wrap:balance">eBay couldn't hear “near me.”</h2>
+    <p style="max-width:660px;margin:0 0 32px;font-size:17px;line-height:1.65;text-wrap:pretty">Buyers typed “couch near me, pick up Saturday.” Search heard “couch,” sent a sectional from 800 miles away with $120 of freight, and they left for Facebook Marketplace. We tried three ways to respond.</p>
+    <div class="r-g" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px">
+      <div style="border:1px solid #E5E5E5;border-radius:16px;padding:22px 24px;display:flex;flex-direction:column;gap:8px">
+        <div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#707070">A · Set aside</div>
+        <div style="font-size:17px;font-weight:700;line-height:1.3">Always push local</div>
+        <p style="margin:0;font-size:14.5px;line-height:1.6;color:#545454;text-wrap:pretty">Felt pushy. People learn to ignore the module, and then they ignore us.</p>
+      </div>
+      <div style="border:1px solid #E5E5E5;border-radius:16px;padding:22px 24px;display:flex;flex-direction:column;gap:8px">
+        <div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#707070">B · Set aside</div>
+        <div style="font-size:17px;font-weight:700;line-height:1.3">Always ask first</div>
+        <p style="margin:0;font-size:14.5px;line-height:1.6;color:#545454;text-wrap:pretty">You typed “pick up Saturday,” so why is it asking? Asking about what you just said reads as not listening.</p>
+      </div>
+      <div style="border:1.5px solid #288034;background:#F0FAF2;border-radius:16px;padding:22px 24px;display:flex;flex-direction:column;gap:8px">
+        <div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#288034">C · Shipped</div>
+        <div style="font-size:17px;font-weight:700;line-height:1.3">Match the buyer's energy</div>
+        <p style="margin:0;font-size:14.5px;line-height:1.6;color:#363636;text-wrap:pretty">Said it clearly: act. Maybe: a gentle offer. Didn't mean it: nothing. It plays back “here's how I read that” and searches.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:32px">
+      <div style="font-size:15px;font-weight:700;margin-bottom:6px">How the agent reads six queries</div>
+      <p style="max-width:660px;margin:0 0 16px;font-size:14px;line-height:1.6;color:#707070;text-wrap:pretty">Each query gets a local-intent score. The score sets how much the agent does on its own.</p>
+      <div style="overflow-x:auto;border:1px solid #E5E5E5;border-radius:16px">
+        <div style="min-width:760px">
+          <div style="display:grid;grid-template-columns:minmax(0,2.2fr) minmax(0,1.1fr) 64px minmax(0,1.4fr) minmax(0,1.3fr);gap:12px;background:#F7F7F7;padding:12px 22px;border-bottom:1px solid #E5E5E5;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#707070">
+            <span>You type</span><span>It means</span><span style="text-align:right">Score</span><span>The agent</span><span>It asks</span>
+          </div>
+          <div style="display:grid;grid-template-columns:minmax(0,2.2fr) minmax(0,1.1fr) 64px minmax(0,1.4fr) minmax(0,1.3fr);gap:12px;padding:12px 22px;border-top:1px solid #F0F0F0;font-size:14px;line-height:1.45;align-items:center"><span>sectional couch near me, pick up Saturday, under $400</span><span>Clearly local</span><b style="text-align:right">0.94</b><span>Goes local first</span><span style="color:#545454">Nothing. Acts and shows its read</span></div>
+          <div style="display:grid;grid-template-columns:minmax(0,2.2fr) minmax(0,1.1fr) 64px minmax(0,1.4fr) minmax(0,1.3fr);gap:12px;padding:12px 22px;border-top:1px solid #F0F0F0;font-size:14px;line-height:1.45;align-items:center"><span>real Rolex Submariner, check in person</span><span>Wants proof</span><b style="text-align:right">0.88</b><span>Adds authentication</span><span style="color:#545454">One tip, then confirm</span></div>
+          <div style="display:grid;grid-template-columns:minmax(0,2.2fr) minmax(0,1.1fr) 64px minmax(0,1.4fr) minmax(0,1.3fr);gap:12px;padding:12px 22px;border-top:1px solid #F0F0F0;font-size:14px;line-height:1.45;align-items:center"><span>another barstool like last time</span><span>A repeat buyer</span><b style="text-align:right">0.74</b><span>Reuses saved wishes</span><span style="color:#545454">Leaves an undo note</span></div>
+          <div style="display:grid;grid-template-columns:minmax(0,2.2fr) minmax(0,1.1fr) 64px minmax(0,1.4fr) minmax(0,1.3fr);gap:12px;padding:12px 22px;border-top:1px solid #F0F0F0;font-size:14px;line-height:1.45;align-items:center"><span>sectional couch</span><span>Maybe local</span><b style="text-align:right">0.68</b><span>Normal results and a soft local card</span><span style="color:#545454">A gentle chip</span></div>
+          <div style="display:grid;grid-template-columns:minmax(0,2.2fr) minmax(0,1.1fr) 64px minmax(0,1.4fr) minmax(0,1.3fr);gap:12px;padding:12px 22px;border-top:1px solid #F0F0F0;font-size:14px;line-height:1.45;align-items:center"><span>need a desk this week</span><span>Could go either way</span><b style="text-align:right">0.55</b><span>Asks before searching</span><span style="color:#545454">“Pick up, or ship?”</span></div>
+          <div style="display:grid;grid-template-columns:minmax(0,2.2fr) minmax(0,1.1fr) 64px minmax(0,1.4fr) minmax(0,1.3fr);gap:12px;padding:12px 22px;border-top:1px solid #F0F0F0;font-size:14px;line-height:1.45;align-items:center"><span>USB-C cable 2m braided</span><span>Not local at all</span><b style="text-align:right">0.08</b><span>Stays out of the way</span><span style="color:#545454">Nothing</span></div>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:14px;margin-top:16px;border:1.5px solid #B58500;background:#FBF3DC;border-radius:12px;padding:16px 20px;font-size:15px;line-height:1.5;color:#3D2E00"><span><b>The rule that never bends:</b> if it can't be undone, like a trip, a payment or a meetup, the agent asks first. Every time, at any confidence.</span></div>
+    <div style="margin-top:24px;background:#191919;color:#fff;border-radius:16px;padding:22px 26px;max-width:860px">
+      <div style="font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#A3A3A3;margin-bottom:6px">Same spine on both threads</div>
+      <div style="font-size:18px;line-height:1.45;font-weight:700;text-wrap:pretty">Act when sure, ask once when unsure, educate when the signal is weak, and never move money on its own. That spine is what AI Mode was built on.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 05 THE DATA ============ -->
+<section data-screen-label="The data lives with the seller" style="padding:0 24px;border-top:1px solid #E5E5E5">
+  <div class="r-pad" style="max-width:1040px;margin:0 auto;padding:88px 0">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:16px;flex-wrap:wrap">
+      <div style="font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#707070">05 · The move everyone missed</div>
+      <sc-if value="{{ showSignals }}" hint-placeholder-val="{{ true }}">
+        <span style="display:inline-flex;align-items:center;gap:6px;font-size:12px;background:#F7F7F7;border:1px solid #E5E5E5;border-radius:999px;padding:5px 12px;color:#707070"><b style="color:#0968F6">Signal</b> Systems thinking</span>
+      </sc-if>
+    </div>
+    <h2 class="r-h2" style="margin:0 0 24px;font-size:38px;line-height:1.15;font-weight:700;letter-spacing:-0.01em;max-width:760px;text-wrap:balance">The data lives with the seller.</h2>
+    <p style="max-width:660px;margin:0 0 32px;font-size:17px;line-height:1.65;text-wrap:pretty">A clean buyer experience can't be bolted on at search time. Both fixes had to go upstream, to the listing. For size, that means capturing a verified size the moment a seller enters it. For local, it means showing sellers they can list for pickup, and why it pays.</p>
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <div style="border:1px solid #E5E5E5;border-radius:16px;padding:22px 24px">
+        <div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#0968F6;margin-bottom:14px">Size</div>
+        <div class="r-g" style="display:grid;grid-template-columns:minmax(0,1fr) 28px minmax(0,1fr) 28px minmax(0,1fr);gap:10px;align-items:stretch">
+          <div style="border:1.5px solid #191919;border-radius:12px;padding:14px 16px;background:#fff"><div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#707070;margin-bottom:4px">Fix it here</div><div style="font-size:15px;font-weight:700;margin-bottom:4px">Seller listing</div><div style="font-size:13.5px;line-height:1.5;color:#545454">Capture a structured, verified size, not free text.</div></div>
+          <div class="r-hide" style="display:flex;align-items:center;justify-content:center;color:#707070">→</div>
+          <div style="border:1px solid #E5E5E5;border-radius:12px;padding:14px 16px;background:#fff"><div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#707070;margin-bottom:4px">So this works</div><div style="font-size:15px;font-weight:700;margin-bottom:4px">Search and filters</div><div style="font-size:13.5px;line-height:1.5;color:#545454">Match on records we trust, not guesses.</div></div>
+          <div class="r-hide" style="display:flex;align-items:center;justify-content:center;color:#707070">→</div>
+          <div style="border:1.5px solid #288034;background:#F0FAF2;border-radius:12px;padding:14px 16px"><div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#288034;margin-bottom:4px">And the buyer gets</div><div style="font-size:15px;font-weight:700;margin-bottom:4px">Verified inventory</div><div style="font-size:13.5px;line-height:1.5;color:#363636">Search by size and see only what's confirmed to fit.</div></div>
+        </div>
+      </div>
+      <div style="border:1px solid #E5E5E5;border-radius:16px;padding:22px 24px">
+        <div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#B58500;margin-bottom:14px">Local</div>
+        <div class="r-g" style="display:grid;grid-template-columns:minmax(0,1fr) 28px minmax(0,1fr) 28px minmax(0,1fr);gap:10px;align-items:stretch">
+          <div style="border:1.5px solid #191919;border-radius:12px;padding:14px 16px;background:#fff"><div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#707070;margin-bottom:4px">Fix it here</div><div style="font-size:15px;font-weight:700;margin-bottom:4px">Seller listing</div><div style="font-size:13.5px;line-height:1.5;color:#545454">Show sellers pickup is an option: a verified handoff and instant payout instead of $120+ freight.</div></div>
+          <div class="r-hide" style="display:flex;align-items:center;justify-content:center;color:#707070">→</div>
+          <div style="border:1px solid #E5E5E5;border-radius:12px;padding:14px 16px;background:#fff"><div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#707070;margin-bottom:4px">So this works</div><div style="font-size:15px;font-weight:700;margin-bottom:4px">Search and AI Mode</div><div style="font-size:13.5px;line-height:1.5;color:#545454">Hear “near me” and route to pickup inventory.</div></div>
+          <div class="r-hide" style="display:flex;align-items:center;justify-content:center;color:#707070">→</div>
+          <div style="border:1.5px solid #288034;background:#F0FAF2;border-radius:12px;padding:14px 16px"><div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#288034;margin-bottom:4px">And the buyer gets</div><div style="font-size:15px;font-weight:700;margin-bottom:4px">Pickup today</div><div style="font-size:13.5px;line-height:1.5;color:#363636">A code that releases payment only at the handoff.</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="r-g" style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;margin-top:16px;align-items:start">
+      <div style="border:1.5px solid #0968F6;background:#F5F9FF;border-radius:16px;padding:22px 24px">
+        <div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#0968F6;margin-bottom:8px">Educating the seller, at the moment it helps</div>
+        <div style="font-size:15px;line-height:1.55;text-wrap:pretty">“3 buyers within 5 mi searched sectionals this week. Saturday morning is your strongest window. Suggested price: $360 to $395.”</div>
+      </div>
+      <div style="border:1px solid #E5E5E5;border-radius:16px;padding:22px 24px">
+        <div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#707070;margin-bottom:8px">Why it matters</div>
+        <div style="font-size:15px;line-height:1.55;text-wrap:pretty">Selling locally has to be less work than Facebook, or nobody lists and the shelf stays empty.</div>
+      </div>
+    </div>
+    <p style="max-width:720px;margin:24px 0 0;font-size:17px;line-height:1.65;text-wrap:pretty">It read like fixation on small details. It was a cross-domain initiative with real return: verified seller data and new seller supply, feeding a buyer experience that finally kept its promise.</p>
+  </div>
+</section>
+
+<!-- ============ 06 COLLABORATION ============ -->
+<section data-screen-label="The collaborative build" style="padding:0 24px;border-top:1px solid #E5E5E5">
+  <div class="r-pad" style="max-width:1040px;margin:0 auto;padding:88px 0">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:16px;flex-wrap:wrap">
+      <div style="font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#707070">06 · The collaborative build</div>
+      <sc-if value="{{ showSignals }}" hint-placeholder-val="{{ true }}">
+        <span style="display:inline-flex;align-items:center;gap:6px;font-size:12px;background:#F7F7F7;border:1px solid #E5E5E5;border-radius:999px;padding:5px 12px;color:#707070"><b style="color:#0968F6">Signal</b> Cross-team leadership</span>
+      </sc-if>
+    </div>
+    <h2 class="r-h2" style="margin:0 0 24px;font-size:38px;line-height:1.15;font-weight:700;letter-spacing:-0.01em;max-width:760px;text-wrap:balance">One search problem became a 12‑team personalization initiative.</h2>
+    <p style="max-width:660px;margin:0 0 24px;font-size:17px;line-height:1.65;text-wrap:pretty">A sneaker sizing query pulled twelve teams into one preference model. Search is where I led, and the dependencies radiated out from it. Design was the connective tissue.</p>
+    <div style="display:flex;gap:10px 18px;flex-wrap:wrap;margin-bottom:16px;font-size:13px;color:#545454;align-items:center">
+      <span style="display:inline-flex;align-items:center;gap:8px"><span style="display:inline-flex;align-items:center;background:#0968F6;color:#fff;border-radius:999px;padding:2px 10px;font-size:12px;font-weight:700">Led</span></span>
+      <span style="display:inline-flex;align-items:center;gap:8px"><span style="display:inline-flex;align-items:center;border:1.5px solid #0968F6;color:#0968F6;border-radius:999px;padding:1px 10px;font-size:12px;font-weight:700">Co-designed</span></span>
+      <span style="display:inline-flex;align-items:center;gap:8px"><span style="display:inline-flex;align-items:center;background:#F7F7F7;border:1px solid #E5E5E5;color:#545454;border-radius:999px;padding:1px 10px;font-size:12px;font-weight:700">Consulted</span></span>
+      <span style="display:inline-flex;align-items:center;gap:8px"><span style="display:inline-flex;align-items:center;border:1.5px dashed #8F8F8F;color:#545454;border-radius:999px;padding:1px 10px;font-size:12px;font-weight:700">Aligned</span></span>
+    </div>
+    <div class="r-g2" style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px">
+      <div style="border:2px solid #0968F6;background:#F5F9FF;border-radius:14px;padding:14px 16px;display:flex;flex-direction:column;gap:6px"><div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#0968F6">Journey · origin</div><div style="font-size:15px;font-weight:700">Search and results</div><span style="align-self:flex-start;background:#0968F6;color:#fff;border-radius:999px;padding:2px 10px;font-size:12px;font-weight:700">Led</span></div>
+      <div style="border:1px solid #E5E5E5;border-radius:14px;padding:14px 16px;display:flex;flex-direction:column;gap:6px"><div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#707070">Journey</div><div style="font-size:15px;font-weight:700">My account · preferences</div><span style="align-self:flex-start;background:#0968F6;color:#fff;border-radius:999px;padding:2px 10px;font-size:12px;font-weight:700">Led</span></div>
+      <div style="border:1px solid #E5E5E5;border-radius:14px;padding:14px 16px;display:flex;flex-direction:column;gap:6px"><div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#707070">Governance</div><div style="font-size:15px;font-weight:700">Design system (Evo)</div><span style="align-self:flex-start;background:#0968F6;color:#fff;border-radius:999px;padding:2px 10px;font-size:12px;font-weight:700">Led</span></div>
+      <div style="border:1px solid #E5E5E5;border-radius:14px;padding:14px 16px;display:flex;flex-direction:column;gap:6px"><div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#707070">Supply</div><div style="font-size:15px;font-weight:700">Seller listing</div><span style="align-self:flex-start;border:1.5px solid #0968F6;color:#0968F6;border-radius:999px;padding:1px 10px;font-size:12px;font-weight:700">Co-designed</span></div>
+      <div style="border:1px solid #E5E5E5;border-radius:14px;padding:14px 16px;display:flex;flex-direction:column;gap:6px"><div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#707070">Journey</div><div style="font-size:15px;font-weight:700">View item</div><span style="align-self:flex-start;border:1.5px solid #0968F6;color:#0968F6;border-radius:999px;padding:1px 10px;font-size:12px;font-weight:700">Co-designed</span></div>
+      <div style="border:1px solid #E5E5E5;border-radius:14px;padding:14px 16px;display:flex;flex-direction:column;gap:6px"><div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#707070">Platform</div><div style="font-size:15px;font-weight:700">AI</div><span style="align-self:flex-start;border:1.5px solid #0968F6;color:#0968F6;border-radius:999px;padding:1px 10px;font-size:12px;font-weight:700">Co-designed</span></div>
+      <div style="border:1px solid #E5E5E5;border-radius:14px;padding:14px 16px;display:flex;flex-direction:column;gap:6px"><div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#707070">Vertical slice</div><div style="font-size:15px;font-weight:700">Collectible sneakers and fashion</div><span style="align-self:flex-start;border:1.5px solid #0968F6;color:#0968F6;border-radius:999px;padding:1px 10px;font-size:12px;font-weight:700">Co-designed</span></div>
+      <div style="border:1px solid #E5E5E5;border-radius:14px;padding:14px 16px;display:flex;flex-direction:column;gap:6px"><div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#707070">Journey</div><div style="font-size:15px;font-weight:700">Discovery and recs</div><span style="align-self:flex-start;background:#F7F7F7;border:1px solid #E5E5E5;color:#545454;border-radius:999px;padding:1px 10px;font-size:12px;font-weight:700">Consulted</span></div>
+      <div style="border:1px solid #E5E5E5;border-radius:14px;padding:14px 16px;display:flex;flex-direction:column;gap:6px"><div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#707070">Monetization</div><div style="font-size:15px;font-weight:700">Ads · Promoted Listings</div><span style="align-self:flex-start;background:#F7F7F7;border:1px solid #E5E5E5;color:#545454;border-radius:999px;padding:1px 10px;font-size:12px;font-weight:700">Consulted</span></div>
+      <div style="border:1px solid #E5E5E5;border-radius:14px;padding:14px 16px;display:flex;flex-direction:column;gap:6px"><div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#707070">Global</div><div style="font-size:15px;font-weight:700">Global marketplace</div><span style="align-self:flex-start;background:#F7F7F7;border:1px solid #E5E5E5;color:#545454;border-radius:999px;padding:1px 10px;font-size:12px;font-weight:700">Consulted</span></div>
+      <div style="border:1px solid #E5E5E5;border-radius:14px;padding:14px 16px;display:flex;flex-direction:column;gap:6px"><div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#707070">Journey</div><div style="font-size:15px;font-weight:700">Homepage</div><span style="align-self:flex-start;border:1.5px dashed #8F8F8F;color:#545454;border-radius:999px;padding:1px 10px;font-size:12px;font-weight:700">Aligned</span></div>
+      <div style="border:1px solid #E5E5E5;border-radius:14px;padding:14px 16px;display:flex;flex-direction:column;gap:6px"><div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#707070">Journey</div><div style="font-size:15px;font-weight:700">Cart and checkout</div><span style="align-self:flex-start;border:1.5px dashed #8F8F8F;color:#545454;border-radius:999px;padding:1px 10px;font-size:12px;font-weight:700">Aligned</span></div>
+    </div>
+    <div style="margin-top:32px">
+      <div style="font-size:15px;font-weight:700;margin-bottom:14px">How we worked</div>
+      <div class="r-g" style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px">
+        <div style="background:#F7F7F7;border-radius:16px;padding:18px 20px;font-size:14px;line-height:1.55;text-wrap:pretty"><b style="display:block;font-size:15px;margin-bottom:4px">One source of truth</b>The end-to-end journey map every team designed against.</div>
+        <div style="background:#F7F7F7;border-radius:16px;padding:18px 20px;font-size:14px;line-height:1.55;text-wrap:pretty"><b style="display:block;font-size:15px;margin-bottom:4px">A weekly sync</b>Every surface in the room, every week.</div>
+        <div style="background:#F7F7F7;border-radius:16px;padding:18px 20px;font-size:14px;line-height:1.55;text-wrap:pretty"><b style="display:block;font-size:15px;margin-bottom:4px">A decision log</b>One page per decision: context, who was there, what changed.</div>
+        <div style="background:#F7F7F7;border-radius:16px;padding:18px 20px;font-size:14px;line-height:1.55;text-wrap:pretty"><b style="display:block;font-size:15px;margin-bottom:4px">A design system track</b>Ship one pattern, not twelve variations.</div>
+      </div>
+    </div>
+    <div class="r-g" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:16px">
+      <div style="border:1px solid #E5E5E5;border-radius:16px;padding:20px 22px"><div style="font-size:30px;font-weight:700;letter-spacing:-0.01em">12</div><div style="font-size:14px;color:#545454;line-height:1.5;margin-top:4px">teams aligned</div></div>
+      <div style="border:1px solid #E5E5E5;border-radius:16px;padding:20px 22px"><div style="font-size:30px;font-weight:700;letter-spacing:-0.01em">13</div><div style="font-size:14px;color:#545454;line-height:1.5;margin-top:4px">logged decisions</div></div>
+      <div style="border:1px solid #E5E5E5;border-radius:16px;padding:20px 22px"><div style="font-size:30px;font-weight:700;letter-spacing:-0.01em">9 months</div><div style="font-size:14px;color:#545454;line-height:1.5;margin-top:4px">initiative span</div></div>
+    </div>
+    <div style="margin-top:24px;background:#191919;color:#fff;border-radius:16px;padding:22px 26px;max-width:860px">
+      <div style="font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#A3A3A3;margin-bottom:6px">The hard part</div>
+      <div style="font-size:18px;line-height:1.45;font-weight:700;text-wrap:pretty">It wasn't the pixels. It was getting a room full of domains to agree a “small” size detail was a system-wide initiative, and holding on to the complexity that made it work when the pressure was to cut it.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 07 COMPOUNDS ============ -->
+<section data-screen-label="Why it compounds" style="padding:0 24px;border-top:1px solid #E5E5E5">
+  <div class="r-pad" style="max-width:1040px;margin:0 auto;padding:88px 0">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:16px;flex-wrap:wrap">
+      <div style="font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#707070">07 · Why it compounds</div>
+      <sc-if value="{{ showSignals }}" hint-placeholder-val="{{ true }}">
+        <span style="display:inline-flex;align-items:center;gap:6px;font-size:12px;background:#F7F7F7;border:1px solid #E5E5E5;border-radius:999px;padding:5px 12px;color:#707070"><b style="color:#0968F6">Signal</b> Platform thinking</span>
+      </sc-if>
+    </div>
+    <h2 class="r-h2" style="margin:0 0 24px;font-size:38px;line-height:1.15;font-weight:700;letter-spacing:-0.01em;max-width:760px;text-wrap:balance">One loop, both sides fed.</h2>
+    <p style="max-width:660px;margin:0 0 32px;font-size:17px;line-height:1.65;text-wrap:pretty">Buyer friction on an attribute becomes a signal back to the seller: “you may want to clarify this.” Or the marketplace just fixes it. That's the job.</p>
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:#F7F7F7;border-radius:16px;padding:24px 28px">
+      <span style="border:1.5px solid #0968F6;color:#0968F6;border-radius:999px;padding:9px 18px;font-size:14px;font-weight:700;background:#fff">Buyer gets stuck</span>
+      <span style="color:#707070">→</span>
+      <span style="border:1.5px solid #191919;border-radius:999px;padding:9px 18px;font-size:14px;font-weight:700;background:#fff">eBay reads the signal</span>
+      <span style="color:#707070">→</span>
+      <span style="border:1.5px solid #191919;border-radius:999px;padding:9px 18px;font-size:14px;font-weight:700;background:#fff">Seller clarifies the listing</span>
+      <span style="color:#707070">→</span>
+      <span style="border:1.5px solid #288034;color:#288034;background:#F0FAF2;border-radius:999px;padding:9px 18px;font-size:14px;font-weight:700">Next buyer finds it ↺</span>
+    </div>
+    <p style="margin:12px 0 0;font-size:13px;color:#707070">Buying informs selling. Selling informs buying. The loop keeps turning.</p>
+  </div>
+</section>
+
+<!-- ============ 08 AI MODE ============ -->
+<section data-screen-label="AI Mode" style="padding:0 24px;border-top:1px solid #E5E5E5">
+  <div class="r-pad" style="max-width:1040px;margin:0 auto;padding:88px 0">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:16px;flex-wrap:wrap">
+      <div style="font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#707070">08 · The zoom out · AI Mode</div>
+      <sc-if value="{{ showSignals }}" hint-placeholder-val="{{ true }}">
+        <span style="display:inline-flex;align-items:center;gap:6px;font-size:12px;background:#F7F7F7;border:1px solid #E5E5E5;border-radius:999px;padding:5px 12px;color:#707070"><b style="color:#0968F6">Signal</b> Agentic UX</span>
+      </sc-if>
+    </div>
+    <h2 class="r-h2" style="margin:0 0 24px;font-size:38px;line-height:1.15;font-weight:700;letter-spacing:-0.01em;max-width:760px;text-wrap:balance">Then search learned to understand intent.</h2>
+    <p style="max-width:660px;margin:0 0 32px;font-size:17px;line-height:1.65;text-wrap:pretty">Clean data unlocked the shift from a flat results page to an agent that asks first. In AI Mode, Auto runs the same searches from the worked examples with the same spine: act when sure, ask once when unsure, and nothing is bought, bid, listed or sent without the shopper's OK.</p>
+    <figure style="margin:0;display:flex;flex-direction:column;gap:10px">
+      <div class="r-fig" style="height:460px;border:1px solid #E5E5E5;border-radius:16px;overflow:hidden;background:#ffffff"><img src="work-images/ebay-ai-mode-start-modes.webp" alt="AI Mode on desktop: Welcome back, a composer that says describe what you're after, the line nothing is bought, bid, listed or sent without your OK, and chips for Auto and 12 modes" style="display:block;width:100%;height:100%;object-fit:cover;object-position:top center"></div>
+      <figcaption style="font-size:13px;line-height:1.5;color:#707070">AI Mode on desktop: one box, twelve modes, and one promise under the composer.</figcaption>
+    </figure>
+    <div class="r-g" style="display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr) minmax(0,1fr);gap:16px;margin-top:24px;align-items:center">
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <div style="border:1px solid #E5E5E5;border-radius:16px;padding:20px 22px">
+          <div style="font-size:16px;font-weight:700;margin-bottom:6px">One box, twelve modes</div>
+          <div style="font-size:14px;line-height:1.6;color:#545454;text-wrap:pretty">Each mode attaches criteria to the item: a price to wait for, a pickup window, a look, a fit. When the shopper just types, Auto picks the mode.</div>
+        </div>
+        <div style="border:1.5px solid #0968F6;background:#F5F9FF;border-radius:16px;padding:20px 22px">
+          <div style="font-size:16px;font-weight:700;margin-bottom:6px">An agent that asks first</div>
+          <div style="font-size:14px;line-height:1.6;color:#363636;text-wrap:pretty">It asks two quick things when it has to, shows its steps, and stops before money moves.</div>
+        </div>
+      </div>
+      <figure style="margin:0;display:flex;flex-direction:column;gap:8px">
+        <div style="border:1px solid #E5E5E5;border-radius:24px;overflow:hidden;background:#ffffff;aspect-ratio:786/1704"><img src="work-images/ebay-ai-mode-quick-question.webp" alt="AI Mode on iOS: one quick thing before I search, size 10 matches two sizes, which do you wear, with Men's 10 and Women's 10 and Show results" style="display:block;width:100%;height:100%;object-fit:cover"></div>
+        <figcaption style="font-size:12.5px;line-height:1.45;color:#707070;text-align:center">Asks once: which size 10?</figcaption>
+      </figure>
+      <figure style="margin:0;display:flex;flex-direction:column;gap:8px">
+        <div style="border:1px solid #E5E5E5;border-radius:24px;overflow:hidden;background:#ffffff;aspect-ratio:786/1704"><img src="work-images/ebay-ai-mode-quick-question-results.webp" alt="AI Mode on iOS: six picks for Nike Air Max 90 with Men's US 10 and Under $200 applied, a best match card, and a why it fits note" style="display:block;width:100%;height:100%;object-fit:cover"></div>
+        <figcaption style="font-size:12.5px;line-height:1.45;color:#707070;text-align:center">Then shows picks, each with why it fits</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 09 NEARBY NOW ============ -->
+<section data-screen-label="Nearby now" style="padding:0 24px;border-top:1px solid #E5E5E5">
+  <div class="r-pad" style="max-width:1040px;margin:0 auto;padding:88px 0">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:16px;flex-wrap:wrap">
+      <div style="font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#707070">09 · Local intent, in AI Mode</div>
+      <sc-if value="{{ showSignals }}" hint-placeholder-val="{{ true }}">
+        <span style="display:inline-flex;align-items:center;gap:6px;font-size:12px;background:#F7F7F7;border:1px solid #E5E5E5;border-radius:999px;padding:5px 12px;color:#707070"><b style="color:#0968F6">Signal</b> Designing for trust</span>
+      </sc-if>
+    </div>
+    <h2 class="r-h2" style="margin:0 0 24px;font-size:38px;line-height:1.15;font-weight:700;letter-spacing:-0.01em;max-width:760px;text-wrap:balance">Nearby now: an agent that shares its prediction before it acts.</h2>
+    <p style="max-width:660px;margin:0 0 32px;font-size:17px;line-height:1.65;text-wrap:pretty">Some intent is local and fast: I need it tonight, or I'd like it sold this week. If an agent can coordinate a pickup against your calendar, local should turn on. The rule that keeps it safe: the agent says what it predicts before it acts, on both sides of the trade.</p>
+    <div class="r-g" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px">
+      <div style="border:1px solid #E5E5E5;border-radius:16px;padding:22px 24px;display:flex;flex-direction:column;gap:12px">
+        <div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#0968F6">Buying agent</div>
+        <div style="align-self:flex-end;max-width:88%;background:#191919;color:#fff;border-radius:16px 16px 4px 16px;padding:12px 14px;font-size:14px;line-height:1.5">I need a PS5 controller tonight. Is anyone selling one nearby?</div>
+        <div style="max-width:92%;background:#F7F7F7;border-radius:16px 16px 16px 4px;padding:12px 14px;font-size:14px;line-height:1.5">Sam can meet at 6:30 PM, about 20 minutes from you. Want me to hold it and message Sam?</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <button type="button" style="min-height:44px;padding:0 18px;border-radius:999px;border:none;background:#0968F6;color:#fff;font-family:inherit;font-size:14px;font-weight:700">Hold and message Sam</button>
+          <button type="button" style="min-height:44px;padding:0 18px;border-radius:999px;border:1.5px solid #0968F6;background:#fff;color:#0968F6;font-family:inherit;font-size:14px;font-weight:700">Not yet</button>
+        </div>
+      </div>
+      <div style="border:1px solid #E5E5E5;border-radius:16px;padding:22px 24px;display:flex;flex-direction:column;gap:12px">
+        <div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#0968F6">Selling agent</div>
+        <div style="align-self:flex-end;max-width:88%;background:#191919;color:#fff;border-radius:16px 16px 4px 16px;padding:12px 14px;font-size:14px;line-height:1.5">I'd like to sell my desk chair this week. Can someone local pick it up?</div>
+        <div style="max-width:92%;background:#F7F7F7;border-radius:16px 16px 16px 4px;padding:12px 14px;font-size:14px;line-height:1.5">Here's my prediction: list it for local pickup and a buyer could be at your door in about 30 minutes. Want me to list it?</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <button type="button" style="min-height:44px;padding:0 18px;border-radius:999px;border:none;background:#0968F6;color:#fff;font-family:inherit;font-size:14px;font-weight:700">List it</button>
+          <button type="button" style="min-height:44px;padding:0 18px;border-radius:999px;border:1.5px solid #0968F6;background:#fff;color:#0968F6;font-family:inherit;font-size:14px;font-weight:700">Not yet</button>
+        </div>
+      </div>
+    </div>
+    <div class="r-g" style="display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr) minmax(0,1fr);gap:16px;margin-top:24px;align-items:center">
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="font-size:15px;font-weight:700">The pickup, end to end</div>
+        <p style="margin:0;font-size:14.5px;line-height:1.6;color:#545454;text-wrap:pretty">Payment waits for a press and hold. The exact spot stays hidden until the buyer pays, and the seller is paid when they scan the buyer's code at the handoff.</p>
+        <p style="margin:0;font-size:14.5px;line-height:1.6;color:#545454;text-wrap:pretty">Stated up front, following through reads as the feature, not the surprise.</p>
+      </div>
+      <figure style="margin:0;display:flex;flex-direction:column;gap:8px">
+        <div style="border:1px solid #E5E5E5;border-radius:24px;overflow:hidden;background:#ffffff;aspect-ratio:786/1704"><img src="work-images/ebay-ai-mode-nearby-now-1.webp" alt="iOS checkout for a PS5 with local pickup today at 6 PM in DUMBO, Brooklyn, an order total of $423.52 and Hold to pay" style="display:block;width:100%;height:100%;object-fit:cover"></div>
+        <figcaption style="font-size:12.5px;line-height:1.45;color:#707070;text-align:center">Checkout · hold to pay</figcaption>
+      </figure>
+      <figure style="margin:0;display:flex;flex-direction:column;gap:8px">
+        <div style="border:1px solid #E5E5E5;border-radius:24px;overflow:hidden;background:#ffffff;aspect-ratio:786/1704"><img src="work-images/ebay-ai-mode-nearby-now-2.webp" alt="iOS screen: Picked up. The PS5 is yours, with how it went: paid, met in DUMBO, seller scanned your code and was paid" style="display:block;width:100%;height:100%;object-fit:cover"></div>
+        <figcaption style="font-size:12.5px;line-height:1.45;color:#707070;text-align:center">Picked up · how it went</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 10 OUTCOME ============ -->
+<section data-screen-label="Outcome" style="padding:0 24px;border-top:1px solid #E5E5E5">
+  <div class="r-pad" style="max-width:1040px;margin:0 auto;padding:88px 0">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:16px;flex-wrap:wrap">
+      <div style="font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#707070">10 · What it moved</div>
+      <sc-if value="{{ showSignals }}" hint-placeholder-val="{{ true }}">
+        <span style="display:inline-flex;align-items:center;gap:6px;font-size:12px;background:#F7F7F7;border:1px solid #E5E5E5;border-radius:999px;padding:5px 12px;color:#707070"><b style="color:#0968F6">Signal</b> Measured impact</span>
+      </sc-if>
+    </div>
+    <h2 class="r-h2" style="margin:0 0 16px;font-size:38px;line-height:1.15;font-weight:700;letter-spacing:-0.01em;max-width:760px;text-wrap:balance">The small detail, measured.</h2>
+    <p style="max-width:660px;margin:0 0 28px;font-size:17px;line-height:1.65;text-wrap:pretty">The work others passed on turned out to be the work with the most leverage.</p>
+    <div class="r-g" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px">
+      <div style="border-top:3px solid #0968F6;background:#F7F7F7;border-radius:0 0 16px 16px;padding:20px 22px"><div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#707070">Adoption</div><div style="font-size:40px;font-weight:700;letter-spacing:-0.01em;margin-top:6px">11%</div><div style="font-size:14px;color:#545454;line-height:1.5;margin-top:4px">of shoppers using size-aware search</div></div>
+      <div style="border-top:3px solid #0968F6;background:#F7F7F7;border-radius:0 0 16px 16px;padding:20px 22px"><div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#707070">Conversion</div><div style="font-size:40px;font-weight:700;letter-spacing:-0.01em;margin-top:6px">+8%</div><div style="font-size:14px;color:#545454;line-height:1.5;margin-top:4px">lift on verified matches</div></div>
+      <div style="border-top:3px solid #288034;background:#F7F7F7;border-radius:0 0 16px 16px;padding:20px 22px"><div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#707070">Returns</div><div style="font-size:40px;font-weight:700;letter-spacing:-0.01em;margin-top:6px">10%</div><div style="font-size:14px;color:#545454;line-height:1.5;margin-top:4px">improvement, with fewer wrong-fit returns</div></div>
+    </div>
+    <div style="margin-top:12px;font-size:13px;color:#707070">Measured on verified-size results in search.</div>
+    <div class="r-g" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:24px">
+      <div style="border:1.5px solid #288034;background:#F0FAF2;border-radius:16px;padding:22px 24px">
+        <div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#288034;margin-bottom:6px">What shipped</div>
+        <div style="font-size:15px;line-height:1.55">The smart size filter, ask-once chips, and local intent that matches the buyer's energy.</div>
+      </div>
+      <div style="border:1px solid #E5E5E5;border-radius:16px;padding:22px 24px">
+        <div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#707070;margin-bottom:6px">Said plainly</div>
+        <div style="font-size:15px;line-height:1.55">AI Mode is a working prototype with sample data: 12 modes on desktop and iOS. It hasn't been tested with shoppers yet.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 11 SET ASIDE ============ -->
+<section data-screen-label="Ideas I set aside" style="padding:0 24px;border-top:1px solid #E5E5E5">
+  <div class="r-pad" style="max-width:1040px;margin:0 auto;padding:88px 0">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:16px;flex-wrap:wrap">
+      <div style="font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#707070">11 · The ideas I set aside</div>
+      <sc-if value="{{ showSignals }}" hint-placeholder-val="{{ true }}">
+        <span style="display:inline-flex;align-items:center;gap:6px;font-size:12px;background:#F7F7F7;border:1px solid #E5E5E5;border-radius:999px;padding:5px 12px;color:#707070"><b style="color:#0968F6">Signal</b> Judgment</span>
+      </sc-if>
+    </div>
+    <h2 class="r-h2" style="margin:0 0 24px;font-size:38px;line-height:1.15;font-weight:700;letter-spacing:-0.01em;max-width:760px;text-wrap:balance">The two I chose not to ship.</h2>
+    <p style="max-width:660px;margin:0 0 32px;font-size:17px;line-height:1.65;text-wrap:pretty">Each thread had a bolder version. Both were ambitious, and both simplified into what shipped.</p>
+    <div class="r-g" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px">
+      <div style="border:1px solid #E5E5E5;border-radius:16px;padding:24px 26px;display:flex;flex-direction:column;gap:10px">
+        <div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#0968F6">Size and search</div>
+        <div style="font-size:20px;font-weight:700;line-height:1.3">A game board of listings</div>
+        <p style="margin:0;font-size:15px;line-height:1.6;color:#363636;text-wrap:pretty">Every listing a card, and search a game board. Filters as piles, a deck you flip to tune your taste, a For You hand that fans out. Cards are a mental model every culture already shares.</p>
+        <div style="border-top:1px solid #E5E5E5;padding-top:12px;font-size:14px;line-height:1.6;color:#545454"><b style="color:#191919">Simplified into:</b> the smart size filter and ask-once chips.</div>
+      </div>
+      <div style="border:1px solid #E5E5E5;border-radius:16px;padding:24px 26px;display:flex;flex-direction:column;gap:10px">
+        <div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#B58500">Local intent</div>
+        <div style="font-size:20px;font-weight:700;line-height:1.3">An immersive map</div>
+        <p style="margin:0;font-size:15px;line-height:1.6;color:#363636;text-wrap:pretty">Local intent as a place, not a list: everything nearby on one map you explore first, with sellers, pickup windows and prices pinned where they are.</p>
+        <div style="border-top:1px solid #E5E5E5;padding-top:12px;font-size:14px;line-height:1.6;color:#545454"><b style="color:#191919">Simplified into:</b> a short shelf with list and map, and “Why this” on every card.</div>
+      </div>
+    </div>
+    <div style="margin-top:16px;background:#F7F7F7;border-radius:16px;padding:18px 24px;font-size:14px;line-height:1.6;color:#363636;max-width:900px;text-wrap:pretty"><b style="color:#191919">Why they stayed concepts:</b> both were heavy builds, not the lean, near-term play. Knowing which bold idea to set aside is part of the job, and both are still buildable.</div>
+  </div>
+</section>
+
+<!-- ============ 12 REFLECTION ============ -->
+<section data-screen-label="Reflection" style="padding:0 24px;border-top:1px solid #E5E5E5">
+  <div class="r-pad" style="max-width:1040px;margin:0 auto;padding:88px 0">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:16px;flex-wrap:wrap">
+      <div style="font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#707070">12 · Reflection</div>
+      <sc-if value="{{ showSignals }}" hint-placeholder-val="{{ true }}">
+        <span style="display:inline-flex;align-items:center;gap:6px;font-size:12px;background:#F7F7F7;border:1px solid #E5E5E5;border-radius:999px;padding:5px 12px;color:#707070"><b style="color:#0968F6">Signal</b> Honest judgment</span>
+      </sc-if>
+    </div>
+    <h2 class="r-h2" style="margin:0 0 32px;font-size:38px;line-height:1.15;font-weight:700;letter-spacing:-0.01em;max-width:760px;text-wrap:balance">What started as a size fix became AI Mode.</h2>
+    <div style="display:flex;flex-direction:column;gap:28px;max-width:720px">
+      <div>
+        <div style="font-size:16px;font-weight:700;margin-bottom:6px">What I'd say plainly.</div>
+        <p style="margin:0;font-size:16px;line-height:1.65;text-wrap:pretty">The size and local work shipped in search. AI Mode is a concept built on that foundation, with sample data, and nobody has used it for real yet.</p>
+      </div>
+      <div>
+        <div style="font-size:16px;font-weight:700;margin-bottom:6px">What I learned.</div>
+        <p style="margin:0;font-size:16px;line-height:1.65;text-wrap:pretty">A simple answer needs a lot behind it. The ask-once chip only works because the seller data, the confidence rule and twelve teams were lined up behind it.</p>
+      </div>
+      <div>
+        <div style="font-size:16px;font-weight:700;margin-bottom:6px">What I'd do differently.</div>
+        <p style="margin:0;font-size:16px;line-height:1.65;text-wrap:pretty">Define the commitment and preference types before the first AI Mode build. A review found both gaps after the spec had already encoded them, and fixing a definition costs more once three flows depend on it.</p>
+      </div>
+      <div>
+        <div style="font-size:16px;font-weight:700;margin-bottom:6px">What stuck.</div>
+        <p style="margin:0;font-size:16px;line-height:1.65;text-wrap:pretty">The spine. Act when sure, ask once when unsure, educate when the signal is weak, and never move money alone. It ran from one size chip to twelve AI Mode modes without changing.</p>
+      </div>
+    </div>
+    <div style="margin-top:40px;background:#191919;color:#ffffff;border-radius:16px;padding:26px 30px;display:flex;flex-direction:column;gap:8px;max-width:820px">
+      <div style="font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#A3A3A3">The lead lesson</div>
+      <div style="font-size:20px;font-weight:700;line-height:1.4;text-wrap:pretty">Small, repeated signals are use cases. Fix them where the data starts, hold one rule across every surface, and the agent has solid ground to stand on.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<section data-screen-label="Footer" style="padding:0 24px;border-top:1px solid #E5E5E5;background:#F7F7F7">
+  <div style="max-width:1040px;margin:0 auto;padding:72px 0 80px;display:flex;flex-direction:column;align-items:center;gap:18px;text-align:center">
+    <div style="font-size:30px;font-weight:700;letter-spacing:-0.01em">Thanks for scrolling.</div>
+    <p style="margin:0;font-size:16px;line-height:1.6;color:#707070;max-width:560px;text-wrap:pretty">From a size and the words “near me” to an agent that asks first: the signal, the spine, the seller data, twelve teams, and AI Mode.</p>
+    <div style="display:flex;align-items:center;gap:16px 20px;margin-top:6px;flex-wrap:wrap;justify-content:center">
+      <sc-if value="{{ hasProto }}" hint-placeholder-val="{{ true }}">
+        <a class="btn-pri" href="{{ prototypeUrl }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 24px;border-radius:999px;background:#0968F6;color:#ffffff;font-size:15px;font-weight:700;text-decoration:none">Open the prototype</a>
+      </sc-if>
+      <a class="btn-sec" href="#top" style="display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 22px;border-radius:999px;border:1.5px solid #0968F6;color:#0968F6;font-size:15px;font-weight:700;text-decoration:none;box-sizing:border-box">Back to top</a>
+      <span style="font-size:15px"><b>Lia DiValentin</b> · <a href="mailto:ladivalent@gmail.com">ladivalent@gmail.com</a></span>
+    </div>
+  </div>
+</section>
+
+</div>
+</main>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"prototypeUrl":{"editor":"text","default":"https://claude.ai/artifact/VyNwswguAvE5YxmB1gSajy","tsType":"string","section":"Links"},"showSignals":{"editor":"boolean","default":true,"tsType":"boolean","section":"Display"},"$preview":{"width":1440,"height":15800}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const url = String(this.props.prototypeUrl ?? "https://claude.ai/artifact/VyNwswguAvE5YxmB1gSajy").trim();
+    return {
+      showSignals: this.props.showSignals ?? true,
+      prototypeUrl: url,
+      hasProto: !!url && url !== "#",
+    };
+  }
+}
+</script>
+</body>
+</html>
