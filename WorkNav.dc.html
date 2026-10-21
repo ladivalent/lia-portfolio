@@ -15,15 +15,35 @@
   </style>
 </helmet>
 <nav aria-label="Work" style="font-family:'Market Sans',Inter,system-ui,sans-serif;color:#191919;padding:0 24px">
-  <div style="max-width:1040px;margin:0 auto;padding:16px 0 0;display:flex;align-items:center">
-    <a href="Work-AllProjects.dc.html" style="display:inline-flex;align-items:center;gap:6px;min-height:44px;margin-left:-8px;padding:0 12px 0 8px;border-radius:999px;font-size:14px;font-weight:700;color:#191919;text-decoration:none" style-hover="background:#F5F9FF;color:#0968F6"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><path d="m15 6-6 6 6 6"></path></svg>View all work</a>
+  <div style="max-width:1040px;margin:0 auto;padding:16px 0 0;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 16px">
+    <a href="Work-AllProjects.dc.html" style="display:inline-flex;align-items:center;gap:6px;min-height:44px;margin-left:-8px;padding:0 12px 0 8px;border-radius:999px;font-size:14px;font-weight:700;color:#191919;text-decoration:none" style-hover="background:#F5F9FF;color:#0968F6"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><path d="m15 6-6 6 6 6"></path></svg>View all projects</a>
+    <sc-if value="{{ hasToggle }}" hint-placeholder-val="{{ true }}">
+      <div role="group" aria-label="Version" style="display:inline-flex;align-items:center;border:1px solid #E5E5E5;border-radius:999px;background:#ffffff">
+        <sc-if value="{{ longOn }}" hint-placeholder-val="{{ true }}"><span aria-current="page" style="display:inline-flex;align-items:center;height:42px;padding:0 16px;border-radius:999px;background:#191919;color:#ffffff;font-size:13px;font-weight:700;white-space:nowrap">5 min read</span></sc-if>
+        <sc-if value="{{ longOff }}" hint-placeholder-val="{{ false }}"><a href="{{ longHref }}" style="display:inline-flex;align-items:center;height:42px;padding:0 16px;border-radius:999px;color:#545454;font-size:13px;font-weight:700;text-decoration:none;white-space:nowrap" style-hover="background:#F5F9FF;color:#191919">5 min read</a></sc-if>
+        <sc-if value="{{ shortOn }}" hint-placeholder-val="{{ false }}"><span aria-current="page" style="display:inline-flex;align-items:center;height:42px;padding:0 16px;border-radius:999px;background:#191919;color:#ffffff;font-size:13px;font-weight:700;white-space:nowrap">60 sec version</span></sc-if>
+        <sc-if value="{{ shortOff }}" hint-placeholder-val="{{ true }}"><a href="{{ shortHref }}" style="display:inline-flex;align-items:center;height:42px;padding:0 16px;border-radius:999px;color:#545454;font-size:13px;font-weight:700;text-decoration:none;white-space:nowrap" style-hover="background:#F5F9FF;color:#191919">60 sec version</a></sc-if>
+      </div>
+    </sc-if>
   </div>
 </nav>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":60}}'>
+<script type="text/x-dc" data-dc-script data-props='{"mode":{"editor":"text","default":"","tsType":"string","section":"Version toggle"},"long":{"editor":"text","default":"","tsType":"string","section":"Version toggle"},"short":{"editor":"text","default":"","tsType":"string","section":"Version toggle"},"$preview":{"width":1440,"height":60}}'>
 class Component extends DCLogic {
   renderVals() {
-    return {};
+    const mode = String(this.props.mode ?? "").trim();
+    const longHref = String(this.props.long ?? "").trim();
+    const shortHref = String(this.props.short ?? "").trim();
+    const hasToggle = (mode === "long" || mode === "short") && !!longHref && !!shortHref;
+    return {
+      hasToggle: hasToggle,
+      longOn: hasToggle && mode === "long",
+      longOff: hasToggle && mode !== "long",
+      shortOn: hasToggle && mode === "short",
+      shortOff: hasToggle && mode !== "short",
+      longHref: longHref,
+      shortHref: shortHref
+    };
   }
 }
 </script>
