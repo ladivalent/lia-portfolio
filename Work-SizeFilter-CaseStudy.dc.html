@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shoe size search for collectible sneakers · Lia DiValentin</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/tokens/fonts.css">
+<style>
+html,body{margin:0;padding:0;background:#ffffff;color:#191919;font-family:'Market Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:#0968F6;text-decoration:none}
+a:hover{color:#0654c8;text-decoration:underline}
+::selection{background:#0968F6;color:#fff}
+.sec{padding:0 24px;border-top:1px solid #E5E5E5}
+.wrap{max-width:1040px;margin:0 auto;padding:88px 0}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#707070}
+.label{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#707070}
+.sechead{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:16px}
+.signal{display:inline-flex;align-items:center;gap:6px;font-size:12px;background:#F7F7F7;border:1px solid #E5E5E5;border-radius:999px;padding:5px 12px;color:#707070}
+.signal b{color:#0968F6}
+h2.h{margin:0 0 24px;font-size:38px;line-height:1.15;font-weight:700;letter-spacing:-0.01em;max-width:720px;text-wrap:balance}
+.lede{max-width:660px;margin:0 0 32px;font-size:17px;line-height:1.65;text-wrap:pretty}
+.card{border:1px solid #E5E5E5;border-radius:16px;padding:22px 24px}
+.card h4{margin:0 0 8px;font-size:15px;font-weight:700}
+.card p{margin:0;font-size:14px;line-height:1.6;color:#545454;text-wrap:pretty}
+.shot{display:block;width:100%;height:auto;border-radius:8px;background:#ffffff}
+.cap{margin-top:12px;font-size:13px;line-height:1.5;color:#707070;text-wrap:pretty}
+.panel{background:#F7F7F7;border-radius:16px;padding:24px}
+.frame{border:1px solid #E5E5E5;border-radius:12px;overflow:hidden;background:#ffffff}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 24px;border-radius:999px;font-size:15px;font-weight:700;text-decoration:none;box-sizing:border-box}
+.btn:hover{text-decoration:none}
+.btn-pri{background:#0968F6;color:#ffffff}
+.btn-pri:hover{background:#0654c8;color:#ffffff}
+.btn-sec{border:1.5px solid #0968F6;color:#0968F6}
+.btn-sec:hover{background:#F5F9FF}
+.g2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.g3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.g4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.num{display:inline-flex;width:30px;height:30px;border-radius:50%;background:#191919;color:#fff;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex:none}
+.issue{display:flex;flex-direction:column;gap:6px;padding:16px 0;border-bottom:1px solid #E5E5E5}
+.issue:first-child{padding-top:0}
+.issue h4{margin:0;font-size:16px;font-weight:700}
+.issue p{margin:0;font-size:15px;line-height:1.6;color:#545454;text-wrap:pretty}
+.pipe{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
+.step{background:#ffffff;border:1px solid #E5E5E5;border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:8px}
+.step .t{font-size:15px;font-weight:700}
+.step .b{font-size:13px;line-height:1.5;color:#B34700}
+.chain{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:14px;font-weight:700}
+.chain span.n{display:inline-flex;align-items:center;min-height:36px;padding:0 14px;border-radius:999px;background:#ffffff;border:1px solid #D6D6D6}
+.chain span.a{color:#707070;font-weight:400}
+.qrow{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1.15fr) minmax(0,1.1fr) minmax(0,.9fr) minmax(0,1.5fr);gap:16px;padding:14px 0;border-bottom:1px solid #E5E5E5;font-size:14px;line-height:1.5;align-items:start}
+.qrow.head{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#707070;padding-top:0}
+.qrow .q{font-weight:700}
+.qrow.todo{color:#707070}
+.ml{display:none;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#707070;margin-bottom:2px}
+.chg{display:grid;grid-template-columns:minmax(0,1fr) 32px minmax(0,1fr);gap:12px;padding:14px 0;border-bottom:1px solid #E5E5E5;font-size:15px;line-height:1.5;align-items:center}
+.chg .was{color:#707070;text-decoration:line-through;text-decoration-color:#A3A3A3}
+.chg .arr{color:#707070;text-align:center}
+.slot{display:flex;align-items:center;justify-content:center;min-height:200px;border:1.5px dashed #A3A3A3;border-radius:12px;background:#FAFAFA;color:#707070;font-size:14px;font-weight:700;text-align:center;padding:24px;box-sizing:border-box}
+.slot-link{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 20px;border-radius:999px;border:1.5px dashed #A3A3A3;color:#707070;font-size:14px;font-weight:700;box-sizing:border-box}
+.phone{border:1px solid #E5E5E5;border-radius:20px;overflow:hidden;background:#ffffff}
+.stage{display:flex;flex-direction:column;gap:8px;padding:18px 18px 20px;border-radius:14px;background:#ffffff;border:1px solid #E5E5E5}
+.stage .k{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#707070}
+.stage .v{font-size:15px;line-height:1.45;font-weight:700;text-wrap:pretty}
+.tab{display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border-radius:999px;border:1.5px solid #C7C7C7;background:#ffffff;color:#191919;font-family:inherit;font-size:14px;font-weight:700;cursor:pointer}
+.tab:hover{border-color:#191919}
+.tab.on{border-color:#191919;background:#191919;color:#ffffff}
+.addr{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}
+.addr .part{background:#F7F7F7;border:1px solid #E5E5E5;border-radius:12px;padding:12px 10px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.addr .part .k{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#707070}
+.addr .part .v{font-size:15px;font-weight:700}
+.addr .part.on{background:#191919;border-color:#191919}
+.addr .part.on .k{color:#C7C7C7}
+.addr .part.on .v{color:#ffffff}
+.spec{border:1px solid #E5E5E5;border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:4px}
+.spec .k{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#707070;margin-bottom:4px}
+.spec .t{font-size:14px;line-height:1.4}
+.spec .m{font-size:13px;line-height:1.4;color:#545454}
+.btn:focus-visible,a:focus-visible,.tab:focus-visible{outline:2px solid #0968F6;outline-offset:2px}
+@media (max-width:900px){
+.pipe{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:760px){
+.r-g{grid-template-columns:minmax(0,1fr) !important}
+.g4{grid-template-columns:repeat(2,minmax(0,1fr))}
+.r-h1{font-size:44px !important}
+h2.h{font-size:30px}
+.wrap{padding-top:64px;padding-bottom:64px}
+.chg{grid-template-columns:minmax(0,1fr)}
+.chg .arr{display:none}
+.qrow{grid-template-columns:minmax(0,1fr);gap:8px}
+.qrow.head{display:none}
+.ml{display:block}
+.pipe{grid-template-columns:minmax(0,1fr)}
+.addr{grid-template-columns:repeat(2,minmax(0,1fr))}
+.r-tall{height:auto !important}
+.sechead{flex-direction:column;align-items:flex-start;gap:10px}
+.chg.headrow{display:none}
+.chain{flex-direction:column;align-items:flex-start}
+.chain span.a{display:inline-block;transform:rotate(90deg);padding-left:12px}
+}
+</style>
+</helmet>
+<dc-import name="SiteHeader" active="work" hint-size="100%,64px"></dc-import>
+<main id="main">
+<dc-import name="WorkNav" hint-size="100%,60px"></dc-import>
+
+<div id="top" style="min-height:calc(100vh - 64px);background:#ffffff">
+
+<!-- ============ HERO ============ -->
+<section data-screen-label="Hero" style="padding:0 24px">
+  <div style="max-width:1040px;margin:0 auto;padding:56px 0 72px">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:64px">
+      <div style="font-size:15px;font-weight:700;color:#191919">eBay <span style="color:#707070;font-weight:400">·</span> Search</div>
+      <div class="eyebrow">Portfolio case study</div>
+    </div>
+    <h1 class="r-h1" style="margin:0 0 20px;font-size:64px;line-height:1.05;font-weight:700;letter-spacing:-0.02em;max-width:860px;text-wrap:balance">Shoe size search for collectible sneakers</h1>
+    <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:0 0 24px;font-size:24px;line-height:1.3">
+      <span style="color:#707070;text-decoration:line-through;text-decoration-thickness:2px">Add a size filter</span>
+      <span style="color:#707070">→</span>
+      <span style="font-weight:700;color:#0968F6">Make size a standard, from listing to search</span>
+    </div>
+    <p style="margin:0;font-size:19px;line-height:1.55;color:#191919;max-width:680px;text-wrap:pretty">A PM asked for a size filter on sneaker searches. I traced the request to its root: eBay didn't store size as a standard. I led the fixes in order, from the seller's listing to the search page to the shopper's account, and the work became the base for how AI Mode reads size.</p>
+    <div style="display:flex;align-items:center;gap:20px;margin:28px 0 0;flex-wrap:wrap">
+      <a class="btn btn-pri" href="#shipped">See what shipped</a>
+      <span style="font-size:14px;color:#707070">A 5 minute scroll</span>
+    </div>
+    <div class="r-g" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px 0;border-top:1px solid #E5E5E5;margin-top:56px;padding-top:24px">
+      <div style="display:flex;flex-direction:column;gap:6px;padding-right:24px">
+        <div class="label">My role</div>
+        <div style="font-size:15px;line-height:1.45">Lead product designer [confirm title] · search filters and size personalization</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:6px;padding-right:24px">
+        <div class="label">Partners</div>
+        <div style="font-size:15px;line-height:1.45">Search, Selling, My eBay and Design Systems [add teams]</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <div class="label">Scope</div>
+        <div style="font-size:15px;line-height:1.45">Listing → query → filter → item card → saved sizes</div>
+      </div>
+    </div>
+    <div class="g4" style="margin-top:40px">
+      <div style="border-top:3px solid #0968F6;background:#F7F7F7;border-radius:0 0 16px 16px;padding:18px 20px 20px">
+        <div style="font-size:34px;font-weight:700;letter-spacing:-0.01em">0 → 1</div>
+        <div style="font-size:13px;color:#707070;line-height:1.45;margin-top:4px">size filter on sneaker searches</div>
+      </div>
+      <div style="border-top:3px solid #0968F6;background:#F7F7F7;border-radius:0 0 16px 16px;padding:18px 20px 20px">
+        <div style="font-size:34px;font-weight:700;letter-spacing:-0.01em">6 → 1</div>
+        <div style="font-size:13px;color:#707070;line-height:1.45;margin-top:4px">ways size was written on a card</div>
+      </div>
+      <div style="border-top:3px solid #0968F6;background:#F7F7F7;border-radius:0 0 16px 16px;padding:18px 20px 20px">
+        <div style="font-size:34px;font-weight:700;letter-spacing:-0.01em">4</div>
+        <div style="font-size:13px;color:#707070;line-height:1.45;margin-top:4px">sizing systems in one filter: US, UK, AU, EU</div>
+      </div>
+      <div style="border-top:3px solid #0968F6;background:#F7F7F7;border-radius:0 0 16px 16px;padding:18px 20px 20px">
+        <div style="font-size:34px;font-weight:700;letter-spacing:-0.01em">8</div>
+        <div style="font-size:13px;color:#707070;line-height:1.45;margin-top:4px">partner teams on one size chip</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 01 THE REQUEST ============ -->
+<section data-screen-label="The request" class="sec">
+  <div class="wrap">
+    <div class="sechead">
+      <div class="eyebrow">01 · The request</div>
+      <sc-if value="{{ showSignals }}" hint-placeholder-val="{{ true }}"><span class="signal"><b>Signal</b> Reframing the problem</span></sc-if>
+    </div>
+    <h2 class="h">It started as a feature request.</h2>
+    <p class="lede">As part of a larger search redesign, our PM asked for one thing: sneaker searches showed no size filter, so add one to the left rail. Before designing it, I looked at what a shopper actually saw when they typed a size.</p>
+    <div class="r-g" style="display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:32px;align-items:start">
+      <figure style="margin:0;display:flex;flex-direction:column;gap:8px">
+        <div class="label">Before · “Jordan 4 size 10”</div>
+        <div class="frame"><img class="shot" style="border-radius:0" src="work-images/ebay-size-before.webp" alt="eBay results for Jordan 4 size 10 before the redesign: no size filter in the left rail, and sizes written differently in each listing title"></div>
+      </figure>
+      <div style="display:flex;flex-direction:column">
+        <div class="issue">
+          <h4>No sign the size was understood</h4>
+          <p>The query said size 10. No chip, no applied filter, and the header didn't say what “22,000+ results” matched.</p>
+        </div>
+        <div class="issue">
+          <h4>No way to filter by size</h4>
+          <p>Category, Price and Condition were there. Size, the one detail the shopper typed, was not.</p>
+        </div>
+        <div class="issue">
+          <h4>Size written 6 ways in 3 places</h4>
+          <p>Shoppers had to read every title. Two top results said “Size 7-12” and never confirmed a 10 was in stock.</p>
+        </div>
+        <div class="issue" style="border-bottom:0">
+          <h4>Men's applied without saying so</h4>
+          <p>Results were scoped to men's shoes. A shopper looking for a women's 10 got the wrong pairs with no warning.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 02 THE REAL PROBLEM ============ -->
+<section data-screen-label="The real problem" class="sec">
+  <div class="wrap">
+    <div class="sechead">
+      <div class="eyebrow">02 · The real problem</div>
+      <sc-if value="{{ showSignals }}" hint-placeholder-val="{{ true }}"><span class="signal"><b>Signal</b> Systems thinking</span></sc-if>
+    </div>
+    <h2 class="h">A filter can only show what the listing knows.</h2>
+    <p class="lede">Size went in as free text and came out as free text. The seller knew which 10 they meant. The platform didn't. Many high-ticket sneakers sell without the Authenticity Guarantee, so nothing checked the size either. Collectible sneakers needed a sizing standard, not just a new filter.</p>
+    <div class="panel">
+      <div class="label" style="margin-bottom:14px">Where size broke, from listing to search</div>
+      <div class="pipe">
+        <div class="step"><div class="t">Seller lists</div><div class="b">Size typed into the title, any format</div></div>
+        <div class="step"><div class="t">Size is stored</div><div class="b">No standard for gender or region</div></div>
+        <div class="step"><div class="t">Shopper searches</div><div class="b">“Size 10” read as a keyword</div></div>
+        <div class="step"><div class="t">Filters show</div><div class="b">No size filter to narrow by</div></div>
+        <div class="step"><div class="t">Card confirms</div><div class="b">Size buried in the title</div></div>
+      </div>
+    </div>
+    <div style="font-size:15px;font-weight:700;margin:40px 0 16px">So I set the order of the fixes</div>
+    <div class="g3 r-g">
+      <div class="card" style="display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;align-items:center;gap:12px"><span class="num">1</span><h4 style="margin:0">Seller data first</h4></div>
+        <p>The root cause sat on the selling side. Listing size needed stronger verification so it could be stored, converted and shown the same way everywhere.</p>
+      </div>
+      <div class="card" style="display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;align-items:center;gap:12px"><span class="num">2</span><h4 style="margin:0">Then the query</h4></div>
+        <p>Teach search to read size intent: the number, the sizing system and the gender, so it knows what the shopper meant.</p>
+      </div>
+      <div class="card" style="display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;align-items:center;gap:12px"><span class="num">3</span><h4 style="margin:0">Then the display</h4></div>
+        <p>Show size as a filter, a removable chip and one line on every card. Then remember it as a personal lens.</p>
+      </div>
+    </div>
+    <div class="panel" style="margin-top:16px;display:flex;flex-direction:column;gap:12px">
+      <div class="label">How a listing size becomes a search size</div>
+      <div class="chain">
+        <span class="n">Style code (SKU) at listing</span><span class="a">→</span>
+        <span class="n">Exact model</span><span class="a">→</span>
+        <span class="n">That brand's size chart</span><span class="a">→</span>
+        <span class="n">Correct size in search</span>
+      </div>
+      <div style="font-size:13px;line-height:1.5;color:#707070">[Confirm: is the style code required or optional, and where does it sit in the listing flow?]</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 03 MAPPING THE SPACE ============ -->
+<section data-screen-label="Mapping the space" class="sec">
+  <div class="wrap">
+    <div class="sechead">
+      <div class="eyebrow">03 · Mapping the space</div>
+      <sc-if value="{{ showSignals }}" hint-placeholder-val="{{ true }}"><span class="signal"><b>Signal</b> Exploration and tradeoffs</span></sc-if>
+    </div>
+    <h2 class="h">Every query, every filter, every card.</h2>
+    <p class="lede">Before picking one design, I mapped every variant in the design file: how size could display in the filter at each level, how it could read on an item card once applied, and which filter each kind of query should present.</p>
+
+    <div style="font-size:15px;font-weight:700;margin-bottom:14px">Three directions for the filter</div>
+    <div class="r-g" style="display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.7fr) minmax(0,.85fr);gap:16px;align-items:start">
+      <figure style="margin:0;display:flex;flex-direction:column;gap:10px" class="panel">
+        <div class="label">A · Guided steps</div>
+        <div class="frame"><img class="shot" style="border-radius:0" src="work-images/ebay-size-df-a.webp" alt="Version A left rail: Size opened at step 3 of 3, with All, Women, Pants as steps and a Standard size grid with 6 and 8 selected"></div>
+        <p style="margin:0;font-size:14px;line-height:1.55;color:#545454">Department, then product type, then size, one step at a time in the left rail.</p>
+      </figure>
+      <figure style="margin:0;display:flex;flex-direction:column;gap:10px" class="panel">
+        <div class="label">B · Every level on one surface</div>
+        <div class="frame"><img class="shot" style="border-radius:0" src="work-images/ebay-size-df-b.webp" alt="Version B dialog: Department, Product type and the Women's pants size grid side by side, with four selected sizes in a tray and a See 582 results button"></div>
+        <p style="margin:0;font-size:14px;line-height:1.55;color:#545454">Department, product type and the size grid side by side, with every pick collected in one tray.</p>
+      </figure>
+      <figure style="margin:0;display:flex;flex-direction:column;gap:10px" class="panel">
+        <div class="label">C · Your size first</div>
+        <div class="frame"><img class="shot" style="border-radius:0" src="work-images/ebay-size-df-c.webp" alt="Version C left rail: Your sizes as checkboxes, with Women's pants 6 checked, and a suggestion for size 4 that applies only when added"></div>
+        <p style="margin:0;font-size:14px;line-height:1.55;color:#545454">Saved sizes lead. A suggestion applies only when the shopper adds it.</p>
+      </figure>
+    </div>
+    <p class="cap" style="max-width:760px">I ran seven queries through each direction and through five retail patterns: Kohl's, Victoria's Secret, Nike, StockX and Nordstrom. The final design keeps one rules engine and opens a single panel from the Size chip.</p>
+
+    <div style="margin-top:48px">
+      <div style="font-size:15px;font-weight:700;margin-bottom:14px">Filter levels: a size is a five-part address</div>
+      <div class="addr">
+        <div class="part"><div class="k">Department</div><div class="v">Women</div></div>
+        <div class="part"><div class="k">Product type</div><div class="v">Pants</div></div>
+        <div class="part"><div class="k">Size type</div><div class="v">Petite</div></div>
+        <div class="part"><div class="k">Region</div><div class="v">Shoes only</div></div>
+        <div class="part on"><div class="k">Value</div><div class="v">2P</div></div>
+      </div>
+      <div class="g3 r-g" style="margin-top:16px">
+        <div class="card"><h4>A full address or nothing</h4><p>The filter only stores, matches and shows a size when every part that applies is known. “6” on its own is not a size.</p></div>
+        <div class="card"><h4>Where the filter opens</h4><p>On the first empty part: Department, then Product type, then the size grid.</p></div>
+        <div class="card"><h4>Where each part comes from</h4><p>The first source that has it: the shopper's pick, words in the query, the category page, then a department holding 80% or more of results. Saved sizes only show as suggestions.</p></div>
+      </div>
+    </div>
+
+    <div style="margin-top:48px">
+      <div style="font-size:15px;font-weight:700;margin-bottom:6px">Shoes: one tile per foot length</div>
+      <p style="margin:0 0 16px;max-width:660px;font-size:15px;line-height:1.6;color:#363636;text-wrap:pretty">Men's and women's sizes that fit the same share a tile, so there is one grid, not two. A bare “size 10” matches two tiles, so both apply and the page asks once. An EU size applies one tile and says what it converted.</p>
+      <div class="g2 r-g">
+        <figure style="margin:0;display:flex;flex-direction:column;gap:8px">
+          <div class="label">“Nike dunk low size 10” · US tab</div>
+          <div class="frame"><img class="shot" style="border-radius:0" src="work-images/ebay-size-df-panel-us.webp" alt="All filters panel open at Size: Size 10 matches two sizes, which do you wear, with Men's 10 and Women's 10 buttons, and a US grid where M 10 / W 11.5 and M 8.5 / W 10 are selected"></div>
+        </figure>
+        <figure style="margin:0;display:flex;flex-direction:column;gap:8px">
+          <div class="label">“nike air max 90 eu 42” · EU tab</div>
+          <div class="frame"><img class="shot" style="border-radius:0" src="work-images/ebay-size-df-panel-eu.webp" alt="All filters panel on the EU tab with EU 42, M 8.5 · W 10 selected, and a notice: Showing EU 42 and converted sizes"></div>
+        </figure>
+      </div>
+    </div>
+
+    <div style="margin-top:48px">
+      <div style="font-size:15px;font-weight:700;margin-bottom:14px">Item card states</div>
+      <div class="g4 r-g" style="margin-bottom:16px">
+        <div class="spec"><div class="k">Shoe, US search</div><div class="t">Nike Dunk Low Panda</div><div class="m">New with box · US M 10 / W 11.5</div></div>
+        <div class="spec"><div class="k">Shoe, EU search</div><div class="t">Nike Air Max 90 Triple White</div><div class="m">New with box · EU 42</div></div>
+        <div class="spec"><div class="k">Apparel, two departments</div><div class="t">Patagonia Better Sweater 1/4-Zip Fleece Pullover</div><div class="m">New with tags · Men's outerwear M</div></div>
+        <div class="spec"><div class="k">Waist and inseam</div><div class="t">Levi's 501 Original Fit Jeans Medium Stonewash</div><div class="m">New with tags · W34 L32</div></div>
+      </div>
+      <div class="frame"><img class="shot" style="border-radius:0" src="work-images/ebay-size-df-results-photos.webp" alt="Results for Nike dunk low size 10: chip bar with Size (2) and Sneakers, a one-line question with Men's 10 and Women's 10, and five Dunk Low listings, Panda, Grey Fog, University Blue, Medium Olive and Coast, with size lines like New with box · US M 10 / W 11.5"></div>
+      <p class="cap">The size reads after the condition on every card, in the same terms as the chip.</p>
+    </div>
+
+    <div style="margin-top:48px">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:14px">
+        <div style="font-size:15px;font-weight:700">The query spectrum · 13 queries, decided</div>
+        <div role="group" aria-label="Query group" style="display:flex;gap:8px;flex-wrap:wrap">
+          <button type="button" class="{{ tabShoes }}" aria-pressed="{{ pressedShoes }}" onClick="{{ pickShoes }}">Sneakers · 4</button>
+          <button type="button" class="{{ tabApparel }}" aria-pressed="{{ pressedApparel }}" onClick="{{ pickApparel }}">Apparel · 9</button>
+        </div>
+      </div>
+      <div class="qrow head"><div>Shopper types</div><div>Search reads</div><div>Applied on load</div><div>Filter opens on</div><div>Message on the page</div></div>
+      <sc-if value="{{ showShoes }}" hint-placeholder-val="{{ true }}">
+        <div class="qrow"><div><div class="ml">Shopper types</div><span class="q">nike air max 90 size 10</span></div><div><div class="ml">Search reads</div>Sneakers · size 10 · department not needed</div><div><div class="ml">Applied on load</div>US M 10 / W 11.5 and US M 8.5 / W 10</div><div><div class="ml">Filter opens on</div>Size grid, US tab</div><div><div class="ml">Message on the page</div>“Size 10 matches two sizes. Which do you wear?”</div></div>
+        <div class="qrow"><div><div class="ml">Shopper types</div><span class="q">nike air max 90 eu 42</span></div><div><div class="ml">Search reads</div>Sneakers · EU 42</div><div><div class="ml">Applied on load</div>EU 42</div><div><div class="ml">Filter opens on</div>Size grid, EU tab</div><div><div class="ml">Message on the page</div>“Showing EU 42 and converted sizes”</div></div>
+        <div class="qrow"><div><div class="ml">Shopper types</div><span class="q">Jordan 1 low size 11</span></div><div><div class="ml">Search reads</div>Sneakers · size 11 · most results men's</div><div><div class="ml">Applied on load</div>US M 11 / W 12.5</div><div><div class="ml">Filter opens on</div>Size grid, US tab</div><div><div class="ml">Message on the page</div>“Most results are men's, so size 11 means men's 11.” With “Use women's 11”</div></div>
+        <div class="qrow"><div><div class="ml">Shopper types</div><span class="q">Nike dunk low size 10</span></div><div><div class="ml">Search reads</div>Sneakers · size 10 · department not needed</div><div><div class="ml">Applied on load</div>US M 10 / W 11.5 and US M 8.5 / W 10</div><div><div class="ml">Filter opens on</div>Size grid, US tab</div><div><div class="ml">Message on the page</div>“Size 10 matches two sizes. Which do you wear?”</div></div>
+      </sc-if>
+      <sc-if value="{{ showApparel }}" hint-placeholder-val="{{ false }}">
+        <div class="qrow"><div><div class="ml">Shopper types</div><span class="q">patagonia fleece medium</span></div><div><div class="ml">Search reads</div>Outerwear · M · department not set</div><div><div class="ml">Applied on load</div>Men's outerwear M and Women's outerwear M</div><div><div class="ml">Filter opens on</div>Size grid, both departments</div><div><div class="ml">Message on the page</div>“Medium fits differently in men's and women's. Which do you wear?”</div></div>
+        <div class="qrow"><div><div class="ml">Shopper types</div><span class="q">levis 501 34x32</span></div><div><div class="ml">Search reads</div>Jeans · waist 34, inseam 32 · most results men's</div><div><div class="ml">Applied on load</div>Size 34x32</div><div><div class="ml">Filter opens on</div>Waist &amp; inseam</div><div><div class="ml">Message on the page</div>“94% of results for this search are men's, so Men is set for you.”</div></div>
+        <div class="qrow"><div><div class="ml">Shopper types</div><span class="q">lululemon shorts</span></div><div><div class="ml">Search reads</div>Shorts · department not set</div><div><div class="ml">Applied on load</div>None</div><div><div class="ml">Filter opens on</div>Department</div><div><div class="ml">Message on the page</div>“Choose a department to see sizes.”</div></div>
+        <div class="qrow"><div><div class="ml">Shopper types</div><span class="q">lululemon women's</span></div><div><div class="ml">Search reads</div>Women · product type not set</div><div><div class="ml">Applied on load</div>None</div><div><div class="ml">Filter opens on</div>Product type</div><div><div class="ml">Message on the page</div>“Choose a product type to see its sizes.”</div></div>
+        <div class="qrow"><div><div class="ml">Shopper types</div><span class="q">womens shorts</span></div><div><div class="ml">Search reads</div>Women · Shorts</div><div><div class="ml">Applied on load</div>None</div><div><div class="ml">Filter opens on</div>Size grid</div><div><div class="ml">Message on the page</div>None</div></div>
+        <div class="qrow"><div><div class="ml">Shopper types</div><span class="q">lululemon women's athletic shorts</span></div><div><div class="ml">Search reads</div>Women · Shorts</div><div><div class="ml">Applied on load</div>None</div><div><div class="ml">Filter opens on</div>Size grid</div><div><div class="ml">Message on the page</div>None</div></div>
+        <div class="qrow"><div><div class="ml">Shopper types</div><span class="q">lululemon women's athletic shorts medium</span></div><div><div class="ml">Search reads</div>Women · Shorts · M</div><div><div class="ml">Applied on load</div>Size M</div><div><div class="ml">Filter opens on</div>Size grid</div><div><div class="ml">Message on the page</div>None</div></div>
+        <div class="qrow"><div><div class="ml">Shopper types</div><span class="q">Lululemon align leggings size 6</span></div><div><div class="ml">Search reads</div>Leggings · 6 · most results women's</div><div><div class="ml">Applied on load</div>Size 6</div><div><div class="ml">Filter opens on</div>Size grid</div><div><div class="ml">Message on the page</div>“97% of results for this search are women's, so Women is set for you.”</div></div>
+        <div class="qrow"><div><div class="ml">Shopper types</div><span class="q">north face puffer mens large</span></div><div><div class="ml">Search reads</div>Men · Outerwear · L</div><div><div class="ml">Applied on load</div>Size L</div><div><div class="ml">Filter opens on</div>Size grid</div><div><div class="ml">Message on the page</div>None</div></div>
+      </sc-if>
+      <p class="cap">From the design file. Result shares and counts there are placeholders, and shoe conversions need checking against each brand's size chart. What shipped is in section 05.</p>
+    </div>
+
+    <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:24px">
+      <sc-if value="{{ designFile.has }}" hint-placeholder-val="{{ true }}">
+        <a class="btn btn-sec" href="{{ designFile.url }}" target="_blank" rel="noopener">View the design file</a>
+      </sc-if>
+      <sc-if value="{{ designFile.slot }}" hint-placeholder-val="{{ false }}">
+        <span class="slot-link">[Design file link · paste it in Tweaks]</span>
+      </sc-if>
+    </div>
+
+    <figure style="margin:48px 0 0">
+      <div class="label" style="margin-bottom:8px;color:#0968F6">What shipped · card states</div>
+      <div class="frame" style="padding:12px 0 4px"><img class="shot" style="border-radius:0;max-width:826px" src="work-images/ebay-size-card-lines.webp" alt="Three listing cards, each with one size line under the title: US M 10 · Jordan · Air Jordan for single sizes, and US M 10 + more for a listing with several sizes"></div>
+      <figcaption class="cap">On the live site, one size line sits in the same spot on every card. Listings with several sizes read “US M 10 + more,” which confirms the searched size is in stock.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============ 04 ONE CHIP ============ -->
+<section data-screen-label="One chip" class="sec">
+  <div class="wrap">
+    <div class="sechead">
+      <div class="eyebrow">04 · One chip across eBay</div>
+      <sc-if value="{{ showSignals }}" hint-placeholder-val="{{ true }}"><span class="signal"><b>Signal</b> Cross-team leadership</span></sc-if>
+    </div>
+    <h2 class="h">Other teams were building the same chip.</h2>
+    <p class="lede">Size chips were showing up in search, in My eBay and on other surfaces, each designed by a different team. I led the decision on one chip variant, worked with Design Systems to ship it as a new component, and partnered with the My eBay team so saving a size looks like filtering by one. 8 partner teams approved the one style.</p>
+    <div class="g3 r-g" style="align-items:stretch">
+      <figure style="margin:0;display:flex;flex-direction:column" class="panel">
+        <div class="label" style="margin-bottom:14px">Search filter</div>
+        <div style="flex:1;display:flex;align-items:center;justify-content:center;background:#ffffff;border-radius:12px;padding:16px"><img src="work-images/ebay-size-rail.webp" alt="Shoe Size filter in the left rail with US, UK, AU and EU tabs and a Men size grid with 10 selected" style="display:block;width:100%;max-width:232px;height:auto"></div>
+        <figcaption class="cap">The left rail, by region and gender.</figcaption>
+      </figure>
+      <figure style="margin:0;display:flex;flex-direction:column" class="panel">
+        <div class="label" style="margin-bottom:14px">Applied filter chips</div>
+        <div style="flex:1;display:flex;align-items:center;justify-content:center;background:#ffffff;border-radius:12px;padding:16px"><img src="work-images/ebay-size-chips-only.webp" alt="Three applied filter chips, Shoe Size: US Women 10, Shoe Size: US Men 10 and Shoe Size: EU 44, each with a remove control, and a Clear All link" style="display:block;width:100%;max-width:227px;height:auto"></div>
+        <figcaption class="cap">Each chip names the filter and value, and removes on its own.</figcaption>
+      </figure>
+      <figure style="margin:0;display:flex;flex-direction:column" class="panel">
+        <div class="label" style="margin-bottom:14px">My eBay sizes</div>
+        <div style="flex:1;display:flex;align-items:center;justify-content:center;background:#ffffff;border-radius:12px;padding:16px"><img src="work-images/ebay-size-ios-chips.webp" alt="eBay iOS size chip grid for Coats and Jackets, with M selected" style="display:block;width:100%;max-width:280px;height:auto"></div>
+        <figcaption class="cap">Saving a size uses the same chip.</figcaption>
+      </figure>
+    </div>
+    <div style="margin-top:40px">
+      <div style="font-size:15px;font-weight:700;margin-bottom:14px">Two applied states we compared</div>
+      <div class="g2 r-g">
+        <figure style="margin:0;display:flex;flex-direction:column;gap:8px">
+          <div class="label">State A · 3 chips, sizes only</div>
+          <div class="frame"><img class="shot" style="border-radius:0" src="work-images/ebay-size-chips-a.webp" alt="Three filters applied: US Women 10, US Men 10 and EU 44"></div>
+        </figure>
+        <figure style="margin:0;display:flex;flex-direction:column;gap:8px">
+          <div class="label">State B · 4 chips, model as a chip</div>
+          <div class="frame"><img class="shot" style="border-radius:0" src="work-images/ebay-size-chips-b.webp" alt="Four filters applied: Air Jordan 4, US Women 10, US Men 10 and Shoe Size: 10"></div>
+        </figure>
+      </div>
+      <p class="cap">[Which state moved forward, and why]</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 05 WHAT SHIPPED ============ -->
+<section id="shipped" data-screen-label="What shipped" class="sec">
+  <div class="wrap">
+    <div class="sechead">
+      <div class="eyebrow">05 · What shipped</div>
+      <sc-if value="{{ showSignals }}" hint-placeholder-val="{{ true }}"><span class="signal"><b>Signal</b> Craft</span></sc-if>
+    </div>
+    <h2 class="h">Size became a filter shoppers can see, trust and change.</h2>
+    <p class="lede">When a search includes a size, the page pulls it out, applies it, shows it as removable chips and confirms it on every card. Sizes convert in both directions, so a US search also finds listings sized in EU.</p>
+    <figure style="margin:0;display:flex;flex-direction:column;gap:8px">
+      <div class="label" style="color:#0968F6">After · “Jordan 4 size 10”</div>
+      <div class="frame"><img class="shot" style="border-radius:0" src="work-images/ebay-size-after.webp" alt="eBay results for Jordan 4 size 10 after the redesign: a Shoe Size filter in the left rail with US, UK, AU and EU tabs, 3 filters applied, popular size filters, and US M 10 on each card"></div>
+    </figure>
+    <div style="margin-top:40px">
+      <div class="chg headrow" style="padding-top:0"><div class="label">Before</div><div></div><div class="label" style="color:#0968F6">After</div></div>
+      <div class="chg"><div class="was">No sign the size was understood</div><div class="arr">→</div><div>Size pulled from the query and applied as chips</div></div>
+      <div class="chg"><div class="was">No size filter</div><div class="arr">→</div><div>Shoe Size filter with US, UK, AU and EU tabs, and Men, Women and Kids grids</div></div>
+      <div class="chg"><div class="was">Size written 6 ways in 3 places</div><div class="arr">→</div><div>One line, one spot, every card: “US M 10 · Jordan · Air Jordan”</div></div>
+      <div class="chg"><div class="was">“Size 7-12” never confirmed a 10</div><div class="arr">→</div><div>Multi-size listings read “US M 10 + more”</div></div>
+      <div class="chg"><div class="was">EU-sized listings missed by a US search</div><div class="arr">→</div><div>US Men 10 also applies EU 44</div></div>
+      <div class="chg"><div class="was">Men's applied without saying so</div><div class="arr">→</div><div>Men's 10 and Women's 10 both applied and named, so the shopper removes the one that doesn't fit</div></div>
+    </div>
+    <div class="r-g" style="display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:24px;margin-top:48px;align-items:start">
+      <figure style="margin:0;display:flex;flex-direction:column;gap:8px">
+        <div class="label">The full filter panel</div>
+        <div class="frame" style="aspect-ratio:744/624;background:#F7F7F7">
+          <video src="work-images/ebay-size-filter-panel.mp4" poster="work-images/ebay-size-filter-panel-poster.webp" controls="controls" muted="muted" playsinline="playsinline" preload="metadata" aria-label="Screen recording of the See all filter panel: scrolling the Men, Women and Kids size grids, then switching to the EU tab with 44 selected" style="display:block;width:100%;height:100%;object-fit:contain"></video>
+        </div>
+        <figcaption class="cap">“See all” opens every filter. Selected sizes collect in one tray before Apply.</figcaption>
+      </figure>
+      <figure style="margin:0;display:flex;flex-direction:column;gap:8px">
+        <div class="label">Searching in EU · “Jordan 4 eu 44”</div>
+        <div class="frame"><img class="shot" style="border-radius:0" src="work-images/ebay-size-eu44.webp" alt="Shoe Size filter on the EU tab with 44 selected, and listing cards that read EU 44 · Jordan · Air Jordan"></div>
+        <figcaption class="cap">An EU search opens the EU tab with 44 selected, and each card reads the size in EU.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 06 PERSONALIZATION ============ -->
+<section data-screen-label="Personalization" class="sec">
+  <div class="wrap">
+    <div class="sechead">
+      <div class="eyebrow">06 · A personal lens</div>
+      <sc-if value="{{ showSignals }}" hint-placeholder-val="{{ true }}"><span class="signal"><b>Signal</b> End-to-end thinking</span></sc-if>
+    </div>
+    <h2 class="h">Save a size once, and search can use it.</h2>
+    <p class="lede">Next, the filter became a personal lens. A shopper saves their sizes in My eBay. Saving tells eBay to apply that size when they search later, so a returning sneaker buyer starts with their size already set. [Confirm what shipped for auto-apply]</p>
+    <div class="g4">
+      <figure style="margin:0;display:flex;flex-direction:column;gap:10px">
+        <div class="phone"><img class="shot" style="border-radius:0" src="work-images/ebay-size-ios-0.webp" alt="eBay iOS Preferences screen, Tailored to you, with Add sizes and Add brands buttons"></div>
+        <figcaption class="cap" style="margin:0">1 · Add sizes in Preferences</figcaption>
+      </figure>
+      <figure style="margin:0;display:flex;flex-direction:column;gap:10px">
+        <div class="phone"><img class="shot" style="border-radius:0" src="work-images/ebay-size-ios-1.webp" alt="Sizes sheet with Men, Women, Kids and Baby tabs and categories including Shoes"></div>
+        <figcaption class="cap" style="margin:0">2 · Pick who and what</figcaption>
+      </figure>
+      <figure style="margin:0;display:flex;flex-direction:column;gap:10px">
+        <div class="phone"><img class="shot" style="border-radius:0" src="work-images/ebay-size-ios-3.webp" alt="Size chip grid with M selected and a Save button"></div>
+        <figcaption class="cap" style="margin:0">3 · The same size chips</figcaption>
+      </figure>
+      <figure style="margin:0;display:flex;flex-direction:column;gap:10px">
+        <div class="phone"><img class="shot" style="border-radius:0" src="work-images/ebay-size-ios-4.webp" alt="Preferences screen showing Sizes, 1 saved, and a Sizes saved message"></div>
+        <figcaption class="cap" style="margin:0">4 · Saved to the account</figcaption>
+      </figure>
+    </div>
+    <p class="cap">My eBay on iOS. The flow covers clothing and shoes; shown here with a jacket size.</p>
+  </div>
+</section>
+
+<!-- ============ 07 WHAT IT LED TO ============ -->
+<section data-screen-label="What it led to" class="sec">
+  <div class="wrap">
+    <div class="sechead">
+      <div class="eyebrow">07 · What it led to</div>
+      <sc-if value="{{ showSignals }}" hint-placeholder-val="{{ true }}"><span class="signal"><b>Signal</b> Product vision</span></sc-if>
+    </div>
+    <h2 class="h">The size fix grew into three bigger efforts.</h2>
+    <p class="lede">Size was one kind of unclear intent. A query can also leave out the sizing system, the gender or the exact model. The pattern we built for size became the starting point: pull the detail from the query, apply it, show it plainly, and let the shopper change it.</p>
+    <div class="g4 r-g" style="margin-bottom:16px">
+      <div class="stage"><div class="k">Before</div><div class="v">Size typed into search is read as keywords</div></div>
+      <div class="stage"><div class="k">Stage 1</div><div class="v">Size becomes a visible, removable filter</div></div>
+      <div class="stage"><div class="k">Stage 2</div><div class="v">A saved size becomes a personal lens</div></div>
+      <div class="stage" style="border-color:#0968F6;background:#F5F9FF"><div class="k" style="color:#0968F6">Stage 3</div><div class="v">AI Mode and seller insights</div></div>
+    </div>
+    <div class="g3 r-g">
+      <div class="card" style="display:flex;flex-direction:column;gap:8px">
+        <h4 style="margin:0">Disambiguating search</h4>
+        <p>How might we disambiguate search? Every detail a shopper types, not just size, should be read, applied and shown back.</p>
+      </div>
+      <div class="card" style="display:flex;flex-direction:column;gap:8px">
+        <h4 style="margin:0">AI Mode</h4>
+        <p>The agent preselects what the shopper typed, asks one question only when something is still unclear, and applies saved sizes.</p>
+        <a href="{{ aiModeUrl }}" style="font-size:14px;font-weight:700;margin-top:4px">Read the AI Mode case study →</a>
+      </div>
+      <div class="card" style="display:flex;flex-direction:column;gap:8px">
+        <h4 style="margin:0">Seller insights</h4>
+        <p>When a listing isn't selling or buyers seem confused, buyers can message the seller, and the seller gets insights to fix the listing. Feedback closes the loop. [Status]</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 08 OUTCOME ============ -->
+<section data-screen-label="Outcome" class="sec">
+  <div class="wrap">
+    <div class="sechead">
+      <div class="eyebrow">08 · Outcome</div>
+      <sc-if value="{{ showSignals }}" hint-placeholder-val="{{ true }}"><span class="signal"><b>Signal</b> Measured impact</span></sc-if>
+    </div>
+    <h2 class="h">Search a shoe on eBay today, and size is there.</h2>
+    <p class="lede">A shoe search now shows a Shoe Size filter with sizes by gender and region, and the size appears on every item card. What began as one filter became a sizing standard across selling, search and My eBay.</p>
+    <div class="g4">
+      <div class="card"><div style="font-size:30px;font-weight:700;letter-spacing:-0.01em">8</div><div style="font-size:14px;color:#545454;line-height:1.5;margin-top:4px">partner teams on one chip style</div></div>
+      <div class="card"><div style="font-size:30px;font-weight:700;letter-spacing:-0.01em">+3%</div><div style="font-size:14px;color:#545454;line-height:1.5;margin-top:4px">size filter use on shoe searches without a size</div></div>
+      <div class="card"><div style="font-size:30px;font-weight:700;letter-spacing:-0.01em">5%</div><div style="font-size:14px;color:#545454;line-height:1.5;margin-top:4px">fewer retyped shoe size queries</div></div>
+      <div class="card"><div style="font-size:30px;font-weight:700;letter-spacing:-0.01em">+5%</div><div style="font-size:14px;color:#545454;line-height:1.5;margin-top:4px">conversion on shoe size queries</div></div>
+    </div>
+    <div style="margin-top:40px;background:#191919;color:#ffffff;border-radius:16px;padding:26px 30px;display:flex;flex-direction:column;gap:8px;max-width:820px">
+      <div style="font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#A3A3A3">The lesson</div>
+      <div style="font-size:20px;font-weight:700;line-height:1.4;text-wrap:pretty">A feature request is often a data question. Fix size where the listing starts, read it in the query, then remember it for the shopper.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<section data-screen-label="Footer" class="sec" style="background:#F7F7F7">
+  <div style="max-width:1040px;margin:0 auto;padding:72px 0 80px;display:flex;flex-direction:column;align-items:center;gap:18px;text-align:center">
+    <div style="font-size:30px;font-weight:700;letter-spacing:-0.01em">Thanks for scrolling.</div>
+    <div style="display:flex;align-items:center;gap:20px;margin-top:6px;flex-wrap:wrap;justify-content:center">
+      <a class="btn btn-pri" href="{{ aiModeUrl }}">Read the AI Mode case study</a>
+      <a class="btn btn-sec" href="#top">Back to top</a>
+      <span style="font-size:15px"><b>Lia DiValentin</b> · <a href="mailto:ladivalent@gmail.com">ladivalent@gmail.com</a></span>
+    </div>
+  </div>
+</section>
+
+</div>
+</main>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"designFileUrl":{"editor":"text","default":"","tsType":"string","section":"Links"},"aiModeUrl":{"editor":"text","default":"Work-eBayAIMode-CaseStudy.dc.html","tsType":"string","section":"Links"},"showSignals":{"editor":"boolean","default":true,"tsType":"boolean","section":"Display"},"showLinkSlots":{"editor":"boolean","default":false,"tsType":"boolean","section":"Display"},"$preview":{"width":1440,"height":9000}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const showSlots = this.props.showLinkSlots ?? false;
+    const fileUrl = String(this.props.designFileUrl ?? "").trim();
+    const tab = (this.state && this.state.qtab) || "shoes";
+    const hasFile = !!fileUrl && fileUrl !== "#";
+    return {
+      designFile: { url: fileUrl, has: hasFile, slot: !hasFile && showSlots },
+      aiModeUrl: String(this.props.aiModeUrl ?? "Work-eBayAIMode-CaseStudy.dc.html").trim() || "Work-eBayAIMode-CaseStudy.dc.html",
+      showSignals: this.props.showSignals ?? true,
+      showShoes: tab === "shoes",
+      showApparel: tab === "apparel",
+      tabShoes: tab === "shoes" ? "tab on" : "tab",
+      tabApparel: tab === "apparel" ? "tab on" : "tab",
+      pressedShoes: tab === "shoes" ? "true" : "false",
+      pressedApparel: tab === "apparel" ? "true" : "false",
+      pickShoes: () => this.setState({ qtab: "shoes" }),
+      pickApparel: () => this.setState({ qtab: "apparel" })
+    };
+  }
+}
+</script>
+</body>
+</html>
