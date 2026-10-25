@@ -53,13 +53,23 @@
         </div>
       </div>
     </sc-if>
+    <sc-if value="{{ isCopyReview }}" hint-placeholder-val="{{ false }}">
+      <div style="min-height:100%">
+        <dc-import name="Copy-Review" hint-size="100%,1000px"></dc-import>
+      </div>
+    </sc-if>
+    <sc-if value="{{ isPipeline }}" hint-placeholder-val="{{ false }}">
+      <div style="min-height:100%">
+        <dc-import name="Pipeline-Org-Chart" hint-size="100%,1000px"></dc-import>
+      </div>
+    </sc-if>
     <sc-if value="{{ isFrame }}" hint-placeholder-val="{{ false }}">
       <iframe src="{{ src }}" title="{{ title }}" sandbox="allow-scripts allow-same-origin allow-popups allow-forms" style="display:block;width:100%;height:100%;border:0;background:#fff"></iframe>
     </sc-if>
   </div>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props='{"slot":{"editor":"enum","default":"playbook","options":["playbook","collab-map","size-journeys","agentic-policy-map","agentic-framework"]},"back":{"editor":null}}'>
+<script type="text/x-dc" data-dc-script data-props='{"slot":{"editor":"enum","default":"playbook","options":["playbook","collab-map","size-journeys","agentic-policy-map","agentic-framework","copy-review","pipeline-org-chart"]},"back":{"editor":null}}'>
 class Component extends DCLogic {
   state = { entry: null, areaW: 1280 };
   areaRef = React.createRef();
@@ -81,7 +91,7 @@ class Component extends DCLogic {
     const slot = this.pick().slot;
     const back = this.pick().back;
     const e = this.state.entry;
-    const titles = { "playbook": "UX Playbook", "collab-map": "Interactive Collaboration Map", "size-journeys": "Interactive User Journey Mapping", "agentic-policy-map": "Agentic Search Policy Map", "agentic-framework": "Agentic Search Framework" };
+    const titles = { "playbook": "UX Playbook", "collab-map": "Interactive Collaboration Map", "size-journeys": "Interactive User Journey Mapping", "agentic-policy-map": "Agentic Search Policy Map", "agentic-framework": "Agentic Search Framework", "copy-review": "Copy Review Template", "pipeline-org-chart": "Pipeline Org Chart" };
     const inline = Object.prototype.hasOwnProperty.call(titles, slot);
     const src = !inline && e && e.source ? (e.source.mode === "url" ? e.source.url + (e.source.params || "") : e.source.file) : undefined;
     const s = Math.min(1, (this.state.areaW || 1280) / 1920);
@@ -90,6 +100,7 @@ class Component extends DCLogic {
       title: titles[slot] || (e && e.title) || "",
       isPlaybook: slot === "playbook", isCollab: slot === "collab-map", isJourneys: slot === "size-journeys",
       isPolicy: slot === "agentic-policy-map", isFramework: slot === "agentic-framework",
+      isCopyReview: slot === "copy-review", isPipeline: slot === "pipeline-org-chart",
       isFrame: !inline && !!src, src,
       boardTf: "scale(" + s.toFixed(4) + ")", boardH: Math.round(1080 * s) + "px",
       backHref: /^[\w .%-]+\.dc\.html(\?.*)?$/.test(back) ? back : "Process.dc.html",

@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pipeline org chart</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Overpass:wght@400;600;700&family=Overpass+Mono:wght@400;500&family=Public+Sans:wght@400;500;600&display=swap">
+  <style>
+    body{margin:0}
+    a{color:#2459B8}a:hover{color:#15202A}
+    /* Pipeline org chart. Tiers are altitude: company goals at the top, operating model at the bottom. */
+    .poc{--paper:#EDF0F2;--card:#FFFFFF;--wash:#E2E7EB;--ink:#15202A;--muted:#586470;--rule:#CFD7DE;--f-display:"Overpass","Helvetica Neue",Arial,sans-serif;--f-body:"Public Sans","Helvetica Neue",Arial,sans-serif;--f-mono:"Overpass Mono",ui-monospace,Menlo,Consolas,monospace}
+    .poc *{box-sizing:border-box}
+    .poc button{font:inherit;color:inherit}
+    .poc-wrap{max-width:1440px;margin:0 auto;padding:32px 16px 56px}
+    .poc-eyebrow{font:500 12px/1.2 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0}
+    .poc h1{font-family:var(--f-display);font-weight:700;font-size:clamp(30px,4.2vw,48px);line-height:1.05;letter-spacing:-.015em;margin:10px 0 12px;text-wrap:balance}
+    .poc-lede{max-width:64ch;font-size:16.5px;margin:0}
+    .poc-lede-sub{color:var(--muted);font-size:14px;margin:6px 0 0;max-width:64ch}
+    .poc-bar{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center;margin:24px 0 8px;padding:12px 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+    .poc-lens{display:inline-flex;background:var(--wash);border-radius:8px;padding:3px;gap:2px}
+    .poc-lens button{font:600 14px/1 var(--f-display);padding:10px 14px 8px;border-radius:6px;border:0;background:transparent;color:var(--muted);cursor:pointer}
+    .poc-lens button[aria-pressed="true"]{background:var(--card);color:var(--ink);box-shadow:0 0 0 1px var(--rule)}
+    .poc-lens button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+    .poc-lens-note{font-size:14px;color:var(--muted);margin:0;flex:1 1 260px;min-width:0}
+    .poc-legend{display:flex;flex-wrap:wrap;gap:6px 14px;list-style:none;padding:0;margin:0 0 16px;min-height:18px}
+    .poc-legend li{display:inline-flex;align-items:center;gap:6px;font:500 12px/1 var(--f-mono);color:var(--muted)}
+    .poc-sw{width:18px;height:3px;border-radius:2px;background:var(--ink)}
+    .poc-sw.dash{background:none;border-top:2px dashed var(--ink);height:0}
+    .poc-layout{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:24px;align-items:start}
+    .poc-chart{position:relative;min-width:0}
+    .poc-links{position:absolute;left:0;top:0;pointer-events:none;z-index:0;overflow:visible}
+    .poc-tier{display:grid;grid-template-columns:132px minmax(0,1fr);gap:20px;padding:24px 0;border-top:1px solid var(--rule)}
+    .poc-tier:first-of-type{border-top:0;padding-top:8px}
+    .poc-tier-head{display:flex;flex-direction:column;min-width:0}
+    .poc-row{display:grid;gap:12px;min-width:0}
+    .poc-row.goals{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .poc-row.metrics{grid-template-columns:repeat(5,minmax(0,1fr))}
+    .poc-row.bets{grid-template-columns:repeat(4,minmax(0,1fr))}
+    .poc-row.pods{grid-template-columns:2fr 1fr 1fr;align-items:start}
+    .poc-row.base{grid-template-columns:repeat(5,minmax(0,1fr))}
+    .poc-node{position:relative;z-index:2;display:flex;flex-direction:column;align-items:flex-start;gap:4px;text-align:left;cursor:pointer;background:var(--card);border:1px solid var(--rule);border-radius:6px;padding:10px 12px 11px;min-width:0;transition:opacity .2s ease,border-color .2s ease,box-shadow .2s ease}
+    .poc-node:hover{border-color:var(--muted)}
+    .poc-node:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+    .poc-node.is-sel{border-color:var(--ink);box-shadow:0 0 0 1px var(--ink)}
+    .poc-node.dim{opacity:.3}
+    .poc-code{font:500 11px/1.2 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);display:inline-flex;align-items:center;gap:6px}
+    .poc-name{font:600 15px/1.25 var(--f-display);text-wrap:balance}
+    .poc-row.metrics .poc-name,.poc-row.bets .poc-name{font-size:14px}
+    .poc-desc{font-size:12.5px;line-height:1.4;color:var(--muted)}
+    .poc-target{font:400 12px/1.2 var(--f-mono);color:var(--muted);margin-top:auto;padding-top:4px}
+    .poc-target b{font-weight:500;color:var(--ink)}
+    .poc-tag{font:500 10.5px/1 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink);border:1px solid var(--ink);border-radius:3px;padding:3px 5px 2px}
+    .poc-stns{display:flex;flex-wrap:wrap;gap:4px 10px;margin-top:auto;padding-top:4px}
+    .poc-stn{display:inline-flex;align-items:center;gap:4px;font:500 11px/1 var(--f-mono);color:var(--muted)}
+    .poc-dot{display:inline-block;width:10px;height:10px;border-radius:50%;box-sizing:border-box;border:2.5px solid var(--ink);background:var(--card);flex:none}
+    .poc-role{background:var(--wash)}
+    .poc-pod{background:var(--wash);border-radius:10px;padding:10px;display:flex;flex-direction:column;gap:10px;min-width:0}
+    .poc-pod-top{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+    .poc-podhead{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+    .poc-podhead .poc-code{color:var(--paper);opacity:.75}
+    .poc-podhead.is-sel{box-shadow:0 0 0 2px var(--paper),0 0 0 4px var(--ink)}
+    .poc-triad{list-style:none;display:flex;flex-wrap:wrap;gap:4px;padding:0;margin:0}
+    .poc-triad li{font:500 11px/1 var(--f-mono);color:var(--muted);border:1px solid var(--rule);background:var(--card);border-radius:999px;padding:5px 8px 4px}
+    .poc-teams{display:grid;gap:8px}
+    .poc-teams.cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .poc-row.base .poc-node{background:transparent;border-style:dashed}
+    .poc-inspector{position:sticky;top:16px;background:var(--card);border:1px solid var(--rule);border-radius:10px;padding:20px;max-height:calc(100vh - 32px);overflow:auto;min-width:0}
+    .poc-inspector h2{font:700 22px/1.15 var(--f-display);margin:6px 0 8px;text-wrap:balance}
+    .poc-inspector p{margin:0 0 12px}
+    .poc-inspector h3{font:500 11.5px/1.2 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:18px 0 8px}
+    .poc-kv{display:flex;gap:8px;align-items:baseline;font:400 13px/1.3 var(--f-mono);color:var(--muted)}
+    .poc-kv b{color:var(--ink);font-weight:500}
+    .poc-chips{display:flex;flex-wrap:wrap;gap:6px}
+    .poc-chip{display:inline-flex;align-items:center;gap:6px;font:500 12.5px/1.2 var(--f-body);background:var(--paper);border:1px solid var(--rule);border-radius:999px;padding:5px 10px;cursor:pointer;text-align:left}
+    .poc-chip:hover{border-color:var(--muted)}
+    .poc-chip:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+    .poc-chip .poc-dot{width:9px;height:9px}
+    .poc-plain{font-size:13px;color:var(--muted)}
+    .poc-trace{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px}
+    .poc-trace li{display:flex;flex-wrap:wrap;align-items:center;gap:6px;padding-bottom:10px;border-bottom:1px solid var(--rule)}
+    .poc-trace li:last-child{border-bottom:0;padding-bottom:0}
+    .poc-trace .arrow{color:var(--muted);font-size:13px}
+    .poc-trace .note{width:100%;font:400 11.5px/1.2 var(--f-mono);color:var(--muted)}
+    .poc-hand{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px}
+    .poc-hand li{display:flex;flex-direction:column;gap:4px;font-size:13.5px}
+    .poc-hand .to{display:flex;flex-wrap:wrap;align-items:center;gap:6px;font:400 12px/1.2 var(--f-mono);color:var(--muted)}
+    .poc-pipe{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:6px;counter-reset:s}
+    .poc-pipe li{counter-increment:s;font-size:12.5px;border:1px solid var(--rule);border-radius:4px;padding:4px 8px;display:flex;flex-direction:column;gap:2px}
+    .poc-pipe li::before{content:counter(s);font:500 10.5px/1 var(--f-mono);color:var(--muted)}
+    .poc-pipe li.gate{border-color:var(--ink)}
+    .poc-pipe em{font:500 10.5px/1.2 var(--f-mono);font-style:normal;color:var(--ink)}
+    .poc-howto{padding-left:18px;margin:0 0 12px;font-size:14px;display:flex;flex-direction:column;gap:6px}
+    .poc-cad{margin-top:40px;padding-top:20px;border-top:1px solid var(--rule)}
+    .poc-cad h2{font:700 22px/1.15 var(--f-display);margin:6px 0 16px}
+    .poc-cadence{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+    .poc-cadence li{background:var(--card);border:1px solid var(--rule);border-radius:6px;padding:14px;display:flex;flex-direction:column;gap:6px;min-width:0}
+    .poc-cadence .when{font:700 17px/1.1 var(--f-display)}
+    .poc-cadence .who{font:500 11.5px/1.2 var(--f-mono);color:var(--muted);letter-spacing:.04em}
+    .poc-cadence p{margin:0;font-size:14px}
+    .poc-foot{margin-top:28px;font-size:13px;color:var(--muted);max-width:72ch}
+    @media (max-width:1239px){.poc-layout{grid-template-columns:minmax(0,1fr)}.poc-inspector{position:static;max-height:none}}
+    @media (max-width:899px){
+      .poc-links{display:none}
+      .poc-tier{grid-template-columns:minmax(0,1fr);gap:12px;padding:18px 0}
+      .poc-tier-head .poc-node{align-self:stretch}
+      .poc-row.metrics{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .poc-row.bets{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .poc-row.pods{grid-template-columns:minmax(0,1fr)}
+      .poc-row.base{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .poc-cadence{grid-template-columns:repeat(2,minmax(0,1fr))}
+    }
+    @media (max-width:520px){.poc-row.goals,.poc-row.metrics,.poc-row.bets,.poc-teams.cols-2,.poc-cadence{grid-template-columns:minmax(0,1fr)}}
+    @media (prefers-reduced-motion:reduce){.poc-node{transition:none}}
+  </style>
+</helmet>
+<div class="poc" ref="{{ rootRef }}" tabIndex="-1" onKeyDown="{{ onKey }}" style="background:#EDF0F2;color:#15202A;font-family:'Public Sans','Helvetica Neue',Arial,sans-serif;font-size:15px;line-height:1.5;min-height:100%;outline:none">
+  <div class="poc-wrap">
+    <header>
+      <p class="poc-eyebrow">Design operating model</p>
+      <h1>Pipeline org chart</h1>
+      <p class="poc-lede">A classic org chart shows who reports to whom. This one also shows how each team's design pipeline rolls up to a VP metric and a company goal, and what each team hands to the next.</p>
+      <p class="poc-lede-sub">Example teams from the eBay AI Mode work. People appear as roles only.</p>
+    </header>
+
+    <div class="poc-bar">
+      <div class="poc-lens" role="group" aria-label="Lens">
+        <sc-for list="{{ lenses }}" as="l" hint-placeholder-count="3">
+          <button type="button" onClick="{{ l.set }}" aria-pressed="{{ l.on }}">{{ l.label }}</button>
+        </sc-for>
+      </div>
+      <p class="poc-lens-note">{{ lensNote }}</p>
+    </div>
+    <ul class="poc-legend" aria-label="Legend">
+      <sc-for list="{{ legend }}" as="g" hint-placeholder-count="5">
+        <li><sc-if value="{{ g.swatch }}" hint-placeholder-val="{{ true }}"><span class="poc-sw {{ g.swClass }}" style="background:{{ g.color }}"></span></sc-if>{{ g.text }}</li>
+      </sc-for>
+    </ul>
+
+    <div class="poc-layout">
+      <div class="poc-chart" ref="{{ chartRef }}">
+        <svg class="poc-links" aria-hidden="true" width="{{ svgW }}" height="{{ svgH }}">
+          <defs>
+            <marker id="poc-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1 1L9 5L1 9z" fill="#15202A"></path></marker>
+          </defs>
+          <sc-for list="{{ lines }}" as="ln" hint-placeholder-count="0">
+            <path d="{{ ln.d }}" fill="none" stroke="{{ ln.color }}" strokeWidth="{{ ln.w }}" strokeLinecap="round" opacity="{{ ln.o }}" strokeDasharray="{{ ln.dash }}" markerEnd="{{ ln.marker }}"></path>
+          </sc-for>
+        </svg>
+
+        <sc-for list="{{ tiers }}" as="tier" hint-placeholder-count="5">
+          <div class="poc-tier">
+            <div class="poc-tier-head">
+              <button type="button" class="poc-node poc-role {{ tier.role.cls }}" data-id="{{ tier.role.id }}" onClick="{{ tier.role.pick }}" aria-pressed="{{ tier.role.pressed }}">
+                <span class="poc-code">{{ tier.role.tier }}</span>
+                <span class="poc-name">{{ tier.role.name }}</span>
+                <span class="poc-desc">{{ tier.role.sub }}</span>
+              </button>
+            </div>
+            <sc-if value="{{ tier.isNodes }}" hint-placeholder-val="{{ true }}">
+              <div class="poc-row {{ tier.rowCls }}">
+                <sc-for list="{{ tier.nodes }}" as="n" hint-placeholder-count="4">
+                  <button type="button" class="poc-node {{ n.cls }}" data-id="{{ n.id }}" onClick="{{ n.pick }}" aria-pressed="{{ n.pressed }}">
+                    <sc-if value="{{ n.hasCode }}" hint-placeholder-val="{{ true }}">
+                      <span class="poc-code"><sc-if value="{{ n.hasDot }}" hint-placeholder-val="{{ false }}"><span class="poc-dot" style="border-color:{{ n.dotColor }}"></span></sc-if>{{ n.code }}</span>
+                    </sc-if>
+                    <span class="poc-name">{{ n.name }}</span>
+                    <sc-if value="{{ n.hasTag }}" hint-placeholder-val="{{ false }}"><span class="poc-tag">{{ n.tag }}</span></sc-if>
+                    <sc-if value="{{ n.hasDesc }}" hint-placeholder-val="{{ true }}"><span class="poc-desc">{{ n.desc }}</span></sc-if>
+                    <sc-if value="{{ n.hasTarget }}" hint-placeholder-val="{{ false }}"><span class="poc-target">Target <b>{{ n.target }}</b></span></sc-if>
+                    <sc-if value="{{ n.hasStns }}" hint-placeholder-val="{{ false }}">
+                      <span class="poc-stns"><sc-for list="{{ n.stns }}" as="s" hint-placeholder-count="2"><span class="poc-stn"><span class="poc-dot" style="border-color:{{ s.color }}"></span>{{ s.id }}</span></sc-for></span>
+                    </sc-if>
+                  </button>
+                </sc-for>
+              </div>
+            </sc-if>
+            <sc-if value="{{ tier.isPods }}" hint-placeholder-val="{{ false }}">
+              <div class="poc-row pods">
+                <sc-for list="{{ tier.pods }}" as="pod" hint-placeholder-count="3">
+                  <section class="poc-pod" aria-label="{{ pod.aria }}">
+                    <div class="poc-pod-top">
+                      <button type="button" class="poc-node poc-podhead {{ pod.cls }}" data-id="{{ pod.id }}" onClick="{{ pod.pick }}" aria-pressed="{{ pod.pressed }}"><span class="poc-code">Pod</span><span class="poc-name">{{ pod.name }}</span></button>
+                      <ul class="poc-triad" aria-label="Pod triad"><li>Design lead</li><li>PM</li><li>Eng lead</li></ul>
+                    </div>
+                    <div class="poc-teams {{ pod.colsCls }}">
+                      <sc-for list="{{ pod.teams }}" as="n" hint-placeholder-count="3">
+                        <button type="button" class="poc-node {{ n.cls }}" data-id="{{ n.id }}" onClick="{{ n.pick }}" aria-pressed="{{ n.pressed }}">
+                          <span class="poc-name">{{ n.name }}</span>
+                          <sc-if value="{{ n.hasTag }}" hint-placeholder-val="{{ false }}"><span class="poc-tag">{{ n.tag }}</span></sc-if>
+                          <span class="poc-desc">{{ n.desc }}</span>
+                          <sc-if value="{{ n.hasStns }}" hint-placeholder-val="{{ true }}">
+                            <span class="poc-stns"><sc-for list="{{ n.stns }}" as="s" hint-placeholder-count="2"><span class="poc-stn"><span class="poc-dot" style="border-color:{{ s.color }}"></span>{{ s.id }}</span></sc-for></span>
+                          </sc-if>
+                        </button>
+                      </sc-for>
+                    </div>
+                  </section>
+                </sc-for>
+              </div>
+            </sc-if>
+          </div>
+        </sc-for>
+      </div>
+
+      <aside class="poc-inspector" aria-live="polite">
+        <p class="poc-eyebrow">{{ insp.eyebrow }}</p>
+        <h2>{{ insp.title }}</h2>
+        <p>{{ insp.body }}</p>
+        <sc-if value="{{ insp.howto }}" hint-placeholder-val="{{ true }}">
+          <ul class="poc-howto">
+            <li>Switch the lens to see reporting lines, metric roll-ups or handoffs.</li>
+            <li>Select any box to trace it up to a goal and down to the teams that carry it.</li>
+            <li>Press Esc to clear the selection.</li>
+          </ul>
+        </sc-if>
+        <sc-if value="{{ insp.hasKv }}" hint-placeholder-val="{{ false }}"><p class="poc-kv"><span>Target</span><b>{{ insp.kv }}</b></p></sc-if>
+        <sc-for list="{{ insp.sections }}" as="sec" hint-placeholder-count="2">
+          <h3>{{ sec.title }}</h3>
+          <sc-if value="{{ sec.hasPlain }}" hint-placeholder-val="{{ false }}"><p class="poc-plain">{{ sec.plain }}</p></sc-if>
+          <sc-if value="{{ sec.isChips }}" hint-placeholder-val="{{ true }}">
+            <div class="poc-chips">
+              <sc-for list="{{ sec.chips }}" as="c" hint-placeholder-count="3">
+                <button type="button" class="poc-chip" onClick="{{ c.go }}"><sc-if value="{{ c.hasDot }}" hint-placeholder-val="{{ false }}"><span class="poc-dot" style="border-color:{{ c.dotColor }}"></span></sc-if>{{ c.label }}</button>
+              </sc-for>
+            </div>
+          </sc-if>
+          <sc-if value="{{ sec.isTriad }}" hint-placeholder-val="{{ false }}"><ul class="poc-triad"><li>Design lead</li><li>PM</li><li>Eng lead</li></ul></sc-if>
+          <sc-if value="{{ sec.isTrace }}" hint-placeholder-val="{{ false }}">
+            <ol class="poc-trace">
+              <sc-for list="{{ sec.trace }}" as="t" hint-placeholder-count="2">
+                <li>
+                  <sc-if value="{{ t.every }}" hint-placeholder-val="{{ false }}"><span class="note">Every pod</span></sc-if>
+                  <button type="button" class="poc-chip" onClick="{{ t.bet.go }}">{{ t.bet.label }}</button>
+                  <span class="arrow" aria-hidden="true">→</span>
+                  <sc-for list="{{ t.metrics }}" as="c" hint-placeholder-count="2"><button type="button" class="poc-chip" onClick="{{ c.go }}"><span class="poc-dot" style="border-color:{{ c.dotColor }}"></span>{{ c.label }}</button></sc-for>
+                  <span class="arrow" aria-hidden="true">→</span>
+                  <sc-for list="{{ t.goals }}" as="c" hint-placeholder-count="1"><button type="button" class="poc-chip" onClick="{{ c.go }}">{{ c.label }}</button></sc-for>
+                </li>
+              </sc-for>
+            </ol>
+          </sc-if>
+          <sc-if value="{{ sec.isHand }}" hint-placeholder-val="{{ false }}">
+            <ul class="poc-hand">
+              <sc-for list="{{ sec.hand }}" as="h" hint-placeholder-count="2">
+                <li><span>{{ h.label }}</span><span class="to">{{ h.dir }}<sc-if value="{{ h.hasChip }}" hint-placeholder-val="{{ true }}"><button type="button" class="poc-chip" onClick="{{ h.chip.go }}">{{ h.chip.label }}</button></sc-if><sc-if value="{{ h.every }}" hint-placeholder-val="{{ false }}"><span>every team</span></sc-if></span></li>
+              </sc-for>
+            </ul>
+          </sc-if>
+          <sc-if value="{{ sec.isPipe }}" hint-placeholder-val="{{ false }}">
+            <ol class="poc-pipe">
+              <sc-for list="{{ sec.pipe }}" as="st" hint-placeholder-count="8">
+                <li class="{{ st.cls }}"><span>{{ st.name }}</span><sc-if value="{{ st.hasGate }}" hint-placeholder-val="{{ false }}"><em>Gate: {{ st.gate }}</em></sc-if></li>
+              </sc-for>
+            </ol>
+          </sc-if>
+        </sc-for>
+      </aside>
+    </div>
+
+    <section class="poc-cad" aria-labelledby="poc-cad-h">
+      <p class="poc-eyebrow">How it runs</p>
+      <h2 id="poc-cad-h">Cadence, from the longest cycle to the shortest</h2>
+      <ol class="poc-cadence">
+        <sc-for list="{{ cadence }}" as="c" hint-placeholder-count="4">
+          <li><span class="when">{{ c.when }}</span><span class="who">{{ c.who }}</span><p>{{ c.what }}</p></li>
+        </sc-for>
+      </ol>
+    </section>
+
+    <p class="poc-foot">Teams come from the eBay AI Mode and personalization work. Bracketed targets are placeholders to fill in with real numbers. Metric names are standard measures, not reported results.</p>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1000}}'>
+const GOALS = [
+  { id: 'G1', name: 'AI-first commerce', desc: 'Make the agent a trusted way to shop.', target: '[company target]' },
+  { id: 'G2', name: 'Grow marketplace value', desc: 'More buyers find, buy and keep what they wanted.', target: '[GMV target]' }
+];
+const METRICS = [
+  { id: 'M1', short: 'Conversion', name: 'Search to purchase conversion', desc: 'Share of searches that end in a purchase.', goals: ['G2'], target: '[target]', color: '#2459B8' },
+  { id: 'M2', short: 'Fit returns', name: 'Fit-related returns', desc: 'Returns where the reason is size or fit.', goals: ['G2'], target: '[target]', color: '#C2541A' },
+  { id: 'M3', short: 'Task completion', name: 'AI Mode task completion', desc: 'Missions people finish without starting over.', goals: ['G1'], target: '[target]', color: '#157A55' },
+  { id: 'M4', short: 'Silent actions', name: 'Silent-action complaints', desc: 'Complaints about actions a person did not approve.', goals: ['G1'], target: '0', color: '#A53470' },
+  { id: 'M5', short: 'Cycle time', name: 'Brief to tested prototype', desc: 'Days from an approved brief to a prototype tested with shoppers.', goals: ['G1', 'G2'], target: '[days]', color: '#876600' }
+];
+const BETS = [
+  { id: 'B1', name: 'Understand the whole sentence', desc: 'One intent model shared by every surface, so a query like "couch near me, pick up Saturday" means the same thing everywhere.', metrics: ['M1', 'M3'], teams: ['home', 'recs', 'search', 'ai', 'ads'] },
+  { id: 'B2', name: 'Confidence decides the move', desc: 'The agent acts, asks, shows or explains based on how sure it is. Money is always a person\'s call.', metrics: ['M3', 'M4'], teams: ['ai', 'search', 'view', 'cart', 'account'] },
+  { id: 'B3', name: 'One spine, many categories', desc: 'Category teams tune one shared engine instead of building their own. Fit Finder and Nearby Now came from it.', metrics: ['M1', 'M2'], teams: ['listing', 'search', 'view', 'sneakers', 'global'] },
+  { id: 'B4', name: 'One operating model', desc: 'Every pod runs the same pipeline on the same context, so work connects at the handoffs instead of drifting apart.', metrics: ['M5', 'M4'], teams: ['ds'], all: true }
+];
+const PODS = [
+  { id: 'P1', name: 'Shopper journey', teams: ['home', 'recs', 'search', 'view', 'cart', 'account'], cols: 2 },
+  { id: 'P2', name: 'Platform and supply', teams: ['ai', 'listing', 'ads'], cols: 1 },
+  { id: 'P3', name: 'Systems and categories', teams: ['ds', 'sneakers', 'global'], cols: 1 }
+];
+const TEAMS = {
+  home: { name: 'Homepage', desc: 'Entry points into AI Mode and its missions.' },
+  recs: { name: 'Discovery & Recs', desc: 'Suggestions shaped by personal signals.' },
+  search: { name: 'Search / SRP', desc: 'Reads the whole query and shows what it assumed.', origin: true },
+  view: { name: 'View Item', desc: 'Fit, pickup options and a receipt for what was applied.' },
+  cart: { name: 'Cart & Checkout', desc: 'The last safe moment: preview, consent, a person taps Buy.' },
+  account: { name: 'My Account', desc: 'Orders, saved sizes, and memory people can edit or reset.' },
+  ai: { name: 'AI platform', desc: 'Query understanding, attributes, explanations.' },
+  listing: { name: 'Seller Listing', desc: 'The listing signal that feeds every surface.' },
+  ads: { name: 'Ads', desc: 'Sponsored placements on Homepage, SRP and View Item.' },
+  ds: { name: 'Design System', desc: 'Approves the components every pod builds with.' },
+  sneakers: { name: 'Sneakers & Fashion', desc: 'The proving-ground category.' },
+  global: { name: 'Global Marketplace', desc: 'Checks that it survives a size or locale conversion.' }
+};
+const EDGES = [
+  { from: 'listing', to: 'ai', label: 'Listing attributes and signal' },
+  { from: 'ai', to: 'search', label: 'Intent classes and confidence' },
+  { from: 'ai', to: 'recs', label: 'Shared intent model' },
+  { from: 'home', to: 'search', label: 'Entry points and mission starts' },
+  { from: 'ads', to: 'search', label: 'Sponsored placement rules' },
+  { from: 'search', to: 'view', label: 'The interpretation, shown as a receipt' },
+  { from: 'view', to: 'cart', label: 'Chosen size, pickup or shipping' },
+  { from: 'cart', to: 'account', label: 'Orders and preferences to keep' },
+  { from: 'account', to: 'ai', label: 'Memory people approved' },
+  { from: 'sneakers', to: 'ai', label: 'Proving-ground queries' },
+  { from: 'ds', to: '*', label: 'Approved components' },
+  { from: 'global', to: '*', label: 'Size and locale conversions' }
+];
+const ROLES = [
+  { id: 'ceo', tier: 'Company goals', name: 'CEO', sub: 'Sets the goals', desc: 'Sets the company goals and the bar for what counts as progress.', owns: 'Company goals' },
+  { id: 'vp', tier: 'VP standards', name: 'VP Design', sub: 'With VP Product and VP Eng', desc: 'Turns goals into standards: the target metrics design is measured on, and the quality bar. The Product and Engineering VPs share the same metrics.', owns: 'Target metrics and the quality bar' },
+  { id: 'dir', tier: 'Director strategy', name: 'Director', sub: 'AI and search design', desc: 'Turns the metrics into a few strategy bets, assigns each bet to pods, and owns the operating model that keeps the pods connected.', owns: 'Strategy bets and the operating model' },
+  { id: 'leads', tier: 'Pods', name: 'Design leads', sub: 'One per pod', desc: 'Each pod runs as a triad: design lead, PM and eng lead. The design lead runs the pipeline and approves its gates.', owns: 'Pod pipelines and their handoffs' },
+  { id: 'ops', tier: 'Operating model', name: 'Design ops', sub: 'Keeps the SOPs current', desc: 'Reports to the director. Keeps the SOPs, templates and pipeline skills current, so every pod starts from the latest version.', owns: 'SOPs, templates and pipeline skills' }
+];
+const BASE = [
+  { id: 'F1', name: 'SOPs', desc: 'Gates, cadence and the decision log every pod follows.' },
+  { id: 'F2', name: 'Principles', desc: 'AI Mode principles, set once and inherited by every pod.' },
+  { id: 'F3', name: 'Design system', desc: 'Components that tested well. The rest are set aside.' },
+  { id: 'F4', name: 'Build standard', desc: 'Components to use, desktop and mobile shells, the happy path, content and accessibility rules.' },
+  { id: 'F5', name: 'Pipeline skills', desc: 'Research, brief, journey audit, intent mapping, disambiguation spec, prototype and critique.' }
+];
+const PIPE = [
+  { name: 'Research' }, { name: 'Brief', gate: 'Intake approved' }, { name: 'Journey audit' },
+  { name: 'Intent mapping', gate: 'Response moves confirmed' }, { name: 'Disambiguation spec' },
+  { name: 'Prototype' }, { name: 'Critique', gate: 'Traced to the metric' }, { name: 'Design system' }
+];
+const CADENCE = [
+  { when: 'Quarterly', who: 'CEO, VPs, Director', what: 'Goals and target metrics are set. The director sets bets and assigns them to pods.' },
+  { when: 'Monthly', who: 'Director, design leads', what: 'Bet review: which metrics moved, by pod. Keep, change or drop each bet.' },
+  { when: 'Weekly', who: 'Design leads', what: 'Cross-pod design sync on open handoffs. Pipeline gates get approved.' },
+  { when: 'Every project', who: 'Pod triad', what: 'Brief, ledger and a critique that traces the work back to its metric.' }
+];
+const LENS_NOTE = {
+  reporting: 'Who reports to whom. Each pod runs as a triad of design, product and engineering.',
+  metrics: 'How each team\'s work rolls up through a director bet to a VP metric and a company goal.',
+  handoffs: 'What each team\'s pipeline hands to the next team. Select a team to see its inputs and outputs.'
+};
+const INK = '#15202A';
+
+const byId = {};
+const TEAM_IDS = Object.keys(TEAMS);
+GOALS.forEach(g => byId[g.id] = Object.assign({}, g, { type: 'goal' }));
+METRICS.forEach(m => byId[m.id] = Object.assign({}, m, { type: 'metric' }));
+BETS.forEach(b => byId[b.id] = Object.assign({}, b, { type: 'bet' }));
+PODS.forEach(p => { byId[p.id] = Object.assign({}, p, { type: 'pod' }); p.teams.forEach(t => TEAMS[t].pod = p.id); });
+TEAM_IDS.forEach(t => byId[t] = Object.assign({}, TEAMS[t], { id: t, type: 'team' }));
+ROLES.forEach(r => byId[r.id] = Object.assign({}, r, { type: 'role' }));
+BASE.forEach(f => byId[f.id] = Object.assign({}, f, { type: 'base' }));
+const MORDER = METRICS.map(m => m.id);
+const mcolor = m => (byId[m] && byId[m].color) || INK;
+const teamsOfBet = b => b.all ? TEAM_IDS : b.teams;
+const betsOfTeam = t => BETS.filter(b => b.all || b.teams.includes(t));
+const teamMetrics = t => { const s = new Set(); BETS.filter(b => b.teams.includes(t)).forEach(b => b.metrics.forEach(m => s.add(m))); return MORDER.filter(m => s.has(m)); };
+const goalsOfBet = b => Array.from(new Set(b.metrics.flatMap(m => byId[m].goals)));
+
+const addTeam = (S, t) => { S.add(t); S.add(TEAMS[t].pod); };
+const addBetUp = (S, b) => { S.add(b.id); b.metrics.forEach(m => { S.add(m); byId[m].goals.forEach(g => S.add(g)); }); };
+function relReporting(id) {
+  const o = byId[id]; const S = new Set([id]);
+  const add = a => a.forEach(x => S.add(x));
+  if (o.type === 'role') {
+    if (id === 'ceo') add(GOALS.map(g => g.id));
+    if (id === 'vp') add(['ceo'].concat(METRICS.map(m => m.id)));
+    if (id === 'dir') add(['ceo', 'vp', 'leads', 'ops'].concat(BETS.map(b => b.id), PODS.map(p => p.id)));
+    if (id === 'leads') add(['ceo', 'vp', 'dir'].concat(PODS.map(p => p.id), TEAM_IDS));
+    if (id === 'ops') add(['ceo', 'vp', 'dir'].concat(BASE.map(f => f.id)));
+    return S;
+  }
+  if (o.type === 'pod') { add(['ceo', 'vp', 'dir', 'leads'].concat(o.teams)); return S; }
+  if (o.type === 'team') { add(['ceo', 'vp', 'dir', 'leads', o.pod]); return S; }
+  return relMetrics(id);
+}
+function relMetrics(id) {
+  const S = new Set([id]); const o = byId[id];
+  switch (o.type) {
+    case 'goal':
+      METRICS.filter(m => m.goals.includes(id)).forEach(m => { S.add(m.id); BETS.filter(b => b.metrics.includes(m.id)).forEach(b => { S.add(b.id); teamsOfBet(b).forEach(t => addTeam(S, t)); }); });
+      break;
+    case 'metric':
+      o.goals.forEach(g => S.add(g));
+      BETS.filter(b => b.metrics.includes(id)).forEach(b => { S.add(b.id); teamsOfBet(b).forEach(t => addTeam(S, t)); });
+      break;
+    case 'bet':
+      o.metrics.forEach(m => { S.add(m); byId[m].goals.forEach(g => S.add(g)); });
+      teamsOfBet(o).forEach(t => addTeam(S, t));
+      break;
+    case 'team':
+      S.add(o.pod); betsOfTeam(id).forEach(b => addBetUp(S, b));
+      break;
+    case 'pod':
+      o.teams.forEach(t => S.add(t));
+      BETS.filter(b => b.all || b.teams.some(t => o.teams.includes(t))).forEach(b => addBetUp(S, b));
+      break;
+    case 'base':
+      S.add('ops'); PODS.forEach(p => { S.add(p.id); p.teams.forEach(t => S.add(t)); });
+      break;
+    case 'role':
+      return relReporting(id);
+  }
+  return S;
+}
+function relHandoffs(id) {
+  const o = byId[id];
+  if (o.type !== 'team') return relMetrics(id);
+  const S = new Set([id, o.pod]);
+  EDGES.forEach(e => {
+    if (e.from === id) (e.to === '*' ? TEAM_IDS : [e.to]).forEach(t => S.add(t));
+    if (e.to === id || (e.to === '*' && e.from !== id)) S.add(e.from);
+  });
+  return S;
+}
+const relate = (id, lens) => lens === 'reporting' ? relReporting(id) : lens === 'handoffs' ? relHandoffs(id) : relMetrics(id);
+function autoLens(id, lens) {
+  const t = byId[id].type;
+  if (t === 'role') return 'reporting';
+  if (t === 'goal' || t === 'metric' || t === 'bet') return 'metrics';
+  return lens;
+}
+
+const vpath = (a, b) => {
+  const x1 = a.x + a.w / 2, y1 = a.y + a.h, x2 = b.x + b.w / 2, y2 = b.y;
+  const dy = Math.max(16, (y2 - y1) / 2);
+  return 'M' + x1.toFixed(1) + ' ' + y1.toFixed(1) + ' C' + x1.toFixed(1) + ' ' + (y1 + dy).toFixed(1) + ', ' + x2.toFixed(1) + ' ' + (y2 - dy).toFixed(1) + ', ' + x2.toFixed(1) + ' ' + y2.toFixed(1);
+};
+const busPath = (a, b, busY) => {
+  const x1 = a.x + a.w / 2, y1 = a.y + a.h, x2 = b.x + b.w / 2, y2 = b.y;
+  return 'M' + x1.toFixed(1) + ' ' + y1.toFixed(1) + ' V' + busY.toFixed(1) + ' H' + x2.toFixed(1) + ' V' + y2.toFixed(1);
+};
+function clip(r, p, toward) {
+  const dx = toward.x - p.x, dy = toward.y - p.y;
+  if (!dx && !dy) return p;
+  const tx = dx ? (r.w / 2 + 3) / Math.abs(dx) : Infinity;
+  const ty = dy ? (r.h / 2 + 3) / Math.abs(dy) : Infinity;
+  const t = Math.min(tx, ty, 1);
+  return { x: p.x + dx * t, y: p.y + dy * t };
+}
+function arc(a, b, k) {
+  const ca = { x: a.x + a.w / 2, y: a.y + a.h / 2 }, cb = { x: b.x + b.w / 2, y: b.y + b.h / 2 };
+  const mx = (ca.x + cb.x) / 2, my = (ca.y + cb.y) / 2;
+  const dx = cb.x - ca.x, dy = cb.y - ca.y, len = Math.hypot(dx, dy) || 1;
+  const off = Math.min(80, len * 0.22) * k;
+  const ctl = { x: mx - dy / len * off, y: my + dx / len * off };
+  const p1 = clip(a, ca, ctl), p2 = clip(b, cb, ctl);
+  return 'M' + p1.x.toFixed(1) + ' ' + p1.y.toFixed(1) + ' Q' + ctl.x.toFixed(1) + ' ' + ctl.y.toFixed(1) + ' ' + p2.x.toFixed(1) + ' ' + p2.y.toFixed(1);
+}
+
+class Component extends DCLogic {
+  state = { lens: 'metrics', sel: 'M3', lines: [], svgW: 0, svgH: 0, linesKey: '' };
+  rootRef = React.createRef();
+  chartRef = React.createRef();
+  componentDidMount() {
+    this._redraw = () => { cancelAnimationFrame(this._raf); this._raf = requestAnimationFrame(() => this.measure()); };
+    const chart = this.chartRef.current;
+    if (chart && 'ResizeObserver' in window) { this._ro = new ResizeObserver(this._redraw); this._ro.observe(chart); }
+    window.addEventListener('resize', this._redraw);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(this._redraw);
+    setTimeout(this._redraw, 60); setTimeout(this._redraw, 600);
+  }
+  componentDidUpdate() { if (this._redraw) this._redraw(); }
+  componentWillUnmount() { cancelAnimationFrame(this._raf); this._ro && this._ro.disconnect(); window.removeEventListener('resize', this._redraw); }
+  rel() { return this.state.sel ? relate(this.state.sel, this.state.lens) : new Set(); }
+  measure() {
+    const chart = this.chartRef.current; if (!chart) return;
+    const c = chart.getBoundingClientRect();
+    const boxes = {};
+    chart.querySelectorAll('[data-id]').forEach(el => { const r = el.getBoundingClientRect(); boxes[el.getAttribute('data-id')] = { x: r.left - c.left, y: r.top - c.top, w: r.width, h: r.height }; });
+    const B = id => boxes[id];
+    if (!B('ceo') || !B('M1') || !B('P1') || chart.offsetWidth < 900) { if (this.state.lines.length) this.setState({ lines: [], linesKey: '' }); return; }
+    const rel = this.rel(), has = !!this.state.sel, lens = this.state.lens;
+    const lines = [];
+    const push = (d, color, on, dash, marker) => lines.push({ d, color, on, dash: dash || 'none', marker: marker || 'none' });
+    if (lens === 'metrics') {
+      METRICS.forEach(m => m.goals.forEach(g => push(vpath(B(g), B(m.id)), mcolor(m.id), rel.has(g) && rel.has(m.id))));
+      BETS.forEach(b => b.metrics.forEach(m => push(vpath(B(m), B(b.id)), mcolor(m), rel.has(m) && rel.has(b.id))));
+      if (has) {
+        const selType = byId[this.state.sel].type;
+        const color = selType === 'metric' ? mcolor(this.state.sel) : INK;
+        BETS.filter(b => rel.has(b.id)).forEach(b => PODS.forEach(p => { if (rel.has(p.id) && (b.all || p.teams.some(t => b.teams.includes(t) && rel.has(t)))) push(vpath(B(b.id), B(p.id)), color, true); }));
+      }
+    } else if (lens === 'reporting') {
+      push(vpath(B('ceo'), B('vp')), INK, rel.has('ceo') && rel.has('vp'));
+      push(vpath(B('vp'), B('dir')), INK, rel.has('vp') && rel.has('dir'));
+      const busY = B('leads').y - 14;
+      ['leads'].concat(PODS.map(p => p.id)).forEach(t => push(busPath(B('dir'), B(t), busY), INK, rel.has('dir') && rel.has(t)));
+    } else {
+      const selIsTeam = has && byId[this.state.sel].type === 'team';
+      let k = 1;
+      EDGES.forEach(e => {
+        if (e.to === '*') {
+          if (!selIsTeam) return;
+          if (this.state.sel === e.from) TEAM_IDS.filter(t => t !== e.from).forEach(t => { push(arc(B(e.from), B(t), (k = -k)), INK, true, '4 4', 'url(#poc-arrow)'); });
+          else push(arc(B(e.from), B(this.state.sel), (k = -k)), INK, true, '4 4', 'url(#poc-arrow)');
+          return;
+        }
+        const on = selIsTeam ? (e.from === this.state.sel || e.to === this.state.sel) : false;
+        push(arc(B(e.from), B(e.to), (k = -k)), INK, on, '', 'url(#poc-arrow)');
+      });
+    }
+    lines.sort((a, b) => (a.on ? 1 : 0) - (b.on ? 1 : 0));
+    const out = lines.map(l => ({ d: l.d, color: l.color, w: has && l.on ? 2.25 : 1.5, o: has ? (l.on ? 1 : 0.07) : 0.5, dash: l.dash, marker: l.marker }));
+    const key = JSON.stringify(out) + chart.offsetWidth + 'x' + chart.offsetHeight;
+    if (key !== this.state.linesKey) this.setState({ lines: out, svgW: chart.offsetWidth, svgH: chart.offsetHeight, linesKey: key });
+  }
+  select(id, toggle) {
+    if (toggle && this.state.sel === id) this.setState({ sel: null });
+    else this.setState({ sel: id, lens: autoLens(id, this.state.lens) });
+  }
+  setLens(l) {
+    let sel = this.state.sel;
+    if (sel && autoLens(sel, l) !== l) {
+      const t = byId[sel].type;
+      if ((l === 'handoffs' && t !== 'team') || (l === 'metrics' && t === 'role') || (l === 'reporting' && !['role', 'pod', 'team'].includes(t))) sel = null;
+    }
+    this.setState({ lens: l, sel });
+  }
+  chip(id) {
+    const o = byId[id]; let label = o.name;
+    if (o.type === 'metric') label = id + ' ' + o.short;
+    if (o.type === 'bet') label = id + ' ' + o.name;
+    if (o.type === 'pod') label = o.name + ' pod';
+    return { id, label, hasDot: o.type === 'metric', dotColor: o.type === 'metric' ? o.color : INK, go: () => this.select(id, false) };
+  }
+  inspector() {
+    const id = this.state.sel; const chips = ids => ids.map(x => this.chip(x));
+    const sec = (title, chipIds, extra) => Object.assign({ title, isChips: true, chips: chips(chipIds), hasPlain: false, plain: '', isTriad: false, isTrace: false, isHand: false, isPipe: false, trace: [], hand: [], pipe: [] }, extra || {});
+    if (!id) return { eyebrow: 'How to read it', title: 'Rows are altitude', body: 'Company goals sit at the top and the operating model at the bottom. Every team in between runs the same design pipeline.', howto: true, hasKv: false, kv: '', sections: [sec('Start here', ['search', 'M2', 'B2', 'dir'])] };
+    const o = byId[id]; const base = { howto: false, hasKv: false, kv: '' };
+    if (o.type === 'goal') {
+      const ms = METRICS.filter(m => m.goals.includes(id)).map(m => m.id);
+      const bs = BETS.filter(b => b.metrics.some(m => ms.includes(m))).map(b => b.id);
+      return Object.assign(base, { eyebrow: 'Company goal · set by the CEO', title: o.name, body: o.desc, hasKv: true, kv: o.target, sections: [sec('Measured by', ms), sec('Strategy that serves it', bs)] });
+    }
+    if (o.type === 'metric') {
+      const bs = BETS.filter(b => b.metrics.includes(id)); const all = bs.some(b => b.all);
+      const ts = Array.from(new Set(bs.flatMap(b => b.teams)));
+      return Object.assign(base, { eyebrow: 'VP standard · target metric', title: o.name, body: o.desc, hasKv: true, kv: o.target, sections: [sec('Rolls up to', o.goals), sec('Director bets that move it', bs.map(b => b.id)), sec('Teams carrying it', ts, all ? { hasPlain: true, plain: 'Every pod, through the operating model, plus:' } : {})] });
+    }
+    if (o.type === 'bet') {
+      return Object.assign(base, { eyebrow: 'Director strategy · bet', title: o.name, body: o.desc, sections: [sec('Moves', o.metrics), sec('Serves', goalsOfBet(o)), sec('Carried by', o.teams, o.all ? { hasPlain: true, plain: 'Every pod. The Design System team owns it day to day.' } : {})] });
+    }
+    if (o.type === 'team') {
+      const outs = EDGES.filter(e => e.from === id);
+      const ins = EDGES.filter(e => e.to === id || (e.to === '*' && e.from !== id));
+      const trace = betsOfTeam(id).map(b => ({ every: !!b.all, bet: this.chip(b.id), metrics: chips(b.metrics), goals: chips(goalsOfBet(b)) }));
+      const hand = (list, dir) => list.map(e => ({ label: e.label, dir: dir === 'out' ? 'to ' : 'from ', every: dir === 'out' && e.to === '*', hasChip: !(dir === 'out' && e.to === '*'), chip: dir === 'out' ? (e.to === '*' ? null : this.chip(e.to)) : this.chip(e.from) }));
+      return Object.assign(base, { eyebrow: byId[o.pod].name + ' pod' + (o.origin ? ' · where it started' : ''), title: o.name, body: o.desc, sections: [
+        sec('Pod triad', [], { isChips: false, isTriad: true }),
+        sec('Trace: bet, metric, goal', [], { isChips: false, isTrace: true, trace }),
+        sec('Hands off', [], outs.length ? { isChips: false, isHand: true, hand: hand(outs, 'out') } : { isChips: false, hasPlain: true, plain: 'None drawn yet.' }),
+        sec('Receives', [], ins.length ? { isChips: false, isHand: true, hand: hand(ins, 'in') } : { isChips: false, hasPlain: true, plain: 'None drawn yet.' }),
+        sec('Runs the pipeline', [], { isChips: false, isPipe: true, pipe: PIPE.map(s => ({ name: s.name, gate: s.gate || '', hasGate: !!s.gate, cls: s.gate ? 'gate' : '' })) })
+      ] });
+    }
+    if (o.type === 'pod') {
+      const bs = BETS.filter(b => b.all || b.teams.some(t => o.teams.includes(t))).map(b => b.id);
+      return Object.assign(base, { eyebrow: 'Pod · reports to the director', title: o.name, body: 'Runs as a triad. The design lead runs each team\'s pipeline and approves its gates. The PM and eng lead own the same metrics.', sections: [sec('Led by', [], { isChips: false, isTriad: true }), sec('Teams', o.teams), sec('Bets it carries', bs)] });
+    }
+    if (o.type === 'role') {
+      const links = { ceo: GOALS.map(g => g.id), vp: METRICS.map(m => m.id), dir: BETS.map(b => b.id), leads: PODS.map(p => p.id), ops: BASE.map(f => f.id) }[id];
+      const up = { vp: ['ceo'], dir: ['vp'], leads: ['dir'], ops: ['dir'] }[id];
+      const sections = []; if (up) sections.push(sec('Reports to', up)); sections.push(sec('Owns: ' + o.owns, links));
+      return Object.assign(base, { eyebrow: 'Role · ' + o.sub, title: o.name, body: o.desc, sections });
+    }
+    return Object.assign(base, { eyebrow: 'Operating model', title: o.name, body: o.desc, sections: [sec('Read by', PODS.map(p => p.id), { hasPlain: true, plain: 'Every pod pipeline, at every step.' }), sec('Kept current by', ['ops'])] });
+  }
+  renderVals() {
+    const { lens, sel } = this.state; const rel = this.rel();
+    const node = (id, extra) => Object.assign({ id, cls: (id === sel ? 'is-sel' : '') + (sel && !rel.has(id) ? ' dim' : ''), pressed: id === sel, pick: () => this.select(id, true), hasCode: false, code: '', hasDot: false, dotColor: INK, name: byId[id].name, hasTag: false, tag: '', hasDesc: false, desc: '', hasTarget: false, target: '', hasStns: false, stns: [] }, extra || {});
+    const stns = ids => ids.map(m => ({ id: m, color: mcolor(m) }));
+    const R = {}; ROLES.forEach(r => R[r.id] = r);
+    const role = r => Object.assign(node(r.id), { tier: r.tier, sub: r.sub });
+    const tiers = [
+      { role: role(R.ceo), isNodes: true, isPods: false, rowCls: 'goals', nodes: GOALS.map(g => node(g.id, { hasCode: true, code: g.id + ' · Goal', hasDesc: true, desc: g.desc, hasTarget: true, target: g.target })), pods: [] },
+      { role: role(R.vp), isNodes: true, isPods: false, rowCls: 'metrics', nodes: METRICS.map(m => node(m.id, { hasCode: true, code: m.id, hasDot: true, dotColor: m.color, hasTarget: true, target: m.target })), pods: [] },
+      { role: role(R.dir), isNodes: true, isPods: false, rowCls: 'bets', nodes: BETS.map(b => node(b.id, { hasCode: true, code: b.id + ' · Bet', hasStns: true, stns: stns(b.metrics) })), pods: [] },
+      { role: role(R.leads), isNodes: false, isPods: true, rowCls: 'pods', nodes: [], pods: PODS.map(p => Object.assign(node(p.id), { aria: p.name + ' pod', colsCls: p.cols === 2 ? 'cols-2' : '', teams: p.teams.map(t => { const o = TEAMS[t]; const ms = teamMetrics(t); return node(t, { hasTag: !!o.origin, tag: o.origin ? 'Started here' : '', desc: o.desc, hasStns: ms.length > 0, stns: stns(ms) }); }) })) },
+      { role: role(R.ops), isNodes: true, isPods: false, rowCls: 'base', nodes: BASE.map(f => node(f.id, { hasDesc: true, desc: f.desc })), pods: [] }
+    ];
+    const legend = lens === 'metrics' ? METRICS.map(m => ({ swatch: true, swClass: '', color: m.color, text: m.id + ' ' + m.short }))
+      : lens === 'reporting' ? [{ swatch: true, swClass: '', color: INK, text: 'Reports to' }, { swatch: false, swClass: '', color: INK, text: 'Pods run as design, product and eng triads' }]
+      : [{ swatch: true, swClass: '', color: INK, text: 'Hands off to (arrow points at the receiving team)' }, { swatch: true, swClass: 'dash', color: 'transparent', text: 'Shared with every team' }];
+    return {
+      rootRef: this.rootRef, chartRef: this.chartRef,
+      onKey: (e) => { if (e.key === 'Escape' && this.state.sel) this.setState({ sel: null }); },
+      lenses: [['reporting', 'Reporting'], ['metrics', 'Metrics'], ['handoffs', 'Handoffs']].map(([k, label]) => ({ label, on: lens === k, set: () => this.setLens(k) })),
+      lensNote: LENS_NOTE[lens],
+      legend,
+      lines: this.state.lines, svgW: this.state.svgW, svgH: this.state.svgH,
+      tiers,
+      insp: this.inspector(),
+      cadence: CADENCE
+    };
+  }
+}
+</script>
+</body>
+</html>

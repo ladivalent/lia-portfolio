@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Copy review</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+  <style>
+    body{margin:0}
+    a{color:#0b6e69}a:hover{color:#15171c}
+    /* Copy review: a copy deck. Each screen pairs a pinned screenshot with its strings; one sticky toolbar carries progress and export. */
+    .cr{--bg:#f4f5f7;--surface:#ffffff;--sunken:#eceef2;--ink:#15171c;--muted:#5a606c;--faint:#8a909c;--line:#dfe2e8;--accent:#0b6e69;--accent-ink:#ffffff;--accent-tint:#e2f1ef;--keep:#2b7a3d;--keep-tint:#e4f2e7;--edit:#9a5a00;--edit-tint:#fbefdc;--disc:#5b3fb6;--disc-tint:#ece7fb;--data-tint:#f0f1f4;--f-ui:"Instrument Sans","Helvetica Neue",Arial,sans-serif;--f-mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace}
+    .cr *{box-sizing:border-box}
+    .cr h1,.cr h2,.cr h3{text-wrap:balance;margin:0}
+    .cr p{margin:0}
+    .cr button,.cr input,.cr textarea{font:inherit;color:inherit}
+    .cr-wrap{max-width:1240px;margin:0 auto;padding-left:16px;padding-right:16px}
+    .cr-eyebrow{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+    .cr-top{padding:40px 16px 28px;display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:32px;align-items:start}
+    .cr-top h1{font-size:clamp(30px,4vw,42px);line-height:1.1;letter-spacing:-.02em;margin:8px 0 12px;font-weight:700}
+    .cr-lede{color:var(--muted);max-width:64ch;font-size:16px}
+    .cr-notice{margin-top:16px;display:flex;gap:10px;align-items:flex-start;font-size:13.5px;color:var(--muted);max-width:64ch}
+    .cr-notice b{color:var(--ink)}
+    .cr-panel{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:12px}
+    .cr-panel h2{font-size:15px}
+    .cr-steps{margin:0;padding-left:18px;color:var(--muted);font-size:13.5px;display:flex;flex-direction:column;gap:4px}
+    .cr-fld{display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:600}
+    .cr-txt{width:100%;border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:9px 12px;font-size:14px}
+    textarea.cr-txt{resize:vertical;min-height:44px;line-height:1.45}
+    .cr-txt:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:transparent}
+    .cr-meter{height:6px;border-radius:99px;background:var(--sunken);overflow:hidden}
+    .cr-meter i{display:block;height:100%;background:var(--accent);border-radius:99px;transition:width .2s}
+    .cr-kpis{display:flex;justify-content:space-between;font-size:13px;color:var(--muted)}
+    .cr-kpis b{color:var(--ink);font-variant-numeric:tabular-nums}
+    .cr-bar{position:sticky;top:0;z-index:5;background:rgba(244,245,247,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+    .cr-bar .cr-wrap{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding-top:10px;padding-bottom:10px}
+    .cr-seg{display:inline-flex;background:var(--sunken);border-radius:999px;padding:3px;gap:2px}
+    .cr-seg button{border:0;background:transparent;padding:6px 12px;border-radius:999px;font-size:13px;cursor:pointer;color:var(--muted);white-space:nowrap}
+    .cr-seg button[aria-pressed="true"]{background:var(--surface);color:var(--ink);font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,.08)}
+    .cr-chk{display:inline-flex;gap:6px;align-items:center;font-size:13px;color:var(--muted);cursor:pointer;white-space:nowrap}
+    .cr-spacer{flex:1}
+    .cr-btn{border:1px solid var(--line);background:var(--surface);padding:8px 14px;border-radius:999px;font-size:13.5px;font-weight:600;cursor:pointer;white-space:nowrap}
+    .cr-btn.pri{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+    .cr-btn:focus-visible,.cr-seg button:focus-visible,.cr-st button:focus-visible,.cr-thumb:focus-visible,.cr-ref:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+    .cr-toast{font-size:13px;color:var(--accent);min-width:0}
+    .cr-search{width:220px;max-width:100%}
+    .cr-main{padding-top:28px;padding-bottom:96px;display:flex;flex-direction:column;gap:44px}
+    .cr-sh{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+    .cr-sh h2{font-size:24px;letter-spacing:-.01em}
+    .cr-sh .sub{color:var(--muted);font-size:14px}
+    .cr-tag{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;padding:2px 9px;border-radius:999px;background:var(--sunken);color:var(--muted);white-space:nowrap}
+    .cr-tag.plat{background:var(--accent-tint);color:var(--accent)}
+    .cr-qs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+    .cr-qs > .cr-q:last-child:nth-child(odd){grid-column:1 / -1}
+    .cr-q{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:10px}
+    .cr-q .qh{display:flex;gap:10px;align-items:baseline}
+    .cr-q .qid{font-family:var(--f-mono);font-size:12px;color:var(--accent);font-weight:600;flex:none}
+    .cr-q h3{font-size:16px;line-height:1.35}
+    .cr-q .ctx{font-size:13.5px;color:var(--muted)}
+    .cr-q .refs{display:flex;gap:6px;flex-wrap:wrap}
+    .cr-ref{font-family:var(--f-mono);font-size:11.5px;color:var(--accent);text-decoration:none;background:var(--accent-tint);padding:1px 7px;border-radius:6px;border:0;cursor:pointer}
+    .cr-q .row{display:flex;gap:8px;align-items:center;justify-content:space-between;font-size:12px;color:var(--faint)}
+    .cr-voice{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:4px 18px}
+    .cr-voice summary{cursor:pointer;padding:12px 0;font-weight:600}
+    .cr-voice ul{margin:0 0 16px;padding-left:18px;color:var(--muted);font-size:14px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px 28px}
+    .cr-voice b{color:var(--ink)}
+    .cr-screen{display:grid;grid-template-columns:minmax(0,520px) minmax(0,1fr);gap:24px;align-items:start}
+    .cr-screen.tall{grid-template-columns:minmax(0,300px) minmax(0,1fr)}
+    .cr-screen.noimg{grid-template-columns:minmax(0,1fr)}
+    .cr-shot{position:sticky;top:76px;display:flex;flex-direction:column;gap:8px}
+    .cr-thumb{display:block;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--surface);cursor:zoom-in;padding:0;width:100%}
+    .cr-thumb img{display:block;width:100%;height:auto}
+    .cr-shot .hint{font-size:12px;color:var(--faint)}
+    .cr-rows{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;min-width:0}
+    .cr-r{display:grid;grid-template-columns:64px minmax(0,1fr) auto;gap:4px 14px;padding:12px 16px;border-top:1px solid var(--line);align-items:start}
+    .cr-r:first-child{border-top:0}
+    .cr-r.data{background:var(--data-tint)}
+    .cr-r .id{font-family:var(--f-mono);font-size:11.5px;color:var(--faint);padding-top:3px}
+    .cr-r .copy{font-size:15px;line-height:1.45;overflow-wrap:anywhere}
+    .cr-r .meta{grid-column:2;font-size:12px;color:var(--faint)}
+    .cr-r .ctl{grid-row:1 / span 2;grid-column:3;display:flex;gap:6px;align-items:center}
+    .cr-st{display:inline-flex;background:var(--sunken);border-radius:999px;padding:2px}
+    .cr-st button{border:0;background:transparent;padding:4px 10px;border-radius:999px;font-size:12.5px;cursor:pointer;color:var(--muted)}
+    .cr-st button[aria-pressed="true"][data-v="keep"]{background:var(--keep-tint);color:var(--keep);font-weight:600}
+    .cr-st button[aria-pressed="true"][data-v="edit"]{background:var(--edit-tint);color:var(--edit);font-weight:600}
+    .cr-st button[aria-pressed="true"][data-v="discuss"]{background:var(--disc-tint);color:var(--disc);font-weight:600}
+    .cr-r .ed{grid-column:2 / span 2;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px;margin-top:6px}
+    .cr-r .ed .cnt{font-size:11.5px;color:var(--faint);grid-column:1;margin-top:-4px}
+    .cr-r.st-edit{box-shadow:inset 3px 0 0 var(--edit)}
+    .cr-r.st-discuss{box-shadow:inset 3px 0 0 var(--disc)}
+    .cr-r.st-keep{box-shadow:inset 3px 0 0 var(--keep)}
+    .cr-empty{padding:18px 16px;color:var(--muted);font-size:14px}
+    .cr-lb{position:fixed;inset:0;z-index:50;background:rgba(10,12,16,.82);display:flex;align-items:flex-start;justify-content:center;overflow:auto;padding:24px 16px}
+    .cr-lb img{max-width:min(1440px,100%);height:auto;border-radius:10px;background:#fff}
+    .cr-lb .x{position:fixed;top:12px;right:12px}
+    .cr-guide{background:var(--accent-tint);border:1px solid rgba(11,110,105,.3);border-radius:14px;padding:18px 20px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px 32px}
+    .cr-guide h2{font-size:18px;grid-column:1 / -1}
+    .cr-guide p,.cr-guide li{font-size:14px;color:var(--ink)}
+    .cr-guide ol{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:4px}
+    .cr-guide code{font-family:var(--f-mono);font-size:12.5px;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:1px 6px}
+    .cr-fallback{width:100%;margin-bottom:12px}
+    @media (max-width:900px){
+      .cr-top{grid-template-columns:1fr}
+      .cr-qs{grid-template-columns:1fr}
+      .cr-voice ul{grid-template-columns:1fr}
+      .cr-screen,.cr-screen.tall{grid-template-columns:1fr}
+      .cr-shot{position:static;max-width:420px}
+      .cr-r{grid-template-columns:52px minmax(0,1fr)}
+      .cr-r .meta{grid-row:2}
+      .cr-r .ctl{grid-row:3;grid-column:2;margin-top:6px}
+      .cr-r .ed{grid-column:1 / -1;grid-template-columns:1fr}
+      .cr-search{width:100%}
+      .cr-guide{grid-template-columns:1fr}
+    }
+    @media (prefers-reduced-motion:reduce){.cr *{transition:none !important}}
+  </style>
+</helmet>
+<div class="cr" ref="{{ rootRef }}" tabIndex="-1" onKeyDown="{{ onKey }}" style="background:#f4f5f7;color:#15171c;font-family:'Instrument Sans','Helvetica Neue',Arial,sans-serif;font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased;min-height:100%;outline:none">
+  <header class="cr-wrap cr-top">
+    <div>
+      <p class="cr-eyebrow">{{ eyebrow }}</p>
+      <h1>{{ title }}</h1>
+      <p class="cr-lede">{{ lede }}</p>
+      <p class="cr-notice"><span aria-hidden="true">●</span><span><b>{{ noticeBold }}</b> {{ noticeText }}</span></p>
+    </div>
+    <aside class="cr-panel" aria-label="How to review">
+      <h2>How this works</h2>
+      <ol class="cr-steps">
+        <li>Add your name so your notes are credited.</li>
+        <li>Answer the open questions, then work screen by screen.</li>
+        <li>When you're done, download the CSV or copy your review and send it to {{ owner }}.</li>
+      </ol>
+      <label class="cr-fld">Your name<input class="cr-txt" type="text" value="{{ reviewer }}" onChange="{{ setReviewer }}" autoComplete="name" placeholder="First and last name"></label>
+      <div class="cr-kpis"><span>Strings reviewed <b>{{ kStrings }}</b></span><span>Questions answered <b>{{ kQuestions }}</b></span></div>
+      <div class="cr-meter" role="progressbar" aria-label="Review progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{ pct }}"><i style="width:{{ pctW }}"></i></div>
+      <p style="font-size:12.5px;color:#5a606c">Your notes save in this browser as you type. Nothing reaches {{ owner }} until you download or copy them.</p>
+    </aside>
+  </header>
+
+  <div class="cr-bar"><div class="cr-wrap">
+    <div class="cr-seg" role="group" aria-label="Filter strings">
+      <sc-for list="{{ filters }}" as="f" hint-placeholder-count="4">
+        <button type="button" onClick="{{ f.pick }}" aria-pressed="{{ f.on }}">{{ f.label }}</button>
+      </sc-for>
+    </div>
+    <label class="cr-chk"><input type="checkbox" checked="{{ showData }}" onChange="{{ toggleData }}"> Show sample data</label>
+    <input class="cr-txt cr-search" type="search" value="{{ query }}" onChange="{{ setQuery }}" placeholder="Find a string or ID" aria-label="Find a string or ID">
+    <span class="cr-spacer"></span>
+    <span class="cr-toast" role="status">{{ toast }}</span>
+    <button class="cr-btn" type="button" onClick="{{ copyReview }}">Copy review</button>
+    <button class="cr-btn pri" type="button" onClick="{{ downloadCsv }}">Download CSV</button>
+  </div></div>
+
+  <main class="cr-wrap cr-main">
+    <sc-if value="{{ hasFallback }}" hint-placeholder-val="{{ false }}">
+      <textarea class="cr-txt cr-fallback" rows="12" readOnly="{{ true }}" aria-label="Your review as text" value="{{ fallbackText }}"></textarea>
+    </sc-if>
+
+    <section class="cr-guide" aria-labelledby="cr-guide-h">
+      <h2 id="cr-guide-h">{{ guideTitle }}</h2>
+      <div>
+        <p style="margin-bottom:8px">{{ guideIntro }}</p>
+        <ol><sc-for list="{{ guideSteps }}" as="g" hint-placeholder-count="4"><li>{{ g }}</li></sc-for></ol>
+      </div>
+      <div>
+        <p style="margin-bottom:8px"><b>Ask Claude, in any chat:</b></p>
+        <ol><sc-for list="{{ guidePrompts }}" as="g" hint-placeholder-count="3"><li><code>{{ g }}</code></li></sc-for></ol>
+        <p style="margin-top:8px;color:#5a606c">{{ guideNote }}</p>
+      </div>
+    </section>
+
+    <section aria-labelledby="cr-q-h">
+      <div class="cr-sh"><h2 id="cr-q-h">Open questions</h2><span class="sub">{{ qCount }}. Start here.</span></div>
+      <div class="cr-qs">
+        <sc-for list="{{ questions }}" as="q" hint-placeholder-count="3">
+          <article class="cr-q" id="{{ q.domId }}">
+            <div class="qh"><span class="qid">{{ q.id }}</span><h3>{{ q.q }}</h3></div>
+            <p class="ctx">{{ q.ctx }}</p>
+            <div class="refs"><sc-for list="{{ q.refs }}" as="r" hint-placeholder-count="2"><button type="button" class="cr-ref" onClick="{{ r.jump }}">{{ r.id }}</button></sc-for></div>
+            <textarea class="cr-txt" rows="3" maxLength="2000" placeholder="Your answer" aria-label="{{ q.aria }}" value="{{ q.answer }}" onChange="{{ q.setAnswer }}"></textarea>
+            <div class="row"><span>{{ q.status }}</span></div>
+          </article>
+        </sc-for>
+      </div>
+    </section>
+
+    <details class="cr-voice">
+      <summary>Voice and style rules these screens follow</summary>
+      <ul><sc-for list="{{ voice }}" as="v" hint-placeholder-count="10"><li><b>{{ v.rule }}</b> {{ v.note }}</li></sc-for></ul>
+    </details>
+
+    <sc-for list="{{ sections }}" as="s" hint-placeholder-count="4">
+      <section class="cr-screen {{ s.cls }}" id="{{ s.domId }}" aria-labelledby="{{ s.hId }}">
+        <sc-if value="{{ s.hasImg }}" hint-placeholder-val="{{ true }}">
+          <div class="cr-shot">
+            <button type="button" class="cr-thumb" onClick="{{ s.openImg }}" aria-label="{{ s.imgAria }}"><img src="{{ s.img }}" alt="{{ s.imgAlt }}" width="{{ s.w }}" height="{{ s.h }}" loading="lazy"></button>
+            <p class="hint">Click to open full size</p>
+          </div>
+        </sc-if>
+        <div style="min-width:0">
+          <div class="cr-sh">
+            <sc-if value="{{ s.hasPlat }}" hint-placeholder-val="{{ true }}"><span class="cr-tag plat">{{ s.platform }}</span></sc-if>
+            <span class="cr-tag">{{ s.code }}</span>
+            <h2 id="{{ s.hId }}">{{ s.heading }}</h2>
+            <span class="sub">{{ s.sub }}</span>
+          </div>
+          <div class="cr-rows">
+            <sc-if value="{{ s.empty }}" hint-placeholder-val="{{ false }}"><p class="cr-empty">{{ s.emptyText }}</p></sc-if>
+            <sc-for list="{{ s.rows }}" as="r" hint-placeholder-count="6">
+              <div class="cr-r {{ r.cls }}" id="{{ r.domId }}">
+                <span class="id">{{ r.id }}</span>
+                <p class="copy">{{ r.text }}</p>
+                <div class="ctl">
+                  <div class="cr-st" role="group" aria-label="{{ r.stAria }}">
+                    <button type="button" data-v="keep" onClick="{{ r.setKeep }}" aria-pressed="{{ r.keepOn }}">Keep</button>
+                    <button type="button" data-v="edit" onClick="{{ r.setEdit }}" aria-pressed="{{ r.editOn }}">Edit</button>
+                    <button type="button" data-v="discuss" onClick="{{ r.setDiscuss }}" aria-pressed="{{ r.discussOn }}">Discuss</button>
+                  </div>
+                </div>
+                <p class="meta">{{ r.meta }}</p>
+                <sc-if value="{{ r.open }}" hint-placeholder-val="{{ false }}">
+                  <div class="ed">
+                    <textarea class="cr-txt" rows="2" maxLength="600" placeholder="Suggested copy" aria-label="{{ r.sugAria }}" value="{{ r.suggestion }}" onChange="{{ r.setSuggestion }}"></textarea>
+                    <textarea class="cr-txt" rows="2" maxLength="1000" placeholder="{{ r.notePlaceholder }}" aria-label="{{ r.noteAria }}" value="{{ r.note }}" onChange="{{ r.setNote }}"></textarea>
+                    <span class="cnt">{{ r.cnt }}</span>
+                  </div>
+                </sc-if>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </section>
+    </sc-for>
+  </main>
+
+  <sc-if value="{{ lbOpen }}" hint-placeholder-val="{{ false }}">
+    <div class="cr-lb" onClick="{{ closeLb }}">
+      <button class="cr-btn x" type="button" onClick="{{ closeLb }}">Close</button>
+      <img src="{{ lbSrc }}" alt="{{ lbAlt }}">
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1000}}'>
+const DATA = {"id": "copy-review-template-example", "title": "Copy review", "eyebrow": "Example content · eBay AI Mode concept · Round 1", "lede": "Every string from the screens under review, next to the screen it lives on. Mark each one Keep, Edit or Discuss, suggest new copy, and answer the open questions first.", "notice": {"bold": "Concept, not a live product.", "text": "Product names, prices, sellers and dates are sample data, shaded grey and hidden by default. Review the interface and agent copy around them."}, "owner": "Lia", "sampleDataLabel": "Sample data", "template": {"title": "This is the Copy Review template", "intro": "A copy deck for content design review: every string on every screen, marked Keep, Edit or Discuss, with open questions and a CSV export. The content below is an example taken from the eBay AI Mode review.", "steps": ["Give Claude the screens: an HTML mock, PNG or Figma exports, or a live page.", "Claude pulls every string, flags sample data, groups strings that repeat across screens and drafts open questions.", "Claude publishes a new review from this template. You check it, then share it from the Share menu.", "Your reviewer marks strings and sends back a CSV. Claude applies the accepted edits to your screens."], "prompts": ["Make a copy review from my Copy Review template for these screens", "Add these questions to the review before I share it", "Here's the reviewer's CSV. Apply the accepted copy changes"], "note": "Each review gets its own private link. Updating this template doesn't change reviews already made from it."}, "questions": [{"id": "Q1", "q": "Is “hold” doing too many jobs?", "ctx": "It means press-and-hold on the buttons (Hold to send offer, Hold to counter), a pricing strategy (Hold for more) and an approval rule (Only with your hold). Could anyone read “hold” as “pause”?", "refs": ["I4-16"]}, {"id": "Q2", "q": "Could “Fair price” read as a guarantee?", "ctx": "The verdict is based on recent sold prices only. Is “Fair price” the right word, and are “Above market” and “Below market” the right pair for the other states?", "refs": ["D3-02", "D3-03", "D3-04"]}, {"id": "Q3", "q": "Do the honest-limits lines sound trustworthy rather than broken?", "ctx": "“Can't check from photos,” “Fitment unknown,” “No fitment data. Title claims fit.” and “Messages can't be unsent.” They need to say what the agent couldn't do without sounding like an error.", "refs": ["D3-24", "I2-18"]}], "voice": [["Talk to the person.", "Second person. Buyer copy reassures, seller copy empowers."], ["Sentence case everywhere.", "Buy It Now and Best Offer keep their title case as product features."], ["Buttons are a verb and a noun.", "“Make an offer,” “Review the job.” Never OK, Got it or Submit."], ["Agents say what they did and what they couldn't.", "Name the action, the amount and the seller. Say what's irreversible."], ["Price and total stay on separate lines.", "Item price first, then the estimated total with shipping and tax."], ["Urgency only when it's true.", "“Only 1 left” comes from data or not at all."], ["No em dashes in interface copy.", "Use a comma, a period or a colon instead."], ["No emoji.", "Personality comes from color and the voice, not symbols."], ["Trust language is a feature.", "Authenticity Guarantee, Money Back Guarantee and Top Rated Plus are named exactly."], ["Every number has a basis.", "Prices and verdicts say what they're based on and when they were checked."]], "shared": {"title": "Shared across screens", "sub": "Review once. These repeat on many screens.", "rows": [{"text": "Enter to send · Shift+Enter for a new line · Your agent never bids, offers or messages without your click", "kind": "Composer hint", "data": false, "count": 1, "where": "Appears on D0, D1, D2, D3, D4, D5", "id": "S-01"}, {"text": "Is it worth it?", "kind": "Job name", "data": false, "count": 1, "where": "Appears on D0, I0b, D3, I3", "id": "S-04"}, {"text": "Get it for my price", "kind": "Job name", "data": false, "count": 1, "where": "Appears on D0, I0b, D4, I4", "id": "S-05"}, {"text": "Nothing is sent or bought without your click", "kind": "Composer hint", "data": false, "count": 1, "where": "Appears on I0b, I1, I2, I3", "id": "S-07"}, {"text": "[Job name] · chosen by Auto", "kind": "Route chip", "data": false, "count": 1, "where": "Appears on I1, D2, D3, I3, D4, D5", "id": "S-08"}, {"text": "AI-drafted", "kind": "Tag", "data": false, "count": 1, "where": "Appears on I2, D5, I5", "id": "S-09"}]}, "screens": [{"code": "I2", "platform": "iOS", "title": "Step 4: unknown fitment, ask the seller", "img": "/_blob/791d8b70a715aef5b5981ff5fdcb9443", "w": 828, "h": 1736, "rows": [{"text": "Change", "kind": "Button or chip", "data": false, "count": 1, "where": "", "id": "I2-01"}, {"text": "Garage", "kind": "Helper or meta", "data": false, "count": 1, "where": "", "id": "I2-02"}, {"text": "2018 Outback 2.5i Limited", "kind": "Body", "data": true, "count": 1, "where": "", "id": "I2-03"}, {"text": "2 of 4 rotor pairs fit. 1 needs the seller.", "kind": "Body", "data": false, "count": 1, "where": "", "id": "I2-04"}, {"text": "Fitment data", "kind": "Helper or meta", "data": false, "count": 1, "where": "", "id": "I2-05"}, {"text": "1 minute ago", "kind": "Helper or meta", "data": false, "count": 1, "where": "", "id": "I2-06"}, {"text": "Coated rotor pair, 2015 to 2019", "kind": "Body", "data": true, "count": 1, "where": "", "id": "I2-07"}, {"text": "$96.40 · Free shipping", "kind": "Body", "data": false, "count": 1, "where": "", "id": "I2-08"}, {"text": "Fits your Outback", "kind": "Helper or meta", "data": false, "count": 1, "where": "", "id": "I2-09"}, {"text": "Economy rotor pair, Subaru fit", "kind": "Body", "data": true, "count": 1, "where": "", "id": "I2-10"}, {"text": "$61.99 · Free shipping", "kind": "Body", "data": false, "count": 1, "where": "", "id": "I2-11"}, {"text": "Fitment unknown", "kind": "Helper or meta", "data": false, "count": 1, "where": "", "id": "I2-12"}, {"text": "No fitment data. Title claims fit.", "kind": "Helper or meta", "data": false, "count": 1, "where": "", "id": "I2-13"}, {"text": "DRAFT QUESTION TO PARTSBARN_88", "kind": "Label (caps by style)", "data": false, "count": 1, "where": "", "id": "I2-14"}, {"text": "Hi, does this rotor pair fit a 2018 Subaru Outback 2.5i Limited, built 11/2017? Thanks.", "kind": "Body", "data": false, "count": 1, "where": "", "id": "I2-15"}, {"text": "Send question", "kind": "Button or chip", "data": false, "count": 1, "where": "", "id": "I2-16"}, {"text": "Edit", "kind": "Button or chip", "data": false, "count": 1, "where": "", "id": "I2-17"}, {"text": "Messages can't be unsent.", "kind": "Helper or meta", "data": false, "count": 1, "where": "", "id": "I2-18"}, {"text": "Ask about a part", "kind": "Input placeholder", "data": false, "count": 1, "where": "Composer", "id": "I2-19"}], "group": "Will it fit?"}, {"code": "D3", "platform": "Desktop", "title": "Steps 2 and 3: value and trust", "img": "/_blob/bd1aa302f1f93de7660a53502e864755", "w": 2880, "h": 2080, "rows": [{"text": "Is $1,150 fair for this PSA 8 Charizard? And is the listing legit?", "kind": "Shopper message (sample)", "data": true, "count": 1, "where": "", "id": "D3-01"}, {"text": "Fair price, and the listing checks out on everything I can see", "kind": "Heading", "data": false, "count": 1, "where": "", "id": "D3-02"}, {"text": "Fair price", "kind": "Body", "data": false, "count": 1, "where": "", "id": "D3-03"}, {"text": "3% above the median of 38 PSA 8 sales", "kind": "Body", "data": false, "count": 1, "where": "", "id": "D3-04"}, {"text": "This listing $1,150", "kind": "Helper or meta", "data": false, "count": 1, "where": "", "id": "D3-05"}, {"text": "Median $1,115", "kind": "Helper or meta", "data": false, "count": 1, "where": "", "id": "D3-06"}, {"text": "Lowest sold $940", "kind": "Helper or meta", "data": false, "count": 1, "where": "", "id": "D3-07"}, {"text": "Highest sold $1,380", "kind": "Helper or meta", "data": false, "count": 1, "where": "", "id": "D3-08"}, {"text": "SOLD", "kind": "Label (caps by style)", "data": false, "count": 1, "where": "", "id": "D3-09"}, {"text": "WINDOW", "kind": "Label (caps by style)", "data": false, "count": 1, "where": "", "id": "D3-10"}, {"text": "VS MEDIAN", "kind": "Label (caps by style)", "data": false, "count": 1, "where": "", "id": "D3-11"}, {"text": "38 sales", "kind": "Body", "data": true, "count": 1, "where": "", "id": "D3-12"}, {"text": "90 days", "kind": "Body", "data": true, "count": 1, "where": "", "id": "D3-13"}, {"text": "What I checked", "kind": "Body", "data": false, "count": 1, "where": "", "id": "D3-14"}, {"text": "PSA cert number matches the slab photo", "kind": "Body", "data": false, "count": 1, "where": "", "id": "D3-15"}, {"text": "Matches", "kind": "Helper or meta", "data": false, "count": 1, "where": "", "id": "D3-16"}, {"text": "Seller history, cards over $500", "kind": "Body", "data": false, "count": 1, "where": "", "id": "D3-17"}, {"text": "212 sales · 99.9%", "kind": "Helper or meta", "data": true, "count": 1, "where": "", "id": "D3-18"}, {"text": "Authenticity Guarantee", "kind": "Body", "data": false, "count": 1, "where": "", "id": "D3-19"}, {"text": "Eligible", "kind": "Helper or meta", "data": false, "count": 1, "where": "", "id": "D3-20"}, {"text": "Returns", "kind": "Body", "data": false, "count": 1, "where": "", "id": "D3-21"}, {"text": "30 days", "kind": "Helper or meta", "data": true, "count": 1, "where": "", "id": "D3-22"}, {"text": "Slab tampering or resealing", "kind": "Body", "data": false, "count": 1, "where": "", "id": "D3-23"}, {"text": "Can't check from photos", "kind": "Helper or meta", "data": false, "count": 1, "where": "", "id": "D3-24"}, {"text": "I can't inspect the physical card. If you buy, Authenticity Guarantee checks it before it ships to you.", "kind": "Helper or meta", "data": false, "count": 1, "where": "", "id": "D3-25"}, {"text": "Buy It Now $1,150", "kind": "Button or chip", "data": false, "count": 1, "where": "", "id": "D3-26"}, {"text": "Make an offer", "kind": "Button or chip", "data": false, "count": 1, "where": "", "id": "D3-27"}, {"text": "Watch for under $1,100", "kind": "Button or chip", "data": false, "count": 1, "where": "", "id": "D3-28"}, {"text": "Ask about grade, population or the seller", "kind": "Input placeholder", "data": false, "count": 1, "where": "Composer", "id": "D3-29"}, {"text": "Sold comps", "kind": "Body", "data": false, "count": 1, "where": "Results panel", "id": "D3-30"}, {"text": "Base Set Charizard holo, unlimited · PSA 8 · 90 days", "kind": "Helper or meta", "data": true, "count": 1, "where": "Results panel", "id": "D3-31"}, {"text": "38 sold · median $1,115", "kind": "Body", "data": false, "count": 1, "where": "Results panel", "id": "D3-32"}, {"text": "Lowest $940 · highest $1,380", "kind": "Helper or meta", "data": false, "count": 1, "where": "Results panel", "id": "D3-33"}, {"text": "Auction · 31 bids", "kind": "Body", "data": true, "count": 1, "where": "Results panel", "id": "D3-34"}, {"text": "Buy It Now", "kind": "Body", "data": true, "count": 2, "where": "Results panel", "id": "D3-35"}, {"text": "Best Offer accepted", "kind": "Body", "data": true, "count": 2, "where": "Results panel", "id": "D3-36"}, {"text": "Auction · 24 bids", "kind": "Body", "data": true, "count": 1, "where": "Results panel", "id": "D3-37"}, {"text": "Auction · 19 bids", "kind": "Body", "data": true, "count": 1, "where": "Results panel", "id": "D3-38"}, {"text": "eBay sold data", "kind": "Helper or meta", "data": false, "count": 1, "where": "Results panel", "id": "D3-39"}, {"text": "checked 6 minutes ago", "kind": "Helper or meta", "data": false, "count": 1, "where": "Results panel", "id": "D3-40"}], "group": "Is it worth it?"}, {"code": "I4", "platform": "iOS", "title": "Step 4: approve from a push", "img": "/_blob/a0de9d19d143c2c80b7bd8999067b355", "w": 828, "h": 1736, "rows": [{"text": "Found one that fits your rules.", "kind": "Body", "data": false, "count": 1, "where": "", "id": "I4-01"}, {"text": "Listing checked 9:12 AM", "kind": "Helper or meta", "data": false, "count": 1, "where": "", "id": "I4-02"}, {"text": "Sony A7 IV under $1,500", "kind": "Body", "data": true, "count": 1, "where": "", "id": "I4-03"}, {"text": "Review", "kind": "Helper or meta", "data": false, "count": 1, "where": "", "id": "I4-04"}, {"text": "1 match · 7 days left", "kind": "Helper or meta", "data": false, "count": 1, "where": "", "id": "I4-05"}, {"text": "Send a $1,360 offer?", "kind": "Heading", "data": false, "count": 1, "where": "", "id": "I4-06"}, {"text": "Sony Alpha A7 IV body, shutter 4,100", "kind": "Body", "data": true, "count": 1, "where": "", "id": "I4-07"}, {"text": "camera_exchange_ny · 99.8% · listed at $1,499", "kind": "Helper or meta", "data": true, "count": 1, "where": "", "id": "I4-08"}, {"text": "Offer", "kind": "Body", "data": false, "count": 1, "where": "", "id": "I4-09"}, {"text": "Shipping", "kind": "Body", "data": false, "count": 1, "where": "", "id": "I4-10"}, {"text": "Free", "kind": "Body", "data": false, "count": 1, "where": "", "id": "I4-11"}, {"text": "Est. tax", "kind": "Body", "data": false, "count": 1, "where": "", "id": "I4-12"}, {"text": "Est. total if accepted", "kind": "Body", "data": false, "count": 1, "where": "", "id": "I4-13"}, {"text": "$19.30 under your $1,500 limit", "kind": "Helper or meta", "data": false, "count": 1, "where": "", "id": "I4-14"}, {"text": "This offer is binding for 48 hours. If the seller accepts, you've agreed to pay. I can't withdraw it for you.", "kind": "Body", "data": false, "count": 1, "where": "", "id": "I4-15"}, {"text": "Hold to send offer", "kind": "Button or chip", "data": false, "count": 1, "where": "", "id": "I4-16"}, {"text": "Change amount", "kind": "Button or chip", "data": false, "count": 1, "where": "", "id": "I4-17"}, {"text": "Not now", "kind": "Button or chip", "data": false, "count": 1, "where": "", "id": "I4-18"}], "group": "Get it for my price"}]};
+const OWNER = DATA.owner || "the requester";
+const KEY = "copy-review:" + (DATA.id || "default");
+const QUESTIONS = DATA.questions || [];
+const SHARED = (DATA.shared && DATA.shared.rows) || [];
+const SCREENS = DATA.screens || [];
+const STATUS = { keep: "Keep", edit: "Edit", discuss: "Discuss", "": "" };
+const len = s => Array.from(String(s || "")).length;
+const allRows = () => SHARED.concat.apply(SHARED, SCREENS.map(s => s.rows || []));
+const screenOf = id => {
+  if (SHARED.some(r => r.id === id)) return "Shared";
+  const s = SCREENS.find(x => (x.rows || []).some(r => r.id === id));
+  return s ? [s.code, s.group, s.platform && "(" + s.platform + ")"].filter(Boolean).join(" ") : "";
+};
+
+class Component extends DCLogic {
+  state = { reviewer: "", rows: {}, qs: {}, filter: "all", showData: false, query: "", toast: "", lb: null, fallbackText: "" };
+  rootRef = React.createRef();
+  componentDidMount() {
+    try { const raw = localStorage.getItem(KEY); if (raw) { const saved = JSON.parse(raw) || {}; this.setState({ reviewer: saved.reviewer || "", rows: saved.rows || {}, qs: saved.qs || {} }); } } catch (e) {}
+  }
+  componentWillUnmount() { clearTimeout(this._toast); }
+  persist(patch) {
+    this.setState(patch, () => { try { localStorage.setItem(KEY, JSON.stringify({ reviewer: this.state.reviewer, rows: this.state.rows, qs: this.state.qs })); } catch (e) {} });
+  }
+  toast(t) { this.setState({ toast: t }); clearTimeout(this._toast); this._toast = setTimeout(() => this.setState({ toast: "" }), 4000); }
+  setRow(id, patch) { const rows = Object.assign({}, this.state.rows); rows[id] = Object.assign({}, rows[id] || {}, patch); this.persist({ rows }); }
+  setStatus(id, v) { const cur = (this.state.rows[id] || {}).status || ""; this.setRow(id, { status: cur === v ? "" : v }); }
+  visible(r) {
+    const { filter, showData, query } = this.state;
+    if (r.data && !showData) return false;
+    const st = (this.state.rows[r.id] || {}).status || "";
+    if (filter === "todo" && st) return false;
+    if (filter === "edit" && st !== "edit") return false;
+    if (filter === "discuss" && st !== "discuss") return false;
+    const q = query.trim().toLowerCase();
+    if (q && !(String(r.text).toLowerCase().includes(q) || String(r.id).toLowerCase().includes(q))) return false;
+    return true;
+  }
+  jump(id) {
+    const r = allRows().find(x => x.id === id);
+    const patch = { filter: "all", query: "" };
+    if (r && r.data && !this.state.showData) patch.showData = true;
+    this.setState(patch, () => {
+      const root = this.rootRef.current; const el = root && root.querySelector('[id="cr-r-' + id + '"]');
+      if (el) { el.scrollIntoView({ block: "center" }); el.style.outline = "2px solid #0b6e69"; setTimeout(() => { el.style.outline = ""; }, 1600); }
+    });
+  }
+  reviewedRows() { return allRows().filter(r => { const v = this.state.rows[r.id]; return v && (v.status || (v.suggestion || "").trim() || (v.note || "").trim()); }); }
+  reviewText() {
+    const who = (this.state.reviewer || "").trim() || "Reviewer";
+    const L = [DATA.title || "Copy review", "Reviewer: " + who, "Date: " + new Date().toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })];
+    if (QUESTIONS.length) { L.push("", "OPEN QUESTIONS"); QUESTIONS.forEach(q => { L.push(q.id + ". " + q.q); L.push("   Answer: " + ((this.state.qs[q.id] || "").trim() || "(no answer)")); }); }
+    L.push("", "STRINGS");
+    const rr = this.reviewedRows();
+    if (!rr.length) L.push("(none marked yet)");
+    rr.forEach(r => { const v = this.state.rows[r.id];
+      L.push(r.id + " [" + (STATUS[v.status || ""] || "Note") + "] " + screenOf(r.id));
+      L.push("   Current: " + r.text);
+      if ((v.suggestion || "").trim()) L.push("   Suggested: " + v.suggestion.trim());
+      if ((v.note || "").trim()) L.push("   Note: " + v.note.trim()); });
+    return L.join("\n");
+  }
+  copyReview() {
+    const text = this.reviewText();
+    const fallback = () => { this.setState({ fallbackText: text }); this.toast("Couldn't copy automatically. Your review is shown as text at the top of the page."); };
+    try { navigator.clipboard.writeText(text).then(() => this.toast("Review copied. Paste it into an email or Slack to " + OWNER + "."), fallback); } catch (e) { fallback(); }
+  }
+  downloadCsv() {
+    const q = v => '"' + String(v == null ? "" : v).replace(/"/g, '""') + '"';
+    const who = (this.state.reviewer || "").trim();
+    const out = [["ID", "Screen", "Element", "Where", "Current copy", "Status", "Suggested copy", "Note", "Reviewer"].map(q).join(",")];
+    QUESTIONS.forEach(x => out.push([x.id, "Open question", "Question", "", x.q, (this.state.qs[x.id] || "").trim() ? "Answered" : "", (this.state.qs[x.id] || "").trim(), "", who].map(q).join(",")));
+    allRows().forEach(r => { const v = this.state.rows[r.id] || {}; out.push([r.id, screenOf(r.id), r.kind || "", r.where || "", r.text, STATUS[v.status || ""], v.suggestion || "", v.note || "", (v.status || v.suggestion || v.note) ? who : ""].map(q).join(",")); });
+    try {
+      const blob = new Blob(["﻿" + out.join("\r\n")], { type: "text/csv;charset=utf-8" });
+      const a = document.createElement("a"); a.href = URL.createObjectURL(blob);
+      a.download = (DATA.id || "copy-review") + (who ? "-" + who.replace(/[^\w-]+/g, "-") : "") + ".csv";
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+      this.toast("CSV saved. Send it to " + OWNER + ".");
+    } catch (e) { this.toast("Download isn't available here. Use Copy review instead."); }
+  }
+  rowVals(r) {
+    const v = this.state.rows[r.id] || {}; const st = v.status || "";
+    const meta = [r.kind || "", r.where ? "· " + r.where : "", "· " + len(r.text) + " characters", r.data ? "· " + (DATA.sampleDataLabel || "Sample data") : ""].filter(Boolean).join(" ");
+    return {
+      id: r.id, domId: "cr-r-" + r.id, text: r.text, cls: (r.data ? "data" : "") + (st ? " st-" + st : ""), meta,
+      stAria: "Status for " + r.id, keepOn: st === "keep", editOn: st === "edit", discussOn: st === "discuss",
+      setKeep: () => this.setStatus(r.id, "keep"), setEdit: () => this.setStatus(r.id, "edit"), setDiscuss: () => this.setStatus(r.id, "discuss"),
+      open: st === "edit" || st === "discuss",
+      suggestion: v.suggestion || "", note: v.note || "",
+      sugAria: "Suggested copy for " + r.id, noteAria: "Note for " + r.id, notePlaceholder: "Why, or a question for " + OWNER,
+      setSuggestion: (e) => this.setRow(r.id, { suggestion: e.target.value }), setNote: (e) => this.setRow(r.id, { note: e.target.value }),
+      cnt: v.suggestion ? len(v.suggestion) + " characters, was " + len(r.text) : ""
+    };
+  }
+  renderVals() {
+    const reviewable = allRows().filter(r => !r.data);
+    const done = reviewable.filter(r => (this.state.rows[r.id] || {}).status).length;
+    const qd = QUESTIONS.filter(q => (this.state.qs[q.id] || "").trim()).length;
+    const pct = Math.round(QUESTIONS.length ? ((done / Math.max(reviewable.length, 1)) * .8 + (qd / QUESTIONS.length) * .2) * 100 : (done / Math.max(reviewable.length, 1)) * 100);
+    const filters = [["all", "All"], ["todo", "Not reviewed"], ["edit", "Edit"], ["discuss", "Discuss"]].map(([k, label]) => ({ label, on: this.state.filter === k, pick: () => this.setState({ filter: k }) }));
+    const sections = [];
+    if (SHARED.length) {
+      const rows = SHARED.filter(r => this.visible(r)).map(r => this.rowVals(r));
+      sections.push({ cls: "noimg", domId: "cr-shared", hId: "cr-h-shared", hasImg: false, img: "", imgAlt: "", imgAria: "", w: 0, h: 0, openImg: null, hasPlat: false, platform: "", code: "S", heading: (DATA.shared && DATA.shared.title) || "Shared across screens", sub: (DATA.shared && DATA.shared.sub) || "Review once. These repeat on many screens.", rows, empty: rows.length === 0, emptyText: "No shared strings match this filter." });
+    }
+    SCREENS.forEach(s => {
+      const rows = (s.rows || []).filter(r => this.visible(r)).map(r => this.rowVals(r));
+      const tall = !!(s.img && s.w && s.h && s.h / s.w > 1.2);
+      const alt = [s.group, s.platform, s.title].filter(Boolean).join(", ");
+      sections.push({ cls: !s.img ? "noimg" : tall ? "tall" : "", domId: "cr-" + s.code, hId: "cr-h-" + s.code, hasImg: !!s.img, img: s.img || "", imgAlt: alt, imgAria: "Open the " + (s.title || s.code) + " screen full size", w: s.w || 0, h: s.h || 0, openImg: () => this.setState({ lb: { src: s.img, alt } }), hasPlat: !!s.platform, platform: s.platform || "", code: s.code, heading: s.group || s.title || s.code, sub: s.group && s.title ? s.title : "", rows, empty: rows.length === 0, emptyText: "No strings match this filter on this screen." });
+    });
+    const g = DATA.template || {};
+    return {
+      rootRef: this.rootRef,
+      onKey: (e) => { if (e.key === "Escape" && this.state.lb) this.setState({ lb: null }); },
+      eyebrow: DATA.eyebrow || "", title: DATA.title || "Copy review", lede: DATA.lede || "", owner: OWNER,
+      noticeBold: (DATA.notice && DATA.notice.bold) || "", noticeText: (DATA.notice && DATA.notice.text) || "",
+      reviewer: this.state.reviewer, setReviewer: (e) => this.persist({ reviewer: e.target.value }),
+      kStrings: done + " of " + reviewable.length, kQuestions: qd + " of " + QUESTIONS.length, pct, pctW: pct + "%",
+      filters, showData: this.state.showData, toggleData: (e) => this.setState({ showData: !!e.target.checked }),
+      query: this.state.query, setQuery: (e) => this.setState({ query: e.target.value }),
+      toast: this.state.toast,
+      copyReview: () => this.copyReview(), downloadCsv: () => this.downloadCsv(),
+      hasFallback: !!this.state.fallbackText, fallbackText: this.state.fallbackText,
+      guideTitle: g.title || "This is the Copy Review template", guideIntro: g.intro || "", guideSteps: g.steps || [], guidePrompts: g.prompts || [], guideNote: g.note || "",
+      qCount: QUESTIONS.length + " " + (QUESTIONS.length === 1 ? "question" : "questions"),
+      questions: QUESTIONS.map(q => ({ id: q.id, domId: "cr-q-" + q.id, q: q.q, ctx: q.ctx || "", refs: (q.refs || []).map(x => ({ id: x, jump: () => this.jump(x) })), aria: "Answer to " + q.id, answer: this.state.qs[q.id] || "", setAnswer: (e) => { const qs = Object.assign({}, this.state.qs); qs[q.id] = e.target.value; this.persist({ qs }); }, status: (this.state.qs[q.id] || "").trim() ? "Answered" : "Not answered yet" })),
+      voice: (DATA.voice || []).map(v => ({ rule: v[0], note: v[1] || "" })),
+      sections,
+      lbOpen: !!this.state.lb, lbSrc: this.state.lb ? this.state.lb.src : "", lbAlt: this.state.lb ? this.state.lb.alt : "", closeLb: () => this.setState({ lb: null })
+    };
+  }
+}
+</script>
+</body>
+</html>
