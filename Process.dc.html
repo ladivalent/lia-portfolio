@@ -19,19 +19,23 @@
   <link rel="stylesheet" href="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/styles.css">
   <script src="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/_ds_bundle.js"></script>
   <script src="embeds/logos.js"></script>
+  <script src="./image-slot.js"></script>
   <style>
     html,body{margin:0;background:#fff;color:#191919;font-family:'Market Sans',Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;scroll-behavior:smooth}
     a{color:#0968F6}a:hover{color:#0049B8}
     :focus-visible{outline:2px solid #0968F6;outline-offset:2px}
-    /* Process tools list: one row per tool, the whole row is the link */
-    .pt-row{display:grid;grid-template-columns:48px 240px minmax(0,1fr) 44px;grid-template-areas:"num thumb body arrow";gap:24px;align-items:start;padding:24px 0;text-decoration:none;color:#191919;box-sizing:border-box}
-    .pt-row:focus-visible{outline:2px solid #0968F6;outline-offset:-2px;border-radius:8px}
-    .pt-num{grid-area:num}.pt-thumb{grid-area:thumb}.pt-body{grid-area:body}.pt-arrow{grid-area:arrow}
-    .pt-title{color:#191919}.pt-thumb{border:1px solid #E5E5E5}.pt-arrow{background:#fff;border:1px solid #C7C7C7;color:#191919;margin-top:-7px}
-    .pt-title,.pt-arrow,.pt-thumb{transition:color 160ms cubic-bezier(.2,0,0,1),background-color 160ms cubic-bezier(.2,0,0,1),border-color 160ms cubic-bezier(.2,0,0,1)}
-    a.pt-row:hover .pt-title{color:#0968F6}
-    a.pt-row:hover .pt-arrow{background:#191919;border-color:#191919;color:#fff}
-    a.pt-row:hover .pt-thumb{border-color:#C7C7C7}
+    /* Process tools list: one row per tool. The title link covers the whole row; the thumbnail is an image slot that stays editable in the design. */
+    .pt-row{position:relative;display:grid;grid-template-columns:48px 240px minmax(0,1fr) 44px;grid-template-areas:"num thumb body arrow";gap:24px;align-items:start;padding:24px 0;color:#191919;box-sizing:border-box}
+    .pt-num{grid-area:num}.pt-thumb{grid-area:thumb;position:relative;z-index:1}.pt-body{grid-area:body}.pt-arrow{grid-area:arrow}
+    .pt-link{color:#191919;text-decoration:none}
+    .pt-link::after{content:"";position:absolute;inset:0}
+    .pt-link:focus-visible{outline:2px solid #0968F6;outline-offset:4px;border-radius:4px}
+    .pt-thumb{border:1px solid #E5E5E5}.pt-arrow{background:#fff;border:1px solid #C7C7C7;color:#191919;margin-top:-7px}
+    .pt-link,.pt-arrow,.pt-thumb{transition:color 160ms cubic-bezier(.2,0,0,1),background-color 160ms cubic-bezier(.2,0,0,1),border-color 160ms cubic-bezier(.2,0,0,1)}
+    .pt-row:hover .pt-link{color:#0968F6}
+    .pt-row:hover .pt-arrow{background:#191919;border-color:#191919;color:#fff}
+    .pt-row:hover .pt-thumb{border-color:#C7C7C7}
+    .pt-row.pt-soon:hover .pt-thumb{border-color:#C7C7C7}
     @media (max-width:760px){
       .pt-row{grid-template-columns:40px minmax(0,1fr) 44px;grid-template-areas:"thumb thumb thumb" "num body arrow";gap:16px;padding:20px 0}
     }
@@ -89,37 +93,33 @@
       </div>
 
       <ol aria-label="Process tools" style="list-style:none;margin:0;padding:0;border-top:1px solid #191919">
-        <sc-for list="{{ tools }}" as="t" hint-placeholder-count="5">
-          <li style="border-bottom:1px solid #E5E5E5">
-            <a class="pt-row" href="{{ t.href }}" onClick="{{ t.remember }}" aria-label="{{ t.aria }}">
-              <span class="pt-num" style="font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:12px;font-weight:600;letter-spacing:.08em;line-height:30px;color:#0968F6">{{ t.num }}</span>
-              <span class="pt-thumb" style="display:block;aspect-ratio:16 / 10;border-radius:8px;overflow:hidden;background:#F7F7F7;box-sizing:border-box">
-                <img src="{{ t.img }}" alt="" width="960" height="600" loading="lazy" decoding="async" style="display:block;width:100%;height:100%;object-fit:cover;object-position:left top">
-              </span>
-              <span class="pt-body" style="display:flex;flex-direction:column;gap:8px;min-width:0">
-                <span class="pt-title" style="font-size:24px;line-height:30px;font-weight:700;letter-spacing:-.01em">{{ t.title }}</span>
-                <span style="font-size:15px;line-height:1.5;color:#545454;max-width:640px;text-wrap:pretty">{{ t.desc }}</span>
-                <span style="font-size:13px;line-height:20px;color:#707070">{{ t.meta }}</span>
-              </span>
-              <span class="pt-arrow" aria-hidden="true" style="display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;box-sizing:border-box">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"></path><path d="M8 7h9v9"></path></svg>
-              </span>
-            </a>
+        <sc-for list="{{ tools }}" as="t" hint-placeholder-count="7">
+          <li class="pt-row" style="border-bottom:1px solid #E5E5E5">
+            <span class="pt-num" style="font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:12px;font-weight:600;letter-spacing:.08em;line-height:30px;color:#0968F6">{{ t.num }}</span>
+            <span class="pt-thumb" onClick="{{ t.openFromThumb }}" style="display:block;aspect-ratio:16 / 10;border-radius:8px;overflow:hidden;background:#F7F7F7;box-sizing:border-box;cursor:pointer">
+              <image-slot id="{{ t.slotId }}" shape="rounded" radius="7" src="{{ t.img }}" placeholder="Drop a thumbnail or icon" style="display:block;width:100%;height:100%"></image-slot>
+            </span>
+            <span class="pt-body" style="display:flex;flex-direction:column;gap:8px;min-width:0">
+              <a class="pt-link" href="{{ t.href }}" onClick="{{ t.remember }}" style="align-self:flex-start;font-size:24px;line-height:30px;font-weight:700;letter-spacing:-.01em">{{ t.title }}</a>
+              <span style="font-size:15px;line-height:1.5;color:#545454;max-width:640px;text-wrap:pretty">{{ t.desc }}</span>
+              <span style="font-size:13px;line-height:20px;color:#707070">{{ t.meta }}</span>
+            </span>
+            <span class="pt-arrow" aria-hidden="true" style="display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;box-sizing:border-box">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"></path><path d="M8 7h9v9"></path></svg>
+            </span>
           </li>
         </sc-for>
-        <li id="tool-4" style="border-bottom:1px solid #E5E5E5;scroll-margin-top:80px">
-          <div class="pt-row">
-            <span class="pt-num" style="font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:12px;font-weight:600;letter-spacing:.08em;line-height:30px;color:#8F8F8F">06</span>
-            <span class="pt-thumb" aria-hidden="true" style="display:flex;align-items:center;justify-content:center;aspect-ratio:16 / 10;border:1.5px dashed #C7C7C7;border-radius:8px;background:#FAFAFA;box-sizing:border-box;font-size:13px;font-weight:700;color:#8F8F8F">Coming soon</span>
-            <span class="pt-body" style="display:flex;flex-direction:column;gap:8px;min-width:0">
-              <span style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;min-width:0">
-                <span class="pt-title" style="font-size:24px;line-height:30px;font-weight:700;letter-spacing:-.01em;color:#707070">Prompt library + agentic loops</span>
-                <span style="display:inline-flex;align-items:center;height:26px;padding:0 10px;border-radius:999px;background:#F7F7F7;border:1px solid #E5E5E5;font-size:12px;font-weight:700;color:#545454;white-space:nowrap">Coming soon</span>
-              </span>
-              <span style="font-size:15px;line-height:1.5;color:#545454;max-width:640px;text-wrap:pretty">Reusable prompts and the loops that run them between rituals.</span>
-              <a href="Contact.dc.html?topic=prompt-library" style="display:inline-flex;align-items:center;min-height:44px;font-size:14px;font-weight:700;color:#0968F6;text-decoration:none;align-self:flex-start" style-hover="color:#0049B8">Notify me →</a>
+        <li id="tool-4" class="pt-row pt-soon" style="border-bottom:1px solid #E5E5E5;scroll-margin-top:80px">
+          <span class="pt-num" style="font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:12px;font-weight:600;letter-spacing:.08em;line-height:30px;color:#8F8F8F">08</span>
+          <span class="pt-thumb" aria-hidden="true" style="display:flex;align-items:center;justify-content:center;aspect-ratio:16 / 10;border:1.5px dashed #C7C7C7;border-radius:8px;background:#FAFAFA;box-sizing:border-box;font-size:13px;font-weight:700;color:#8F8F8F">Coming soon</span>
+          <span class="pt-body" style="display:flex;flex-direction:column;gap:8px;min-width:0">
+            <span style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;min-width:0">
+              <span style="font-size:24px;line-height:30px;font-weight:700;letter-spacing:-.01em;color:#707070">Prompt library + agentic loops</span>
+              <span style="display:inline-flex;align-items:center;height:26px;padding:0 10px;border-radius:999px;background:#F7F7F7;border:1px solid #E5E5E5;font-size:12px;font-weight:700;color:#545454;white-space:nowrap">Coming soon</span>
             </span>
-          </div>
+            <span style="font-size:15px;line-height:1.5;color:#545454;max-width:640px;text-wrap:pretty">Reusable prompts and the loops that run them between rituals.</span>
+            <a href="Contact.dc.html?topic=prompt-library" style="display:inline-flex;align-items:center;min-height:44px;font-size:14px;font-weight:700;color:#0968F6;text-decoration:none;align-self:flex-start" style-hover="color:#0049B8">Notify me →</a>
+          </span>
         </li>
       </ol>
     </section>
@@ -136,14 +136,22 @@
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
   renderVals() {
+    const editing = () => !!(window.omelette && window.omelette.writeFile);
     const remember = (slot) => () => { try { sessionStorage.setItem("lia-view", JSON.stringify({ slot: slot, back: "Process.dc.html" })); } catch (_) {} };
     const tools = [
-      { num: "01", slot: "playbook", href: "View-Playbook.dc.html", img: "work-images/process-playbook.webp", title: "UX Playbook", desc: "Five views of the design process, from phase planning and orchestration to evolution and resilience.", meta: "Interactive · five views" },
-      { num: "02", slot: "collab-map", href: "View-CollabMap.dc.html", img: "work-images/process-collab-map.webp", title: "Collaboration Map", desc: "A shared view of teams, roles, decisions, and outcomes across an initiative.", meta: "Interactive · Map, Org, Connections, Outcomes, Decision log" },
-      { num: "03", slot: "size-journeys", href: "View-Journeys.dc.html", img: "work-images/process-size-journeys.webp", title: "User Journey Mapping", desc: "Buyer and seller size-intelligence journeys, with Director and Principal views.", meta: "Interactive · nine stages, click any stage" },
-      { num: "04", slot: "agentic-policy-map", href: "View-PolicyMap.dc.html", img: "work-images/process-agentic-policy-map.webp", title: "Agentic Search Policy Map", desc: "Query-to-response policies, confidence bands, and rules for when to confirm.", meta: "Interactive · click any node to inspect" },
-      { num: "05", slot: "agentic-framework", href: "View-Framework.dc.html", img: "work-images/process-agentic-framework.webp", title: "Agentic Search Framework", desc: "An interactive query trace through signals, routing, disambiguation, and response policy.", meta: "Interactive · type any query" },
-    ].map(t => ({ ...t, aria: "Open " + t.title + " full screen", remember: remember(t.slot) }));
+      { num: "01", slot: "playbook", href: "View-Playbook.dc.html", img: "/_blob/161e7701907105a16d2fdbbfa20c278d", title: "UX Playbook", desc: "Five views of the design process, from phase planning and orchestration to evolution and resilience.", meta: "Interactive · five views" },
+      { num: "02", slot: "collab-map", href: "View-CollabMap.dc.html", img: "/_blob/e1c8d57a4bcf3891cd1faefa4d292378", title: "Collaboration Map", desc: "A shared view of teams, roles, decisions, and outcomes across an initiative.", meta: "Interactive · Map, Org, Connections, Outcomes, Decision log" },
+      { num: "03", slot: "size-journeys", href: "View-Journeys.dc.html", img: "/_blob/f72ce114f8e3f24068088ef03fa4a601", title: "User Journey Mapping", desc: "Buyer and seller size-intelligence journeys, with Director and Principal views.", meta: "Interactive · nine stages, click any stage" },
+      { num: "04", slot: "agentic-policy-map", href: "View-PolicyMap.dc.html", img: "/_blob/55c75311643f11862affbe09dcb7622f", title: "Agentic Search Policy Map", desc: "Query-to-response policies, confidence bands, and rules for when to confirm.", meta: "Interactive · click any node to inspect" },
+      { num: "05", slot: "agentic-framework", href: "View-Framework.dc.html", img: "/_blob/5bb8ae0bab3aa84a32d493d73f0cecb0", title: "Agentic Search Framework", desc: "An interactive query trace through signals, routing, disambiguation, and response policy.", meta: "Interactive · type any query" },
+      { num: "06", slot: "copy-review", href: "View-CopyReview.dc.html", img: "/_blob/8947df931f6fd9e53a832860a5b1276c", title: "Copy Review Template", desc: "Every string on every screen, marked Keep, Edit or Discuss, with open questions and a CSV export for content design review.", meta: "Interactive · example review included" },
+      { num: "07", slot: "pipeline-org-chart", href: "View-PipelineOrgChart.dc.html", img: "/_blob/81aa006a85d03b8c44e2f2e8c593fe5d", title: "Pipeline Org Chart", desc: "How each team's design pipeline rolls up to a VP metric and a company goal, and what each team hands to the next.", meta: "Interactive · Reporting, Metrics and Handoffs lenses" },
+    ].map(t => ({
+      ...t,
+      slotId: "tool-" + t.slot,
+      remember: remember(t.slot),
+      openFromThumb: () => { if (editing()) return; remember(t.slot)(); location.assign(t.href); }
+    }));
     return {
       tools: tools,
       phases: [

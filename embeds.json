@@ -143,6 +143,32 @@
       "status": "live",
       "gated": true,
       "summary": "Frames 00-intro → 13-memory-hub, desktop and mobile."
+    },
+    "copy-review": {
+      "title": "Copy Review Template",
+      "source": {
+        "mode": "file",
+        "file": "embeds/copy-review/index.html"
+      },
+      "height": {
+        "desktop": 900
+      },
+      "updated": "2026-10-23",
+      "status": "live",
+      "summary": "Every string on every screen, marked Keep, Edit or Discuss, with open questions and a CSV export."
+    },
+    "pipeline-org-chart": {
+      "title": "Pipeline Org Chart",
+      "source": {
+        "mode": "file",
+        "file": "embeds/pipeline-org-chart.html"
+      },
+      "height": {
+        "desktop": 900
+      },
+      "updated": "2026-10-23",
+      "status": "live",
+      "summary": "How each team's design pipeline rolls up to a VP metric and a company goal, and what each team hands to the next."
     }
   }
 }
