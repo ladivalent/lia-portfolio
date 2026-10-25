@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <style>
+    body{margin:0}
+    .hdc{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;color:#333;-webkit-font-smoothing:antialiased;width:100%;box-sizing:border-box}
+    .hdc *{box-sizing:border-box}
+    .hdc a{color:inherit;text-decoration:none}
+    .hdc-nav a{display:inline-flex;align-items:center;height:44px;padding:0 14px;color:#fff;font-size:14px;white-space:nowrap;border-bottom:3px solid transparent;border-top:3px solid transparent}
+    .hdc-nav a:hover{text-decoration:underline}
+    .hdc-nav a.is-on{border-bottom-color:#F96302;font-weight:700}
+    .hdc-search:focus{outline:none;box-shadow:0 0 0 2px #F96302 inset}
+  </style>
+</helmet>
+<div class="hdc" style="background:#fff;border-bottom:1px solid #E0E0E0">
+  <div style="height:32px;display:flex;align-items:center;padding:0 24px;font-size:13px;color:#333;background:#fff"><span>Pro Support</span><span style="margin:0 10px;color:#999">|</span><span>800-466-3337</span></div>
+  <div style="height:60px;background:#000;color:#fff;display:flex;align-items:center;gap:22px;padding:0 24px">
+    <a href="#" onClick="{{ noop }}" aria-label="The Home Depot Pro home" style="display:inline-flex;align-items:center;flex:none"><img src="/_blob/67ffb9e1777bdd36ce36359039dc59ca" alt="The Home Depot Pro" width="715" height="277" style="display:block;height:34px;width:auto"></a>
+    <div style="display:flex;align-items:center;gap:8px;flex:none">
+      <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"></path><circle cx="12" cy="9.5" r="2.4"></circle></svg>
+      <div style="display:flex;flex-direction:column;line-height:1.25;font-size:12px"><span>You're shopping</span><span style="font-weight:700;font-size:13px">Cumberland</span></div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;flex:none">
+      <svg aria-hidden="true" width="28" height="22" viewBox="0 0 32 24" fill="none" stroke="#fff" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M2 5h17v12H2z"></path><path d="M19 9h6l4 4v4h-10z"></path><circle cx="8" cy="19" r="2.2" fill="#000"></circle><circle cx="24" cy="19" r="2.2" fill="#000"></circle></svg>
+      <div style="display:flex;flex-direction:column;line-height:1.25;font-size:12px"><span>Your delivery address</span><span style="font-weight:700;font-size:13px">593 Riverside Dr, Atlanta…</span></div>
+    </div>
+    <div style="display:flex;align-items:center;flex:1 1 auto;min-width:0;margin:0 6px">
+      <input class="hdc-search" type="search" placeholder="Search by product, manufacturer part, or SKU number" aria-label="Search" style="flex:1 1 auto;min-width:0;height:40px;border:0;border-radius:0;padding:0 12px;font:inherit;font-size:14px;color:#333;background:#fff">
+      <button type="button" aria-label="Search" onClick="{{ noop }}" style="flex:none;width:40px;height:40px;border:0;background:#F96302;display:inline-flex;align-items:center;justify-content:center;cursor:pointer"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.4" strokeLinecap="round"><circle cx="10.5" cy="10.5" r="6"></circle><path d="M15 15l5 5"></path></svg></button>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;flex:none">
+      <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="1.8" strokeLinecap="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"></path></svg>
+      <div style="display:flex;flex-direction:column;line-height:1.25;font-size:12px"><span>Hello,</span><span style="font-weight:700;font-size:13px">{{ user }} <span aria-hidden="true" style="font-size:10px">▼</span></span></div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;flex:none;position:relative">
+      <svg aria-hidden="true" width="30" height="24" viewBox="0 0 32 26" fill="none" stroke="#fff" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M2 3h4l3 13h16l3-9H8"></path><circle cx="11" cy="21" r="2"></circle><circle cx="23" cy="21" r="2"></circle></svg>
+      <span style="position:absolute;left:21px;top:-8px;min-width:17px;height:17px;padding:0 4px;border-radius:999px;background:#F96302;color:#fff;font-size:11px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;border:1.5px solid #000">{{ cart }}</span>
+      <span style="font-size:13px">Cart</span>
+    </div>
+  </div>
+  <nav class="hdc-nav" aria-label="Shop" style="height:44px;background:#333;display:flex;align-items:center;padding:0 10px">
+    <a href="#" onClick="{{ noop }}">All Products</a>
+    <a href="#" onClick="{{ noop }}">Specials &amp; Offers</a>
+    <a href="#" onClick="{{ noop }}">Credit Services</a>
+    <a href="#" onClick="{{ noop }}">Truck &amp; Tool Rental</a>
+    <span style="flex:1 1 auto"></span>
+    <sc-if value="{{ showRequests }}" hint-placeholder-val="{{ true }}"><a href="#" class="{{ requestsClass }}" onClick="{{ goRequests }}">My Requests</a></sc-if>
+    <sc-if value="{{ showOrders }}" hint-placeholder-val="{{ false }}"><a href="#" class="{{ ordersClass }}" onClick="{{ goOrders }}">Order Requests</a></sc-if>
+    <a href="#" onClick="{{ noop }}">Lists</a>
+    <a href="#" onClick="{{ noop }}">My Quotes</a>
+    <a href="#" onClick="{{ noop }}">Quick Add</a>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":136},"user":{"editor":"string","default":"Mark"},"cart":{"editor":"string","default":"2"},"nav":{"editor":"enum","default":"requests","options":["requests","orders","none"]},"active":{"editor":"string","default":""},"onNav":{"editor":null}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const nav = this.props.nav || "requests";
+    const active = this.props.active || "";
+    const go = (id) => (e) => { if (e && e.preventDefault) e.preventDefault(); if (typeof this.props.onNav === "function") this.props.onNav(id); };
+    return {
+      user: this.props.user || "Mark",
+      cart: this.props.cart == null ? "2" : String(this.props.cart),
+      showRequests: nav === "requests",
+      showOrders: nav === "orders",
+      requestsClass: active === "requests" ? "is-on" : "",
+      ordersClass: active === "orders" ? "is-on" : "",
+      goRequests: go("requests"),
+      goOrders: go("orders"),
+      noop: (e) => { if (e && e.preventDefault) e.preventDefault(); }
+    };
+  }
+}
+</script>
+</body>
+</html>

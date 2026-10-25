@@ -67,15 +67,24 @@
         <dc-import name="Pipeline-Org-Chart" hint-size="100%,1000px"></dc-import>
       </div>
     </sc-if>
+    <sc-if value="{{ isHd1 }}" hint-placeholder-val="{{ false }}">
+      <div style="width:100%;height:100%;overflow:auto;-webkit-overflow-scrolling:touch"><div style="zoom:{{ hdZoom }};width:1280px;height:{{ hdH }}"><dc-import name="HD-Proto-Phase1" style="height:100%" hint-size="1280px,800px"></dc-import></div></div>
+    </sc-if>
+    <sc-if value="{{ isHd2 }}" hint-placeholder-val="{{ false }}">
+      <div style="width:100%;height:100%;overflow:auto;-webkit-overflow-scrolling:touch"><div style="zoom:{{ hdZoom }};width:1280px;height:{{ hdH }}"><dc-import name="HD-Proto-Phase2" style="height:100%" hint-size="1280px,800px"></dc-import></div></div>
+    </sc-if>
+    <sc-if value="{{ isHd3 }}" hint-placeholder-val="{{ false }}">
+      <div style="width:100%;height:100%;overflow:auto;-webkit-overflow-scrolling:touch"><div style="zoom:{{ hdZoom }};width:1280px;height:{{ hdH }}"><dc-import name="HD-Proto-Phase3" style="height:100%" hint-size="1280px,800px"></dc-import></div></div>
+    </sc-if>
     <sc-if value="{{ isFrame }}" hint-placeholder-val="{{ false }}">
       <iframe src="{{ src }}" title="{{ title }}" sandbox="allow-scripts allow-same-origin allow-popups allow-forms" style="display:block;width:100%;height:100%;border:0;background:#fff"></iframe>
     </sc-if>
   </div>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props='{"slot":{"editor":"enum","default":"playbook","options":["playbook","collab-map","size-journeys","agentic-policy-map","agentic-framework","copy-review","pipeline-org-chart"]},"back":{"editor":null}}'>
+<script type="text/x-dc" data-dc-script data-props='{"slot":{"editor":"enum","default":"playbook","options":["playbook","collab-map","size-journeys","agentic-policy-map","agentic-framework","copy-review","pipeline-org-chart","hd-phase-1","hd-phase-2","hd-phase-3"]},"back":{"editor":null}}'>
 class Component extends DCLogic {
-  state = { entry: null, areaW: 1280 };
+  state = { entry: null, areaW: 1280, areaH: 800 };
   areaRef = React.createRef();
   pick() {
     const q = new URLSearchParams(location.search);
@@ -85,7 +94,7 @@ class Component extends DCLogic {
   }
   componentDidMount() {
     fetch("embeds.json").then(r => r.json()).then(m => this.setState({ entry: (m.slots || {})[this.pick().slot] || null })).catch(() => {});
-    const measure = () => { const el = this.areaRef.current; this.setState({ areaW: (el && el.clientWidth) || window.innerWidth }); };
+    const measure = () => { const el = this.areaRef.current; this.setState({ areaW: (el && el.clientWidth) || window.innerWidth, areaH: (el && el.clientHeight) || (window.innerHeight - 56) }); };
     this._onResize = measure;
     window.addEventListener("resize", measure);
     setTimeout(measure, 50);
@@ -95,18 +104,23 @@ class Component extends DCLogic {
     const slot = this.pick().slot;
     const back = this.pick().back;
     const e = this.state.entry;
-    const titles = { "playbook": "UX Playbook", "collab-map": "Interactive Collaboration Map", "size-journeys": "Interactive User Journey Mapping", "agentic-policy-map": "Agentic Search Policy Map", "agentic-framework": "Agentic Search Framework", "copy-review": "Copy Review Template", "pipeline-org-chart": "Pipeline Org Chart" };
+    const titles = { "playbook": "UX Playbook", "collab-map": "Interactive Collaboration Map", "size-journeys": "Interactive User Journey Mapping", "agentic-policy-map": "Agentic Search Policy Map", "agentic-framework": "Agentic Search Framework", "copy-review": "Copy Review Template", "pipeline-org-chart": "Pipeline Org Chart", "hd-phase-1": "Purchase Approvals · Phase 1 · Account owner sets up a workflow", "hd-phase-2": "Purchase Approvals · Phase 2 · Requester submits an order request", "hd-phase-3": "Purchase Approvals · Phase 3 · Approver reviews an order request" };
     const inline = Object.prototype.hasOwnProperty.call(titles, slot);
     const src = !inline && e && e.source ? (e.source.mode === "url" ? e.source.url + (e.source.params || "") : e.source.file) : undefined;
     const areaW = this.state.areaW || 1280;
     // Phones: never shrink the 1920px boards below half size; the frame scrolls sideways instead.
     const s = areaW < 760 ? Math.max(0.5, Math.min(1, areaW / 1920)) : Math.min(1, areaW / 1920);
+    const areaH = this.state.areaH || (window.innerHeight - 56);
+    // The 1280px Home Depot prototypes follow the same rule: half size at most on phones, then the frame scrolls sideways.
+    const hdZoom = areaW < 760 ? Math.max(0.5, Math.min(1, areaW / 1280)) : Math.min(1, areaW / 1280);
     return {
       areaRef: this.areaRef,
       title: titles[slot] || (e && e.title) || "",
       isPlaybook: slot === "playbook", isCollab: slot === "collab-map", isJourneys: slot === "size-journeys",
       isPolicy: slot === "agentic-policy-map", isFramework: slot === "agentic-framework",
       isCopyReview: slot === "copy-review", isPipeline: slot === "pipeline-org-chart",
+      isHd1: slot === "hd-phase-1", isHd2: slot === "hd-phase-2", isHd3: slot === "hd-phase-3",
+      hdZoom: hdZoom.toFixed(4), hdH: Math.round(Math.max(600, areaH) / hdZoom) + "px",
       isFrame: !inline && !!src, src,
       boardTf: "scale(" + s.toFixed(4) + ")", boardH: Math.round(1080 * s) + "px", boardW: Math.round(1920 * s) + "px",
       backHref: /^[\w .%-]+\.dc\.html(\?.*)?$/.test(back) ? back : "Process.dc.html",

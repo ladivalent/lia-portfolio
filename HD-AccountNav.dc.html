@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <style>
+    body{margin:0}
+    .hdn{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;line-height:1.3;color:#333;-webkit-font-smoothing:antialiased;width:200px;flex:none}
+    .hdn *{box-sizing:border-box}
+    .hdn a{display:block;color:#3E7697;text-decoration:none;padding:5px 0}
+    .hdn a:hover{text-decoration:underline}
+    .hdn a.is-on{color:#333;font-weight:700}
+    .hdn-group{display:flex;align-items:center;gap:8px;font-weight:700;color:#333;margin:18px 0 6px}
+    .hdn-items{padding-left:17px}
+  </style>
+</helmet>
+<nav class="hdn" aria-label="My Account">
+  <a href="#" onClick="{{ noop }}" style="padding:0 0 4px">My Account</a>
+  <sc-for list="{{ groups }}" as="g" hint-placeholder-count="4">
+    <div class="hdn-group"><svg aria-hidden="true" width="9" height="9" viewBox="0 0 10 10"><path d="M0 4h10v2H0z" fill="#333"></path></svg><span>{{ g.label }}</span></div>
+    <div class="hdn-items">
+      <sc-for list="{{ g.items }}" as="it" hint-placeholder-count="3">
+        <a href="#" class="{{ it.cls }}" aria-current="{{ it.cur }}" onClick="{{ it.go }}">{{ it.label }}</a>
+      </sc-for>
+    </div>
+  </sc-for>
+</nav>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":200,"height":560},"active":{"editor":"string","default":"workflows"},"admin":{"editor":"enum","default":"yes","options":["yes","no"]},"onNav":{"editor":null}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const active = this.props.active || "";
+    const admin = (this.props.admin || "yes") !== "no";
+    const go = (id) => (e) => { if (e && e.preventDefault) e.preventDefault(); if (typeof this.props.onNav === "function") this.props.onNav(id); };
+    const mk = (id, label) => ({ id, label, cls: id === active ? "is-on" : "", cur: id === active ? "page" : undefined, go: go(id) });
+    const info = [mk("profile", "Profile")];
+    if (admin) info.push(mk("workflows", "Add/Manage Workflows"));
+    info.push(mk("users", "Add/Manage Users"), mk("addresses", "Shipping Addresses"), mk("marketing", "Marketing Preferences"));
+    const groups = [
+      { label: "Purchases & Quotes", items: [mk("purchase-history", "Purchase History"), mk("quotes", "My Quotes"), mk("business-tools", "Business Tools")] },
+      { label: "Account Information", items: info },
+      { label: "Credit & Gift Cards", items: [mk("cards", "Cards & Accounts"), mk("pay", "Pay Credit Card"), mk("gift", "Gift Card Balance")] },
+      { label: "Lists", items: [mk("lists", "My Lists"), mk("find-list", "Find a List")] }
+    ];
+    return { groups, noop: (e) => { if (e && e.preventDefault) e.preventDefault(); } };
+  }
+}
+</script>
+</body>
+</html>

@@ -17,14 +17,30 @@ a:hover{color:#8F3A00;text-decoration:underline}
 ::selection{background:#B84A00;color:#fff}
 .hp-pill{display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border-radius:999px;border:1.5px solid #B84A00;color:#B84A00;font-size:14px;font-weight:700;text-decoration:none;box-sizing:border-box;white-space:nowrap}
 .hp-pill:hover{background:#FFF7F0;text-decoration:none}
-.hp-frame{position:relative;aspect-ratio:16 / 9;background:#191919;border-radius:16px;overflow:hidden;box-sizing:border-box}
-.hp-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:#191919}
+.hp-tabs{display:inline-flex;align-items:center;gap:4px;padding:4px;border-radius:999px;background:#F2F2F2}
+.hp-tab{display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 16px;border:0;border-radius:999px;background:transparent;color:#545454;font:inherit;font-size:14px;font-weight:700;cursor:pointer;white-space:nowrap}
+.hp-tab:hover{color:#191919}
+.hp-tab.is-on{background:#191919;color:#fff}
+.hp-tab .hp-tab-meta{font-weight:400;font-size:12px;opacity:.75}
+.hp-live{position:relative;border:1px solid #E5E5E5;border-radius:14px;background:#fff;overflow:auto;-webkit-overflow-scrolling:touch;box-sizing:border-box}
+.hp-live > div{display:block}
+.hp-video{position:relative;border-radius:14px;background:#191919;overflow:hidden;box-sizing:border-box}
+.hp-video video{display:block;width:100%;height:100%;object-fit:contain;background:#191919}
+.hp-foot{display:flex;align-items:center;gap:8px 20px;flex-wrap:wrap;font-size:14px;color:#707070;margin-top:14px}
+.hp-foot a,.hp-foot button{display:inline-flex;align-items:center;min-height:44px;font-weight:700;color:#B84A00;background:none;border:0;padding:0;font:inherit;font-size:14px;cursor:pointer}
+.hp-foot a:hover,.hp-foot button:hover{text-decoration:underline;color:#8F3A00}
+.hp-note{display:inline-flex;align-items:center;gap:6px}
 @media (max-width:760px){
 .hp-h1{font-size:40px !important}
 .hp-h2{font-size:26px !important}
 .hp-pad{padding-top:40px !important;padding-bottom:40px !important}
-.hp-frame{border-radius:10px}
+.hp-live,.hp-video{border-radius:10px}
+.hp-tabs{display:flex;width:100%}
+.hp-tab{flex:1 1 0;justify-content:center;padding:0 8px;min-width:0}
+.hp-tab .hp-tab-meta{display:none}
+.hp-phone-note{display:inline-flex !important}
 }
+.hp-phone-note{display:none;align-items:center;gap:6px}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
 </helmet>
@@ -39,10 +55,10 @@ a:hover{color:#8F3A00;text-decoration:underline}
   <div style="max-width:1040px;margin:0 auto;padding:40px 0 48px">
     <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:40px;flex-wrap:wrap">
       <div style="font-size:15px;font-weight:700;color:#191919">The Home Depot <span style="color:#707070;font-weight:400">·</span> Pro B2B</div>
-      <div style="font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#707070">Prototype walkthroughs</div>
+      <div style="font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#707070">Working prototypes</div>
     </div>
-    <h1 class="hp-h1" style="margin:0 0 16px;font-size:56px;line-height:1.05;font-weight:700;letter-spacing:-0.02em;max-width:820px;text-wrap:balance">Purchase Approvals for Pros, in motion</h1>
-    <p style="max-width:660px;margin:0 0 28px;font-size:18px;line-height:1.6;color:#363636;text-wrap:pretty">Three prototypes, one per phase and role: the account owner sets up a workflow, a requester submits an order, an approver decides. Each video plays here; the link under it opens the original on Vimeo.</p>
+    <h1 class="hp-h1" style="margin:0 0 16px;font-size:56px;line-height:1.05;font-weight:700;letter-spacing:-0.02em;max-width:820px;text-wrap:balance">Purchase Approvals for Pros, in your hands</h1>
+    <p style="max-width:680px;margin:0 0 28px;font-size:18px;line-height:1.6;color:#363636;text-wrap:pretty">Three clickable prototypes rebuilt from the final comps, one per phase and role: the account owner sets up a workflow, a requester submits an order, an approver decides. Each one keeps its own state, so you can change quantities, add comments and see every status change. The original 2022 walkthrough video sits behind a tab.</p>
     <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
       <span style="font-size:14px;font-weight:700;margin-right:4px">Jump to</span>
       <a class="hp-pill" href="#phase-1">Phase 1</a>
@@ -53,29 +69,72 @@ a:hover{color:#8F3A00;text-decoration:underline}
   </div>
 </section>
 
-<!-- ============ PHASES ============ -->
-<sc-for list="{{ phases }}" as="p" hint-placeholder-count="3">
-  <section id="{{ p.id }}" class="hp-pad" data-screen-label="{{ p.label }}" style="padding:56px 24px;border-top:1px solid #E5E5E5;scroll-margin-top:72px">
-    <div style="max-width:1040px;margin:0 auto;display:flex;flex-direction:column;gap:24px">
-      <div style="display:flex;flex-direction:column;gap:10px;max-width:760px">
-        <div style="font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#B84A00">{{ p.label }} · {{ p.role }}</div>
-        <h2 class="hp-h2" style="margin:0;font-size:34px;line-height:1.15;font-weight:700;letter-spacing:-0.01em;text-wrap:balance">{{ p.title }}</h2>
-        <p style="margin:0;font-size:16px;line-height:1.6;color:#363636;text-wrap:pretty">{{ p.desc }}</p>
+<div ref="{{ wrapRef }}" style="max-width:1200px;margin:0 auto">
+
+<!-- ============ PHASE 1 ============ -->
+<section id="phase-1" class="hp-pad" data-screen-label="Phase 1" style="padding:56px 24px;border-top:1px solid #E5E5E5;scroll-margin-top:72px">
+  <div style="display:flex;flex-direction:column;gap:24px">
+    <div style="max-width:1040px;margin:0 auto;width:100%;display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap">
+      <div style="display:flex;flex-direction:column;gap:10px;max-width:720px">
+        <div style="font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#B84A00">Phase 1 · Account owner</div>
+        <h2 class="hp-h2" style="margin:0;font-size:34px;line-height:1.15;font-weight:700;letter-spacing:-0.01em;text-wrap:balance">Set up a workflow</h2>
+        <p style="margin:0;font-size:16px;line-height:1.6;color:#363636;text-wrap:pretty">Joel names a workflow, picks requesters, sets a $500 spend limit and picks approvers in four steps. Creating it notifies everyone by email and text, and the list is where he edits, disables or deletes it later.</p>
       </div>
-      <div class="hp-frame">
-        <a href="{{ p.watch }}" target="_blank" rel="noopener" aria-hidden="true" tabIndex="-1" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;color:#ffffff;text-decoration:none;background:#191919">
-          <span style="display:inline-flex;align-items:center;justify-content:center;width:72px;height:72px;border-radius:50%;background:#B84A00"><svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" fill="#ffffff"><path d="M8 5.5v13l11-6.5z"></path></svg></span>
-          <span style="font-size:15px;font-weight:700">{{ p.label }} walkthrough</span>
-        </a>
-        <iframe src="{{ p.embed }}" title="{{ p.frameTitle }}" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" allowfullscreen="allowfullscreen" loading="lazy" referrerPolicy="strict-origin-when-cross-origin"></iframe>
-      </div>
-      <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;font-size:14px;color:#707070">
-        <span>{{ p.caption }}</span>
-        <a href="{{ p.watch }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;min-height:44px;font-weight:700;color:#B84A00">Open on Vimeo ↗</a>
-      </div>
+      <div class="hp-tabs" role="tablist" aria-label="Phase 1 views"><button type="button" role="tab" class="{{ tab1Proto }}" aria-selected="{{ is1Proto }}" onClick="{{ show1Proto }}">Interactive prototype</button><button type="button" role="tab" class="{{ tab1Video }}" aria-selected="{{ is1Video }}" onClick="{{ show1Video }}">Walkthrough video <span class="hp-tab-meta">0:46</span></button></div>
     </div>
-  </section>
-</sc-for>
+    <sc-if value="{{ is1Proto }}" hint-placeholder-val="{{ true }}">
+      <div class="hp-live" style="height:{{ frameH }}"><div style="zoom:{{ zoom }};width:1280px;height:800px"><dc-import name="HD-Proto-Phase1" style="height:100%" hint-size="1280px,800px"></dc-import></div></div>
+    </sc-if>
+    <sc-if value="{{ is1Video }}" hint-placeholder-val="{{ false }}">
+      <div class="hp-video" style="height:{{ frameH }}"><video controls="controls" preload="metadata" playsInline="playsinline" poster="/_blob/c545e7f8d22dcaef4c9cc9ebeb685bc5" aria-label="Phase 1 walkthrough video: the account owner sets up a workflow"><source src="work-images/homedepot-phase1-workflow-setup.mp4" type="video/mp4"><source src="/_blob/6285807873e0a6fd62690678e10a68c2" type="video/mp4">Your browser can't play this video. <a href="https://vimeo.com/667535643" target="_blank" rel="noopener">Watch it on Vimeo</a>.</video></div>
+    </sc-if>
+    <div class="hp-foot" style="max-width:1040px;margin:14px auto 0;width:100%"><span class="hp-note">Sample data from the case study. Product images are placeholders.</span><span class="hp-phone-note">On a phone, scroll sideways inside the frame or open it full screen.</span><a href="View-HDPhase1.dc.html">Open full screen ↗</a><a href="https://vimeo.com/667535643" target="_blank" rel="noopener">Original video on Vimeo ↗</a></div>
+  </div>
+</section>
+
+<!-- ============ PHASE 2 ============ -->
+<section id="phase-2" class="hp-pad" data-screen-label="Phase 2" style="padding:56px 24px;border-top:1px solid #E5E5E5;scroll-margin-top:72px">
+  <div style="display:flex;flex-direction:column;gap:24px">
+    <div style="max-width:1040px;margin:0 auto;width:100%;display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap">
+      <div style="display:flex;flex-direction:column;gap:10px;max-width:720px">
+        <div style="font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#B84A00">Phase 2 · Requester</div>
+        <h2 class="hp-h2" style="margin:0;font-size:34px;line-height:1.15;font-weight:700;letter-spacing:-0.01em;text-wrap:balance">Submit a request</h2>
+        <p style="margin:0;font-size:16px;line-height:1.6;color:#363636;text-wrap:pretty">Mark shops as usual. The cart warns him the order is over the limit, checkout swaps Place Order for Submit for Review, and My Requests tracks the request. Drop the cart under $500 and it places like any other order.</p>
+      </div>
+      <div class="hp-tabs" role="tablist" aria-label="Phase 2 views"><button type="button" role="tab" class="{{ tab2Proto }}" aria-selected="{{ is2Proto }}" onClick="{{ show2Proto }}">Interactive prototype</button><button type="button" role="tab" class="{{ tab2Video }}" aria-selected="{{ is2Video }}" onClick="{{ show2Video }}">Walkthrough video <span class="hp-tab-meta">0:51</span></button></div>
+    </div>
+    <sc-if value="{{ is2Proto }}" hint-placeholder-val="{{ true }}">
+      <div class="hp-live" style="height:{{ frameH }}"><div style="zoom:{{ zoom }};width:1280px;height:800px"><dc-import name="HD-Proto-Phase2" style="height:100%" hint-size="1280px,800px"></dc-import></div></div>
+    </sc-if>
+    <sc-if value="{{ is2Video }}" hint-placeholder-val="{{ false }}">
+      <div class="hp-video" style="height:{{ frameH }}"><video controls="controls" preload="metadata" playsInline="playsinline" poster="/_blob/de94d86ce1c3938f71c01b856c7a2116" aria-label="Phase 2 walkthrough video: the requester submits an order request"><source src="work-images/homedepot-phase2-requester-submits.mp4" type="video/mp4"><source src="/_blob/6f250b13a378378d6897873b875e01f3" type="video/mp4">Your browser can't play this video. <a href="https://vimeo.com/667548093" target="_blank" rel="noopener">Watch it on Vimeo</a>.</video></div>
+    </sc-if>
+    <div class="hp-foot" style="max-width:1040px;margin:14px auto 0;width:100%"><span class="hp-note">Sample data from the case study. Product images are placeholders.</span><span class="hp-phone-note">On a phone, scroll sideways inside the frame or open it full screen.</span><a href="View-HDPhase2.dc.html">Open full screen ↗</a><a href="https://vimeo.com/667548093" target="_blank" rel="noopener">Original video on Vimeo ↗</a></div>
+  </div>
+</section>
+
+<!-- ============ PHASE 3 ============ -->
+<section id="phase-3" class="hp-pad" data-screen-label="Phase 3" style="padding:56px 24px;border-top:1px solid #E5E5E5;scroll-margin-top:72px">
+  <div style="display:flex;flex-direction:column;gap:24px">
+    <div style="max-width:1040px;margin:0 auto;width:100%;display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap">
+      <div style="display:flex;flex-direction:column;gap:10px;max-width:720px">
+        <div style="font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#B84A00">Phase 3 · Approver</div>
+        <h2 class="hp-h2" style="margin:0;font-size:34px;line-height:1.15;font-weight:700;letter-spacing:-0.01em;text-wrap:balance">Approve a request</h2>
+        <p style="margin:0;font-size:16px;line-height:1.6;color:#363636;text-wrap:pretty">Kim hears about the request by email, text and a homepage alert. She can approve or reject from the dashboard in two clicks, or open the request to change quantities, leave comments and decide with the full order in view.</p>
+      </div>
+      <div class="hp-tabs" role="tablist" aria-label="Phase 3 views"><button type="button" role="tab" class="{{ tab3Proto }}" aria-selected="{{ is3Proto }}" onClick="{{ show3Proto }}">Interactive prototype</button><button type="button" role="tab" class="{{ tab3Video }}" aria-selected="{{ is3Video }}" onClick="{{ show3Video }}">Walkthrough video <span class="hp-tab-meta">0:55</span></button></div>
+    </div>
+    <sc-if value="{{ is3Proto }}" hint-placeholder-val="{{ true }}">
+      <div class="hp-live" style="height:{{ frameH }}"><div style="zoom:{{ zoom }};width:1280px;height:800px"><dc-import name="HD-Proto-Phase3" style="height:100%" hint-size="1280px,800px"></dc-import></div></div>
+    </sc-if>
+    <sc-if value="{{ is3Video }}" hint-placeholder-val="{{ false }}">
+      <div class="hp-video" style="height:{{ frameH }}"><video controls="controls" preload="metadata" playsInline="playsinline" poster="/_blob/855c2a0bcdde9e075316c9af25529d24" aria-label="Phase 3 walkthrough video: the approver reviews an order request"><source src="work-images/homedepot-phase3-approver-reviews.mp4" type="video/mp4"><source src="/_blob/6787ee6872c6ac804fc9ea6256c11e43" type="video/mp4">Your browser can't play this video. <a href="https://vimeo.com/667861483" target="_blank" rel="noopener">Watch it on Vimeo</a>.</video></div>
+    </sc-if>
+    <div class="hp-foot" style="max-width:1040px;margin:14px auto 0;width:100%"><span class="hp-note">Sample data from the case study. Product images are placeholders.</span><span class="hp-phone-note">On a phone, scroll sideways inside the frame or open it full screen.</span><a href="View-HDPhase3.dc.html">Open full screen ↗</a><a href="https://vimeo.com/667861483" target="_blank" rel="noopener">Original video on Vimeo ↗</a></div>
+  </div>
+</section>
+
+</div>
 
 <!-- ============ FOOTER ============ -->
 <section data-screen-label="Footer" style="padding:0 24px;border-top:1px solid #E5E5E5;background:#F7F7F7">
@@ -94,15 +153,30 @@ a:hover{color:#8F3A00;text-decoration:underline}
 </main>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1000}}'>
+const BOARD_W = 1280, BOARD_H = 800;
 class Component extends DCLogic {
+  state = { wrapW: 1200, tab1: "proto", tab2: "proto", tab3: "proto" };
+  wrapRef = React.createRef();
+  componentDidMount() {
+    const measure = () => { const el = this.wrapRef.current; const w = el ? el.clientWidth - 48 : window.innerWidth - 48; if (w && w !== this.state.wrapW) this.setState({ wrapW: w }); };
+    this._onResize = measure;
+    window.addEventListener("resize", measure);
+    setTimeout(measure, 50);
+    setTimeout(measure, 600);
+  }
+  componentWillUnmount() { window.removeEventListener("resize", this._onResize); }
   renderVals() {
-    const embed = (id) => "https://player.vimeo.com/video/" + id + "?dnt=1&title=0&byline=0&portrait=0";
-    const phases = [
-      { id: "phase-1", label: "Phase 1", role: "Account owner", title: "Set up a workflow", desc: "The account owner names a workflow, picks requesters, sets a spend limit and picks approvers, all in one form.", video: "667535643", caption: "Prototype video" },
-      { id: "phase-2", label: "Phase 2", role: "Requester", title: "Submit a request", desc: "Requesters shop as usual. Orders that meet the criteria go to an approver, and requesters track them in My Requests.", video: "667548093", caption: "Prototype video" },
-      { id: "phase-3", label: "Phase 3", role: "Approver", title: "Approve a request", desc: "Approvers see every request waiting on them, and can approve or reject from the list or the details page.", video: "667861483", caption: "Prototype video" }
-    ].map(p => Object.assign({}, p, { embed: embed(p.video), watch: "https://vimeo.com/" + p.video, frameTitle: p.label + " prototype: " + p.title.toLowerCase() }));
-    return { phases };
+    const w = Math.max(200, this.state.wrapW || 1200);
+    // Phones: never shrink the board below half size; the frame scrolls sideways instead.
+    const zoom = w < 760 ? Math.max(0.5, Math.min(1, w / BOARD_W)) : Math.min(1, w / BOARD_W);
+    const v = { wrapRef: this.wrapRef, zoom: zoom.toFixed(4), frameH: Math.round(BOARD_H * zoom) + "px" };
+    for (const n of [1, 2, 3]) {
+      const tab = this.state["tab" + n];
+      v["is" + n + "Proto"] = tab === "proto"; v["is" + n + "Video"] = tab === "video";
+      v["tab" + n + "Proto"] = "hp-tab" + (tab === "proto" ? " is-on" : ""); v["tab" + n + "Video"] = "hp-tab" + (tab === "video" ? " is-on" : "");
+      v["show" + n + "Proto"] = () => this.setState({ ["tab" + n]: "proto" }); v["show" + n + "Video"] = () => this.setState({ ["tab" + n]: "video" });
+    }
+    return v;
   }
 }
 </script>

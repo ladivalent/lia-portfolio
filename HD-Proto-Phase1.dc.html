@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Phase 1 · Account owner sets up a workflow</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="hd-proto.css">
+  <style>body{margin:0}</style>
+</helmet>
+<div class="hd">
+  <dc-import name="HD-Guide" phase="Phase 1" role="Account owner" person="Joel" steps="{{ steps }}" current="{{ stepIndex }}" hint="{{ hint }}" onRestart="{{ restart }}" hint-size="100%,56px"></dc-import>
+  <div class="hd-scroll" ref="{{ rootRef }}" onClick="{{ rootClick }}" onKeyDown="{{ rootKey }}">
+    <dc-import name="HD-Chrome" user="Joel" cart="2" nav="none" hint-size="100%,136px"></dc-import>
+
+    <sc-if value="{{ hasBanner }}" hint-placeholder-val="{{ false }}">
+      <div class="hd-banner" role="status">
+        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M4 12.5l5 5L20 7"></path></svg>
+        <span>{{ bannerText }}</span>
+        <sc-if value="{{ bannerUndo }}" hint-placeholder-val="{{ false }}"><button type="button" class="hd-link" onClick="{{ undoDelete }}">Undo</button></sc-if>
+        <sc-if value="{{ bannerSee }}" hint-placeholder-val="{{ false }}"><button type="button" class="hd-link" onClick="{{ goNotify }}">See what they received</button></sc-if>
+        <button type="button" class="hd-banner-x" aria-label="Dismiss" onClick="{{ closeBanner }}">✕</button>
+      </div>
+    </sc-if>
+
+    <div class="hd-page">
+      <!-- ===== INTRO ===== -->
+      <sc-if value="{{ isIntro }}" hint-placeholder-val="{{ true }}">
+        <div class="hd-crumbs"><a href="#" onClick="{{ noop }}">Home</a><span class="sep">/</span><a href="#" onClick="{{ noop }}">My Account</a><span class="sep">/</span></div>
+        <h1 class="hd-h1">Add/Manage Workflows</h1>
+        <div class="hd-cols">
+          <dc-import name="HD-AccountNav" active="workflows" admin="yes" hint-size="200px,520px"></dc-import>
+          <div class="hd-main">
+            <h2 class="hd-h2">Set Up Workflows</h2>
+            <p class="hd-p">This process allows Account Owners/Admins to manage spending and track purchases made on their accounts.</p>
+            <p class="hd-p">Before getting started, be sure to add members of your team to your account on the <a href="#" onClick="{{ noop }}">Add/Manage Users</a> page.</p>
+            <p class="hd-p" style="margin-bottom:28px">Once everything is set up, the workflow is fully automated and the approvers will be sent alerts of purchaser violations.</p>
+            <button type="button" class="hd-btn" onClick="{{ startNew }}">Create New Workflow</button>
+          </div>
+        </div>
+      </sc-if>
+
+      <!-- ===== CREATE / EDIT ===== -->
+      <sc-if value="{{ isCreate }}" hint-placeholder-val="{{ false }}">
+        <div class="hd-crumbs"><a href="#" onClick="{{ noop }}">Home</a><span class="sep">/</span><a href="#" onClick="{{ noop }}">My Account</a><span class="sep">/</span><a href="#" onClick="{{ cancel }}">Workflow Management</a><span class="sep">/</span></div>
+        <h1 class="hd-h1">Add/Manage Workflows</h1>
+        <div class="hd-cols">
+          <dc-import name="HD-AccountNav" active="workflows" admin="yes" hint-size="200px,520px"></dc-import>
+          <div class="hd-main">
+            <h2 class="hd-h2">{{ formTitle }}</h2>
+
+            <div class="hd-step">
+              <h3 class="hd-h3">Step 1: Name Workflow</h3>
+              <p class="hd-help">Use a descriptive job name or specific scenario (ex: Avalon Project or Runners)</p>
+              <div class="hd-field"><input class="hd-input" type="text" value="{{ name }}" onChange="{{ setName }}" placeholder="Enter workflow name" aria-label="Workflow name" maxLength="60"></div>
+              <sc-if value="{{ errName }}" hint-placeholder-val="{{ false }}"><div class="hd-err">{{ errName }}</div></sc-if>
+            </div>
+
+            <div class="hd-step">
+              <h3 class="hd-h3">Step 2: Select Requester(s)</h3>
+              <p class="hd-help">Choose the users whose purchasing activity you want to monitor.</p>
+              <div class="hd-field" data-field="req">
+                <div class="hd-chips" onClick="{{ focusReq }}">
+                  <sc-for list="{{ reqChips }}" as="c" hint-placeholder-count="2"><span class="hd-chip">{{ c.name }}<button type="button" aria-label="{{ c.removeLabel }}" onClick="{{ c.remove }}">✕</button></span></sc-for>
+                  <input ref="{{ reqRef }}" type="text" value="{{ reqQuery }}" onChange="{{ setReqQuery }}" onFocus="{{ openReq }}" onKeyDown="{{ reqKey }}" placeholder="{{ reqPlaceholder }}" aria-label="Add a requester" autoComplete="off">
+                </div>
+                <sc-if value="{{ reqOpen }}" hint-placeholder-val="{{ false }}">
+                  <div class="hd-dd" role="listbox">
+                    <sc-for list="{{ reqOptions }}" as="o" hint-placeholder-count="3"><button type="button" role="option" onClick="{{ o.pick }}"><span>{{ o.name }}</span><span style="font-size:12px;color:#777">{{ o.role }}</span></button></sc-for>
+                    <sc-if value="{{ reqNone }}" hint-placeholder-val="{{ false }}"><div class="hd-dd-empty">No matching users. Add them on the Add/Manage Users page first.</div></sc-if>
+                  </div>
+                </sc-if>
+              </div>
+              <sc-if value="{{ errReq }}" hint-placeholder-val="{{ false }}"><div class="hd-err">{{ errReq }}</div></sc-if>
+              <div class="hd-clear" style="max-width:620px"><button type="button" class="hd-link" onClick="{{ clearReq }}">Clear All</button></div>
+            </div>
+
+            <div class="hd-step">
+              <h3 class="hd-h3">Step 3: Set Criteria</h3>
+              <p class="hd-help">Define when Requesters' purchase orders need to be reviewed</p>
+              <label class="hd-radio"><input type="radio" name="hd-crit" checked="{{ critAll }}" onChange="{{ setAll }}"><span>Require review on all orders</span></label>
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;max-width:620px;margin-top:4px">
+                <label class="hd-radio"><input type="radio" name="hd-crit" checked="{{ critLimit }}" onChange="{{ setLimitMode }}"><span>When an order amount exceeds a spend limit of:</span></label>
+                <div class="{{ moneyClass }}"><span aria-hidden="true">$</span><input type="text" inputMode="decimal" value="{{ limit }}" onChange="{{ setLimit }}" onFocus="{{ setLimitMode }}" placeholder="Enter Dollar Amount" aria-label="Spend limit in dollars"></div>
+              </div>
+              <sc-if value="{{ errLimit }}" hint-placeholder-val="{{ false }}"><div class="hd-err">{{ errLimit }}</div></sc-if>
+            </div>
+
+            <div class="hd-step">
+              <h3 class="hd-h3">Step 4: Select Approver(s)</h3>
+              <p class="hd-help">Choose the users who can review and approve orders.</p>
+              <div class="hd-field" data-field="app">
+                <div class="hd-chips" onClick="{{ focusApp }}">
+                  <sc-for list="{{ appChips }}" as="c" hint-placeholder-count="2"><span class="hd-chip">{{ c.name }}<button type="button" aria-label="{{ c.removeLabel }}" onClick="{{ c.remove }}">✕</button></span></sc-for>
+                  <input ref="{{ appRef }}" type="text" value="{{ appQuery }}" onChange="{{ setAppQuery }}" onFocus="{{ openApp }}" onKeyDown="{{ appKey }}" placeholder="{{ appPlaceholder }}" aria-label="Add an approver" autoComplete="off">
+                </div>
+                <sc-if value="{{ appOpen }}" hint-placeholder-val="{{ false }}">
+                  <div class="hd-dd" role="listbox">
+                    <sc-for list="{{ appOptions }}" as="o" hint-placeholder-count="3"><button type="button" role="option" onClick="{{ o.pick }}"><span>{{ o.name }}</span><span style="font-size:12px;color:#777">{{ o.role }}</span></button></sc-for>
+                    <sc-if value="{{ appNone }}" hint-placeholder-val="{{ false }}"><div class="hd-dd-empty">No matching users. Add them on the Add/Manage Users page first.</div></sc-if>
+                  </div>
+                </sc-if>
+              </div>
+              <sc-if value="{{ errApp }}" hint-placeholder-val="{{ false }}"><div class="hd-err">{{ errApp }}</div></sc-if>
+              <div class="hd-clear" style="max-width:620px"><button type="button" class="hd-link" onClick="{{ clearApp }}">Clear All</button></div>
+            </div>
+
+            <div style="display:flex;align-items:center;justify-content:space-between;max-width:620px;margin-top:8px">
+              <button type="button" class="hd-btn hd-btn-2" onClick="{{ cancel }}">Cancel</button>
+              <button type="button" class="hd-btn" style="min-width:300px" onClick="{{ submit }}">{{ submitLabel }}</button>
+            </div>
+          </div>
+        </div>
+      </sc-if>
+
+      <!-- ===== LIST ===== -->
+      <sc-if value="{{ isList }}" hint-placeholder-val="{{ false }}">
+        <div class="hd-crumbs"><a href="#" onClick="{{ noop }}">Home</a><span class="sep">/</span><a href="#" onClick="{{ noop }}">My Account</a><span class="sep">/</span><span>Workflow Management</span></div>
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:24px">
+          <h1 class="hd-h1">Add/Manage Workflows</h1>
+          <button type="button" class="hd-btn" onClick="{{ startNew }}">Create New Workflow</button>
+        </div>
+        <div class="hd-cols">
+          <dc-import name="HD-AccountNav" active="workflows" admin="yes" hint-size="200px,520px"></dc-import>
+          <div class="hd-main">
+            <h2 class="hd-h2">Workflows</h2>
+            <sc-if value="{{ listEmpty }}" hint-placeholder-val="{{ false }}">
+              <div class="hd-empty">
+                <div style="font-size:16px;font-weight:700">No workflows yet</div>
+                <div style="font-size:14px;color:#555;max-width:480px">Create a workflow to route your team's orders to an approver when they meet your criteria.</div>
+                <button type="button" class="hd-btn hd-btn-sm" onClick="{{ startNew }}">Create New Workflow</button>
+              </div>
+            </sc-if>
+            <sc-if value="{{ listHas }}" hint-placeholder-val="{{ true }}">
+              <table class="hd-table">
+                <thead><tr>
+                  <th>Name<span class="sort">▼</span></th><th>Spend Limit<span class="sort">▼</span></th><th>Requester(s)<span class="sort">▼</span></th><th>Approver(s)<span class="sort">▼</span></th><th>Enabled<span class="sort">▼</span></th><th style="width:134px">Actions<span class="sort">▼</span></th>
+                </tr></thead>
+                <tbody>
+                  <sc-for list="{{ rows }}" as="w" hint-placeholder-count="1">
+                    <tr class="{{ w.cls }}">
+                      <td style="font-weight:700">{{ w.name }}</td>
+                      <td>{{ w.limitText }}</td>
+                      <td style="white-space:pre-line">{{ w.reqText }}</td>
+                      <td style="white-space:pre-line">{{ w.appText }}</td>
+                      <td>{{ w.enabledText }}</td>
+                      <td>
+                        <div class="hd-menu">
+                          <button type="button" class="hd-menu-btn" aria-haspopup="menu" aria-expanded="{{ w.open }}" onClick="{{ w.toggle }}"><span>Actions</span><span class="chev">{{ w.chev }}</span></button>
+                          <sc-if value="{{ w.open }}" hint-placeholder-val="{{ false }}">
+                            <div class="hd-menu-list" role="menu">
+                              <button type="button" role="menuitem" onClick="{{ w.edit }}">Edit</button>
+                              <button type="button" role="menuitem" class="is-danger" onClick="{{ w.del }}">Delete</button>
+                              <button type="button" role="menuitem" onClick="{{ w.toggleEnabled }}">{{ w.enableLabel }}</button>
+                            </div>
+                          </sc-if>
+                        </div>
+                      </td>
+                    </tr>
+                  </sc-for>
+                </tbody>
+              </table>
+            </sc-if>
+          </div>
+        </div>
+      </sc-if>
+
+      <!-- ===== NOTIFICATIONS ===== -->
+      <sc-if value="{{ isNotify }}" hint-placeholder-val="{{ false }}">
+        <div class="hd-crumbs"><a href="#" onClick="{{ noop }}">Home</a><span class="sep">/</span><a href="#" onClick="{{ noop }}">My Account</a><span class="sep">/</span><a href="#" onClick="{{ goList }}">Workflow Management</a><span class="sep">/</span><span>Notifications</span></div>
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:24px">
+          <h1 class="hd-h1">What your team received</h1>
+          <button type="button" class="hd-btn hd-btn-2" onClick="{{ goList }}">Back to Workflows</button>
+        </div>
+        <p class="hd-p" style="margin-top:10px;max-width:760px">When <b>{{ notifyName }}</b> went live, each requester and approver received an email and a text message with their part of the workflow.</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:20px">
+          <sc-for list="{{ emails }}" as="m" hint-placeholder-count="2">
+            <div>
+              <div style="display:flex;align-items:center;gap:10px;margin:0 0 10px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#555"><span class="hd-tag">{{ m.roleTag }}</span><span>Email notification · {{ m.to }}</span></div>
+              <div class="hd-email">
+                <div class="hd-email-top"><img src="/_blob/67ffb9e1777bdd36ce36359039dc59ca" alt="The Home Depot Pro" width="715" height="277" style="display:block;height:28px;width:auto"><span>Download our app ▾</span></div>
+                <div class="hd-email-b">
+                  <div style="font-size:20px;font-weight:700;margin:0 0 12px">Hi {{ m.first }}!</div>
+                  <p style="margin:0 0 16px">{{ m.body }}</p>
+                  <p style="margin:0 0 20px">Thank you,<br>The Home Depot</p>
+                  <button type="button" class="hd-btn" style="min-width:200px" onClick="{{ noop }}">View Online</button>
+                </div>
+                <div class="hd-email-f"><b>Questions?</b> Email us at customercare@homedepot.com or call us at 866-333-3551.<br>This message is from an automated address that cannot receive incoming emails.</div>
+              </div>
+              <div style="margin-top:10px;font-size:13px;color:#555">Also sent as a text message: "{{ m.sms }}"</div>
+            </div>
+          </sc-for>
+        </div>
+      </sc-if>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":820}}'>
+const USERS = [
+  { name: "Mark Landers", role: "Purchaser" }, { name: "Samira Cox", role: "Purchaser" }, { name: "Priya Natarajan", role: "Purchaser" }, { name: "Tom Reyes", role: "Purchaser" },
+  { name: "Kim Dickenson", role: "Admin" }, { name: "Steve White", role: "Admin" }, { name: "Dana Whitfield", role: "Admin" }, { name: "Joel Berish", role: "Owner" }
+];
+const STEPS = ["Set up", "Create", "Workflows", "Notifications"];
+const blankDraft = () => ({ name: "", requesters: [], mode: "limit", limit: "", approvers: [] });
+const joinNames = (a) => a.length <= 1 ? a.join("") : a.length === 2 ? a[0] + " and " + a[1] : a.slice(0, -1).join(", ") + " and " + a[a.length - 1];
+const money = (n) => "$" + Number(n).toLocaleString("en-US", { minimumFractionDigits: 0, maximumFractionDigits: 2 });
+const limitText = (w) => w.mode === "all" ? "All orders" : money(w.limit);
+
+class Component extends DCLogic {
+  state = { screen: "intro", banner: null, wfs: [], draft: blankDraft(), editId: null, errors: {}, openMenu: null, dd: null, reqQuery: "", appQuery: "", nextId: 1, deleted: null };
+  rootRef = React.createRef(); reqRef = React.createRef(); appRef = React.createRef();
+
+  go(screen, extra) { this.setState(Object.assign({ screen, openMenu: null, dd: null }, extra || {}), () => { const r = this.rootRef.current; if (r) r.scrollTop = 0; }); }
+  setDraft(patch) { this.setState({ draft: Object.assign({}, this.state.draft, patch) }); }
+
+  startNew() { this.go("create", { draft: blankDraft(), editId: null, errors: {}, banner: null, reqQuery: "", appQuery: "" }); }
+  edit(id) { const w = this.state.wfs.find(x => x.id === id); if (!w) return; this.go("create", { draft: { name: w.name, requesters: w.requesters.slice(), mode: w.mode, limit: w.limit, approvers: w.approvers.slice() }, editId: id, errors: {}, banner: null, reqQuery: "", appQuery: "" }); }
+  cancel() { this.go(this.state.wfs.length ? "list" : "intro", { errors: {}, editId: null }); }
+  submit() {
+    const d = this.state.draft; const errors = {};
+    if (!d.name.trim()) errors.name = "Enter a name for this workflow.";
+    if (!d.requesters.length) errors.req = "Add at least one requester.";
+    if (d.mode === "limit") { const n = Number(String(d.limit).replace(/[,$\s]/g, "")); if (!(n > 0)) errors.limit = "Enter a spend limit above $0, or choose to review all orders."; }
+    if (!d.approvers.length) errors.app = "Add at least one approver.";
+    if (Object.keys(errors).length) { this.setState({ errors, dd: null }); return; }
+    const clean = { name: d.name.trim(), requesters: d.requesters.slice(), mode: d.mode, limit: d.mode === "limit" ? Number(String(d.limit).replace(/[,$\s]/g, "")) : null, approvers: d.approvers.slice(), enabled: true };
+    let wfs; let banner;
+    if (this.state.editId != null) {
+      wfs = this.state.wfs.map(w => w.id === this.state.editId ? Object.assign({}, w, clean) : w);
+      banner = { text: "The " + clean.name + " workflow was updated and participating users have been notified.", see: true };
+    } else {
+      wfs = this.state.wfs.concat([Object.assign({ id: this.state.nextId }, clean)]);
+      banner = { text: "The " + clean.name + " workflow is now active and notifications have been sent to participating users.", see: true };
+    }
+    this.go("list", { wfs, banner, errors: {}, editId: null, nextId: this.state.nextId + 1, lastName: clean.name, lastWf: clean });
+  }
+  del(id) { const w = this.state.wfs.find(x => x.id === id); if (!w) return; this.setState({ wfs: this.state.wfs.filter(x => x.id !== id), deleted: w, banner: { text: "The " + w.name + " workflow was deleted.", undo: true }, openMenu: null }); }
+  undoDelete() { const w = this.state.deleted; if (!w) return; this.setState({ wfs: this.state.wfs.concat([w]).sort((a, b) => a.id - b.id), deleted: null, banner: { text: "The " + w.name + " workflow was restored." } }); }
+  toggleEnabled(id) {
+    const wfs = this.state.wfs.map(w => w.id === id ? Object.assign({}, w, { enabled: !w.enabled }) : w); const w = wfs.find(x => x.id === id);
+    this.setState({ wfs, openMenu: null, banner: { text: w.enabled ? "The " + w.name + " workflow is active again." : "The " + w.name + " workflow is disabled. Its requesters' orders will be placed without review." } });
+  }
+  restart() { this.setState({ screen: "intro", banner: null, wfs: [], draft: blankDraft(), editId: null, errors: {}, openMenu: null, dd: null, reqQuery: "", appQuery: "", deleted: null }, () => { const r = this.rootRef.current; if (r) r.scrollTop = 0; }); }
+
+  pickUser(kind, name) {
+    const key = kind === "req" ? "requesters" : "approvers"; const list = this.state.draft[key];
+    if (!list.includes(name)) this.setDraft({ [key]: list.concat([name]) });
+    this.setState({ [kind === "req" ? "reqQuery" : "appQuery"]: "", dd: kind, errors: Object.assign({}, this.state.errors, { [kind === "req" ? "req" : "app"]: undefined }) });
+    const ref = kind === "req" ? this.reqRef : this.appRef; if (ref.current) ref.current.focus();
+  }
+  removeUser(kind, name) { const key = kind === "req" ? "requesters" : "approvers"; this.setDraft({ [key]: this.state.draft[key].filter(n => n !== name) }); }
+  options(kind) {
+    const q = (kind === "req" ? this.state.reqQuery : this.state.appQuery).trim().toLowerCase();
+    const chosen = kind === "req" ? this.state.draft.requesters : this.state.draft.approvers;
+    return USERS.filter(u => !chosen.includes(u.name) && (!q || u.name.toLowerCase().includes(q))).map(u => ({ name: u.name, role: u.role, pick: () => this.pickUser(kind, u.name) }));
+  }
+  key(kind, e) {
+    const opts = this.options(kind);
+    if (e.key === "Enter") { e.preventDefault(); if (opts.length) this.pickUser(kind, opts[0].name); }
+    else if (e.key === "Escape") { this.setState({ dd: null }); }
+    else if (e.key === "Backspace" && !(kind === "req" ? this.state.reqQuery : this.state.appQuery)) { const key = kind === "req" ? "requesters" : "approvers"; const list = this.state.draft[key]; if (list.length) this.setDraft({ [key]: list.slice(0, -1) }); }
+  }
+  renderVals() {
+    const s = this.state; const d = s.draft; const err = s.errors;
+    const stepIndex = s.screen === "intro" ? 0 : s.screen === "create" ? 1 : s.screen === "list" ? 2 : 3;
+    const hints = { intro: "Try it: click Create New Workflow.", create: "Fill in the four steps, then " + (s.editId != null ? "save." : "create it."), list: s.wfs.length ? "Open Actions, or see what your team received." : "Create a workflow to list it here.", notify: "Both messages come from the workflow you set up." };
+    const rows = s.wfs.map(w => ({
+      name: w.name, limitText: limitText(w), reqText: w.requesters.join(",\n"), appText: w.approvers.join(",\n"), enabledText: w.enabled ? "Yes" : "No",
+      cls: w.name === s.lastName && s.banner ? "is-hot" : "", open: s.openMenu === w.id, chev: s.openMenu === w.id ? "▲" : "▼",
+      toggle: (e) => { e.stopPropagation(); this.setState({ openMenu: s.openMenu === w.id ? null : w.id }); },
+      edit: () => this.edit(w.id), del: () => this.del(w.id), toggleEnabled: () => this.toggleEnabled(w.id), enableLabel: w.enabled ? "Disable" : "Enable"
+    }));
+    const lw = s.lastWf || s.wfs[s.wfs.length - 1] || { name: "your workflow", requesters: [], approvers: [], mode: "limit", limit: 500 };
+    const lim = lw.mode === "all" ? null : money(lw.limit);
+    const emails = [
+      { roleTag: "Approver", to: lw.approvers[0] || "Kim Dickenson", first: (lw.approvers[0] || "Kim Dickenson").split(" ")[0],
+        body: "Joel Berish has assigned you as an approver on the " + lw.name + " workflow. You will be in charge of reviewing " + (lim ? "order requests exceeding " + lim + "." : "every order request from its requesters."),
+        sms: "Joel Berish added you as an approver on the " + lw.name + " workflow" + (lim ? " for orders over " + lim + "." : ".") },
+      { roleTag: "Requester", to: lw.requesters[0] || "Mark Landers", first: (lw.requesters[0] || "Mark Landers").split(" ")[0],
+        body: lim ? "Joel Berish has assigned you a " + lim + " spending limit on the " + lw.name + " workflow. Any order over " + lim + " will need to be reviewed by your account approver before being placed." : "Joel Berish has added you to the " + lw.name + " workflow. Every order you place will be reviewed by your account approver before it is placed.",
+        sms: lim ? "Orders over " + lim + " on " + lw.name + " now go to " + joinNames(lw.approvers) + " for review." : "Your orders on " + lw.name + " now go to " + joinNames(lw.approvers) + " for review." }
+    ];
+    const chip = (kind, n) => ({ name: n, removeLabel: "Remove " + n, remove: (e) => { e.stopPropagation(); this.removeUser(kind, n); } });
+    const reqOptions = this.options("req"); const appOptions = this.options("app");
+    return {
+      steps: STEPS, stepIndex, hint: hints[s.screen] || "", restart: () => this.restart(), rootRef: this.rootRef,
+      rootClick: (e) => { const t = e.target; const inMenu = t.closest && t.closest(".hd-menu"); const inField = t.closest && t.closest(".hd-field"); const patch = {}; if (!inMenu && s.openMenu != null) patch.openMenu = null; if (!inField && s.dd) patch.dd = null; if (Object.keys(patch).length) this.setState(patch); },
+      rootKey: (e) => { if (e.key === "Escape" && (s.openMenu != null || s.dd)) this.setState({ openMenu: null, dd: null }); },
+      noop: (e) => { if (e && e.preventDefault) e.preventDefault(); },
+      hasBanner: !!s.banner, bannerText: s.banner ? s.banner.text : "", bannerUndo: !!(s.banner && s.banner.undo), bannerSee: !!(s.banner && s.banner.see),
+      closeBanner: () => this.setState({ banner: null }), undoDelete: () => this.undoDelete(), goNotify: () => this.go("notify", { banner: null }), goList: (e) => { if (e && e.preventDefault) e.preventDefault(); this.go("list"); },
+      isIntro: s.screen === "intro", isCreate: s.screen === "create", isList: s.screen === "list", isNotify: s.screen === "notify",
+      startNew: () => this.startNew(), cancel: (e) => { if (e && e.preventDefault) e.preventDefault(); this.cancel(); }, submit: () => this.submit(),
+      formTitle: s.editId != null ? "Edit Workflow" : "Create New Workflow", submitLabel: s.editId != null ? "Save Workflow" : "Create New Workflow",
+      name: d.name, setName: (e) => { this.setDraft({ name: e.target.value }); if (err.name) this.setState({ errors: Object.assign({}, err, { name: undefined }) }); },
+      errName: err.name || "", errReq: err.req || "", errLimit: err.limit || "", errApp: err.app || "",
+      reqChips: d.requesters.map(n => chip("req", n)), appChips: d.approvers.map(n => chip("app", n)),
+      reqRef: this.reqRef, appRef: this.appRef, reqQuery: s.reqQuery, appQuery: s.appQuery,
+      setReqQuery: (e) => this.setState({ reqQuery: e.target.value, dd: "req" }), setAppQuery: (e) => this.setState({ appQuery: e.target.value, dd: "app" }),
+      openReq: () => this.setState({ dd: "req" }), openApp: () => this.setState({ dd: "app" }),
+      focusReq: () => { if (this.reqRef.current) this.reqRef.current.focus(); this.setState({ dd: "req" }); }, focusApp: () => { if (this.appRef.current) this.appRef.current.focus(); this.setState({ dd: "app" }); },
+      reqKey: (e) => this.key("req", e), appKey: (e) => this.key("app", e),
+      reqPlaceholder: d.requesters.length ? "" : "Start typing and select user", appPlaceholder: d.approvers.length ? "" : "Start typing and select user",
+      reqOpen: s.dd === "req", appOpen: s.dd === "app", reqOptions, appOptions, reqNone: !reqOptions.length, appNone: !appOptions.length,
+      clearReq: () => this.setDraft({ requesters: [] }), clearApp: () => this.setDraft({ approvers: [] }),
+      critAll: d.mode === "all", critLimit: d.mode === "limit", setAll: () => this.setDraft({ mode: "all" }), setLimitMode: () => { if (d.mode !== "limit") this.setDraft({ mode: "limit" }); },
+      moneyClass: "hd-money" + (d.mode === "limit" ? "" : " is-off"), limit: d.limit, setLimit: (e) => { this.setDraft({ limit: e.target.value, mode: "limit" }); if (err.limit) this.setState({ errors: Object.assign({}, err, { limit: undefined }) }); },
+      listEmpty: !s.wfs.length, listHas: !!s.wfs.length, rows,
+      notifyName: lw.name, emails
+    };
+  }
+}
+</script>
+</body>
+</html>

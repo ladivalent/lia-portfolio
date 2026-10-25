@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Phase 2 · Requester submits an order request</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="hd-proto.css">
+  <style>
+    body{margin:0}
+    .p2-alert{display:flex;align-items:center;gap:10px;margin:12px 24px 0;padding:10px 16px;background:#333;color:#fff;font-size:14px;border:2px solid #C8102E}
+    .p2-alert b{font-weight:700}
+    .p2-band{display:flex;align-items:center;gap:12px;padding:16px 20px;background:#F5F5F5;font-size:18px;font-weight:700;margin:16px 0 0}
+    .p2-band .plus{color:#F96302;font-size:26px;line-height:1;font-weight:400}
+    .p2-head{display:grid;grid-template-columns:1fr 328px 96px 96px;gap:12px;padding:12px 0;font-size:14px;font-weight:700;border-bottom:1px solid #DDD;margin-top:12px}
+    .p2-row{display:grid;grid-template-columns:1fr 328px 96px 96px;gap:12px;padding:20px 0 12px;border-bottom:1px solid #DDD}
+    .p2-row .p2-links{grid-column:1 / -1;display:flex;justify-content:flex-end;gap:10px;font-size:14px;padding-top:4px}
+    .p2-opts{display:flex;gap:8px}
+    .p2-co-h{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:20px 0 12px}
+    .p2-co-h h1{display:flex;align-items:center;gap:14px;margin:0;font-size:30px;font-weight:300}
+    .p2-sec{display:flex;align-items:baseline;gap:16px;margin:30px 0 14px;padding-bottom:6px;border-bottom:1px solid #DDD;position:relative}
+    .p2-sec .t{position:relative;font-size:28px;font-weight:300;padding-bottom:6px;display:inline-flex;align-items:center;gap:14px}
+    .p2-sec .t::after{content:"";position:absolute;left:0;right:0;bottom:-7px;height:3px;background:#F96302}
+    .p2-sec a{font-size:14px}
+    .p2-body{padding-left:52px;font-size:14px;line-height:1.6}
+    .p2-body b{font-weight:700}
+    .p2-small{font-size:12px;color:#555;line-height:1.5;max-width:560px}
+    .p2-rail-item{display:flex;gap:12px;padding:12px 0;font-size:13px}
+    .p2-rail-item .n{flex:1 1 auto;min-width:0}
+    .p2-rail-item .n .nm{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .p2-rail-item .pr{flex:none;font-weight:700}
+    .p2-rail-h{display:flex;align-items:center;gap:10px;font-size:16px;font-weight:700;padding-bottom:10px;border-bottom:1px solid #DDD;margin-bottom:4px}
+    .p2-rail-h .ic{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;color:#F96302}
+    .p2-rail-h small{font-weight:400;color:#555;font-size:13px}
+    .p2-search{display:flex;align-items:stretch;max-width:420px;height:44px;border:1px solid #8C8C8C}
+    .p2-search .sel{display:flex;align-items:center;justify-content:space-between;width:120px;padding:0 10px;border-right:1px solid #8C8C8C;color:#555;font-size:14px}
+    .p2-search .sel .chev{color:#F96302;font-size:11px}
+    .p2-search input{flex:1 1 auto;min-width:0;border:0;padding:0 12px;font:inherit;font-size:14px;color:#333}
+    .p2-search input:focus{outline:none}
+    .p2-search button{width:44px;border:0;background:#F96302;color:#fff;display:inline-flex;align-items:center;justify-content:center;cursor:pointer}
+    .p2-pay{display:flex;flex-direction:column;gap:10px}
+  </style>
+</helmet>
+<div class="hd">
+  <dc-import name="HD-Guide" phase="Phase 2" role="Requester" person="Mark" steps="{{ steps }}" current="{{ stepIndex }}" hint="{{ hint }}" onRestart="{{ restart }}" hint-size="100%,56px"></dc-import>
+  <div class="{{ scrollClass }}" ref="{{ rootRef }}" onClick="{{ rootClick }}" onKeyDown="{{ rootKey }}">
+    <dc-import name="HD-Chrome" user="Mark" cart="{{ cartCount }}" nav="requests" active="{{ chromeActive }}" onNav="{{ chromeNav }}" hint-size="100%,136px"></dc-import>
+
+    <sc-if value="{{ hasBanner }}" hint-placeholder-val="{{ false }}">
+      <div class="{{ bannerClass }}" role="status">
+        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M4 12.5l5 5L20 7"></path></svg>
+        <span>{{ bannerText }}</span>
+        <button type="button" class="hd-banner-x" aria-label="Dismiss" onClick="{{ closeBanner }}">✕</button>
+      </div>
+    </sc-if>
+
+    <!-- ===== CART ===== -->
+    <sc-if value="{{ isCart }}" hint-placeholder-val="{{ true }}">
+      <sc-if value="{{ overLimit }}" hint-placeholder-val="{{ true }}">
+        <div class="p2-alert" role="status"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v6M12 7.5v.5"></path></svg><span><b>Approval needed.</b> Your order total is above {{ limitText }} and needs to be approved by another employee of your company.</span></div>
+      </sc-if>
+      <div class="hd-page" style="padding-top:20px">
+        <div class="hd-cols" style="margin-top:0;gap:32px">
+          <div class="hd-main">
+            <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:16px">
+              <div style="flex:1 1 auto"><h1 class="hd-h2" style="margin:0;font-size:30px">Shopping Cart</h1></div>
+              <div style="display:flex;gap:18px;font-size:14px;padding-bottom:10px"><a href="#" onClick="{{ noop }}">⤴ Share</a><a href="#" onClick="{{ noop }}">⎙ Print</a></div>
+            </div>
+            <div style="font-size:14px;margin-top:10px">FREE shipping on all eligible items <a href="#" onClick="{{ noop }}">See Details</a></div>
+            <div class="p2-band"><span class="plus" aria-hidden="true">+</span><span>Quick Add</span></div>
+            <sc-if value="{{ cartEmpty }}" hint-placeholder-val="{{ false }}">
+              <div class="hd-empty" style="margin-top:20px"><div style="font-size:16px;font-weight:700">Your cart is empty</div><div style="font-size:14px;color:#555">Restart the prototype to bring the sample items back.</div><button type="button" class="hd-btn hd-btn-sm" onClick="{{ restart }}">Restart</button></div>
+            </sc-if>
+            <sc-if value="{{ cartHas }}" hint-placeholder-val="{{ true }}">
+              <div class="p2-head"><span style="padding-left:100px">Item</span><span>How To Get It</span><span style="text-align:center">Qty</span><span style="text-align:right">Item Total</span></div>
+              <sc-for list="{{ cartRows }}" as="it" hint-placeholder-count="5">
+                <div class="p2-row">
+                  <div style="display:flex;gap:16px;min-width:0">
+                    <div class="hd-thumb" aria-hidden="true"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="3" y="4" width="18" height="16" rx="2"></rect><path d="M3 16l5-5 4 4 3-3 6 6"></path><circle cx="15.5" cy="8.5" r="1.5"></circle></svg></div>
+                    <div style="min-width:0;font-size:14px;line-height:1.4"><b>{{ it.brand }}</b> {{ it.name }}<div style="margin-top:10px;font-size:13px">Model # {{ it.model }}</div></div>
+                  </div>
+                  <div class="p2-opts" role="radiogroup" aria-label="{{ it.howLabel }}">
+                    <sc-for list="{{ it.opts }}" as="o" hint-placeholder-count="3"><button type="button" role="radio" aria-checked="{{ o.on }}" class="{{ o.cls }}" onClick="{{ o.pick }}" disabled="{{ o.off }}"><b>{{ o.label }}</b><small>{{ o.sub }}</small><span class="{{ o.priceCls }}">{{ o.price }}</span></button></sc-for>
+                  </div>
+                  <div style="display:flex;flex-direction:column;align-items:center;gap:8px;font-size:13px"><input class="hd-qty" type="text" inputMode="numeric" value="{{ it.qty }}" onChange="{{ it.setQty }}" onBlur="{{ it.fixQty }}" aria-label="{{ it.qtyLabel }}"><span>{{ it.unit }}/Item</span></div>
+                  <div style="text-align:right;font-size:15px;font-weight:700">{{ it.total }}</div>
+                  <div class="p2-links"><a href="#" onClick="{{ noop }}">Save for Later</a><span style="color:#999">|</span><button type="button" class="hd-link" onClick="{{ it.remove }}">Remove</button></div>
+                </div>
+              </sc-for>
+            </sc-if>
+          </div>
+          <div class="hd-rail" style="width:300px">
+            <div class="hd-card">
+              <div class="hd-tot"><b>Subtotal</b><b>{{ t.subtotal }}</b></div>
+              <div class="hd-tot"><b>Discount</b><b>{{ t.discount }}</b></div>
+              <div class="hd-tot"><span>Estimated Shipping*</span><span class="free">FREE</span></div>
+              <div class="hd-tot"><span>Pick Up In Store</span><span class="free">FREE</span></div>
+              <div class="hd-tot"><span>Estimated Express Delivery</span><span>{{ t.express }}</span></div>
+              <div class="hd-tot"><span>Sales Tax <small style="color:#777">(determined in later step)</small></span><span>---</span></div>
+              <div class="hd-tot is-total"><span>Total</span><b>{{ t.total }}</b></div>
+              <div class="hd-tot" style="color:#008A3A"><span>Your Savings</span><span>{{ t.savings }}</span></div>
+            </div>
+            <div class="hd-card">
+              <div style="margin:0 0 14px"><a href="#" onClick="{{ noop }}">Have a promo code?</a></div>
+              <label style="display:block;font-size:14px;margin:0 0 6px">PO/Job Name (Optional)</label>
+              <div style="display:flex;gap:8px;margin:0 0 14px"><input class="hd-input" type="text" value="{{ po }}" onChange="{{ setPo }}" aria-label="PO or Job Name"><button type="button" class="hd-btn hd-btn-3" style="flex:none" onClick="{{ noop }}">Apply</button></div>
+              <label style="display:block;font-size:14px;margin:0 0 6px">Create a Quote (Optional)</label>
+              <div style="display:flex;gap:8px;margin:0 0 14px"><input class="hd-input" type="text" placeholder="" aria-label="Quote name"><button type="button" class="hd-btn hd-btn-3" style="flex:none" onClick="{{ noop }}">Save</button></div>
+              <p class="p2-small" style="margin:0 0 16px">* Shipping and delivery charges are calculated at the lowest rate available. Other methods will be viewable on the next page.</p>
+              <button type="button" class="hd-btn" style="width:100%" onClick="{{ goCheckout }}" disabled="{{ cartEmpty }}">Proceed to Checkout</button>
+              <div style="text-align:center;margin-top:14px;font-size:14px"><a href="#" onClick="{{ noop }}">Turn on Instant Checkout</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+
+    <!-- ===== CHECKOUT ===== -->
+    <sc-if value="{{ isCheckout }}" hint-placeholder-val="{{ false }}">
+      <div class="hd-page" style="padding-top:8px">
+        <div class="hd-cols" style="margin-top:0;gap:32px">
+          <div class="hd-main">
+            <div class="p2-co-h">
+              <h1><span aria-hidden="true" style="display:inline-flex;width:40px;height:40px;background:#F96302"></span><span>Secure Checkout</span><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="#555"><path d="M6 10V8a6 6 0 0 1 12 0v2h1a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-9a1 1 0 0 1 1-1zm2 0h8V8a4 4 0 0 0-8 0z"></path></svg></h1>
+              <button type="button" class="hd-link" style="font-size:14px" onClick="{{ goCart }}">🛒 Edit Cart ({{ cartCount }})</button>
+            </div>
+            <sc-if value="{{ overLimit }}" hint-placeholder-val="{{ true }}">
+              <div class="hd-banner is-warn" style="margin:0 0 8px" role="status"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="#333"><path d="M12 2L1 21h22L12 2zm1 14h-2v2h2v-2zm0-7h-2v6h2V9z"></path></svg><span><b>Warning!</b> You have exceeded your spending limit of {{ limitText }}. Please complete the contact, shipping, and payment info and then submit your request for review.</span></div>
+            </sc-if>
+
+            <div class="p2-sec"><span class="t"><svg aria-hidden="true" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#F96302" strokeWidth="1.6" strokeLinecap="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"></path></svg>Contact</span><a href="#" onClick="{{ noop }}">Update Your Info</a></div>
+            <div class="p2-body">
+              <b>Mark Landers</b><br>mark.landers@barish.com<br>404-123-1234
+              <div style="margin-top:12px"><label class="hd-check"><input type="checkbox" checked="{{ textMe }}" onChange="{{ toggleText }}"><span>Also text me when my order is ready.</span></label></div>
+              <p class="p2-small" style="margin:6px 0 10px 28px">Home Depot will send you a single text when your order is ready for pickup. Message and data rates may apply and texts may be sent between the hours of 8:00 am and 10:00 pm. <a href="#" onClick="{{ noop }}">Full terms</a></p>
+              <a href="#" onClick="{{ noop }}">Will someone else pick it up?</a>
+            </div>
+
+            <sc-if value="{{ hasShip }}" hint-placeholder-val="{{ true }}">
+              <div class="p2-sec"><span class="t"><svg aria-hidden="true" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#F96302" strokeWidth="1.6" strokeLinejoin="round"><path d="M12 2l9 5v10l-9 5-9-5V7z"></path><path d="M3 7l9 5 9-5M12 12v10"></path></svg>Shipping</span><a href="#" onClick="{{ noop }}">Use Another Address</a></div>
+              <div class="p2-body"><b>Mark Landers</b><br>123 Street Name<br>Atlanta, GA 30339<br>404-123-1234<div style="margin-top:6px"><a href="#" onClick="{{ noop }}">Edit This Address</a></div></div>
+            </sc-if>
+
+            <sc-if value="{{ hasExpress }}" hint-placeholder-val="{{ true }}">
+              <div style="display:flex;align-items:baseline;gap:16px;margin:28px 0 10px 8px"><span style="display:inline-flex;flex-direction:column;align-items:center;font-size:11px;color:#555"><svg aria-hidden="true" width="34" height="26" viewBox="0 0 32 24" fill="none" stroke="#555" strokeWidth="1.8" strokeLinejoin="round"><path d="M2 5h17v12H2z"></path><path d="M19 9h6l4 4v4h-10z"></path><circle cx="8" cy="19" r="2.2" fill="#fff"></circle><circle cx="24" cy="19" r="2.2" fill="#fff"></circle></svg>{{ expressCount }}</span><span style="font-size:22px;font-weight:300">Express Delivery</span><a href="#" style="font-size:14px" onClick="{{ noop }}">Change</a></div>
+              <div class="p2-body" style="padding-left:70px">Delivery Date &amp; Time:<br><b>Friday, May 21, 6am - 8pm</b><div class="p2-small">Your driver will call you 30 minutes prior to delivery.</div><div style="margin-top:10px">Service Level:<br><b>Outside Delivery</b><div class="p2-small">Service includes delivery to area outside the house which is accessible by delivery equipment.</div></div></div>
+            </sc-if>
+
+            <div class="p2-sec"><span class="t"><svg aria-hidden="true" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#F96302" strokeWidth="1.6"><rect x="2" y="5" width="20" height="14" rx="2"></rect><path d="M2 10h20M6 15h4"></path></svg>Payment</span><a href="#" onClick="{{ noop }}">Use Another Card</a></div>
+            <div class="p2-body p2-pay">
+              <label class="hd-radio"><input type="radio" name="p2-pay" checked="{{ payPaypal }}" onChange="{{ setPaypal }}"><span style="font-weight:700;font-style:italic;color:#1F3F9E">PayPal</span></label>
+              <label class="hd-radio"><input type="radio" name="p2-pay" checked="{{ payCard }}" onChange="{{ setCard }}"><span><span style="display:inline-block;padding:1px 6px;border:1px solid #1F3F9E;color:#1F3F9E;font-size:11px;font-weight:700;margin-right:8px">VISA</span><b>****1234</b> 10/18</span></label>
+              <div style="padding-left:30px;font-size:14px;line-height:1.6">123 Street Name<br>Atlanta, GA 30339<br><a href="#" onClick="{{ noop }}">Update This Card</a></div>
+              <div style="padding-left:30px"><label style="display:block;font-size:13px;color:#555;margin:6px 0 4px">CVV (on back of card)</label><input class="hd-input" type="text" inputMode="numeric" maxLength="4" placeholder="•••" aria-label="CVV" style="width:160px"><div style="margin-top:8px"><a href="#" onClick="{{ noop }}">Apply a Gift Card</a></div></div>
+            </div>
+
+            <sc-if value="{{ overLimit }}" hint-placeholder-val="{{ true }}">
+              <div class="p2-sec"><span class="t"><svg aria-hidden="true" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#F96302" strokeWidth="1.6" strokeLinejoin="round"><path d="M4 4h16v12H9l-5 4z"></path></svg>Note to your approver</span><span style="font-size:14px;color:#555">Optional</span></div>
+              <div class="p2-body"><div style="font-size:13px;color:#555;margin:0 0 8px">{{ approverLine }} will see this with the request.</div><textarea class="hd-textarea" style="max-width:560px" value="{{ note }}" onChange="{{ setNote }}" maxLength="600" aria-label="Note to your approver"></textarea></div>
+            </sc-if>
+
+            <div style="margin:32px 0 0 52px;display:flex;flex-direction:column;gap:12px;max-width:380px">
+              <button type="button" class="hd-btn" style="width:100%" onClick="{{ submit }}">{{ submitLabel }}</button>
+              <p class="p2-small" style="margin:0">{{ submitHelp }}</p>
+            </div>
+          </div>
+
+          <div class="hd-rail" style="width:300px;padding-top:16px">
+            <div class="hd-card" style="display:flex;align-items:baseline;justify-content:space-between"><span style="font-size:22px;font-weight:300">Your Order</span><b style="font-size:20px">{{ t.total }}</b></div>
+            <sc-for list="{{ groups }}" as="g" hint-placeholder-count="3">
+              <div class="hd-card">
+                <div class="p2-rail-h"><span class="ic">{{ g.icon }}</span><span>{{ g.label }} <small>({{ g.countText }})</small></span></div>
+                <sc-if value="{{ g.isStore }}" hint-placeholder-val="{{ false }}">
+                  <div style="font-size:13px;margin:10px 0"><div style="margin:0 0 6px">We'll hold your items at:</div><span style="display:flex;align-items:center;justify-content:space-between;height:36px;padding:0 10px;border:1px solid #8C8C8C;white-space:nowrap">Customer Service Desk <span style="color:#F96302;font-size:11px">▼</span></span></div>
+                  <div style="font-size:13px;line-height:1.5;margin:0 0 4px"><b>Howard Lane Store</b><br>13309 I-35 North, Austin, TX 78753 | 512-989-6650</div>
+                </sc-if>
+                <sc-for list="{{ g.items }}" as="it" hint-placeholder-count="2">
+                  <div class="p2-rail-item">
+                    <div class="hd-thumb is-sm" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="3" y="4" width="18" height="16" rx="2"></rect><path d="M3 16l5-5 4 4 3-3 6 6"></path></svg></div>
+                    <div class="n"><div class="nm"><b>{{ it.brand }}</b> {{ it.name }}</div><div>Qty: {{ it.qty }}</div><div style="font-weight:700">{{ it.eta }}</div><a href="#" onClick="{{ noop }}">Need more {{ g.optionsWord }} options?</a></div>
+                    <div class="pr">{{ it.total }}</div>
+                  </div>
+                </sc-for>
+              </div>
+            </sc-for>
+            <div class="hd-card">
+              <div class="hd-tot"><b>Subtotal</b><b>{{ t.subtotal }}</b></div>
+              <div class="hd-tot"><b>Discount</b><b>{{ t.discount }}</b></div>
+              <div class="hd-tot"><span>Estimated Shipping*</span><span class="free">FREE</span></div>
+              <div class="hd-tot"><span>Pick Up In Store</span><span class="free">FREE</span></div>
+              <div class="hd-tot"><span>Estimated Express Delivery</span><span>{{ t.express }}</span></div>
+              <div class="hd-tot"><span>Sales Tax</span><span>{{ t.tax }}</span></div>
+              <div style="font-size:13px;margin:2px 0 6px"><a href="#" onClick="{{ noop }}">Apply Tax Exempt ID</a></div>
+              <div class="hd-tot is-total"><span>Total</span><b>{{ t.total }}</b></div>
+              <div class="hd-tot" style="color:#008A3A"><span>Your Savings</span><span>{{ t.savings }}</span></div>
+              <label style="display:block;font-size:14px;margin:14px 0 6px">Promo Code</label>
+              <div style="display:flex;gap:8px"><input class="hd-input" type="text" aria-label="Promo code"><button type="button" class="hd-btn hd-btn-3" style="flex:none" onClick="{{ noop }}">Apply</button></div>
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-top:14px;font-size:14px"><span>PO#<br><b>{{ poText }}</b></span><span><a href="#" onClick="{{ goCart }}">Edit</a> <span style="color:#999">|</span> <a href="#" onClick="{{ clearPo }}">Remove</a></span></div>
+              <button type="button" class="hd-btn" style="width:100%;margin-top:16px" onClick="{{ submit }}">{{ submitLabel }}</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+
+    <!-- ===== MY REQUESTS ===== -->
+    <sc-if value="{{ isRequests }}" hint-placeholder-val="{{ false }}">
+      <div class="hd-page">
+        <div class="hd-crumbs"><a href="#" onClick="{{ noop }}">Home</a><span class="sep">/</span><a href="#" onClick="{{ noop }}">My Account</a><span class="sep">/</span></div>
+        <h1 class="hd-h1">My Requests</h1>
+        <div class="hd-cols">
+          <dc-import name="HD-AccountNav" active="" admin="no" hint-size="200px,520px"></dc-import>
+          <div class="hd-main">
+            <label style="display:block;font-size:14px;margin:0 0 6px">Search</label>
+            <div class="p2-search"><span class="sel">Select <span class="chev">▼</span></span><input type="search" value="{{ query }}" onChange="{{ setQuery }}" placeholder="Request # or PO/Job Name" aria-label="Search requests"><button type="button" aria-label="Search" onClick="{{ noop }}"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.4" strokeLinecap="round"><circle cx="10.5" cy="10.5" r="6"></circle><path d="M15 15l5 5"></path></svg></button></div>
+            <table class="hd-table" style="margin-top:28px">
+              <thead><tr><th>Submitted<span class="sort">▼</span></th><th>Request #<span class="sort">▼</span></th><th>PO/Job Name<span class="sort">▼</span></th><th>Total<span class="sort">▼</span></th><th>Expiration<span class="sort">▼</span></th><th>Approver(s)<span class="sort">▼</span></th><th>Status<span class="sort">▼</span></th><th style="width:134px">Actions<span class="sort">▼</span></th></tr></thead>
+              <tbody>
+                <sc-for list="{{ reqRows }}" as="r" hint-placeholder-count="5">
+                  <tr class="{{ r.cls }}">
+                    <td>{{ r.date }}</td>
+                    <td><button type="button" class="hd-link" onClick="{{ r.view }}">{{ r.num }}</button></td>
+                    <td>{{ r.po }}</td>
+                    <td>{{ r.total }}</td>
+                    <td>{{ r.exp }}</td>
+                    <td style="white-space:pre-line">{{ r.approvers }}</td>
+                    <td><span class="{{ r.statusCls }}">{{ r.status }}</span></td>
+                    <td>
+                      <div class="hd-menu">
+                        <button type="button" class="hd-menu-btn" aria-haspopup="menu" aria-expanded="{{ r.open }}" onClick="{{ r.toggle }}"><span>Actions</span><span class="chev">{{ r.chev }}</span></button>
+                        <sc-if value="{{ r.open }}" hint-placeholder-val="{{ false }}">
+                          <div class="hd-menu-list" role="menu">
+                            <sc-for list="{{ r.actions }}" as="a" hint-placeholder-count="3"><button type="button" role="menuitem" class="{{ a.cls }}" onClick="{{ a.run }}">{{ a.label }}</button></sc-for>
+                          </div>
+                        </sc-if>
+                      </div>
+                    </td>
+                  </tr>
+                </sc-for>
+              </tbody>
+            </table>
+            <sc-if value="{{ noMatches }}" hint-placeholder-val="{{ false }}"><div style="padding:24px 0;font-size:14px;color:#555">No requests match "{{ query }}".</div></sc-if>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+
+    <!-- ===== REQUEST DETAILS ===== -->
+    <sc-if value="{{ isDetails }}" hint-placeholder-val="{{ false }}">
+      <div class="hd-page">
+        <div class="hd-crumbs"><a href="#" onClick="{{ noop }}">Home</a><span class="sep">/</span><a href="#" onClick="{{ noop }}">My Account</a><span class="sep">/</span><a href="#" onClick="{{ goRequests }}">My Requests</a><span class="sep">/</span></div>
+        <div class="hd-cols" style="margin-top:0;gap:32px">
+          <div class="hd-main">
+            <div style="display:flex;align-items:center;gap:16px"><h1 class="hd-h1">Request # {{ dv.num }}</h1><span class="{{ dv.statusCls }}">{{ dv.status }}</span></div>
+            <div class="hd-meta" style="margin-top:12px"><span>Requested by:<b>Mark Landers</b></span><span>Approver(s):<b>{{ dv.approvers }}</b></span><span>Created on:<b>{{ dv.created }}</b></span><span>Expires:<b>{{ dv.expires }}</b></span></div>
+            <sc-if value="{{ dv.hasNote }}" hint-placeholder-val="{{ true }}"><div style="font-size:12px;color:#555;margin:0 0 4px">Mark Landers</div><div class="hd-note">{{ dv.note }}</div></sc-if>
+            <sc-if value="{{ dv.isLive }}" hint-placeholder-val="{{ true }}">
+              <div style="display:flex;align-items:center;gap:40px;margin:22px 0 8px;padding:16px 0;border-top:1px solid #DDD;border-bottom:1px solid #DDD"><span style="font-size:15px">Items: <b style="font-size:18px">{{ t.count }}</b></span><span style="font-size:15px">Subtotal: <b style="font-size:18px">{{ t.subtotal }}</b></span><span style="flex:1 1 auto"></span>
+                <sc-if value="{{ dv.isPending }}" hint-placeholder-val="{{ true }}"><button type="button" class="hd-btn hd-btn-2" onClick="{{ dv.remind }}">Send Reminder</button><button type="button" class="hd-btn hd-btn-3" onClick="{{ dv.cancel }}">Cancel Request</button></sc-if>
+              </div>
+              <sc-for list="{{ groups }}" as="g" hint-placeholder-count="3">
+                <div class="hd-sec"><span class="hd-sec-ic">{{ g.icon }}</span><span>{{ g.fullLabel }}</span></div>
+                <div class="hd-meta">{{ g.metaNodes }}</div>
+                <sc-for list="{{ g.items }}" as="it" hint-placeholder-count="2">
+                  <div class="hd-item">
+                    <div class="hd-thumb" aria-hidden="true"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="3" y="4" width="18" height="16" rx="2"></rect><path d="M3 16l5-5 4 4 3-3 6 6"></path></svg></div>
+                    <div class="hd-item-t"><div style="font-size:12px;color:#555;margin-bottom:4px">Model # {{ it.model }}</div><b>{{ it.brand }}</b> {{ it.name }}</div>
+                    <div class="hd-item-c"><b>Unit Price</b>{{ it.unit }}/Item</div>
+                    <div class="hd-item-c" style="width:60px"><b>Qty</b>{{ it.qty }}</div>
+                    <div class="hd-item-c is-r"><b>Item Total</b>{{ it.total }}</div>
+                  </div>
+                </sc-for>
+              </sc-for>
+            </sc-if>
+            <sc-if value="{{ dv.isSample }}" hint-placeholder-val="{{ false }}">
+              <div class="hd-empty" style="margin-top:20px"><div style="font-size:16px;font-weight:700">Sample request</div><div style="font-size:14px;color:#555;max-width:520px">This row is sample history. Item details are shown for the request you submit in this prototype ({{ liveNum }}).</div><button type="button" class="hd-btn hd-btn-sm hd-btn-2" onClick="{{ goRequests }}">Back to My Requests</button></div>
+            </sc-if>
+          </div>
+          <div class="hd-rail" style="width:300px;padding-top:8px">
+            <div class="hd-card">
+              <div style="font-size:20px;font-weight:300;margin:0 0 10px">Your Order</div>
+              <div class="hd-tot"><b>Subtotal</b><b>{{ dv.subtotal }}</b></div>
+              <div class="hd-tot"><b>Discount</b><b>{{ t.discount }}</b></div>
+              <div class="hd-tot"><span>Estimated Shipping*</span><span class="free">FREE</span></div>
+              <div class="hd-tot"><span>Pick Up In Store</span><span class="free">FREE</span></div>
+              <div class="hd-tot"><span>Estimated Express Delivery</span><span>{{ dv.express }}</span></div>
+              <div class="hd-tot"><span>Sales Tax</span><span>{{ dv.tax }}</span></div>
+              <div class="hd-tot is-total"><span>Total</span><b>{{ dv.total }}</b></div>
+              <div style="margin-top:14px;font-size:13px;color:#555">PO/Job Name<br><b style="color:#333;font-size:14px">{{ dv.po }}</b></div>
+            </div>
+            <div class="hd-card"><div style="display:flex;align-items:center;justify-content:space-between;font-size:16px;font-weight:700;margin:0 0 10px"><span>Payment</span></div><div style="font-size:14px;line-height:1.6"><span style="display:inline-block;padding:1px 6px;border:1px solid #1F3F9E;color:#1F3F9E;font-size:11px;font-weight:700;margin-right:8px">VISA</span><b>****1234</b> 10/18<br>123 Street Name<br>Atlanta, GA 30339</div></div>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+
+    <!-- ===== ORDER PLACED (under the limit) ===== -->
+    <sc-if value="{{ isPlaced }}" hint-placeholder-val="{{ false }}">
+      <div class="hd-page">
+        <div style="display:flex;gap:28px;align-items:flex-start;max-width:900px">
+          <svg aria-hidden="true" width="96" height="96" viewBox="0 0 24 24" fill="none" stroke="#F96302" strokeWidth="1.2" strokeLinejoin="round"><circle cx="12" cy="5" r="3"></circle><path d="M5 11l7 3 7-3-7-3z"></path><path d="M5 11v7l7 3 7-3v-7M12 14v7"></path></svg>
+          <div>
+            <h1 class="hd-h1" style="font-size:30px;font-weight:700">Thanks for shopping with us, Mark!</h1>
+            <p class="hd-p" style="font-size:20px;line-height:1.45;margin-top:14px">Your order has been placed. A confirmation email has been sent to mark.landers@barish.com.</p>
+            <div style="font-size:28px;font-weight:300;margin:14px 0 12px">Order# <b>{{ placedNum }}</b> <span style="margin:0 14px;color:#999">|</span> Order Total <b>{{ t.total }}</b></div>
+            <p class="p2-small">This order stayed under the {{ limitText }} spend limit, so it was placed right away with no approval needed.</p>
+            <div style="display:flex;gap:12px;margin-top:20px"><button type="button" class="hd-btn hd-btn-2" onClick="{{ restart }}">Start over</button></div>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+
+    <!-- ===== MODAL ===== -->
+    <sc-if value="{{ hasModal }}" hint-placeholder-val="{{ false }}">
+      <div class="hd-overlay" style="{{ overlayStyle }}" onClick="{{ overlayClick }}">
+        <div class="hd-modal" role="dialog" aria-modal="true" aria-labelledby="p2-modal-h" style="{{ modalStyle }}" onClick="{{ stop }}">
+          <div class="hd-modal-h" id="p2-modal-h">{{ modalTitle }}</div>
+          <div class="hd-modal-b"><p>{{ modalBody }}</p><div class="hd-modal-box">{{ modalBox }}</div></div>
+          <div class="hd-modal-f"><button type="button" class="hd-btn hd-btn-3" onClick="{{ closeModal }}">{{ modalNo }}</button><button type="button" class="hd-btn" onClick="{{ modalYes }}">{{ modalYesLabel }}</button></div>
+        </div>
+      </div>
+    </sc-if>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":820}}'>
+const LIMIT = 500;
+const DISCOUNT = 16.74;
+const EXPRESS_FEE = 8.99;
+const TAX_RATE = 0.010751; // keeps the comp's $1,555.06 total: tax $16.54 on the sample cart
+const SAVINGS = 93.10;
+const ITEMS = [
+  { id: "dewalt", brand: "Dewalt", name: "20-Volt MAX Lithium-Ion Cordless Threaded Rod Cutter with Battery 2Ah, Charger and Contractor Bag", model: "DCS350D1", price: 352.47, qty: 1, fulfill: "store", storeLabel: "Ship To Store", storeSub: "May 23 to May 29 · Howard Lane 78753", expressOk: false },
+  { id: "basscraft", brand: "Basscraft", name: "1/2 in. Nominal Compression Inlet x 3/8 in. O.D. Compression Outlet 1/4-Turn Angle Valve", model: "G2CR19X C1", price: 8.97, qty: 30, fulfill: "ship", expressOk: true },
+  { id: "milwaukee", brand: "Milwaukee", name: "M12 12-Volt Lithium-Ion Cordless Snake Drain Cleaning Kit", model: "2571-21", price: 219.00, qty: 2, fulfill: "ship", expressOk: true },
+  { id: "ryobi", brand: "Ryobi", name: "18-Volt ONE+ 1/2 in. Cordless SDS-Plus Rotary Hammer Drill", model: "P517", price: 109.00, qty: 3, fulfill: "ship", expressOk: true },
+  { id: "ridx", brand: "RID-X", name: "Professional 3-Dose Liquid Septic Tank Treatment", model: "19200-83383", price: 15.97, qty: 10, fulfill: "express", expressOk: true }
+];
+const SEED = [
+  { num: "W2334112", date: "4/28/19", po: "Harbor", total: 834.00, exp: "5/08/19", status: "Pending" },
+  { num: "W3334456", date: "4/28/19", po: "Harbor", total: 501.23, exp: "5/08/19", status: "Pending" },
+  { num: "W1235678", date: "4/20/19", po: "Arden Lane", total: 567.89, exp: "5/01/19", status: "Approved" },
+  { num: "W1235679", date: "4/20/19", po: "Arden Lane", total: 560.80, exp: "5/01/19", status: "Rejected" }
+];
+const APPROVERS = "Kim Dickenson, Steve White";
+const LIVE_NUM = "W1234567";
+const NOTE = "Hi Kim, I have another order for you to approve. These items are from the “Arden Lane” list you made for me last week. We do need to make one express delivery before the 22nd. Please approve ASAP. Thanks. Mark.";
+const STEPS = ["Cart", "Checkout", "My Requests"];
+const fmt = (n) => (n < 0 ? "-" : "") + "$" + Math.abs(n).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const round2 = (n) => Math.round(n * 100) / 100;
+const totals = (items) => {
+  const subtotal = round2(items.reduce((a, it) => a + it.price * it.qty, 0));
+  const count = items.reduce((a, it) => a + it.qty, 0);
+  const express = items.some(it => it.fulfill === "express") ? EXPRESS_FEE : 0;
+  const discount = items.length ? DISCOUNT : 0;
+  const tax = round2((subtotal - discount + express) * TAX_RATE);
+  const total = round2(subtotal - discount + express + tax);
+  return { subtotal, count, express, discount, tax, total };
+};
+const ICONS = {
+  store: React.createElement("svg", { width: 26, height: 26, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 1.6, strokeLinejoin: "round" }, React.createElement("path", { d: "M4 10l1-5h14l1 5M4 10h16v10H4zM10 20v-6h4v6" })),
+  ship: React.createElement("svg", { width: 26, height: 26, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 1.6, strokeLinejoin: "round" }, React.createElement("path", { d: "M12 2l9 5v10l-9 5-9-5V7z" }), React.createElement("path", { d: "M3 7l9 5 9-5M12 12v10" })),
+  express: React.createElement("svg", { width: 30, height: 24, viewBox: "0 0 32 24", fill: "none", stroke: "currentColor", strokeWidth: 1.8, strokeLinejoin: "round" }, React.createElement("path", { d: "M2 5h17v12H2z" }), React.createElement("path", { d: "M19 9h6l4 4v4h-10z" }), React.createElement("circle", { cx: 8, cy: 19, r: 2.2, fill: "#fff" }), React.createElement("circle", { cx: 24, cy: 19, r: 2.2, fill: "#fff" }))
+};
+const GROUP_META = {
+  store: { label: "Pick Up In Store", fullLabel: "Pick Up In-Store", optionsWord: "delivering", eta: "Get it by May 21", meta: [["Pick Up Location", "Howard Lane, 13309 I-35 North, Austin, TX 78753 | 512-989-6650"], ["Pickup Person:", "Mark Landers"], ["We will hold your items at the:", "Customer Service Desk"]] },
+  ship: { label: "Shipping", fullLabel: "Shipping", optionsWord: "shipping", eta: "Get it by May 21", meta: [["Ship To Address", "Mark Landers, 123 Street Name Atlanta, GA 30339 | 404-123-1234"]] },
+  express: { label: "Express Delivery", fullLabel: "Express Delivery", optionsWord: "delivery", eta: "Get it by Tue., May 21, 6am - 8pm", meta: [["Delivery Address", "Mark Landers, 123 Street Name Atlanta, GA 30339 | 404-123-1234"], ["Service Level:", "Outside Delivery"]] }
+};
+const freshItems = () => ITEMS.map(it => Object.assign({}, it));
+
+class Component extends DCLogic {
+  state = { screen: "cart", items: freshItems(), po: "Arden Lane", note: NOTE, textMe: false, pay: "card", banner: null, requests: [], openMenu: null, query: "", viewing: null, modal: null, placedNum: null };
+  rootRef = React.createRef();
+  go(screen, extra) { this.setState(Object.assign({ screen, openMenu: null }, extra || {}), () => { const r = this.rootRef.current; if (r) r.scrollTop = 0; }); }
+  openModal(m) {
+    const r = this.rootRef.current; let top = 0; let h = 700;
+    if (r) {
+      if (r.scrollHeight > r.clientHeight + 1) { top = r.scrollTop; h = r.clientHeight; }
+      else { const rect = r.getBoundingClientRect(); top = Math.max(0, Math.round(-rect.top)); h = Math.max(320, Math.min(window.innerHeight, Math.round(rect.height - top))); }
+    }
+    this.setState({ modal: Object.assign({ top, h }, m), openMenu: null });
+  }
+  restart() { this.setState({ screen: "cart", items: freshItems(), po: "Arden Lane", note: NOTE, textMe: false, pay: "card", banner: null, requests: [], openMenu: null, query: "", viewing: null, modal: null, placedNum: null }, () => { const r = this.rootRef.current; if (r) r.scrollTop = 0; }); }
+  setItem(id, patch) { this.setState({ items: this.state.items.map(it => it.id === id ? Object.assign({}, it, patch) : it) }); }
+  submit() {
+    const t = totals(this.state.items);
+    if (t.total > LIMIT) {
+      const req = { num: LIVE_NUM, date: "5/15/19", po: this.state.po.trim() || "(none)", total: t.total, exp: "5/21/19", status: "Pending", live: true, note: this.state.note.trim(), items: this.state.items.map(it => Object.assign({}, it)), totals: t };
+      this.go("requests", { requests: [req], banner: { text: "Your order request #" + LIVE_NUM + " was submitted for review!", kind: "ok" } });
+    } else {
+      this.go("placed", { placedNum: LIVE_NUM });
+    }
+  }
+  allRequests() { return this.state.requests.concat(SEED.map(s => Object.assign({}, s))); }
+  setStatus(num, status, bannerText) {
+    const requests = this.state.requests.map(r => r.num === num ? Object.assign({}, r, { status }) : r);
+    const seedHit = SEED.find(s => s.num === num);
+    this.setState({ requests, seedStatus: Object.assign({}, this.state.seedStatus || {}, seedHit ? { [num]: status } : {}), banner: bannerText ? { text: bannerText, kind: "ok" } : this.state.banner, modal: null, openMenu: null, screen: this.state.screen === "details" ? "details" : "requests" });
+  }
+  renderVals() {
+    const s = this.state; const t = totals(s.items); const overLimit = t.total > LIMIT;
+    const stepIndex = s.screen === "cart" ? 0 : s.screen === "checkout" ? 1 : 2;
+    const hints = { cart: overLimit ? "Change quantities or delivery, then Proceed to Checkout." : "Under " + fmt(LIMIT) + " now: checkout places the order directly.", checkout: overLimit ? "Scroll down and click Submit for Review." : "Under the limit: click Place Order.", requests: "Open Actions on your new request.", details: "Send a reminder or cancel from here.", placed: "No approval needed under the spend limit." };
+    const chip = (it, key, label, sub, price) => {
+      const off = key === "express" && !it.expressOk; const on = it.fulfill === key;
+      return { label: key === "store" && it.storeLabel ? it.storeLabel : label, sub: off ? "Not Available for this item" : (key === "store" && it.storeSub ? it.storeSub : sub), price: off ? "" : price, priceCls: price === "FREE" ? "free" : "", on, off, cls: "hd-opt" + (on ? " is-on" : "") + (off ? " is-off" : ""), pick: () => { if (!off) this.setItem(it.id, { fulfill: key }); } };
+    };
+    const cartRows = s.items.map(it => ({
+      brand: it.brand, name: it.name, model: it.model, qty: String(it.qty), unit: fmt(it.price), total: fmt(round2(it.price * it.qty)),
+      howLabel: "How to get " + it.brand + " " + it.model, qtyLabel: "Quantity for " + it.brand + " " + it.model,
+      opts: [chip(it, "store", "In-Store Pick Up", "Howard Lane 78753", "FREE"), chip(it, "ship", "Ship to Home", "Get it by Tue., May 21", "FREE"), chip(it, "express", "Express Delivery", "Tue., May 21, 6am - 8pm", "$8.99")],
+      setQty: (e) => { const v = e.target.value.replace(/[^\d]/g, "").slice(0, 3); this.setItem(it.id, { qty: v === "" ? "" : Number(v) }); },
+      fixQty: () => { const q = Number(it.qty); if (!(q > 0)) this.setItem(it.id, { qty: 1 }); },
+      remove: () => this.setState({ items: s.items.filter(x => x.id !== it.id) })
+    }));
+    const order = ["ship", "store", "express"];
+    const groups = order.filter(k => s.items.some(it => it.fulfill === k)).map(k => {
+      const items = s.items.filter(it => it.fulfill === k); const m = GROUP_META[k];
+      return { key: k, icon: ICONS[k], label: m.label, fullLabel: m.fullLabel, optionsWord: m.optionsWord, isStore: k === "store", countText: items.length + (items.length === 1 ? " item" : " items"),
+        items: items.map(it => ({ brand: it.brand, name: it.name, model: it.model, qty: String(it.qty), unit: fmt(it.price), total: fmt(round2(it.price * it.qty)), eta: m.eta })),
+        metaNodes: m.meta.map((pair, i) => React.createElement("span", { key: i }, pair[0], React.createElement("b", null, pair[1]))) };
+    });
+    const seedStatus = s.seedStatus || {};
+    const all = this.allRequests().map(r => Object.assign({}, r, { status: seedStatus[r.num] || r.status }));
+    const q = s.query.trim().toLowerCase();
+    const shown = all.filter(r => !q || r.num.toLowerCase().includes(q) || r.po.toLowerCase().includes(q));
+    const act = (r) => {
+      const view = { label: "View Details", run: () => this.go("details", { viewing: r.num }) };
+      const remind = { label: "Send Reminder", run: () => this.setState({ openMenu: null, banner: { text: "A reminder for request #" + r.num + " was sent to " + APPROVERS + ".", kind: "ok" } }) };
+      const edit = { label: "Edit", run: () => this.go("cart", { banner: { text: "Editing request #" + r.num + ". Submit it again when you're done.", kind: "info" } }) };
+      const cancel = { label: "Cancel", cls: "is-danger", run: () => this.openModal({ kind: "cancel", num: r.num }) };
+      const copy = { label: "Copy/Duplicate", run: () => this.go("cart", { banner: { text: "Request #" + r.num + " was copied to your cart.", kind: "info" } }) };
+      if (r.status === "Pending") return [view, remind, edit, cancel];
+      if (r.status === "Rejected") return [view, copy, edit, cancel];
+      return [view];
+    };
+    const reqRows = shown.map(r => ({
+      date: r.date, num: r.num, po: r.po, total: fmt(r.total), exp: r.exp, approvers: APPROVERS.replace(", ", ",\n"), status: r.status,
+      statusCls: "hd-status" + (r.status === "Approved" ? " is-approved" : r.status === "Rejected" ? " is-rejected" : r.status === "Canceled" ? " is-canceled" : ""),
+      cls: r.live && s.banner ? "is-hot" : "", open: s.openMenu === r.num, chev: s.openMenu === r.num ? "▲" : "▼",
+      toggle: (e) => { e.stopPropagation(); this.setState({ openMenu: s.openMenu === r.num ? null : r.num }); },
+      view: () => this.go("details", { viewing: r.num }),
+      actions: act(r).map(a => Object.assign({ cls: "" }, a))
+    }));
+    const v = all.find(r => r.num === s.viewing) || all[0] || {};
+    const vt = v.live ? v.totals : null;
+    const dv = {
+      num: v.num || "", status: v.status || "", statusCls: "hd-status" + (v.status === "Approved" ? " is-approved" : v.status === "Rejected" ? " is-rejected" : v.status === "Canceled" ? " is-canceled" : ""),
+      approvers: APPROVERS, created: "May 15, 2019 5:17:48 PM", expires: "May 21, 2019", hasNote: !!(v.live && v.note), note: v.note || "", isLive: !!v.live, isSample: !v.live, isPending: v.status === "Pending",
+      subtotal: vt ? fmt(vt.subtotal) : fmt(v.total || 0), express: vt ? fmt(vt.express) : "---", tax: vt ? fmt(vt.tax) : "---", total: fmt(v.total || 0), po: v.po || "",
+      remind: () => this.setState({ banner: { text: "A reminder for request #" + v.num + " was sent to " + APPROVERS + ".", kind: "ok" } }),
+      cancel: () => this.openModal({ kind: "cancel", num: v.num })
+    };
+    const m = s.modal || {};
+    return {
+      steps: STEPS, stepIndex, hint: hints[s.screen] || "", restart: () => this.restart(), rootRef: this.rootRef, scrollClass: "hd-scroll" + (s.modal ? " is-locked" : ""),
+      rootClick: (e) => { const tg = e.target; if (s.openMenu != null && !(tg.closest && tg.closest(".hd-menu"))) this.setState({ openMenu: null }); },
+      rootKey: (e) => { if (e.key === "Escape") { if (s.modal) this.setState({ modal: null }); else if (s.openMenu != null) this.setState({ openMenu: null }); } },
+      noop: (e) => { if (e && e.preventDefault) e.preventDefault(); }, stop: (e) => e.stopPropagation(),
+      cartCount: String(s.items.length), chromeActive: s.screen === "requests" || s.screen === "details" ? "requests" : "", chromeNav: (id) => { if (id === "requests") this.go("requests"); },
+      hasBanner: !!s.banner, bannerText: s.banner ? s.banner.text : "", bannerClass: "hd-banner" + (s.banner && s.banner.kind === "info" ? " is-info" : ""), closeBanner: () => this.setState({ banner: null }),
+      isCart: s.screen === "cart", isCheckout: s.screen === "checkout", isRequests: s.screen === "requests", isDetails: s.screen === "details", isPlaced: s.screen === "placed",
+      overLimit, limitText: "$" + LIMIT, cartEmpty: !s.items.length, cartHas: !!s.items.length, cartRows,
+      t: { subtotal: fmt(t.subtotal), discount: fmt(-t.discount), express: t.express ? fmt(t.express) : "---", tax: fmt(t.tax), total: fmt(t.total), savings: fmt(SAVINGS), count: String(t.count) },
+      po: s.po, setPo: (e) => this.setState({ po: e.target.value }), poText: s.po.trim() || "(none)", clearPo: (e) => { e.preventDefault(); this.setState({ po: "" }); },
+      goCheckout: () => { if (s.items.length) this.go("checkout", { banner: null }); }, goCart: (e) => { if (e && e.preventDefault) e.preventDefault(); this.go("cart"); }, goRequests: (e) => { if (e && e.preventDefault) e.preventDefault(); this.go("requests"); },
+      hasShip: groups.some(g => g.key === "ship"), hasExpress: groups.some(g => g.key === "express"), expressCount: (function(n){ return n + (n === 1 ? " Item" : " Items"); })(s.items.filter(it => it.fulfill === "express").length),
+      textMe: s.textMe, toggleText: () => this.setState({ textMe: !s.textMe }), payPaypal: s.pay === "paypal", payCard: s.pay === "card", setPaypal: () => this.setState({ pay: "paypal" }), setCard: () => this.setState({ pay: "card" }),
+      note: s.note, setNote: (e) => this.setState({ note: e.target.value }), approverLine: APPROVERS,
+      submit: () => this.submit(), submitLabel: overLimit ? "Submit for Review" : "Place Order",
+      submitHelp: overLimit ? "This order is over your " + fmt(LIMIT) + " spend limit, so it goes to " + APPROVERS + " before it's placed. Prices are held for 7 days." : "This order is under your " + fmt(LIMIT) + " spend limit and will be placed right away.",
+      groups, query: s.query, setQuery: (e) => this.setState({ query: e.target.value, openMenu: null }), reqRows, noMatches: !shown.length, dv, liveNum: LIVE_NUM, placedNum: s.placedNum || LIVE_NUM,
+      hasModal: !!s.modal, overlayStyle: "top:" + (m.top || 0) + "px;height:" + (m.h || 700) + "px", modalStyle: "margin-top:" + Math.max(24, Math.round(((m.h || 700) - 320) / 2)) + "px",
+      modalTitle: "Cancel Request", modalBody: "This will cancel order request #" + (m.num || "") + " and let your approvers know. The items stay in your cart so you can submit again later.",
+      modalBox: "Request #: " + (m.num || "") + " · Approver(s): " + APPROVERS, modalNo: "Keep Request", modalYesLabel: "Cancel Request",
+      overlayClick: () => this.setState({ modal: null }), closeModal: () => this.setState({ modal: null }),
+      modalYes: () => this.setStatus(m.num, "Canceled", "Order request #" + m.num + " was canceled. " + APPROVERS + " have been notified.")
+    };
+  }
+}
+</script>
+</body>
+</html>

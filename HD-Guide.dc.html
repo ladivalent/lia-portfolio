@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/tokens/fonts.css">
+  <style>
+    body{margin:0}
+    .hdg{font-family:'Market Sans',Inter,system-ui,sans-serif;color:#191919;-webkit-font-smoothing:antialiased;height:56px;display:flex;align-items:center;gap:24px;padding:0 20px;background:#F7F7F7;border-bottom:1px solid #E5E5E5;box-sizing:border-box;width:100%;flex:none}
+    .hdg *{box-sizing:border-box}
+    .hdg-step{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:#707070;white-space:nowrap}
+    .hdg-step i{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;border:1.5px solid #C7C7C7;font-style:normal;font-size:11px;font-weight:700;color:#707070;background:#fff}
+    .hdg-step.is-done{color:#191919}.hdg-step.is-done i{border-color:#191919;background:#191919;color:#fff}
+    .hdg-step.is-now{color:#191919;font-weight:700}.hdg-step.is-now i{border-color:#B84A00;background:#B84A00;color:#fff}
+    .hdg-sep{width:18px;height:1px;background:#C7C7C7;flex:none}
+    .hdg-btn{display:inline-flex;align-items:center;justify-content:center;height:40px;padding:0 16px;border-radius:999px;border:1.5px solid #C7C7C7;background:#fff;color:#191919;font:inherit;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap}
+    .hdg-btn:hover{background:#EFEFEF}
+  </style>
+</helmet>
+<div class="hdg" role="region" aria-label="Prototype guide">
+  <div style="display:flex;align-items:center;gap:10px;flex:none;min-width:0">
+    <span style="display:inline-flex;align-items:center;height:22px;padding:0 8px;border-radius:4px;background:#191919;color:#fff;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase">Prototype</span>
+    <span style="font-size:13px;font-weight:700;white-space:nowrap">{{ phase }}</span>
+    <span style="font-size:13px;color:#707070;white-space:nowrap">{{ roleLine }}</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:10px;flex:none;margin-left:8px">
+    <sc-for list="{{ stepList }}" as="s" hint-placeholder-count="4">
+      <sc-if value="{{ s.sep }}" hint-placeholder-val="{{ false }}"><span class="hdg-sep" aria-hidden="true"></span></sc-if>
+      <span class="{{ s.cls }}" aria-current="{{ s.cur }}"><i>{{ s.n }}</i><span>{{ s.label }}</span></span>
+    </sc-for>
+  </div>
+  <div style="display:flex;align-items:center;justify-content:flex-end;gap:14px;flex:1 1 auto;min-width:0">
+    <span style="font-size:13px;color:#545454;white-space:nowrap;min-width:0;overflow:hidden;text-overflow:ellipsis">{{ hint }}</span>
+    <button type="button" class="hdg-btn" onClick="{{ restart }}">Restart</button>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":56},"phase":{"editor":"string","default":"Phase 1"},"role":{"editor":"string","default":"Account owner"},"person":{"editor":"string","default":"Joel"},"steps":{"editor":null},"current":{"editor":"number","default":0},"hint":{"editor":"string","default":""},"onRestart":{"editor":null}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const steps = Array.isArray(this.props.steps) && this.props.steps.length ? this.props.steps : ["Start", "Do the task", "Done"];
+    const cur = Math.max(0, Math.min(steps.length - 1, Number(this.props.current) || 0));
+    const stepList = steps.map((label, i) => ({
+      label, n: String(i + 1), sep: i > 0,
+      cls: "hdg-step" + (i < cur ? " is-done" : i === cur ? " is-now" : ""),
+      cur: i === cur ? "step" : undefined
+    }));
+    const role = this.props.role || ""; const person = this.props.person || "";
+    return {
+      phase: this.props.phase || "",
+      roleLine: role && person ? role + " · " + person : (role || person),
+      stepList,
+      hint: this.props.hint || "",
+      restart: () => { if (typeof this.props.onRestart === "function") this.props.onRestart(); }
+    };
+  }
+}
+</script>
+</body>
+</html>

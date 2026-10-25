@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Phase 3 · Approver reviews an order request</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="hd-proto.css">
+  <style>
+    body{margin:0}
+    .p3-inbox{min-height:100%;background:#EDEDED;padding:32px 24px 48px}
+    .p3-touch{display:grid;grid-template-columns:1fr 360px;gap:32px;max-width:1120px;margin:0 auto}
+    .p3-label{display:flex;align-items:center;gap:10px;margin:0 0 10px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#555}
+    .p3-env{background:#fff;border:1px solid #DDD;padding:12px 20px;font-size:13px;color:#555;display:flex;flex-wrap:wrap;gap:4px 18px;border-bottom:0}
+    .p3-env b{color:#333}
+    .p3-phone{background:#fff;border:1px solid #DDD;box-shadow:0 2px 8px rgba(0,0,0,.08);padding:18px;font-size:14px;line-height:1.45}
+    .p3-bubble{background:#E9E9EB;border-radius:18px;padding:12px 14px;max-width:300px;white-space:pre-line}
+    .p3-bubble a{color:#1F6FDB;text-decoration:underline}
+    .p3-reply{display:flex;align-items:center;gap:8px;margin-top:14px}
+    .p3-reply button{flex:1 1 auto;height:40px;border:1px solid #CCC;border-radius:20px;background:#fff;font:inherit;font-size:14px;cursor:pointer}
+    .p3-reply button:hover{background:#F2F2F2}
+    .p3-sum{display:flex;align-items:center;gap:40px;margin:18px 0 8px;padding:16px 0;border-top:1px solid #DDD;border-bottom:1px solid #DDD}
+    .p3-cmt{margin:8px 0 0 100px;max-width:560px}
+    .p3-cmt .hd-textarea{min-height:64px}
+    .p3-next{display:flex;gap:24px;padding:20px;border:1px solid #DDD;background:#fff;margin:0 0 16px}
+    .p3-next .l{flex:1 1 auto;min-width:0}
+    .p3-next .r{width:240px;flex:none;border-left:1px solid #DDD;padding-left:24px;font-size:14px;line-height:1.5;white-space:pre-line}
+    .p3-next .r b{display:block;font-size:20px;font-weight:700;margin:0 0 10px}
+    .p3-next ul{margin:8px 0 0;padding-left:18px;font-size:14px;line-height:1.6}
+    .p3-info{display:flex;align-items:center;gap:12px;margin:12px 24px 0;padding:10px 16px;background:#2F6E8E;color:#fff;font-size:15px}
+    .p3-info .hd-banner-x{margin-left:auto}
+  </style>
+</helmet>
+<div class="hd">
+  <dc-import name="HD-Guide" phase="Phase 3" role="Approver" person="Kim" steps="{{ steps }}" current="{{ stepIndex }}" hint="{{ hint }}" onRestart="{{ restart }}" hint-size="100%,56px"></dc-import>
+  <div class="{{ scrollClass }}" ref="{{ rootRef }}" onClick="{{ rootClick }}" onKeyDown="{{ rootKey }}">
+
+    <!-- ===== NOTIFICATION (entry) ===== -->
+    <sc-if value="{{ isInbox }}" hint-placeholder-val="{{ true }}">
+      <div class="p3-inbox">
+        <div style="max-width:1120px;margin:0 auto 20px;display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap">
+          <div><div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#555">3 entry touchpoints</div><div style="font-size:24px;font-weight:700;margin-top:4px">A request was submitted. Kim hears about it three ways.</div></div>
+          <div style="font-size:14px;color:#555">Email, text message, and the Pro homepage alert all open the same request.</div>
+        </div>
+        <div class="p3-touch">
+          <div>
+            <div class="p3-label"><span class="hd-tag">Email</span><span>Email notification · kim.dickenson@barish.com</span></div>
+            <div class="p3-env"><span><b>From:</b> The Home Depot Pro</span><span><b>To:</b> Kim Dickenson</span><span><b>Subject:</b> Order request #{{ liveNum }} needs your review</span></div>
+            <div class="hd-email">
+              <div class="hd-email-top"><img src="/_blob/67ffb9e1777bdd36ce36359039dc59ca" alt="The Home Depot Pro" width="715" height="277" style="display:block;height:28px;width:auto"><span>Download our app ▾</span></div>
+              <div class="hd-email-b">
+                <div style="font-size:20px;font-weight:700;margin:0 0 12px">Hi Kim!</div>
+                <p style="margin:0 0 16px">Mark Landers (mark.landers@barish.com) submitted an order request on May 15, 2019 at 5:17 PM for North Gwinnett Plumbing, LLC. Please review the order request at your earliest convenience.</p>
+                <p style="margin:0 0 20px">Thank you,<br>The Home Depot</p>
+                <button type="button" class="hd-btn" style="min-width:220px" onClick="{{ goDashboard }}">View Request</button>
+              </div>
+              <div class="hd-email-f"><b>Questions?</b> Email us at customercare@homedepot.com or call us at 866-333-3551.<br>This message is from an automated address that cannot receive incoming emails.</div>
+            </div>
+          </div>
+          <div>
+            <div class="p3-label"><span class="hd-tag">Text</span><span>Text message · Text2Confirm</span></div>
+            <div class="p3-phone">
+              <div style="text-align:center;font-size:12px;color:#777;margin:0 0 10px">Tues, May 15 5:17 PM</div>
+              <div class="p3-bubble">Hi Kim, Mark Landers submitted an order request on May 15, 2019 at 5:17 PM for North Gwinnett Plumbing, LLC for {{ liveTotal }}.
+
+This request will expire in 7 days.
+
+Reply 1 to approve and complete this order. Reply 2 to reject this order, or view details of this order request online. <a href="#" onClick="{{ goDashboard }}">thd.com/145dkf</a></div>
+              <div class="p3-reply"><button type="button" onClick="{{ textApprove }}">Reply 1 · Approve</button><button type="button" onClick="{{ textReject }}">Reply 2 · Reject</button></div>
+              <div style="margin-top:14px;font-size:12px;color:#777">A reply approves or rejects without signing in. Open the link to review the items first.</div>
+            </div>
+            <div class="p3-label" style="margin-top:24px"><span class="hd-tag">Homepage</span><span>Pro homepage alert</span></div>
+            <div class="hd-banner is-warn" style="margin:0;min-height:44px;font-size:14px"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="#333"><path d="M12 2L1 21h22L12 2zm1 14h-2v2h2v-2zm0-7h-2v6h2V9z"></path></svg><span>You have 1 order request pending approval.</span><button type="button" class="hd-link" style="margin-left:auto;color:#333;font-weight:700" onClick="{{ goDashboard }}">Review</button></div>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ hasChrome }}" hint-placeholder-val="{{ false }}">
+      <dc-import name="HD-Chrome" user="Kim" cart="2" nav="orders" active="{{ chromeActive }}" onNav="{{ chromeNav }}" hint-size="100%,136px"></dc-import>
+    </sc-if>
+
+    <sc-if value="{{ hasBanner }}" hint-placeholder-val="{{ false }}">
+      <div class="{{ bannerClass }}" role="status">
+        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M4 12.5l5 5L20 7"></path></svg>
+        <span>{{ bannerText }}</span>
+        <sc-if value="{{ bannerSee }}" hint-placeholder-val="{{ false }}"><button type="button" class="hd-link" onClick="{{ goNotify }}">See what Mark received</button></sc-if>
+        <button type="button" class="hd-banner-x" aria-label="Dismiss" onClick="{{ closeBanner }}">✕</button>
+      </div>
+    </sc-if>
+
+    <!-- ===== ORDER REQUESTS DASHBOARD ===== -->
+    <sc-if value="{{ isDashboard }}" hint-placeholder-val="{{ false }}">
+      <div class="hd-page">
+        <div class="hd-crumbs"><a href="#" onClick="{{ noop }}">Home</a><span class="sep">/</span><a href="#" onClick="{{ noop }}">My Account</a><span class="sep">/</span></div>
+        <h1 class="hd-h1">Order Requests</h1>
+        <div class="hd-cols">
+          <dc-import name="HD-AccountNav" active="" admin="yes" hint-size="200px,520px"></dc-import>
+          <div class="hd-main">
+            <label style="display:block;font-size:14px;margin:0 0 6px">Search</label>
+            <div class="p2-search" style="display:flex;align-items:stretch;max-width:420px;height:44px;border:1px solid #8C8C8C"><span style="display:flex;align-items:center;justify-content:space-between;width:120px;padding:0 10px;border-right:1px solid #8C8C8C;color:#555;font-size:14px">Select <span style="color:#F96302;font-size:11px">▼</span></span><input type="search" value="{{ query }}" onChange="{{ setQuery }}" placeholder="Request # or PO/Job Name" aria-label="Search requests" style="flex:1 1 auto;min-width:0;border:0;padding:0 12px;font:inherit;font-size:14px;color:#333"><button type="button" aria-label="Search" onClick="{{ noop }}" style="width:44px;border:0;background:#F96302;color:#fff;display:inline-flex;align-items:center;justify-content:center;cursor:pointer"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.4" strokeLinecap="round"><circle cx="10.5" cy="10.5" r="6"></circle><path d="M15 15l5 5"></path></svg></button></div>
+            <table class="hd-table" style="margin-top:28px">
+              <thead><tr><th>Submitted<span class="sort">▼</span></th><th>Request #<span class="sort">▼</span></th><th>PO/Job Name<span class="sort">▼</span></th><th>Total<span class="sort">▼</span></th><th>Expiration<span class="sort">▼</span></th><th>Requested By<span class="sort">▼</span></th><th>Status<span class="sort">▼</span></th><th style="width:134px">Actions<span class="sort">▼</span></th></tr></thead>
+              <tbody>
+                <sc-for list="{{ rows }}" as="r" hint-placeholder-count="3">
+                  <tr class="{{ r.cls }}">
+                    <td>{{ r.date }}</td>
+                    <td><button type="button" class="hd-link" onClick="{{ r.view }}">{{ r.num }}</button></td>
+                    <td>{{ r.po }}</td>
+                    <td>{{ r.total }}</td>
+                    <td>{{ r.exp }}</td>
+                    <td>{{ r.by }}</td>
+                    <td><span class="{{ r.statusCls }}">{{ r.status }}</span></td>
+                    <td>
+                      <div class="hd-menu">
+                        <button type="button" class="hd-menu-btn" aria-haspopup="menu" aria-expanded="{{ r.open }}" onClick="{{ r.toggle }}"><span>Actions</span><span class="chev">{{ r.chev }}</span></button>
+                        <sc-if value="{{ r.open }}" hint-placeholder-val="{{ false }}">
+                          <div class="hd-menu-list" role="menu">
+                            <button type="button" role="menuitem" onClick="{{ r.view }}">View Details</button>
+                            <sc-if value="{{ r.isPending }}" hint-placeholder-val="{{ true }}"><button type="button" role="menuitem" onClick="{{ r.approve }}">Approve</button><button type="button" role="menuitem" class="is-danger" onClick="{{ r.reject }}">Reject</button></sc-if>
+                          </div>
+                        </sc-if>
+                      </div>
+                    </td>
+                  </tr>
+                </sc-for>
+              </tbody>
+            </table>
+            <sc-if value="{{ noMatches }}" hint-placeholder-val="{{ false }}"><div style="padding:24px 0;font-size:14px;color:#555">No requests match "{{ query }}".</div></sc-if>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+
+    <!-- ===== REQUEST DETAILS (review) ===== -->
+    <sc-if value="{{ isDetails }}" hint-placeholder-val="{{ false }}">
+      <sc-if value="{{ showPriceBar }}" hint-placeholder-val="{{ true }}">
+        <div class="hd-banner is-info" style="font-size:15px" role="status"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v6M12 7.5v.5"></path></svg><span>Price Valid until May 21, 2019 at 11:59 PM</span><button type="button" class="hd-banner-x" aria-label="Dismiss" onClick="{{ hidePriceBar }}">✕</button></div>
+      </sc-if>
+      <div class="hd-page">
+        <div class="hd-crumbs"><a href="#" onClick="{{ noop }}">Home</a><span class="sep">/</span><a href="#" onClick="{{ noop }}">My Account</a><span class="sep">/</span><a href="#" onClick="{{ goDashboardLink }}">Order Requests</a><span class="sep">/</span></div>
+        <div class="hd-cols" style="margin-top:0;gap:32px">
+          <div class="hd-main">
+            <div style="display:flex;align-items:center;gap:16px"><h1 class="hd-h1">Request # {{ dv.num }}</h1><span class="{{ dv.statusCls }}">{{ dv.status }}</span></div>
+            <div class="hd-meta" style="margin-top:12px"><span>Requested by:<b>{{ dv.by }} <a href="#" style="font-weight:400" onClick="{{ noop }}">| Contact</a></b></span><span>Approver(s):<b>Kim Dickenson, Steve White</b></span><span>Created on:<b>May 15, 2019 5:17:48 PM</b></span><span>Expires:<b>May 21, 2019</b></span></div>
+            <sc-if value="{{ dv.isLive }}" hint-placeholder-val="{{ true }}">
+              <div style="font-size:12px;color:#555;margin:0 0 4px">{{ dv.by }}</div><div class="hd-note">{{ dv.note }}</div>
+              <div style="display:flex;justify-content:flex-end;max-width:560px;margin-top:8px"><button type="button" class="hd-link" style="display:inline-flex;align-items:center;gap:6px;font-size:14px" onClick="{{ toggleReply }}"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F96302" strokeWidth="1.8" strokeLinejoin="round"><path d="M4 4h16v12H9l-5 4z"></path></svg>Add Comment</button></div>
+              <sc-if value="{{ replyOpen }}" hint-placeholder-val="{{ false }}"><div style="max-width:560px;margin-top:8px"><textarea class="hd-textarea" placeholder="Reply to Mark (he gets it by email and text)" value="{{ reply }}" onChange="{{ setReply }}" maxLength="600" aria-label="Comment to the requester"></textarea><div style="display:flex;justify-content:flex-end;gap:10px;margin-top:8px"><button type="button" class="hd-btn hd-btn-3 hd-btn-sm" onClick="{{ toggleReply }}">Cancel</button><button type="button" class="hd-btn hd-btn-sm" onClick="{{ sendReply }}">Send</button></div></div></sc-if>
+              <div class="p3-sum"><span style="font-size:15px">Items: <b style="font-size:18px">{{ t.count }}</b></span><span style="font-size:15px">Subtotal: <b style="font-size:18px">{{ t.subtotal }}</b></span><span style="flex:1 1 auto"></span>
+                <sc-if value="{{ dv.isPending }}" hint-placeholder-val="{{ true }}"><button type="button" class="hd-btn hd-btn-3" style="min-width:130px" onClick="{{ rejectLive }}">Reject</button><button type="button" class="hd-btn" style="min-width:130px" onClick="{{ approveLive }}">Approve</button></sc-if>
+              </div>
+              <sc-if value="{{ itemsEmpty }}" hint-placeholder-val="{{ false }}"><div class="hd-empty" style="margin-top:16px"><div style="font-size:16px;font-weight:700">Every item was removed</div><div style="font-size:14px;color:#555">Reject the request, or restart the prototype to bring the sample items back.</div></div></sc-if>
+              <sc-for list="{{ groups }}" as="g" hint-placeholder-count="3">
+                <div class="hd-sec"><span class="hd-sec-ic">{{ g.icon }}</span><span>{{ g.fullLabel }}</span></div>
+                <div class="hd-meta">{{ g.metaNodes }}</div>
+                <sc-for list="{{ g.items }}" as="it" hint-placeholder-count="2">
+                  <div class="hd-item" style="flex-wrap:wrap">
+                    <div class="hd-thumb" aria-hidden="true"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="3" y="4" width="18" height="16" rx="2"></rect><path d="M3 16l5-5 4 4 3-3 6 6"></path></svg></div>
+                    <div class="hd-item-t"><div style="font-size:12px;color:#555;margin-bottom:4px">Model # {{ it.model }}</div><b>{{ it.brand }}</b> {{ it.name }}</div>
+                    <div class="hd-item-c"><b>Unit Price</b>{{ it.unit }}/Item</div>
+                    <div class="hd-item-c" style="width:70px"><b>Qty</b><input class="hd-qty" type="text" inputMode="numeric" value="{{ it.qty }}" onChange="{{ it.setQty }}" onBlur="{{ it.fixQty }}" aria-label="{{ it.qtyLabel }}"></div>
+                    <div class="hd-item-c is-r"><b>Item Total</b>{{ it.total }}</div>
+                    <div style="flex:1 0 100%;display:flex;align-items:center;justify-content:space-between;padding:6px 0 0 100px;font-size:14px"><button type="button" class="hd-link" style="color:#C8102E;font-weight:700;display:inline-flex;align-items:center;gap:6px" onClick="{{ it.remove }}"><span aria-hidden="true">✕</span>Remove</button><button type="button" class="hd-link" style="display:inline-flex;align-items:center;gap:6px" onClick="{{ it.toggleComment }}"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F96302" strokeWidth="1.8" strokeLinejoin="round"><path d="M4 4h16v12H9l-5 4z"></path></svg>{{ it.commentLabel }}</button></div>
+                    <sc-if value="{{ it.commentOpen }}" hint-placeholder-val="{{ false }}"><div class="p3-cmt" style="flex:1 0 100%"><textarea class="hd-textarea" placeholder="Instructions or a change for Mark" value="{{ it.comment }}" onChange="{{ it.setComment }}" maxLength="400" aria-label="{{ it.commentAria }}"></textarea></div></sc-if>
+                  </div>
+                </sc-for>
+              </sc-for>
+            </sc-if>
+            <sc-if value="{{ dv.isSample }}" hint-placeholder-val="{{ false }}">
+              <div class="hd-empty" style="margin-top:20px"><div style="font-size:16px;font-weight:700">Sample request</div><div style="font-size:14px;color:#555;max-width:520px">This row is sample history. Item details are shown for Mark's live request ({{ liveNum }}). You can still approve or reject it from the list.</div><button type="button" class="hd-btn hd-btn-sm hd-btn-2" onClick="{{ goDashboardLink }}">Back to Order Requests</button></div>
+            </sc-if>
+          </div>
+          <div class="hd-rail" style="width:300px;padding-top:8px">
+            <div class="hd-card">
+              <div style="display:flex;align-items:center;justify-content:space-between;margin:0 0 10px"><span style="font-size:20px;font-weight:300">Your Order</span><span style="font-size:13px"><a href="#" onClick="{{ noop }}">⤴ Share</a> <a href="#" style="margin-left:10px" onClick="{{ noop }}">⎙ Print</a></span></div>
+              <div class="hd-tot"><b>Subtotal</b><b>{{ dv.subtotal }}</b></div>
+              <div class="hd-tot"><b>Discount</b><b>{{ dv.discount }}</b></div>
+              <div class="hd-tot"><span>Estimated Shipping*</span><span class="free">FREE</span></div>
+              <div class="hd-tot"><span>Pick Up In Store</span><span class="free">FREE</span></div>
+              <div class="hd-tot"><span>Estimated Express Delivery</span><span>{{ dv.express }}</span></div>
+              <div class="hd-tot"><span>Sales Tax</span><span>{{ dv.tax }}</span></div>
+              <div class="hd-tot is-total"><span>Total</span><b>{{ dv.total }}</b></div>
+              <div class="hd-tot" style="color:#008A3A"><span>Your Savings</span><span>{{ savings }}</span></div>
+              <div style="margin:14px 0 0;font-size:14px"><a href="#" onClick="{{ noop }}">Have a Promo Code?</a></div>
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-top:12px;font-size:13px;color:#555"><span>PO/Job Name<br><b style="color:#333;font-size:14px">{{ dv.po }}</b></span><span><a href="#" onClick="{{ noop }}">Edit</a> <span style="color:#999">|</span> <a href="#" onClick="{{ noop }}">Remove</a></span></div>
+              <label style="display:block;font-size:13px;color:#555;margin:14px 0 6px">Create a Quote (Optional)</label>
+              <div style="display:flex;gap:8px"><input class="hd-input" type="text" aria-label="Quote name"><button type="button" class="hd-btn hd-btn-3" style="flex:none" onClick="{{ noop }}">Save</button></div>
+              <sc-if value="{{ dv.canDecide }}" hint-placeholder-val="{{ true }}"><div style="display:flex;gap:10px;margin-top:18px"><button type="button" class="hd-btn hd-btn-3" style="flex:1 1 0" onClick="{{ rejectLive }}">Reject</button><button type="button" class="hd-btn" style="flex:1 1 0" onClick="{{ approveLive }}">Approve</button></div></sc-if>
+            </div>
+            <div class="hd-card"><div style="display:flex;align-items:center;justify-content:space-between;font-size:16px;font-weight:700;margin:0 0 10px"><span style="display:inline-flex;align-items:center;gap:8px"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F96302" strokeWidth="1.6"><rect x="2" y="5" width="20" height="14" rx="2"></rect><path d="M2 10h20M6 15h4"></path></svg>Payment</span><a href="#" style="font-size:13px;font-weight:400" onClick="{{ noop }}">Change</a></div><div style="font-size:14px;line-height:1.6"><span style="display:inline-block;padding:1px 6px;border:1px solid #1F3F9E;color:#1F3F9E;font-size:11px;font-weight:700;margin-right:8px">VISA</span><b>****1234</b> 10/18<br>123 Street Name<br>Atlanta, GA 30339</div></div>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+
+    <!-- ===== ORDER PLACED ===== -->
+    <sc-if value="{{ isPlaced }}" hint-placeholder-val="{{ false }}">
+      <div class="hd-page">
+        <div class="hd-cols" style="margin-top:0;gap:32px">
+          <div class="hd-main">
+            <div style="display:flex;gap:28px;align-items:flex-start">
+              <div style="position:relative;flex:none"><svg aria-hidden="true" width="96" height="96" viewBox="0 0 24 24" fill="none" stroke="#F96302" strokeWidth="1.2" strokeLinejoin="round"><circle cx="12" cy="5" r="3"></circle><path d="M5 11l7 3 7-3-7-3z"></path><path d="M5 11v7l7 3 7-3v-7M12 14v7"></path></svg><svg aria-hidden="true" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#008A3A" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" style="position:absolute;right:-18px;top:6px"><path d="M4 12.5l5 5L20 7"></path></svg></div>
+              <div style="min-width:0">
+                <h1 class="hd-h1" style="font-size:30px;font-weight:700">Thanks for shopping with us, Kim!</h1>
+                <p class="hd-p" style="font-size:20px;line-height:1.45;margin-top:14px;max-width:760px">Your order of {{ firstItem }}{{ otherItems }} has been placed! A confirmation email has been sent to mark.landers@barish.com.</p>
+                <div style="font-size:28px;font-weight:300;margin:14px 0 12px">Order# <b>{{ liveNum }}</b> <span style="margin:0 14px;color:#999">|</span> Order Total <b>{{ t.total }}</b></div>
+                <div style="display:flex;align-items:center;justify-content:space-between;gap:24px;max-width:760px"><p class="p2-small" style="font-size:13px;color:#555;max-width:400px;margin:0">Your <a href="#" onClick="{{ noop }}">order details</a> will be available in My Account in approximately 5 minutes. Scroll down to view an order summary and next steps related to your order.</p><button type="button" class="hd-btn hd-btn-2" onClick="{{ noop }}">⎙ Print Receipt</button></div>
+              </div>
+            </div>
+            <h2 class="hd-h2" style="margin-top:36px">Next Steps:</h2>
+            <sc-for list="{{ groups }}" as="g" hint-placeholder-count="3">
+              <div class="p3-next">
+                <div class="l">
+                  <div style="display:flex;align-items:center;gap:10px;font-size:16px;font-weight:700"><span style="display:inline-flex;color:#F96302">{{ g.icon }}</span>{{ g.label }} <span style="font-weight:400;color:#555;font-size:13px">({{ g.countText }})</span></div>
+                  <div style="font-size:14px;margin-top:10px"><b>What's Next:</b> {{ g.next }}</div>
+                  <ul><sc-for list="{{ g.items }}" as="it" hint-placeholder-count="2"><li><b>{{ it.brand }}</b> {{ it.name }}</li></sc-for></ul>
+                </div>
+                <div class="r"><b>{{ g.expect }}</b>{{ g.where }}</div>
+              </div>
+            </sc-for>
+            <div style="display:flex;gap:12px;margin-top:8px"><button type="button" class="hd-btn" onClick="{{ goDashboard }}">Back to Order Requests</button><button type="button" class="hd-btn hd-btn-2" onClick="{{ goNotify }}">See what Mark received</button></div>
+          </div>
+          <div class="hd-rail" style="width:300px;padding-top:8px">
+            <div class="hd-card"><div style="font-size:16px;font-weight:700;margin:0 0 6px">Need help?</div><div style="font-size:14px;line-height:1.6">See our online FAQs or call us at 1-800-430-3376.<br>Mon to Fri, 6 a.m. to 2 a.m. ET</div></div>
+            <div class="hd-card"><div style="font-size:16px;font-weight:700;margin:0 0 6px">Text to confirm</div><div style="font-size:14px;line-height:1.6">Next time, reply to the text message to approve or reject a request without signing in.</div></div>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+
+    <!-- ===== WHAT MARK RECEIVED ===== -->
+    <sc-if value="{{ isNotify }}" hint-placeholder-val="{{ false }}">
+      <div class="hd-page">
+        <div class="hd-crumbs"><a href="#" onClick="{{ noop }}">Home</a><span class="sep">/</span><a href="#" onClick="{{ noop }}">My Account</a><span class="sep">/</span><a href="#" onClick="{{ goDashboardLink }}">Order Requests</a><span class="sep">/</span><span>Notifications</span></div>
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:24px">
+          <h1 class="hd-h1">What Mark received</h1>
+          <button type="button" class="hd-btn hd-btn-2" onClick="{{ goDashboard }}">Back to Order Requests</button>
+        </div>
+        <p class="hd-p" style="margin-top:10px;max-width:760px">The decision closes the loop the same way it opened: an email and a text to the requester, and the status updates on his My Requests dashboard.</p>
+        <div style="display:grid;grid-template-columns:1fr 360px;gap:24px;margin-top:20px;max-width:1000px">
+          <div>
+            <div class="p3-label"><span class="hd-tag">Requester</span><span>Email notification · mark.landers@barish.com</span></div>
+            <div class="hd-email">
+              <div class="hd-email-top"><img src="/_blob/67ffb9e1777bdd36ce36359039dc59ca" alt="The Home Depot Pro" width="715" height="277" style="display:block;height:28px;width:auto"><span>Download our app ▾</span></div>
+              <div class="hd-email-b">
+                <div style="font-size:20px;font-weight:700;margin:0 0 12px">Hi Mark!</div>
+                <p style="margin:0 0 16px">{{ markBody }}</p>
+                <p style="margin:0 0 20px">Thank you,<br>The Home Depot</p>
+                <button type="button" class="hd-btn" style="min-width:200px" onClick="{{ noop }}">View Online</button>
+              </div>
+              <div class="hd-email-f"><b>Questions?</b> Email us at customercare@homedepot.com or call us at 866-333-3551.<br>This message is from an automated address that cannot receive incoming emails.</div>
+            </div>
+          </div>
+          <div>
+            <div class="p3-label"><span class="hd-tag">Text</span><span>Text message</span></div>
+            <div class="p3-phone"><div style="text-align:center;font-size:12px;color:#777;margin:0 0 10px">Tues, May 16 6:20 PM</div><div class="p3-bubble">{{ markSms }}</div></div>
+            <div class="p3-label" style="margin-top:24px"><span class="hd-tag">Dashboard</span><span>My Requests · status</span></div>
+            <div class="hd-card" style="display:flex;align-items:center;justify-content:space-between;margin:0"><span style="font-size:14px"><b>{{ liveNum }}</b> · Arden Lane · {{ t.total }}</span><span class="{{ markStatusCls }}">{{ markStatus }}</span></div>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+
+    <!-- ===== MODALS ===== -->
+    <sc-if value="{{ hasModal }}" hint-placeholder-val="{{ false }}">
+      <div class="hd-overlay" style="{{ overlayStyle }}" onClick="{{ closeModal }}">
+        <div class="hd-modal" role="dialog" aria-modal="true" aria-labelledby="p3-modal-h" style="{{ modalStyle }}" onClick="{{ stop }}">
+          <div class="hd-modal-h" id="p3-modal-h">{{ modalTitle }}</div>
+          <div class="hd-modal-b">
+            <p>{{ modalLead }}</p>
+            <sc-if value="{{ modalIsApprove }}" hint-placeholder-val="{{ true }}">
+              <p>When you click "Approve and Complete Order" below, this order will be processed with the following details:</p>
+              <div class="hd-modal-box">Order Number: {{ modalNum }}<br>PO/Job Name: {{ modalPo }}<br>Payment Card: X-1234<br>Ship-To Address: 123 Street Name, Atlanta GA 30339<br>Order Total: {{ modalTotal }}</div>
+            </sc-if>
+            <sc-if value="{{ modalIsReject }}" hint-placeholder-val="{{ false }}">
+              <label style="display:block;font-size:13px;color:#555;margin:4px 0 6px">Reason (optional, sent to the requester)</label>
+              <textarea class="hd-textarea" value="{{ rejectReason }}" onChange="{{ setRejectReason }}" maxLength="400" placeholder="Example: Use the Harbor PO for the valves and resubmit." aria-label="Reason for rejecting"></textarea>
+            </sc-if>
+          </div>
+          <div class="hd-modal-f"><button type="button" class="hd-btn hd-btn-3" onClick="{{ closeModal }}">Cancel</button><button type="button" class="hd-btn" onClick="{{ modalYes }}">{{ modalYesLabel }}</button></div>
+        </div>
+      </div>
+    </sc-if>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":820}}'>
+const DISCOUNT = 16.74;
+const EXPRESS_FEE = 8.99;
+const TAX_RATE = 0.010751; // keeps the comp's $1,555.06 total: tax $16.54 on the sample order
+const SAVINGS = 93.10;
+const LIVE_NUM = "W1234567";
+const ITEMS = [
+  { id: "dewalt", brand: "Dewalt", name: "20-Volt MAX Lithium-Ion Cordless Threaded Rod Cutter with Battery 2Ah, Charger and Contractor Bag", model: "DCS350D1", price: 352.47, qty: 1, fulfill: "store" },
+  { id: "ryobi", brand: "Ryobi", name: "18-Volt ONE+ 1/2 in. Cordless SDS-Plus Rotary Hammer Drill", model: "P517", price: 109.00, qty: 3, fulfill: "ship" },
+  { id: "milwaukee", brand: "Milwaukee", name: "M12 12-Volt Lithium-Ion Cordless Snake Drain Cleaning Kit", model: "2571-21", price: 219.00, qty: 2, fulfill: "ship" },
+  { id: "basscraft", brand: "Basscraft", name: "1/2 in. Nominal Compression Inlet x 3/8 in. O.D. Compression Outlet 1/4-Turn Angle Valve", model: "G2CR19X C1", price: 8.97, qty: 30, fulfill: "ship" },
+  { id: "ridx", brand: "RID-X", name: "Professional 3-Dose Liquid Septic Tank Treatment", model: "19200-83383", price: 15.97, qty: 10, fulfill: "express" }
+];
+const NOTE = "Hi Kim, I have another order for you to approve. These items are from the “Arden Lane” list you made for me last week. We do need to make one express delivery before the 22nd. Please approve ASAP. Thanks. Mark.";
+const seedRequests = () => [
+  { num: LIVE_NUM, date: "5/15/19", po: "Arden Lane", exp: "5/21/19", by: "Mark Landers", status: "Pending", live: true },
+  { num: "W2334112", date: "4/28/19", po: "Harbor", total: 834.00, exp: "5/08/19", by: "Mark Landers", status: "Pending" },
+  { num: "W3334456", date: "4/28/19", po: "Harbor", total: 501.23, exp: "5/08/19", by: "Samira Cox", status: "Pending" }
+];
+const STEPS = ["Notification", "Order Requests", "Review", "Decision"];
+const fmt = (n) => (n < 0 ? "-" : "") + "$" + Math.abs(n).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const round2 = (n) => Math.round(n * 100) / 100;
+const totals = (items) => {
+  const subtotal = round2(items.reduce((a, it) => a + it.price * it.qty, 0));
+  const count = items.reduce((a, it) => a + it.qty, 0);
+  const express = items.some(it => it.fulfill === "express") ? EXPRESS_FEE : 0;
+  const discount = items.length ? DISCOUNT : 0;
+  const tax = round2((subtotal - discount + express) * TAX_RATE);
+  return { subtotal, count, express, discount, tax, total: round2(subtotal - discount + express + tax) };
+};
+const ICONS = {
+  store: React.createElement("svg", { width: 26, height: 26, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 1.6, strokeLinejoin: "round" }, React.createElement("path", { d: "M4 10l1-5h14l1 5M4 10h16v10H4zM10 20v-6h4v6" })),
+  ship: React.createElement("svg", { width: 26, height: 26, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 1.6, strokeLinejoin: "round" }, React.createElement("path", { d: "M12 2l9 5v10l-9 5-9-5V7z" }), React.createElement("path", { d: "M3 7l9 5 9-5M12 12v10" })),
+  express: React.createElement("svg", { width: 30, height: 24, viewBox: "0 0 32 24", fill: "none", stroke: "currentColor", strokeWidth: 1.8, strokeLinejoin: "round" }, React.createElement("path", { d: "M2 5h17v12H2z" }), React.createElement("path", { d: "M19 9h6l4 4v4h-10z" }), React.createElement("circle", { cx: 8, cy: 19, r: 2.2, fill: "#fff" }), React.createElement("circle", { cx: 24, cy: 19, r: 2.2, fill: "#fff" }))
+};
+const GROUP_META = {
+  store: { label: "Pick Up In Store", fullLabel: "Pick Up In-Store", expect: "Expect it on May 29", where: "Howard Lane Store\n13309 I-35 North\nAustin, TX 78753\n512-989-6650", next: "You will receive an email notification when the following items are ready for pickup:", meta: [["Pick Up Location", "Howard Lane, 13309 I-35 North, Austin, TX 78753 | 512-989-6650"], ["Pickup Person:", "Mark Landers"], ["We will hold your items at the:", "Customer Service Desk"]] },
+  ship: { label: "Shipping", fullLabel: "Shipping", expect: "Expect it on May 21", where: "Mark Landers\n123 Street Name\nAtlanta, GA 30339\n404-123-1234", next: "You will receive an email notification when the following items have shipped:", meta: [["Ship To Address", "Mark Landers, 123 Street Name Atlanta, GA 30339 | 404-123-1234"]] },
+  express: { label: "Express Delivery", fullLabel: "Express Delivery", expect: "Expect it on May 21", where: "6am - 8pm, Outside Delivery\nYour driver will call 30 minutes before arrival.", next: "Your driver will deliver the following items:", meta: [["Delivery Address", "Mark Landers, 123 Street Name Atlanta, GA 30339 | 404-123-1234"], ["Service Level:", "Outside Delivery"]] }
+};
+const freshItems = () => ITEMS.map(it => Object.assign({}, it));
+const fresh = () => ({ screen: "inbox", items: freshItems(), requests: seedRequests(), openMenu: null, banner: null, modal: null, query: "", viewing: LIVE_NUM, comments: {}, commentOpen: null, replyOpen: false, reply: "", rejectReason: "", priceBar: true, decision: null });
+
+class Component extends DCLogic {
+  state = fresh();
+  rootRef = React.createRef();
+  go(screen, extra) { this.setState(Object.assign({ screen, openMenu: null }, extra || {}), () => { const r = this.rootRef.current; if (r) r.scrollTop = 0; }); }
+  restart() { this.setState(fresh(), () => { const r = this.rootRef.current; if (r) r.scrollTop = 0; }); }
+  openModal(m) {
+    const r = this.rootRef.current; let top = 0; let h = 700;
+    if (r) {
+      if (r.scrollHeight > r.clientHeight + 1) { top = r.scrollTop; h = r.clientHeight; }
+      else { const rect = r.getBoundingClientRect(); top = Math.max(0, Math.round(-rect.top)); h = Math.max(320, Math.min(window.innerHeight, Math.round(rect.height - top))); }
+    }
+    this.setState({ modal: Object.assign({ top, h }, m), openMenu: null, rejectReason: "" });
+  }
+  setItem(id, patch) { this.setState({ items: this.state.items.map(it => it.id === id ? Object.assign({}, it, patch) : it) }); }
+  requestTotal(r) { return r.live ? totals(this.state.items).total : r.total; }
+  decide(num, status) {
+    const requests = this.state.requests.map(r => r.num === num ? Object.assign({}, r, { status }) : r);
+    const r = requests.find(x => x.num === num);
+    const who = r ? r.by : "The requester";
+    if (status === "Approved") {
+      if (r && r.live) this.go("placed", { requests, modal: null, decision: "Approved", banner: { text: "Your order was successfully completed and placed. We have sent a confirmation email to " + who.split(" ")[0] + ".", kind: "ok" } });
+      else this.go("dashboard", { requests, modal: null, banner: { text: "Order request #" + num + " was approved and placed. " + who + " has been notified by email and text.", kind: "ok" } });
+    } else {
+      this.go("dashboard", { requests, modal: null, decision: r && r.live ? "Rejected" : this.state.decision, banner: { text: "Order request #" + num + " was rejected. " + who + " has been notified by email and text.", kind: "ok", see: !!(r && r.live) } });
+    }
+  }
+  renderVals() {
+    const s = this.state; const t = totals(s.items);
+    const stepIndex = s.screen === "inbox" ? 0 : s.screen === "dashboard" ? 1 : s.screen === "details" ? 2 : 3;
+    const hints = { inbox: "Try it: click View Request in the email.", dashboard: "Open Actions on Mark's request, or click the request number.", details: "Change a quantity, add a comment, then Approve or Reject.", placed: "The order is placed on Mark's behalf.", notify: "The requester hears back the same three ways." };
+    const live = s.requests.find(r => r.live) || {};
+    const v = s.requests.find(r => r.num === s.viewing) || live;
+    const vt = v.live ? t : null;
+    const q = s.query.trim().toLowerCase();
+    const shown = s.requests.filter(r => !q || r.num.toLowerCase().includes(q) || r.po.toLowerCase().includes(q));
+    const rows = shown.map(r => ({
+      date: r.date, num: r.num, po: r.po, total: fmt(this.requestTotal(r)), exp: r.exp, by: r.by, status: r.status, isPending: r.status === "Pending",
+      statusCls: "hd-status" + (r.status === "Approved" ? " is-approved" : r.status === "Rejected" ? " is-rejected" : ""),
+      cls: r.live && r.status === "Pending" ? "is-hot" : "", open: s.openMenu === r.num, chev: s.openMenu === r.num ? "▲" : "▼",
+      toggle: (e) => { e.stopPropagation(); this.setState({ openMenu: s.openMenu === r.num ? null : r.num }); },
+      view: () => this.go("details", { viewing: r.num }),
+      approve: () => this.openModal({ kind: "approve", num: r.num, po: r.po, total: this.requestTotal(r) }),
+      reject: () => this.openModal({ kind: "reject", num: r.num })
+    }));
+    const order = ["store", "ship", "express"];
+    const groups = order.filter(k => s.items.some(it => it.fulfill === k)).map(k => {
+      const items = s.items.filter(it => it.fulfill === k); const m = GROUP_META[k];
+      return { key: k, icon: ICONS[k], label: m.label, fullLabel: m.fullLabel, expect: m.expect, where: m.where, next: m.next, countText: items.length + (items.length === 1 ? " item" : " items"),
+        items: items.map(it => ({ brand: it.brand, name: it.name, model: it.model, qty: String(it.qty), unit: fmt(it.price), total: fmt(round2(it.price * it.qty)),
+          qtyLabel: "Quantity for " + it.brand + " " + it.model, commentAria: "Comment on " + it.brand + " " + it.model,
+          setQty: (e) => { const val = e.target.value.replace(/[^\d]/g, "").slice(0, 3); this.setItem(it.id, { qty: val === "" ? "" : Number(val) }); },
+          fixQty: () => { if (!(Number(it.qty) > 0)) this.setItem(it.id, { qty: 1 }); },
+          remove: () => this.setState({ items: s.items.filter(x => x.id !== it.id) }),
+          commentOpen: s.commentOpen === it.id, comment: s.comments[it.id] || "", commentLabel: s.comments[it.id] ? "Edit comment" : "Add a comment",
+          toggleComment: () => this.setState({ commentOpen: s.commentOpen === it.id ? null : it.id }),
+          setComment: (e) => this.setState({ comments: Object.assign({}, s.comments, { [it.id]: e.target.value }) }) })),
+        metaNodes: m.meta.map((pair, i) => React.createElement("span", { key: i }, pair[0], React.createElement("b", null, pair[1]))) };
+    });
+    const names = s.items.map(it => it.brand + " " + it.name);
+    const m = s.modal || {};
+    const markBody = s.decision === "Rejected"
+      ? "Your order request #" + LIVE_NUM + " was rejected by Kim Dickenson on May 16, 2019 at 6:20 PM for North Gwinnett Plumbing, LLC." + (s.rejectReasonSent ? " Reason: “" + s.rejectReasonSent + "”" : "") + " You can edit the request from My Requests and submit it again."
+      : "Your order request #" + LIVE_NUM + " was approved and completed on May 16, 2019 at 6:20 PM for North Gwinnett Plumbing, LLC. It will appear in your purchase history.";
+    const markSms = s.decision === "Rejected" ? "Your order request #" + LIVE_NUM + " was rejected by Kim Dickenson. Open My Requests to edit and resubmit." : "Your order request #" + LIVE_NUM + " was approved and completed on May 16, 2019 at 6:20 PM for North Gwinnett Plumbing, LLC.";
+    return {
+      steps: STEPS, stepIndex, hint: hints[s.screen] || "", restart: () => this.restart(), rootRef: this.rootRef, scrollClass: "hd-scroll" + (s.modal ? " is-locked" : ""),
+      rootClick: (e) => { const tg = e.target; if (s.openMenu != null && !(tg.closest && tg.closest(".hd-menu"))) this.setState({ openMenu: null }); },
+      rootKey: (e) => { if (e.key === "Escape") { if (s.modal) this.setState({ modal: null }); else if (s.openMenu != null) this.setState({ openMenu: null }); } },
+      noop: (e) => { if (e && e.preventDefault) e.preventDefault(); }, stop: (e) => e.stopPropagation(),
+      isInbox: s.screen === "inbox", isDashboard: s.screen === "dashboard", isDetails: s.screen === "details", isPlaced: s.screen === "placed", isNotify: s.screen === "notify",
+      hasChrome: s.screen !== "inbox", chromeActive: "orders", chromeNav: (id) => { if (id === "orders") this.go("dashboard"); },
+      liveNum: LIVE_NUM, liveTotal: fmt(t.total), savings: fmt(SAVINGS),
+      goDashboard: (e) => { if (e && e.preventDefault) e.preventDefault(); this.go("dashboard"); }, goDashboardLink: (e) => { if (e && e.preventDefault) e.preventDefault(); this.go("dashboard"); }, goNotify: () => this.go("notify", { banner: null }),
+      textApprove: () => this.openModal({ kind: "approve", num: LIVE_NUM, po: "Arden Lane", total: t.total, fromText: true }), textReject: () => this.openModal({ kind: "reject", num: LIVE_NUM, fromText: true }),
+      hasBanner: !!s.banner && s.screen !== "inbox", bannerText: s.banner ? s.banner.text : "", bannerClass: "hd-banner", bannerSee: !!(s.banner && s.banner.see), closeBanner: () => this.setState({ banner: null }),
+      query: s.query, setQuery: (e) => this.setState({ query: e.target.value, openMenu: null }), rows, noMatches: !shown.length,
+      showPriceBar: s.priceBar && !!v.live, hidePriceBar: () => this.setState({ priceBar: false }),
+      dv: { num: v.num || "", status: v.status || "", by: v.by || "Mark Landers", note: NOTE, isLive: !!v.live, isSample: !v.live, isPending: v.status === "Pending", canDecide: !!v.live && v.status === "Pending",
+        statusCls: "hd-status" + (v.status === "Approved" ? " is-approved" : v.status === "Rejected" ? " is-rejected" : ""),
+        subtotal: vt ? fmt(vt.subtotal) : fmt(v.total || 0), discount: fmt(-(vt ? vt.discount : DISCOUNT)), express: vt ? (vt.express ? fmt(vt.express) : "---") : "---", tax: vt ? fmt(vt.tax) : "---", total: fmt(v.live ? t.total : (v.total || 0)), po: v.po || "" },
+      t: { count: String(t.count), subtotal: fmt(t.subtotal), total: fmt(t.total) }, itemsEmpty: !s.items.length, groups,
+      replyOpen: s.replyOpen, reply: s.reply, toggleReply: () => this.setState({ replyOpen: !s.replyOpen }), setReply: (e) => this.setState({ reply: e.target.value }),
+      sendReply: () => this.setState({ replyOpen: false, reply: "", banner: s.reply.trim() ? { text: "Your comment was sent to Mark Landers by email and text.", kind: "ok" } : s.banner }),
+      approveLive: () => this.openModal({ kind: "approve", num: LIVE_NUM, po: v.po || "Arden Lane", total: t.total }), rejectLive: () => this.openModal({ kind: "reject", num: LIVE_NUM }),
+      firstItem: names[0] || "your items", otherItems: names.length > 1 ? " and " + (names.length - 1) + " other item" + (names.length > 2 ? "s" : "") : "",
+      markBody, markSms, markStatus: s.decision || "Pending", markStatusCls: "hd-status" + (s.decision === "Approved" ? " is-approved" : s.decision === "Rejected" ? " is-rejected" : ""),
+      hasModal: !!s.modal, overlayStyle: "top:" + (m.top || 0) + "px;height:" + (m.h || 700) + "px", modalStyle: "margin-top:" + Math.max(24, Math.round(((m.h || 700) - 400) / 2)) + "px",
+      modalIsApprove: m.kind === "approve", modalIsReject: m.kind === "reject",
+      modalTitle: m.kind === "reject" ? "Reject Order Request" : "Approve Order",
+      modalLead: m.kind === "reject" ? "This will reject order request #" + (m.num || "") + ". The requester will be notified by email and text and can edit and resubmit." : "This will complete the order submitted by " + ((s.requests.find(r => r.num === m.num) || {}).by || "Mark Landers") + "." + (m.fromText ? " Replying 1 to the text message does the same thing." : ""),
+      modalNum: m.num || "", modalPo: m.po || "", modalTotal: fmt(m.total || 0), modalYesLabel: m.kind === "reject" ? "Reject Request" : "Approve and Complete Order",
+      rejectReason: s.rejectReason, setRejectReason: (e) => this.setState({ rejectReason: e.target.value }),
+      closeModal: () => this.setState({ modal: null }),
+      modalYes: () => { if (m.kind === "reject") { this.setState({ rejectReasonSent: s.rejectReason.trim() }); this.decide(m.num, "Rejected"); } else this.decide(m.num, "Approved"); }
+    };
+  }
+}
+</script>
+</body>
+</html>
