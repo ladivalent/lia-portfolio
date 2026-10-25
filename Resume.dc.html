@@ -25,6 +25,20 @@
     :focus-visible{outline:2px solid #0968F6;outline-offset:2px}
     @media print{header,footer,[data-noprint]{display:none!important}body{font-size:11pt}main{padding:0!important}[data-print=stack]{display:flex!important;flex-direction:column!important;gap:40px!important}[data-print=aside]{position:static!important;gap:32px!important}[data-print=caps]{order:3}[data-screen-label]{padding-bottom:0!important}[data-print=stats]{display:none!important}}
     @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+    /* Tablet and phone: one column, sidebar flows under the experience */
+    @media (max-width:900px){
+      .rs-grid{grid-template-columns:minmax(0,1fr) !important;gap:48px !important}
+      .rs-aside{position:static !important}
+    }
+    /* Phone: stack the label columns, story titles above their tags */
+    @media (max-width:640px){
+      .rs-earlier{grid-template-columns:minmax(0,1fr) !important;gap:4px !important}
+      .rs-flabel{width:100% !important}
+      .rs-story-btn{flex-direction:column !important;align-items:flex-start !important;gap:12px !important;padding:16px !important}
+      .rs-story-tags{justify-content:flex-start !important}
+      .rs-story-body{padding:4px 16px 16px !important}
+      .rs-row{grid-template-columns:minmax(0,1fr) !important;gap:4px !important}
+    }
   </style>
 </helmet>
 <dc-import name="SiteHeader" active="resume" hint-size="100%,64px"></dc-import>
@@ -52,7 +66,7 @@
 
   <sc-if value="{{ isMaster }}" hint-placeholder-val="{{ true }}">
   <section data-screen-label="Master résumé" style="padding:40px 24px clamp(48px,8vw,96px)">
-    <div data-print="stack" style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:minmax(0,2fr) minmax(260px,1fr);gap:48px;align-items:start">
+    <div class="rs-grid" data-print="stack" style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:minmax(0,2fr) minmax(260px,1fr);gap:48px;align-items:start">
       <div style="display:flex;flex-direction:column;gap:40px;min-width:0">
         <div style="display:flex;flex-direction:column;gap:12px">
           <h2 style="margin:0;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#707070;font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace">Profile</h2>
@@ -81,14 +95,14 @@
         <div style="display:flex;flex-direction:column;gap:12px">
           <h2 style="margin:0;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#707070;font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace">Earlier experience</h2>
           <sc-for list="{{ earlier }}" as="r" hint-placeholder-count="3">
-            <div style="display:grid;grid-template-columns:minmax(120px,160px) minmax(0,1fr);gap:16px;padding:16px 0;border-top:1px solid #E5E5E5">
+            <div class="rs-earlier" style="display:grid;grid-template-columns:minmax(120px,160px) minmax(0,1fr);gap:16px;padding:16px 0;border-top:1px solid #E5E5E5">
               <div style="font-size:14px;color:#545454">{{ r.dates }}</div>
               <div style="display:flex;flex-direction:column;gap:4px"><div style="font-size:16px;font-weight:700">{{ r.company }} · {{ r.title }}</div><div style="font-size:14px;line-height:1.55;color:#363636">{{ r.summary }} {{ r.extra }}</div></div>
             </div>
           </sc-for>
         </div>
       </div>
-      <aside data-print="aside" style="display:flex;flex-direction:column;gap:32px;position:sticky;top:88px">
+      <aside class="rs-aside" data-print="aside" style="display:flex;flex-direction:column;gap:32px;position:sticky;top:88px">
         <div data-print="caps" style="display:flex;flex-direction:column;gap:16px">
           <h2 style="margin:0;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#707070;font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace">Capabilities</h2>
           <sc-for list="{{ caps }}" as="c" hint-placeholder-count="5">
@@ -115,10 +129,10 @@
     <div style="max-width:1200px;margin:0 auto;display:flex;flex-direction:column;gap:24px">
       <p style="margin:0;font-size:17px;color:#363636">A canonical archive of stories and achievements.</p>
       <div style="display:flex;flex-direction:column;gap:12px;background:#F7F7F7;border-radius:12px;padding:16px 20px">
-        <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><span style="font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#707070;font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;width:80px">Company</span>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><span class="rs-flabel" style="font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#707070;font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;width:80px">Company</span>
           <sc-for list="{{ companyChips }}" as="c" hint-placeholder-count="4"><button type="button" onClick="{{ c.toggle }}" aria-pressed="{{ c.on }}" style="display:inline-flex;align-items:center;height:32px;padding:0 14px;border-radius:999px;border:1px solid {{ c.border }};background:{{ c.bg }};color:{{ c.color }};font-size:13px;font-weight:700;font-family:inherit;cursor:pointer">{{ c.label }}</button></sc-for>
         </div>
-        <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><span style="font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#707070;font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;width:80px">Focus</span>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><span class="rs-flabel" style="font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#707070;font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;width:80px">Focus</span>
           <sc-for list="{{ focusChips }}" as="c" hint-placeholder-count="5"><button type="button" onClick="{{ c.toggle }}" aria-pressed="{{ c.on }}" style="display:inline-flex;align-items:center;height:32px;padding:0 14px;border-radius:999px;border:1px solid {{ c.border }};background:{{ c.bg }};color:{{ c.color }};font-size:13px;font-weight:700;font-family:inherit;cursor:pointer">{{ c.label }}</button></sc-for>
         </div>
         <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">
@@ -133,14 +147,14 @@
       <div style="display:flex;flex-direction:column;gap:10px">
         <sc-for list="{{ stories }}" as="s" hint-placeholder-count="6">
           <article id="story-{{ s.id }}" style="border:1px solid {{ s.border }};border-radius:12px;background:#fff;overflow:hidden;transition:border-color 150ms cubic-bezier(.2,0,0,1)">
-            <button type="button" onClick="{{ s.toggle }}" aria-expanded="{{ s.open }}" style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 22px;background:none;border:0;text-align:left;font-family:inherit;color:#191919;cursor:pointer" style-hover="background:#FAFAFA">
+            <button class="rs-story-btn" type="button" onClick="{{ s.toggle }}" aria-expanded="{{ s.open }}" style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 22px;background:none;border:0;text-align:left;font-family:inherit;color:#191919;cursor:pointer" style-hover="background:#FAFAFA">
               <span style="display:flex;flex-direction:column;gap:4px;min-width:0"><span style="font-size:17px;font-weight:700;line-height:1.3">{{ s.title }}</span><span style="font-size:13px;color:#707070">{{ s.company }} · {{ s.role }}</span></span>
-              <span style="display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end;align-items:center;flex:none"><sc-for list="{{ s.focus }}" as="f" hint-placeholder-count="2"><span style="display:inline-flex;align-items:center;height:26px;padding:0 10px;border-radius:999px;background:#F7F7F7;border:1px solid #E5E5E5;font-size:12px;color:#545454">{{ f }}</span></sc-for><span aria-hidden="true" style="font-size:12px;color:#707070;margin-left:6px">{{ s.chev }}</span></span>
+              <span class="rs-story-tags" style="display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end;align-items:center;flex:none"><sc-for list="{{ s.focus }}" as="f" hint-placeholder-count="2"><span style="display:inline-flex;align-items:center;height:26px;padding:0 10px;border-radius:999px;background:#F7F7F7;border:1px solid #E5E5E5;font-size:12px;color:#545454">{{ f }}</span></sc-for><span aria-hidden="true" style="font-size:12px;color:#707070;margin-left:6px">{{ s.chev }}</span></span>
             </button>
             <sc-if value="{{ s.open }}" hint-placeholder-val="{{ false }}">
-              <div style="padding:4px 22px 22px;display:flex;flex-direction:column;gap:14px;border-top:1px solid #E5E5E5">
+              <div class="rs-story-body" style="padding:4px 22px 22px;display:flex;flex-direction:column;gap:14px;border-top:1px solid #E5E5E5">
                 <sc-for list="{{ s.rows }}" as="r" hint-placeholder-count="4">
-                  <div style="display:grid;grid-template-columns:minmax(100px,130px) minmax(0,1fr);gap:16px;padding-top:14px"><div style="font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#0968F6;font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;padding-top:3px">{{ r.label }}</div><div style="font-size:15px;line-height:1.6;color:#363636;text-wrap:pretty">{{ r.text }}</div></div>
+                  <div class="rs-row" style="display:grid;grid-template-columns:minmax(100px,130px) minmax(0,1fr);gap:16px;padding-top:14px"><div style="font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#0968F6;font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;padding-top:3px">{{ r.label }}</div><div style="font-size:15px;line-height:1.6;color:#363636;text-wrap:pretty">{{ r.text }}</div></div>
                 </sc-for>
                 <sc-if value="{{ s.hasTradeoffs }}" hint-placeholder-val="{{ false }}">
                   <div style="margin-top:8px;background:#F7F7F7;border-radius:12px;padding:16px 20px;display:flex;flex-direction:column;gap:12px">
