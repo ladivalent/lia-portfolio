@@ -10,15 +10,12 @@
 <body>
 <x-dc>
 <helmet>
-  <link rel="stylesheet" href="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/tokens/fig-tokens.css">
   <link rel="stylesheet" href="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/tokens/fonts.css">
   <link rel="stylesheet" href="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/tokens/colors.css">
   <link rel="stylesheet" href="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/tokens/evo-aliases.css">
   <link rel="stylesheet" href="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/tokens/typography.css">
   <link rel="stylesheet" href="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/tokens/spacing.css">
   <link rel="stylesheet" href="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/styles.css">
-  <script src="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/_ds_bundle.js"></script>
-  <script src="embeds/logos.js"></script>
   <script src="./image-slot.js"></script>
   <style>
     html,body{margin:0;background:#fff;color:#191919;font-family:'Market Sans',Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;scroll-behavior:smooth}
@@ -96,9 +93,9 @@
         <sc-for list="{{ tools }}" as="t" hint-placeholder-count="7">
           <li class="pt-row" style="border-bottom:1px solid #E5E5E5">
             <span class="pt-num" style="font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:12px;font-weight:600;letter-spacing:.08em;line-height:30px;color:#0968F6">{{ t.num }}</span>
-            <span class="pt-thumb" onClick="{{ t.openFromThumb }}" style="display:block;aspect-ratio:16 / 10;border-radius:8px;overflow:hidden;background:#F7F7F7;box-sizing:border-box;cursor:pointer">
+            <a class="pt-thumb" href="{{ t.href }}" onClick="{{ t.openFromThumb }}" tabindex="-1" aria-hidden="true" style="display:block;aspect-ratio:16 / 10;border-radius:8px;overflow:hidden;background:#F7F7F7;box-sizing:border-box;cursor:pointer;color:inherit;text-decoration:none">
               <image-slot id="{{ t.slotId }}" shape="rounded" radius="7" src="{{ t.img }}" placeholder="Drop a thumbnail or icon" style="display:block;width:100%;height:100%"></image-slot>
-            </span>
+            </a>
             <span class="pt-body" style="display:flex;flex-direction:column;gap:8px;min-width:0">
               <a class="pt-link" href="{{ t.href }}" onClick="{{ t.remember }}" style="align-self:flex-start;font-size:24px;line-height:30px;font-weight:700;letter-spacing:-.01em">{{ t.title }}</a>
               <span style="font-size:15px;line-height:1.5;color:#545454;max-width:640px;text-wrap:pretty">{{ t.desc }}</span>
@@ -128,7 +125,7 @@
   <footer data-screen-label="Footer" style="border-top:1px solid #E5E5E5;padding:48px 24px;background:#fff">
     <div style="max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;font-size:14px;color:#545454">
       <div style="display:flex;flex-direction:column;gap:4px"><b style="color:#191919;font-size:16px">Lia DiValentin</b><span>Product Design Leader · AI Commerce, Search &amp; Discovery</span></div>
-      <div style="display:flex;gap:20px;flex-wrap:wrap;align-items:center"><a href="mailto:ladivalent@gmail.com" style="text-decoration:none">ladivalent@gmail.com</a><a href="https://www.linkedin.com/in/liadivalentin" target="_blank" rel="noopener" style="text-decoration:none">LinkedIn</a><span style="color:#8F8F8F">Built with my own playbook · Updated 2026-09-16</span></div>
+      <div style="display:flex;gap:20px;flex-wrap:wrap;align-items:center"><a href="mailto:ladivalent@gmail.com" style="text-decoration:none;display:inline-flex;align-items:center;min-height:44px">ladivalent@gmail.com</a><a href="https://www.linkedin.com/in/liadivalentin" target="_blank" rel="noopener" style="text-decoration:none;display:inline-flex;align-items:center;min-height:44px">LinkedIn</a><span style="color:#8F8F8F">Built with my own playbook · Updated 2026-09-16</span></div>
     </div>
   </footer>
 </main>
@@ -150,7 +147,7 @@ class Component extends DCLogic {
       ...t,
       slotId: "tool-" + t.slot,
       remember: remember(t.slot),
-      openFromThumb: () => { if (editing()) return; remember(t.slot)(); location.assign(t.href); }
+      openFromThumb: (e) => { if (editing()) { if (e && e.preventDefault) e.preventDefault(); return; } remember(t.slot)(); }
     }));
     return {
       tools: tools,

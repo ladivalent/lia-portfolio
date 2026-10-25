@@ -10,14 +10,12 @@
 <body>
 <x-dc>
 <helmet>
-  <link rel="stylesheet" href="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/tokens/fig-tokens.css">
   <link rel="stylesheet" href="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/tokens/fonts.css">
   <link rel="stylesheet" href="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/tokens/colors.css">
   <link rel="stylesheet" href="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/tokens/evo-aliases.css">
   <link rel="stylesheet" href="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/tokens/typography.css">
   <link rel="stylesheet" href="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/tokens/spacing.css">
   <link rel="stylesheet" href="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/styles.css">
-  <script src="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/_ds_bundle.js"></script>
   <style>
     html,body{margin:0;background:#fff;color:#191919;font-family:'Market Sans',Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
     a{color:#0968F6}a:hover{color:#0049B8}
@@ -47,7 +45,7 @@
               <legend style="font-size:14px;font-weight:700;padding:0;margin-bottom:10px">What's this about?</legend>
               <div style="display:flex;gap:8px;flex-wrap:wrap">
                 <sc-for list="{{ intents }}" as="i" hint-placeholder-count="3">
-                  <button type="button" role="radio" aria-checked="{{ i.on }}" onClick="{{ i.pick }}" style="display:inline-flex;align-items:center;height:40px;padding:0 18px;border-radius:999px;border:1px solid {{ i.border }};background:{{ i.bg }};color:{{ i.color }};font-size:14px;font-weight:700;font-family:inherit;cursor:pointer">{{ i.label }}</button>
+                  <button type="button" role="radio" aria-checked="{{ i.on }}" onClick="{{ i.pick }}" style="display:inline-flex;align-items:center;height:44px;padding:0 18px;border-radius:999px;border:1px solid {{ i.border }};background:{{ i.bg }};color:{{ i.color }};font-size:14px;font-weight:700;font-family:inherit;cursor:pointer">{{ i.label }}</button>
                 </sc-for>
               </div>
             </fieldset>
@@ -70,7 +68,7 @@
   <footer data-screen-label="Footer" style="border-top:1px solid #E5E5E5;padding:48px 24px;background:#fff">
     <div style="max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;font-size:14px;color:#545454">
       <div style="display:flex;flex-direction:column;gap:4px"><b style="color:#191919;font-size:16px">Lia DiValentin</b><span>Product Design Leader · AI Commerce, Search &amp; Discovery</span></div>
-      <div style="display:flex;gap:20px;flex-wrap:wrap;align-items:center"><a href="mailto:ladivalent@gmail.com" style="text-decoration:none">ladivalent@gmail.com</a><a href="https://www.linkedin.com/in/liadivalentin" target="_blank" rel="noopener" style="text-decoration:none">LinkedIn</a><span style="color:#8F8F8F">Built with my own playbook · Updated 2026-09-16</span></div>
+      <div style="display:flex;gap:20px;flex-wrap:wrap;align-items:center"><a href="mailto:ladivalent@gmail.com" style="text-decoration:none;display:inline-flex;align-items:center;min-height:44px">ladivalent@gmail.com</a><a href="https://www.linkedin.com/in/liadivalentin" target="_blank" rel="noopener" style="text-decoration:none;display:inline-flex;align-items:center;min-height:44px">LinkedIn</a><span style="color:#8F8F8F">Built with my own playbook · Updated 2026-09-16</span></div>
     </div>
   </footer>
 </main>

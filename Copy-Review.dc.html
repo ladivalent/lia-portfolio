@@ -117,6 +117,13 @@
       .cr-search{width:100%}
       .cr-guide{grid-template-columns:1fr}
     }
+    @media (max-width:760px){
+      .cr-seg button,.cr-btn,.cr-ref,.cr-thumb{min-height:44px}
+      .cr-st button{min-height:40px;padding:4px 12px}
+      .cr-ref{display:inline-flex;align-items:center;padding:0 10px}
+      .cr-chk{min-height:44px}
+      .cr-txt{min-height:44px}
+    }
     @media (prefers-reduced-motion:reduce){.cr *{transition:none !important}}
   </style>
 </helmet>
@@ -241,7 +248,7 @@
   <sc-if value="{{ lbOpen }}" hint-placeholder-val="{{ false }}">
     <div class="cr-lb" onClick="{{ closeLb }}">
       <button class="cr-btn x" type="button" onClick="{{ closeLb }}">Close</button>
-      <img src="{{ lbSrc }}" alt="{{ lbAlt }}">
+      <img src="{{ lbSrc }}" alt="{{ lbAlt }}" loading="lazy" decoding="async">
     </div>
   </sc-if>
 </div>

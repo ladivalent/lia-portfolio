@@ -12,18 +12,18 @@
 <helmet>
   <link rel="stylesheet" href="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/tokens/fonts.css">
   <link rel="stylesheet" href="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/tokens/colors.css">
-  <script src="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/_ds_bundle.js"></script>
   <style>
     html,body{margin:0;height:100%;background:#fff;color:#191919;font-family:'Market Sans',Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow:hidden}
     a{color:#0968F6}a:hover{color:#0049B8}
     :focus-visible{outline:2px solid #0968F6;outline-offset:2px}
+    @media (max-width:640px){.vw-home{display:none !important}.vw-sub{display:none !important}.vw-title{align-items:flex-start !important;text-align:left}.vw-bar{padding:0 12px !important}}
   </style>
 </helmet>
 <div style="height:100vh;display:flex;flex-direction:column;font-family:'Market Sans',Inter,system-ui,sans-serif;color:#191919">
-  <div style="height:56px;flex:none;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:0 20px;border-bottom:1px solid #E5E5E5;background:#fff">
-    <a href="{{ backHref }}" style="display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 14px;border-radius:999px;border:1.5px solid #C7C7C7;background:#fff;color:#191919;font-size:14px;font-weight:700;text-decoration:none" style-hover="background:#F7F7F7;color:#191919">← Back</a>
-    <div style="display:flex;flex-direction:column;align-items:center;min-width:0"><div style="font-size:15px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ title }}</div><div style="font-size:12px;color:#707070">Lia DiValentin · liadivalentin.com</div></div>
-    <a href="Home.dc.html" style="font-size:14px;font-weight:700;color:#191919;text-decoration:none;white-space:nowrap">Lia DiValentin</a>
+  <div class="vw-bar" style="height:56px;flex:none;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:0 20px;border-bottom:1px solid #E5E5E5;background:#fff">
+    <a href="{{ backHref }}" style="display:inline-flex;align-items:center;gap:8px;height:44px;flex:none;padding:0 14px;border-radius:999px;border:1.5px solid #C7C7C7;background:#fff;color:#191919;font-size:14px;font-weight:700;text-decoration:none" style-hover="background:#F7F7F7;color:#191919">← Back</a>
+    <div class="vw-title" style="display:flex;flex-direction:column;align-items:center;min-width:0;flex:1 1 auto"><div style="font-size:15px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%">{{ title }}</div><div class="vw-sub" style="font-size:12px;color:#707070">Lia DiValentin · liadivalentin.com</div></div>
+    <a class="vw-home" href="Home.dc.html" style="display:inline-flex;align-items:center;min-height:44px;font-size:14px;font-weight:700;color:#191919;text-decoration:none;white-space:nowrap">Lia DiValentin</a>
   </div>
   <div ref="{{ areaRef }}" style="flex:1;min-height:0;overflow:auto;background:#fff">
     <sc-if value="{{ isPlaybook }}" hint-placeholder-val="{{ true }}">
@@ -40,16 +40,20 @@
       <dc-import name="Size-Personalization-Journeys" hint-size="2016px,2280px"></dc-import>
     </sc-if>
     <sc-if value="{{ isPolicy }}" hint-placeholder-val="{{ false }}">
-      <div style="width:100%;height:{{ boardH }};overflow:hidden;position:relative">
+      <div style="width:100%;height:{{ boardH }};overflow:auto;position:relative;-webkit-overflow-scrolling:touch">
+        <div style="position:relative;width:{{ boardW }};height:{{ boardH }}">
         <div style="position:absolute;left:0;top:0;width:1920px;height:1080px;transform-origin:0 0;transform:{{ boardTf }}">
           <dc-import name="Agentic-Search-Policy-Map" embedded="{{ true }}" hint-size="1920px,1080px"></dc-import>
+        </div>
         </div>
       </div>
     </sc-if>
     <sc-if value="{{ isFramework }}" hint-placeholder-val="{{ false }}">
-      <div style="width:100%;height:{{ boardH }};overflow:hidden;position:relative">
+      <div style="width:100%;height:{{ boardH }};overflow:auto;position:relative;-webkit-overflow-scrolling:touch">
+        <div style="position:relative;width:{{ boardW }};height:{{ boardH }}">
         <div style="position:absolute;left:0;top:0;width:1920px;height:1080px;transform-origin:0 0;transform:{{ boardTf }}">
           <dc-import name="Agentic-Search-Framework" embedded="{{ true }}" hint-size="1920px,1080px"></dc-import>
+        </div>
         </div>
       </div>
     </sc-if>
@@ -94,7 +98,9 @@ class Component extends DCLogic {
     const titles = { "playbook": "UX Playbook", "collab-map": "Interactive Collaboration Map", "size-journeys": "Interactive User Journey Mapping", "agentic-policy-map": "Agentic Search Policy Map", "agentic-framework": "Agentic Search Framework", "copy-review": "Copy Review Template", "pipeline-org-chart": "Pipeline Org Chart" };
     const inline = Object.prototype.hasOwnProperty.call(titles, slot);
     const src = !inline && e && e.source ? (e.source.mode === "url" ? e.source.url + (e.source.params || "") : e.source.file) : undefined;
-    const s = Math.min(1, (this.state.areaW || 1280) / 1920);
+    const areaW = this.state.areaW || 1280;
+    // Phones: never shrink the 1920px boards below half size; the frame scrolls sideways instead.
+    const s = areaW < 760 ? Math.max(0.5, Math.min(1, areaW / 1920)) : Math.min(1, areaW / 1920);
     return {
       areaRef: this.areaRef,
       title: titles[slot] || (e && e.title) || "",
@@ -102,7 +108,7 @@ class Component extends DCLogic {
       isPolicy: slot === "agentic-policy-map", isFramework: slot === "agentic-framework",
       isCopyReview: slot === "copy-review", isPipeline: slot === "pipeline-org-chart",
       isFrame: !inline && !!src, src,
-      boardTf: "scale(" + s.toFixed(4) + ")", boardH: Math.round(1080 * s) + "px",
+      boardTf: "scale(" + s.toFixed(4) + ")", boardH: Math.round(1080 * s) + "px", boardW: Math.round(1920 * s) + "px",
       backHref: /^[\w .%-]+\.dc\.html(\?.*)?$/.test(back) ? back : "Process.dc.html",
     };
   }
