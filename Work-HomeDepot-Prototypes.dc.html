@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Purchase Approvals for Pros · Prototypes</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/tokens/fonts.css">
+<style>
+html,body{margin:0;padding:0;background:#ffffff;color:#191919;font-family:'Market Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;-webkit-font-smoothing:antialiased;scroll-behavior:smooth}
+a{color:#B84A00;text-decoration:none}
+a:hover{color:#8F3A00;text-decoration:underline}
+::selection{background:#B84A00;color:#fff}
+.hp-pill{display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border-radius:999px;border:1.5px solid #B84A00;color:#B84A00;font-size:14px;font-weight:700;text-decoration:none;box-sizing:border-box;white-space:nowrap}
+.hp-pill:hover{background:#FFF7F0;text-decoration:none}
+.hp-frame{position:relative;aspect-ratio:16 / 9;background:#191919;border-radius:16px;overflow:hidden;box-sizing:border-box}
+.hp-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:#191919}
+@media (max-width:760px){
+.hp-h1{font-size:40px !important}
+.hp-h2{font-size:26px !important}
+.hp-pad{padding-top:40px !important;padding-bottom:40px !important}
+.hp-frame{border-radius:10px}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</helmet>
+<dc-import name="SiteHeader" active="work" hint-size="100%,64px"></dc-import>
+<main id="main">
+<dc-import name="WorkNav" hint-size="100%,60px"></dc-import>
+
+<div id="top" style="min-height:calc(100vh - 64px);background:#ffffff">
+
+<!-- ============ HERO ============ -->
+<section data-screen-label="Hero" style="padding:0 24px">
+  <div style="max-width:1040px;margin:0 auto;padding:40px 0 48px">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:40px;flex-wrap:wrap">
+      <div style="font-size:15px;font-weight:700;color:#191919">The Home Depot <span style="color:#707070;font-weight:400">·</span> Pro B2B</div>
+      <div style="font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#707070">Prototype walkthroughs</div>
+    </div>
+    <h1 class="hp-h1" style="margin:0 0 16px;font-size:56px;line-height:1.05;font-weight:700;letter-spacing:-0.02em;max-width:820px;text-wrap:balance">Purchase Approvals for Pros, in motion</h1>
+    <p style="max-width:660px;margin:0 0 28px;font-size:18px;line-height:1.6;color:#363636;text-wrap:pretty">Three prototypes, one per phase and role: the account owner sets up a workflow, a requester submits an order, an approver decides. Each video plays here; the link under it opens the original on Vimeo.</p>
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+      <span style="font-size:14px;font-weight:700;margin-right:4px">Jump to</span>
+      <a class="hp-pill" href="#phase-1">Phase 1</a>
+      <a class="hp-pill" href="#phase-2">Phase 2</a>
+      <a class="hp-pill" href="#phase-3">Phase 3</a>
+      <a href="Work-HomeDepot-CaseStudy.dc.html" style="display:inline-flex;align-items:center;min-height:44px;margin-left:8px;font-size:14px;font-weight:700;color:#B84A00">Read the case study →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PHASES ============ -->
+<sc-for list="{{ phases }}" as="p" hint-placeholder-count="3">
+  <section id="{{ p.id }}" class="hp-pad" data-screen-label="{{ p.label }}" style="padding:56px 24px;border-top:1px solid #E5E5E5;scroll-margin-top:72px">
+    <div style="max-width:1040px;margin:0 auto;display:flex;flex-direction:column;gap:24px">
+      <div style="display:flex;flex-direction:column;gap:10px;max-width:760px">
+        <div style="font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#B84A00">{{ p.label }} · {{ p.role }}</div>
+        <h2 class="hp-h2" style="margin:0;font-size:34px;line-height:1.15;font-weight:700;letter-spacing:-0.01em;text-wrap:balance">{{ p.title }}</h2>
+        <p style="margin:0;font-size:16px;line-height:1.6;color:#363636;text-wrap:pretty">{{ p.desc }}</p>
+      </div>
+      <div class="hp-frame">
+        <a href="{{ p.watch }}" target="_blank" rel="noopener" aria-hidden="true" tabIndex="-1" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;color:#ffffff;text-decoration:none;background:#191919">
+          <span style="display:inline-flex;align-items:center;justify-content:center;width:72px;height:72px;border-radius:50%;background:#B84A00"><svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" fill="#ffffff"><path d="M8 5.5v13l11-6.5z"></path></svg></span>
+          <span style="font-size:15px;font-weight:700">{{ p.label }} walkthrough</span>
+        </a>
+        <iframe src="{{ p.embed }}" title="{{ p.frameTitle }}" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" allowfullscreen="allowfullscreen" loading="lazy" referrerPolicy="strict-origin-when-cross-origin"></iframe>
+      </div>
+      <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;font-size:14px;color:#707070">
+        <span>{{ p.caption }}</span>
+        <a href="{{ p.watch }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;min-height:44px;font-weight:700;color:#B84A00">Open on Vimeo ↗</a>
+      </div>
+    </div>
+  </section>
+</sc-for>
+
+<!-- ============ FOOTER ============ -->
+<section data-screen-label="Footer" style="padding:0 24px;border-top:1px solid #E5E5E5;background:#F7F7F7">
+  <div style="max-width:1040px;margin:0 auto;padding:64px 0 80px;display:flex;flex-direction:column;align-items:center;gap:18px;text-align:center">
+    <div style="font-size:30px;font-weight:700;letter-spacing:-0.01em">Three roles, one approval.</div>
+    <p style="margin:0;font-size:16px;line-height:1.6;color:#707070;max-width:540px;text-wrap:pretty">The case study has the research, the umbrella strategy, the trade-offs and the results behind these prototypes.</p>
+    <div style="display:flex;align-items:center;gap:20px;margin-top:6px;flex-wrap:wrap;justify-content:center">
+      <a href="Work-HomeDepot-CaseStudy.dc.html" style="display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 24px;border-radius:999px;background:#B84A00;color:#ffffff;font-size:15px;font-weight:700;text-decoration:none">Read the case study</a>
+      <a href="#top" style="display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 22px;border-radius:999px;border:1.5px solid #B84A00;color:#B84A00;font-size:15px;font-weight:700;text-decoration:none;box-sizing:border-box">Back to top</a>
+      <span style="font-size:15px"><b>Lia DiValentin</b> · <a href="mailto:ladivalent@gmail.com" style="display:inline-flex;align-items:center;min-height:44px;color:#B84A00">ladivalent@gmail.com</a></span>
+    </div>
+  </div>
+</section>
+
+</div>
+</main>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1000}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const embed = (id) => "https://player.vimeo.com/video/" + id + "?dnt=1&title=0&byline=0&portrait=0";
+    const phases = [
+      { id: "phase-1", label: "Phase 1", role: "Account owner", title: "Set up a workflow", desc: "The account owner names a workflow, picks requesters, sets a spend limit and picks approvers, all in one form.", video: "667535643", caption: "Prototype video" },
+      { id: "phase-2", label: "Phase 2", role: "Requester", title: "Submit a request", desc: "Requesters shop as usual. Orders that meet the criteria go to an approver, and requesters track them in My Requests.", video: "667548093", caption: "Prototype video" },
+      { id: "phase-3", label: "Phase 3", role: "Approver", title: "Approve a request", desc: "Approvers see every request waiting on them, and can approve or reject from the list or the details page.", video: "667861483", caption: "Prototype video" }
+    ].map(p => Object.assign({}, p, { embed: embed(p.video), watch: "https://vimeo.com/" + p.video, frameTitle: p.label + " prototype: " + p.title.toLowerCase() }));
+    return { phases };
+  }
+}
+</script>
+</body>
+</html>
