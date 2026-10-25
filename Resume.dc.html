@@ -21,7 +21,7 @@
     html,body{margin:0;background:#fff;color:#191919;font-family:'Market Sans',Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
     a{color:#0968F6}a:hover{color:#0049B8}
     :focus-visible{outline:2px solid #0968F6;outline-offset:2px}
-    @media print{header,footer,[data-noprint]{display:none!important}body{font-size:11pt}main{padding:0!important}[data-print=stack]{display:flex!important;flex-direction:column!important;gap:40px!important}[data-print=aside]{position:static!important;gap:32px!important}[data-print=caps]{order:3}[data-screen-label]{padding-bottom:0!important}[data-print=stats]{display:none!important}}
+    @media print{header,footer,[data-noprint]{display:none!important}body{font-size:11pt}main{padding:0!important}[data-print=stack]{display:flex!important;flex-direction:column!important;gap:40px!important}[data-print=aside]{position:static!important;gap:32px!important}[data-print=caps]{order:3}[data-screen-label]{padding-bottom:0!important}[data-print=stats]{display:none!important}h2,h3{break-after:avoid}li,.rs-earlier,[data-print=keep]{break-inside:avoid}@page{margin:0.5in 0.5cm !important}}
     @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
     /* Tablet and phone: one column, sidebar flows under the experience */
     @media (max-width:900px){
@@ -48,7 +48,7 @@
           <div style="font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#0968F6">Résumé</div>
           <h1 style="margin:0;font-size:clamp(32px,4vw,44px);line-height:1.1;font-weight:700;letter-spacing:-.02em">{{ profile.name }}</h1>
           <div style="font-size:17px;color:#363636">{{ profile.headline }}</div>
-          <div style="display:flex;gap:4px 16px;flex-wrap:wrap;align-items:center;font-size:14px;color:#545454"><span>{{ profile.location }}</span><a href="mailto:{{ profile.email }}" style="text-decoration:none;display:inline-flex;align-items:center;min-height:44px">{{ profile.email }}</a><a href="{{ profile.linkedin }}" target="_blank" rel="noopener" style="text-decoration:none;display:inline-flex;align-items:center;min-height:44px">LinkedIn</a><a href="{{ profile.portfolio }}" style="text-decoration:none;display:inline-flex;align-items:center;min-height:44px">liadivalentin.com</a></div>
+          <div style="display:flex;gap:4px 16px;flex-wrap:wrap;align-items:center;font-size:14px;color:#545454"><span>{{ profile.location }}</span><a href="mailto:{{ profile.email }}" style="text-decoration:none;display:inline-flex;align-items:center;min-height:44px">{{ profile.email }}</a><a href="{{ profile.linkedin }}" target="_blank" rel="noopener" style="text-decoration:none;display:inline-flex;align-items:center;min-height:44px">LinkedIn</a><a href="{{ profile.site }}" style="text-decoration:none;display:inline-flex;align-items:center;min-height:44px">liadivalentin.vercel.app</a><a href="{{ profile.portfolio }}" style="text-decoration:none;display:inline-flex;align-items:center;min-height:44px">liadivalentin.com</a></div>
         </div>
         <div data-noprint="true" style="display:flex;gap:8px;flex-wrap:wrap">
           <a href="resume/Lia-DiValentin-Resume.pdf" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;height:44px;padding:0 20px;border-radius:999px;border:1.5px solid #0968F6;color:#0968F6;background:#fff;font-size:15px;font-weight:700;text-decoration:none" style-hover="background:#F5F9FF;color:#0968F6">Print / Save PDF</a>
@@ -107,13 +107,13 @@
             <div style="display:flex;flex-direction:column;gap:8px"><div style="font-size:14px;font-weight:700">{{ c.label }}</div><div style="display:flex;gap:6px;flex-wrap:wrap"><sc-for list="{{ c.items }}" as="i" hint-placeholder-count="5"><span style="display:inline-flex;align-items:center;min-height:26px;padding:3px 10px;border-radius:999px;background:#F7F7F7;border:1px solid #E5E5E5;font-size:12px;color:#363636">{{ i }}</span></sc-for></div></div>
           </sc-for>
         </div>
-        <div style="display:flex;flex-direction:column;gap:12px">
+        <div data-print="keep" style="display:flex;flex-direction:column;gap:12px">
           <h2 style="margin:0;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#707070;font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace">Education</h2>
           <sc-for list="{{ education }}" as="e" hint-placeholder-count="3">
             <div style="display:flex;flex-direction:column;gap:2px"><div style="font-size:14px;font-weight:700">{{ e.credential }}</div><div style="font-size:13px;color:#545454">{{ e.institution }} · {{ e.detail }}</div></div>
           </sc-for>
         </div>
-        <div style="display:flex;flex-direction:column;gap:12px">
+        <div data-print="keep" style="display:flex;flex-direction:column;gap:12px">
           <h2 style="margin:0;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#707070;font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace">Recognition</h2>
           <ul style="margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px;font-size:13px;line-height:1.5;color:#363636"><sc-for list="{{ recognition }}" as="r" hint-placeholder-count="4"><li>{{ r }}</li></sc-for></ul>
         </div>

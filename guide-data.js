@@ -707,6 +707,7 @@ const resumeProfile = {
   location: "New York, NY",
   email: "ladivalent@gmail.com",
   phone: "703-625-0862",
+  site: "https://liadivalentin.vercel.app/",
   portfolio: "https://liadivalentin.com",
   linkedin: "https://www.linkedin.com/in/liadivalentin",
   summary:
