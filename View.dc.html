@@ -10,16 +10,17 @@
 <body>
 <x-dc>
 <helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400..800&display=swap">
   <link rel="stylesheet" href="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/tokens/fonts.css">
   <link rel="stylesheet" href="_ds/ebay-evo-design-system-61746ebd-3174-49cb-8cc6-28b2aefc2aa2/tokens/colors.css">
   <style>
-    html,body{margin:0;height:100%;background:#fff;color:#191919;font-family:'Market Sans',Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow:hidden}
+    html,body{margin:0;height:100%;background:#fff;color:#191919;font-family:Inter,system-ui,-apple-system,Roboto,Arial,sans-serif;-webkit-font-smoothing:antialiased;overflow:hidden}
     a{color:#0968F6}a:hover{color:#0049B8}
     :focus-visible{outline:2px solid #0968F6;outline-offset:2px}
     @media (max-width:640px){.vw-home{display:none !important}.vw-sub{display:none !important}.vw-title{align-items:flex-start !important;text-align:left}.vw-bar{padding:0 12px !important}}
   </style>
 </helmet>
-<div style="height:100vh;display:flex;flex-direction:column;font-family:'Market Sans',Inter,system-ui,sans-serif;color:#191919">
+<div style="height:100vh;display:flex;flex-direction:column;font-family:Inter,system-ui,-apple-system,Roboto,Arial,sans-serif;color:#191919">
   <div class="vw-bar" style="height:56px;flex:none;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:0 20px;border-bottom:1px solid #E5E5E5;background:#fff">
     <a href="{{ backHref }}" style="display:inline-flex;align-items:center;gap:8px;height:44px;flex:none;padding:0 14px;border-radius:999px;border:1.5px solid #C7C7C7;background:#fff;color:#191919;font-size:14px;font-weight:700;text-decoration:none" style-hover="background:#F7F7F7;color:#191919">← Back</a>
     <div class="vw-title" style="display:flex;flex-direction:column;align-items:center;min-width:0;flex:1 1 auto"><div style="font-size:15px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%">{{ title }}</div><div class="vw-sub" style="font-size:12px;color:#707070">Lia DiValentin · liadivalentin.com</div></div>
