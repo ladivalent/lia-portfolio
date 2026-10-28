@@ -104,6 +104,18 @@ h2.h{font-size:30px}
 .chain{flex-direction:column;align-items:flex-start}
 .chain span.a{display:inline-block;transform:rotate(90deg);padding-left:12px}
 }
+/* Tool rows, same as the Process page: the title link covers the whole row and opens the tool full screen. */
+.pt-row{position:relative;display:grid;grid-template-columns:48px 240px minmax(0,1fr) 44px;grid-template-areas:"num thumb body arrow";gap:24px;align-items:start;padding:24px 0;color:#191919;box-sizing:border-box}
+.pt-num{grid-area:num}.pt-thumb{grid-area:thumb;position:relative;z-index:1}.pt-body{grid-area:body}.pt-arrow{grid-area:arrow}
+.pt-link{color:#191919;text-decoration:none}
+.pt-link::after{content:"";position:absolute;inset:0}
+.pt-link:focus-visible{outline:2px solid #0968F6;outline-offset:4px;border-radius:4px}
+.pt-thumb{border:1px solid #E5E5E5}.pt-arrow{background:#fff;border:1px solid #C7C7C7;color:#191919;margin-top:-7px}
+.pt-link,.pt-arrow,.pt-thumb{transition:color 160ms cubic-bezier(.2,0,0,1),background-color 160ms cubic-bezier(.2,0,0,1),border-color 160ms cubic-bezier(.2,0,0,1)}
+.pt-row:hover .pt-link{color:#0968F6;text-decoration:none}
+.pt-row:hover .pt-arrow{background:#191919;border-color:#191919;color:#fff}
+.pt-row:hover .pt-thumb{border-color:#C7C7C7}
+@media (max-width:760px){.pt-row{grid-template-columns:40px minmax(0,1fr) 44px;grid-template-areas:"thumb thumb thumb" "num body arrow";gap:16px;padding:20px 0}}
 </style>
 </helmet>
 <dc-import name="SiteHeader" active="work" hint-size="100%,64px"></dc-import>
@@ -376,6 +388,32 @@ h2.h{font-size:30px}
     </div>
     <h2 class="h">Other teams were building the same chip.</h2>
     <p class="lede">Size chips were showing up in search, in My eBay and on other surfaces, each designed by a different team. I led the decision on one chip variant, worked with Design Systems to ship it as a new component, and partnered with the My eBay team so saving a size looks like filtering by one. 8 partner teams approved the one style.</p>
+    <ol id="collab-map" aria-label="Interactive tools" style="list-style:none;margin:0 0 40px;padding:0;border-top:1px solid #191919">
+        <li class="pt-row" style="border-bottom:1px solid #E5E5E5">
+          <span class="pt-num" style="font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:12px;font-weight:600;letter-spacing:.08em;line-height:30px;color:#0968F6">01</span>
+          <a class="pt-thumb" href="View-SizeFilter-CollabMap.dc.html" tabindex="-1" aria-hidden="true" style="display:block;aspect-ratio:16 / 10;border-radius:8px;overflow:hidden;background:#F7F7F7;box-sizing:border-box;color:inherit;text-decoration:none"><img src="work-images/process-collab-map.webp" alt="Collaboration Map preview: teams arranged by layer, with the phases strip above" style="display:block;width:100%;height:100%;object-fit:cover" width="960" height="600" loading="lazy" decoding="async"></a>
+          <span class="pt-body" style="display:flex;flex-direction:column;gap:8px;min-width:0">
+            <a class="pt-link" href="View-SizeFilter-CollabMap.dc.html" style="align-self:flex-start;font-size:24px;line-height:30px;font-weight:700;letter-spacing:-.01em">Collaboration Map</a>
+            <span style="font-size:15px;line-height:1.5;color:#545454;max-width:640px;text-wrap:pretty">A shared view of teams, roles, decisions, and outcomes across an initiative.</span>
+            <span style="font-size:13px;line-height:20px;color:#707070">Interactive · Map, Org, Connections, Outcomes, Decision log</span>
+          </span>
+          <span class="pt-arrow" aria-hidden="true" style="display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;box-sizing:border-box">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"></path><path d="M8 7h9v9"></path></svg>
+          </span>
+        </li>
+        <li class="pt-row" style="border-bottom:1px solid #E5E5E5">
+          <span class="pt-num" style="font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:12px;font-weight:600;letter-spacing:.08em;line-height:30px;color:#0968F6">02</span>
+          <a class="pt-thumb" href="View-SizeFilter-Journeys.dc.html" tabindex="-1" aria-hidden="true" style="display:block;aspect-ratio:16 / 10;border-radius:8px;overflow:hidden;background:#F7F7F7;box-sizing:border-box;color:inherit;text-decoration:none"><img src="work-images/process-size-journeys.webp" alt="User Journey Mapping preview: nine stages of the buyer and seller size journeys" style="display:block;width:100%;height:100%;object-fit:cover" width="960" height="600" loading="lazy" decoding="async"></a>
+          <span class="pt-body" style="display:flex;flex-direction:column;gap:8px;min-width:0">
+            <a class="pt-link" href="View-SizeFilter-Journeys.dc.html" style="align-self:flex-start;font-size:24px;line-height:30px;font-weight:700;letter-spacing:-.01em">User Journey Mapping</a>
+            <span style="font-size:15px;line-height:1.5;color:#545454;max-width:640px;text-wrap:pretty">Buyer and seller size-intelligence journeys, with Director and Principal views.</span>
+            <span style="font-size:13px;line-height:20px;color:#707070">Interactive · nine stages, click any stage</span>
+          </span>
+          <span class="pt-arrow" aria-hidden="true" style="display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;box-sizing:border-box">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"></path><path d="M8 7h9v9"></path></svg>
+          </span>
+        </li>
+    </ol>
     <div class="g3 r-g" style="align-items:stretch">
       <figure style="margin:0;display:flex;flex-direction:column" class="panel">
         <div class="label" style="margin-bottom:14px">Search filter</div>
