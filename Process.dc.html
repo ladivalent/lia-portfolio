@@ -5,6 +5,10 @@
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Process and Claude skills · Lia DiValentin</title>
+<meta name="description" content="My UX playbook, interactive process tools and 11 free Claude skills for AI and agentic product design.">
+<meta property="og:title" content="Process and Claude skills · Lia DiValentin">
+<meta property="og:description" content="My UX playbook, interactive process tools and 11 free Claude skills for AI and agentic product design.">
 <script src="./support.js"></script>
 </head>
 <body>
@@ -37,6 +41,18 @@
     @media (max-width:760px){
       .pt-row{grid-template-columns:40px minmax(0,1fr) 44px;grid-template-areas:"thumb thumb thumb" "num body arrow";gap:16px;padding:20px 0}
     }
+    /* Claude skills: grouped cards with a pinned download button; the pipeline strip stacks on phones */
+    .sk-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+    @media (max-width:900px){.sk-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media (max-width:640px){.sk-grid{grid-template-columns:minmax(0,1fr)}}
+    .sk-card{display:flex;flex-direction:column;gap:8px;border:1px solid #E5E5E5;border-radius:12px;padding:20px;background:#fff;box-sizing:border-box;min-width:0}
+    .sk-dl{transition:background-color 160ms cubic-bezier(.2,0,0,1),color 160ms cubic-bezier(.2,0,0,1)}
+    .sk-dl:hover{background:#0968F6;color:#fff}
+    .sk-how{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+    .sk-pipe{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;counter-reset:none}
+    .sk-step{position:relative;display:flex;flex-direction:column;gap:6px;border:1px solid #E5E5E5;border-radius:12px;padding:16px;background:#fff;box-sizing:border-box;min-width:0}
+    .sk-step:not(:last-child)::after{content:"";position:absolute;top:31px;right:-13px;width:14px;height:1.5px;background:#C7C7C7}
+    @media (max-width:900px){.sk-how{grid-template-columns:minmax(0,1fr)}.sk-pipe{grid-template-columns:minmax(0,1fr)}.sk-step:not(:last-child)::after{top:auto;bottom:-13px;right:auto;left:31px;width:1.5px;height:14px}}
     @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
   </style>
 </helmet>
@@ -107,32 +123,95 @@
             </span>
           </li>
         </sc-for>
-        <li id="tool-4" class="pt-row pt-soon" style="border-bottom:1px solid #E5E5E5;scroll-margin-top:80px">
-          <span class="pt-num" style="font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:12px;font-weight:600;letter-spacing:.08em;line-height:30px;color:#8F8F8F">08</span>
-          <span class="pt-thumb" aria-hidden="true" style="display:flex;align-items:center;justify-content:center;aspect-ratio:16 / 10;border:1.5px dashed #C7C7C7;border-radius:8px;background:#FAFAFA;box-sizing:border-box;font-size:13px;font-weight:700;color:#8F8F8F">Coming soon</span>
+        <li id="tool-4" class="pt-row" style="border-bottom:1px solid #E5E5E5;scroll-margin-top:80px">
+          <span class="pt-num" style="font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:12px;font-weight:600;letter-spacing:.08em;line-height:30px;color:#0968F6">08</span>
+          <a class="pt-thumb" href="#skills" tabindex="-1" aria-hidden="true" style="display:block;aspect-ratio:16 / 10;border-radius:8px;overflow:hidden;background:#F5F9FF;box-sizing:border-box;cursor:pointer;color:inherit;text-decoration:none"><svg viewBox="0 0 240 150" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" aria-hidden="true" style="display:block"><rect x="78" y="22" width="112" height="104" rx="8" fill="#CFE0FC"></rect><rect x="64" y="30" width="112" height="104" rx="8" fill="#9CC1F9"></rect><rect x="50" y="38" width="112" height="104" rx="8" fill="#fff" stroke="#C7C7C7"></rect><text x="64" y="62" font-family="ui-monospace,SF Mono,Menlo,Consolas,monospace" font-size="11" font-weight="600" fill="#0968F6">SKILL.md</text><rect x="64" y="74" width="80" height="5" rx="2.5" fill="#E5E5E5"></rect><rect x="64" y="86" width="64" height="5" rx="2.5" fill="#E5E5E5"></rect><rect x="64" y="98" width="72" height="5" rx="2.5" fill="#E5E5E5"></rect><rect x="64" y="114" width="56" height="16" rx="8" fill="#0968F6"></rect><path d="M88 118v8M84.5 122.5 88 126l3.5-3.5" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
           <span class="pt-body" style="display:flex;flex-direction:column;gap:8px;min-width:0">
-            <span style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;min-width:0">
-              <span style="font-size:24px;line-height:30px;font-weight:700;letter-spacing:-.01em;color:#707070">Prompt library + agentic loops</span>
-              <span style="display:inline-flex;align-items:center;height:26px;padding:0 10px;border-radius:999px;background:#F7F7F7;border:1px solid #E5E5E5;font-size:12px;font-weight:700;color:#545454;white-space:nowrap">Coming soon</span>
-            </span>
-            <span style="font-size:15px;line-height:1.5;color:#545454;max-width:640px;text-wrap:pretty">Reusable prompts and the loops that run them between rituals.</span>
-            <a href="Contact.dc.html?topic=prompt-library" style="display:inline-flex;align-items:center;min-height:44px;font-size:14px;font-weight:700;color:#0968F6;text-decoration:none;align-self:flex-start" style-hover="color:#0049B8">Notify me →</a>
+            <a class="pt-link" href="#skills" style="align-self:flex-start;font-size:24px;line-height:30px;font-weight:700;letter-spacing:-.01em">Prompt library + agentic loops</a>
+            <span style="font-size:15px;line-height:1.5;color:#545454;max-width:640px;text-wrap:pretty">Eleven Claude skills that turn this playbook into repeatable steps, from problem brief to pixel polish. Free to download.</span>
+            <span style="font-size:13px;line-height:20px;color:#707070">Downloadable · 11 skills · see below</span>
+          </span>
+          <span class="pt-arrow" aria-hidden="true" style="display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;box-sizing:border-box">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"></path><path d="m6 13 6 6 6-6"></path></svg>
           </span>
         </li>
       </ol>
+    </section>
+
+    <section id="skills" data-screen-label="Claude skills" style="padding:48px 0 clamp(48px,8vw,96px);border-top:1px solid #E5E5E5;display:flex;flex-direction:column;gap:40px;scroll-margin-top:80px">
+      <div style="display:flex;flex-direction:column;gap:16px;max-width:760px">
+        <div style="font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#0968F6">08 · Prompt library + agentic loops</div>
+        <h2 style="margin:0;font-size:32px;line-height:1.15;font-weight:700;letter-spacing:-.01em;text-wrap:balance">The process, as reusable Claude skills</h2>
+        <p style="margin:0;font-size:17px;line-height:1.6;color:#363636;text-wrap:pretty">The tools above make my process visible. These skills make it repeatable: each one turns part of the playbook into steps Claude follows the same way every time. They’re free to download. They’re written for my workflow, so swap in your own standards, design system and tools.</p>
+        <div style="display:flex;align-items:center;gap:12px 20px;flex-wrap:wrap;padding-top:4px">
+          <a href="skills/lia-divalentin-claude-skills.zip" download style="display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 20px;border-radius:999px;background:#0968F6;color:#fff;font-size:15px;font-weight:700;text-decoration:none" style-hover="background:#0049B8;color:#fff"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v12"></path><path d="m7 11 5 5 5-5"></path><path d="M5 20h14"></path></svg>Download all 11 skills</a>
+          <a href="https://support.claude.com/en/articles/12512180-use-skills-in-claude" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;min-height:44px;font-size:15px;font-weight:700;text-decoration:none">How to add a skill in Claude ↗</a>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <div style="font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#707070">How they’re built</div>
+        <div class="sk-how">
+          <div style="display:flex;flex-direction:column;gap:6px;background:#F7F7F7;border-radius:12px;padding:20px"><span style="font-size:15px;font-weight:700">One job each</span><span style="font-size:14px;line-height:1.55;color:#363636;text-wrap:pretty">Every skill owns one part of the playbook, with a defined output and a check before anything is shown.</span></div>
+          <div style="display:flex;flex-direction:column;gap:6px;background:#F7F7F7;border-radius:12px;padding:20px"><span style="font-size:15px;font-weight:700">Load only what’s needed</span><span style="font-size:14px;line-height:1.55;color:#363636;text-wrap:pretty">Core steps live in SKILL.md. Longer references load only when a step calls for them, which keeps token use down.</span></div>
+          <div style="display:flex;flex-direction:column;gap:6px;background:#F7F7F7;border-radius:12px;padding:20px"><span style="font-size:15px;font-weight:700">Learns and stays current</span><span style="font-size:14px;line-height:1.55;color:#363636;text-wrap:pretty">Standards grow from my confirmed edits, and a refresh checks every skill against the newest model.</span></div>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <div style="display:flex;flex-direction:column;gap:8px;max-width:760px">
+          <h3 style="margin:0;font-size:24px;line-height:1.25;font-weight:700;letter-spacing:-.01em;text-wrap:balance">One problem in, one packet out</h3>
+          <p style="margin:0;font-size:15px;line-height:1.6;color:#545454;text-wrap:pretty">Design Pipeline runs five skills in order and carries one ledger of decisions and open questions between them, so the prototype still serves the problem the brief defined.</p>
+        </div>
+        <ol class="sk-pipe" aria-label="Design Pipeline stages">
+          <li class="sk-step"><span style="display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:#0968F6;color:#fff;font-size:13px;font-weight:700">1</span><span style="font-size:15px;line-height:1.3;font-weight:700">Problem brief</span><span style="font-size:13px;line-height:1.5;color:#545454;text-wrap:pretty">One problem statement, archetypes and success outcomes</span></li>
+          <li class="sk-step"><span style="display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:#0968F6;color:#fff;font-size:13px;font-weight:700">2</span><span style="font-size:15px;line-height:1.3;font-weight:700">Intent-to-model map</span><span style="font-size:13px;line-height:1.5;color:#545454;text-wrap:pretty">Which model reads each query and how the product responds</span></li>
+          <li class="sk-step"><span style="display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:#0968F6;color:#fff;font-size:13px;font-weight:700">3</span><span style="font-size:15px;line-height:1.3;font-weight:700">Disambiguation spec</span><span style="font-size:13px;line-height:1.5;color:#545454;text-wrap:pretty">Components for vague or high-stakes requests</span></li>
+          <li class="sk-step"><span style="display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:#0968F6;color:#fff;font-size:13px;font-weight:700">4</span><span style="font-size:15px;line-height:1.3;font-weight:700">Prototype prompt</span><span style="font-size:13px;line-height:1.5;color:#545454;text-wrap:pretty">A clickable prototype built from the brief’s main user</span></li>
+          <li class="sk-step"><span style="display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:#0968F6;color:#fff;font-size:13px;font-weight:700">5</span><span style="font-size:15px;line-height:1.3;font-weight:700">Critique + trace check</span><span style="font-size:13px;line-height:1.5;color:#545454;text-wrap:pretty">Every success outcome traced to a place in the prototype</span></li>
+        </ol>
+      </div>
+
+      <sc-for list="{{ skillGroups }}" as="g" hint-placeholder-count="5">
+        <div id="{{ g.anchor }}" style="display:flex;flex-direction:column;gap:16px;scroll-margin-top:80px">
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <h3 style="margin:0;font-size:20px;line-height:1.3;font-weight:700;letter-spacing:-.01em">{{ g.title }}</h3>
+            <p style="margin:0;font-size:15px;line-height:1.5;color:#545454">{{ g.lead }}</p>
+          </div>
+          <ul class="sk-grid" style="list-style:none;margin:0;padding:0">
+            <sc-for list="{{ g.items }}" as="s" hint-placeholder-count="3">
+              <li class="sk-card">
+                <span style="font-size:17px;line-height:1.3;font-weight:700">{{ s.title }}</span>
+                <span style="font-size:14px;line-height:1.55;color:#545454;text-wrap:pretty">{{ s.desc }}</span>
+                <span style="margin-top:auto;padding-top:8px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+                  <span style="font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:12px;color:#707070">{{ s.meta }}</span>
+                  <a class="sk-dl" href="{{ s.href }}" download aria-label="{{ s.aria }}" style="display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 16px;border-radius:999px;border:1.5px solid #0968F6;color:#0968F6;font-size:14px;font-weight:700;text-decoration:none;box-sizing:border-box"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v12"></path><path d="m7 11 5 5 5-5"></path><path d="M5 20h14"></path></svg>Download</a>
+                </span>
+              </li>
+            </sc-for>
+          </ul>
+        </div>
+      </sc-for>
     </section>
   </div>
 
   <footer data-screen-label="Footer" style="border-top:1px solid #E5E5E5;padding:48px 24px;background:#fff">
     <div style="max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;font-size:14px;color:#545454">
       <div style="display:flex;flex-direction:column;gap:4px"><b style="color:#191919;font-size:16px">Lia DiValentin</b><span>Product Design Leader · AI Commerce, Search &amp; Discovery</span></div>
-      <div style="display:flex;gap:20px;flex-wrap:wrap;align-items:center"><a href="mailto:ladivalent@gmail.com" style="text-decoration:none;display:inline-flex;align-items:center;min-height:44px">ladivalent@gmail.com</a><a href="https://www.linkedin.com/in/liadivalentin" target="_blank" rel="noopener" style="text-decoration:none;display:inline-flex;align-items:center;min-height:44px">LinkedIn</a><span style="color:#8F8F8F">Built with my own playbook · Updated 2026-09-16</span></div>
+      <div style="display:flex;gap:20px;flex-wrap:wrap;align-items:center"><a href="mailto:ladivalent@gmail.com" style="text-decoration:none;display:inline-flex;align-items:center;min-height:44px">ladivalent@gmail.com</a><a href="https://www.linkedin.com/in/liadivalentin" target="_blank" rel="noopener" style="text-decoration:none;display:inline-flex;align-items:center;min-height:44px">LinkedIn</a><span style="color:#8F8F8F">Built with my own playbook · Updated 2026-10-30</span></div>
     </div>
   </footer>
 </main>
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
+  componentDidMount() {
+    const id = decodeURIComponent((location.hash || "").slice(1));
+    if (!id) return;
+    const go = () => { const el = document.getElementById(id); if (el) el.scrollIntoView({ block: "start" }); };
+    this._jump = [setTimeout(go, 150), setTimeout(go, 900)];
+  }
+  componentWillUnmount() { (this._jump || []).forEach(clearTimeout); }
   renderVals() {
     const editing = () => !!(window.omelette && window.omelette.writeFile);
     const remember = (slot) => () => { try { sessionStorage.setItem("lia-view", JSON.stringify({ slot: slot, back: "Process.dc.html" })); } catch (_) {} };
@@ -150,7 +229,10 @@ class Component extends DCLogic {
       remember: remember(t.slot),
       openFromThumb: (e) => { if (editing()) { if (e && e.preventDefault) e.preventDefault(); return; } remember(t.slot)(); }
     }));
+    const SKILL_GROUPS = [{"id": "strategy", "title": "Strategy and problem framing", "lead": "Find the right problem before anyone designs a screen.", "items": [{"name": "design-problem-brief", "title": "Design Problem Brief", "desc": "Turns messy research, support tickets, funnel data and PRD notes into one user-centered problem statement, with archetypes, success outcomes and flagged assumptions.", "meta": "SKILL.md", "href": "skills/design-problem-brief.zip"}, {"name": "journey-audit", "title": "Journey Audit", "desc": "A touchpoint-by-touchpoint audit of a product flow that finds where people struggle or drop off, then ranks the fixes by severity.", "meta": "SKILL.md + 3 references", "href": "skills/journey-audit.zip"}, {"name": "intent-model-mapping", "title": "Intent-to-Model Mapping", "desc": "Maps each kind of user query to the model that reads it, the signals it pulls out and the response the product makes, in one table design and engineering share.", "meta": "SKILL.md + 2 references", "href": "skills/intent-model-mapping.zip"}]}, {"id": "agentic", "title": "AI and agentic UX", "lead": "Spec how an agent behaves when people are vague or the stakes are high.", "items": [{"name": "agentic-disambiguation-spec", "title": "Agentic Disambiguation Spec", "desc": "Specs how an agent handles vague or risky requests with purpose-built components, named heuristics, undo and “last safe moment” patterns, not generic dropdowns or modals.", "meta": "SKILL.md + 3 references", "href": "skills/agentic-disambiguation-spec.zip"}, {"name": "prototype-prompt-generator", "title": "Prototype Prompt Generator", "desc": "Turns a concept or user flow into one pasteable prompt that builds a clickable prototype in Claude Design, v0, Bolt, Lovable or Figma Make, or builds it in Claude directly.", "meta": "SKILL.md + 3 references", "href": "skills/prototype-prompt-generator.zip"}]}, {"id": "quality", "title": "Quality and systems", "lead": "Standards that hold at the pixel level and get checked every time.", "items": [{"name": "design-standards", "title": "Design Standards", "desc": "My baseline rules for layout, shopper copy, checkout and consistency, applied while building. It adds new rules from my hand edits once I confirm them.", "meta": "SKILL.md", "href": "skills/design-standards.zip"}, {"name": "design-polish-pass", "title": "Design Polish Pass", "desc": "The final 20%. Measures spacing, alignment and pixel defects against the design system’s tokens, then fixes them without redesigning anything.", "meta": "SKILL.md", "href": "skills/design-polish-pass.zip"}, {"name": "commerce-design-review", "title": "Commerce Design Review", "desc": "Reviews shopping and agentic-commerce screens for shopper copy, card layout, the US and New York checkout minimum, and consistency across desktop and iOS.", "meta": "SKILL.md", "href": "skills/commerce-design-review.zip"}]}, {"id": "ops", "title": "Design operations", "lead": "Chain the skills into one system and keep it current as models change.", "items": [{"name": "design-pipeline", "title": "Design Pipeline", "desc": "Runs the brief, intent map, disambiguation spec, prototype prompt and critique on one problem, with a shared ledger so each stage builds on the last.", "meta": "SKILL.md", "href": "skills/design-pipeline.zip"}, {"name": "design-skill-refresh", "title": "Design Skill Refresh", "desc": "Audits every skill against the newest Claude model and current prompting guidance, trims what the model no longer needs, and proposes updates for my approval.", "meta": "SKILL.md", "href": "skills/design-skill-refresh.zip"}]}, {"id": "career", "title": "For fellow job seekers", "lead": "The one I use to get ready for design interviews.", "items": [{"name": "portfolio-presentation", "title": "Portfolio Presentation", "desc": "Turns a project brief and prototype link into a storytelling case study deck for design interviews: outline, speaker notes and Q&A prep first, then the slides.", "meta": "SKILL.md + 4 references", "href": "skills/portfolio-presentation.zip"}]}];
+    const skillGroups = SKILL_GROUPS.map(g => ({ ...g, anchor: "skills-" + g.id, items: g.items.map(s => ({ ...s, aria: "Download " + s.title + " skill" })) }));
     return {
+      skillGroups: skillGroups,
       tools: tools,
       phases: [
         { n: 1, name: "Strategy & Discovery", exit: "approved problem framing + success metrics" },
